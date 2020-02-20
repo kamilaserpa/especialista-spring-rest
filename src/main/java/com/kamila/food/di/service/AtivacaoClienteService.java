@@ -16,14 +16,13 @@ public class AtivacaoClienteService {
 //		public AtivacaoClienteService(Notificador notificador) {
 //			this.notificador = notificador;
 //		}
-	//
+//
 //		public AtivacaoClienteService(String qualquer) {
 //			
 //		}
 
 	public void ativar(Cliente cliente) {
 		cliente.ativar();
-
 		notificador.notificar(cliente, "Seu cadastro no sistema está ativo!");
 	}
 
