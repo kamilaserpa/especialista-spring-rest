@@ -1,4 +1,5 @@
-# Getting Started
+# Especialista Spring Rest
+![Spring](https://static.computerworld.com.pt/media/2010/09/Spring-Logo.png)
 
 Curso Especialista Spring da AlgaWorks.
 
