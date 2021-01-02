@@ -21,6 +21,10 @@ RetentionPolicy.SOURCE - visível nem pelo compilador nem pelo tempo de execuç�
 RetentionPolicy.CLASS - visível pelo compilador
 RetentionPolicy.RUNTIME - visível pelo compilador e pelo tempo de execução
 ```
+
+### @Profile
+Permite mapear beans para diferentes perfis. Considere um cenário básico: temos um bean que deve estar ativo apenas durante o desenvolvimento, mas não implantado na produção. Apenas Beans anotados com `@Profile("dev")` seriam instanciados caso esteja configurado o perfil de desenvolvimento em application.properties `spring.profiles.active=dev`.
+
 #### Reference Documentation
 For further reference, please consider the following sections:
 
