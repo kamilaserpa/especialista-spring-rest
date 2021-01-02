@@ -25,6 +25,15 @@ RetentionPolicy.RUNTIME - visível pelo compilador e pelo tempo de execução
 ### @Profile
 Permite mapear beans para diferentes perfis. Considere um cenário básico: temos um bean que deve estar ativo apenas durante o desenvolvimento, mas não implantado na produção. Apenas Beans anotados com `@Profile("dev")` seriam instanciados caso esteja configurado o perfil de desenvolvimento em application.properties `spring.profiles.active=dev`.
 
+### @Bean
+No Spring, os objetos que formam o backbone de seu aplicativo e que são gerenciados pelo contêiner Spring IoC são chamados de beans. Um bean é um objeto instanciado, montado e gerenciado de outra forma por um contêiner Spring IoC (Inversion of Control).
+
+### @Configuration
+As classes de configuração podem conter métodos de definição de bean anotados com `@Bean`.
+
+### Ciclo de vida dos Beans
+Inicialização, execução, destruição. Após contrutor e importações é chamado o init (`@PostConstructor`).
+
 #### Reference Documentation
 For further reference, please consider the following sections:
 
