@@ -3,6 +3,7 @@ package com.kamila.food.di.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.kamila.food.di.modelo.Cliente;
@@ -11,6 +12,7 @@ import com.kamila.food.di.notificacao.Notificador;
 @Component
 public class AtivacaoClienteService {
 
+	@Qualifier("email")
 	@Autowired
 	private Notificador notificador;
 

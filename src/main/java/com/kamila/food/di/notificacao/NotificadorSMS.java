@@ -1,11 +1,11 @@
 package com.kamila.food.di.notificacao;
 
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.kamila.food.di.modelo.Cliente;
 
-@Primary
+@Qualifier("sms")
 @Component
 public class NotificadorSMS implements Notificador {
 	
