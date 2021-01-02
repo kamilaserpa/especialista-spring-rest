@@ -11,7 +11,16 @@ Por padrão, as instâncias de bean desta classe têm o mesmo nome que o nome da
 ### @Controller
 `@Controller`também é um componente gerenciado pelo Spring, no caso, que responde requisições Web.
 Essa anotação de nível de classe informa ao Spring Framework que essa classe serve como um controlador no Spring MVC.
- 
+
+### @Retention
+Usamos a anotação `@Retention` para dizer em que parte do ciclo de vida do programa nossa anotação se aplica.
+Para fazer isso, precisamos configurar @Retention com uma das três políticas de retenção:
+
+```java
+RetentionPolicy.SOURCE - visível nem pelo compilador nem pelo tempo de execução
+RetentionPolicy.CLASS - visível pelo compilador
+RetentionPolicy.RUNTIME - visível pelo compilador e pelo tempo de execução
+```
 #### Reference Documentation
 For further reference, please consider the following sections:
 

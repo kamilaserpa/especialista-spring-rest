@@ -1,18 +1,17 @@
 package com.kamila.food.di.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.kamila.food.di.modelo.Cliente;
+import com.kamila.food.di.notificacao.NivelUrgencia;
 import com.kamila.food.di.notificacao.Notificador;
+import com.kamila.food.di.notificacao.TipoDoNotificador;
 
 @Component
 public class AtivacaoClienteService {
 
-	@Qualifier("email")
+	@TipoDoNotificador(NivelUrgencia.URGENTE)
 	@Autowired
 	private Notificador notificador;
 
