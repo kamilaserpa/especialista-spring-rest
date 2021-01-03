@@ -37,11 +37,15 @@ Inicialização, execução, destruição. Após contrutor e importações é ch
 ### Propriedades
 - Substituindo propriedades via linha de comando, por exemplo:
 `java -jar target/food-api.jar --server.port=8081`
-- Por variável de ambiente:
+- Substituindo variáveis por variável de ambiente:
 
 	- `EXPORT SERVER_PORT=8082` (macOs)
 	- `set SERVER_PORT=8081
 		echo %SERVER_PORT%`(Windows)
+- Ativando o Spring Profile por linha de comando:
+`java -jar target/food-api.jar --spring.profiles.active=development`
+- Ativando o Spring Profile por variável de ambiente:
+	- `set SPRING_PROFILES_ACTIVE=production` (Windows)
 
 ### @ConfigurationProperties
 Essa anotação auxilia na configuração externalizada e facilita acesso às propriedades definidas nos arquivos de propriedades
