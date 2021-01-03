@@ -43,6 +43,10 @@ Inicialização, execução, destruição. Após contrutor e importações é ch
 	- `set SERVER_PORT=8081
 		echo %SERVER_PORT%`(Windows)
 
+### @ConfigurationProperties
+Essa anotação auxilia na configuração externalizada e facilita acesso às propriedades definidas nos arquivos de propriedades
+O Spring vinculará automaticamente qualquer propriedade definida em nosso arquivo de propriedade que tenha o prefixo "notificador.email" e o mesmo nome de um dos campos na classe `NotificadorProperties`.
+
 ##### Reference Documentation
 For further reference, please consider the following sections:
 
