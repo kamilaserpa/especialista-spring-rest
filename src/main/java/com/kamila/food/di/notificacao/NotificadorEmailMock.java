@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.kamila.food.di.modelo.Cliente;
 
-@Profile("dev")
+@Profile("development")
 @TipoDoNotificador(NivelUrgencia.SEM_URGENCIA)
 @Component
 public class NotificadorEmailMock implements Notificador {
