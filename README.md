@@ -34,14 +34,23 @@ As classes de configuração podem conter métodos de definição de bean anotad
 ### Ciclo de vida dos Beans
 Inicialização, execução, destruição. Após contrutor e importações é chamado o init (`@PostConstructor`).
 
-#### Reference Documentation
+### Propriedades
+- Substituindo propriedades via linha de comando, por exemplo:
+`java -jar target/food-api.jar --server.port=8081`
+- Por variável de ambiente:
+
+	- `EXPORT SERVER_PORT=8082` (macOs)
+	- `set SERVER_PORT=8081
+		echo %SERVER_PORT%`(Windows)
+
+##### Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.1.12.RELEASE/maven-plugin/)
 * [Spring Web](https://docs.spring.io/spring-boot/docs/2.2.4.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
 
-#### Guides
+##### Guides
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
