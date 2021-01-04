@@ -9,10 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_restaurante")
 public class Restaurante {
 
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idRestaurante;
@@ -22,54 +28,5 @@ public class Restaurante {
 
 	@Column(name = "taxa_frete")
 	private BigDecimal taxaFrete;
-
-	public Long getIdRestaurante() {
-		return idRestaurante;
-	}
-
-	public void setIdRestaurante(Long idRestaurante) {
-		this.idRestaurante = idRestaurante;
-	}
-
-	public String getNome() {
-		return nmRestaurante;
-	}
-
-	public void setNome(String nome) {
-		this.nmRestaurante = nome;
-	}
-
-	public BigDecimal getTaxaFrete() {
-		return taxaFrete;
-	}
-
-	public void setTaxaFrete(BigDecimal taxaFrete) {
-		this.taxaFrete = taxaFrete;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idRestaurante == null) ? 0 : idRestaurante.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Restaurante other = (Restaurante) obj;
-		if (idRestaurante == null) {
-			if (other.idRestaurante != null)
-				return false;
-		} else if (!idRestaurante.equals(other.idRestaurante))
-			return false;
-		return true;
-	}
 
 }
