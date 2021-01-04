@@ -80,6 +80,13 @@ Observar que não é possível um objeto em estado *transient* ir direto para o 
 
 ![Diagrama de estados JPA](https://s3.amazonaws.com/algaworks-blog/wp-content/uploads/Diagrama-de-estados.png)
 
+#### Padrão DDD - Domain-Driven Design
+Design Orientado a Domínio representa um grupo de objetos de domínio que podem ser tratados como uma única unidade. Um exemplo pode ser um pedido e seus itens de pedido, eles serão objetos separados, mas é útil tratar o pedido (junto com seus itens de linha) como um único agregado.
+<https://martinfowler.com/bliki/DDD_Aggregate.html>
+
+Não se deve criar repositórios para entidades que não são agregate root, no exemplo o agregate root é o pedido.
+
+
 ---
 
 ##### Reference Documentation

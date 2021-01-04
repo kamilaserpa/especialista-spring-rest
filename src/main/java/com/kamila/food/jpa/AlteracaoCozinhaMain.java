@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.kamila.food.FoodApiApplication;
 import com.kamila.food.domain.model.Cozinha;
+import com.kamila.food.domain.repository.CozinhaRepository;
 
 /*
  * Classe main criada para ser executada como JavaApplication, a fim de teste de update
@@ -17,13 +18,13 @@ public class AlteracaoCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
 		Cozinha cozinha = new Cozinha();
 		cozinha.setIdCozinha(1l);
 		cozinha.setNmCozinha("Brasileira");
 		
-		cadastroCozinha.salvar(cozinha);
+		cozinhaRepository.salvar(cozinha);
 	}
 
 }

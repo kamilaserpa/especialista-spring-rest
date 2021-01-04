@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.kamila.food.FoodApiApplication;
 import com.kamila.food.domain.model.Cozinha;
+import com.kamila.food.domain.repository.CozinhaRepository;
 
 /*
  * Classe main criada para ser executada como JavaApplication, a fim de teste de método get
@@ -16,9 +17,9 @@ public class BuscaCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(FoodApiApplication.class)
 				.web(WebApplicationType.NONE).run(args);
 
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
-		Cozinha cozinha = cadastroCozinha.buscar(1L);
+		Cozinha cozinha = cozinhaRepository.buscar(1L);
 
 		System.out.println(cozinha.getNmCozinha());
 	}
