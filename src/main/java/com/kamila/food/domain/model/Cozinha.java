@@ -19,7 +19,8 @@ public class Cozinha {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idCozinha;
+	@Column(name = "id_cozinha")
+	private Long id;
 
 	@Column(name = "nm_cozinha", length = 30)
 	private String nmCozinha;

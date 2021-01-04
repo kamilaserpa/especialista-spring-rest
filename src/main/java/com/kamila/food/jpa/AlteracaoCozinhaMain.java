@@ -21,7 +21,7 @@ public class AlteracaoCozinhaMain {
 		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
 		Cozinha cozinha = new Cozinha();
-		cozinha.setIdCozinha(1l);
+		cozinha.setId(1l);
 		cozinha.setNmCozinha("Brasileira");
 		
 		cozinhaRepository.salvar(cozinha);

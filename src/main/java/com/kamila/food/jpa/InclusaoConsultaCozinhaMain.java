@@ -29,8 +29,8 @@ public class InclusaoConsultaCozinhaMain {
 		cozinha2 = cozinhaRepository.salvar(cozinha2);
 
 		// Visualizando retorno do método EntityManager.merge com objeto persistido
-		System.out.printf("%d - %s\n", cozinha1.getIdCozinha(), cozinha1.getNmCozinha());
-		System.out.printf("%d - %s\n", cozinha2.getIdCozinha(), cozinha2.getNmCozinha());
+		System.out.printf("%d - %s\n", cozinha1.getId(), cozinha1.getNmCozinha());
+		System.out.printf("%d - %s\n", cozinha2.getId(), cozinha2.getNmCozinha());
 	}
 
 }
