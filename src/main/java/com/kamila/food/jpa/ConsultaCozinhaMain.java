@@ -10,7 +10,7 @@ import com.kamila.food.FoodApiApplication;
 import com.kamila.food.domain.model.Cozinha;
 
 /*
- * Classe main criada para ser esecutada como JavaApplication, a fim de teste
+ * Classe main criada para ser executada como JavaApplication, a fim de teste de findAll
  */
 public class ConsultaCozinhaMain {
 

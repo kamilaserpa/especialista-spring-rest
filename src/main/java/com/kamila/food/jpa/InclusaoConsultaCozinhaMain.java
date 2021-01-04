@@ -8,7 +8,7 @@ import com.kamila.food.FoodApiApplication;
 import com.kamila.food.domain.model.Cozinha;
 
 /*
- * Classe main criada para ser esecutada como JavaApplication, a fim de teste
+ * Classe main criada para ser executada como JavaApplication, a fim de teste de método save
  */
 public class InclusaoConsultaCozinhaMain {
 
@@ -24,8 +24,8 @@ public class InclusaoConsultaCozinhaMain {
 		Cozinha cozinha2 = new Cozinha();
 		cozinha2.setNmCozinha("Japonesa");
 
-		cozinha1 = cadastroCozinha.adicionar(cozinha1);
-		cozinha2 = cadastroCozinha.adicionar(cozinha2);
+		cozinha1 = cadastroCozinha.salvar(cozinha1);
+		cozinha2 = cadastroCozinha.salvar(cozinha2);
 
 		// Visualizando retorno do método EntityManager.merge com objeto persistido
 		System.out.printf("%d - %s\n", cozinha1.getIdCozinha(), cozinha1.getNmCozinha());

@@ -8,19 +8,22 @@ import com.kamila.food.FoodApiApplication;
 import com.kamila.food.domain.model.Cozinha;
 
 /*
- * Classe main criada para ser executada como JavaApplication, a fim de teste de método get
+ * Classe main criada para ser executada como JavaApplication, a fim de teste de update
  */
-public class BuscaCozinhaMain {
+public class AlteracaoCozinhaMain {
 
 	public static void main(String[] args) {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(FoodApiApplication.class)
-				.web(WebApplicationType.NONE).run(args);
+				.web(WebApplicationType.NONE)
+				.run(args);
 
 		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
 
-		Cozinha cozinha = cadastroCozinha.buscar(1L);
-
-		System.out.println(cozinha.getNmCozinha());
+		Cozinha cozinha = new Cozinha();
+		cozinha.setIdCozinha(1l);
+		cozinha.setNmCozinha("Brasileira");
+		
+		cadastroCozinha.salvar(cozinha);
 	}
 
 }
