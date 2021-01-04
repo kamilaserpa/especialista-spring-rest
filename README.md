@@ -5,16 +5,16 @@ Curso Especialista Spring da AlgaWorks.
 
 ## Capítulo 2 - Spring e Injeção de Dependências
 
-### @Component
+#### @Component
 Notifica que a classe é um Bean gerenciado pelo Spring. Durante a varredura de componentes, o bootstrap da aplicação, o Spring Framework detecta automaticamente as classes anotadas com @Component e as instancia.
 Por padrão, as instâncias de bean desta classe têm o mesmo nome que o nome da classe com uma inicial minúscula.
 @Repository , @Service , @Configuration e @Controller são todas meta-anotações de @Component.
 
-### @Controller
+#### @Controller
 `@Controller`também é um componente gerenciado pelo Spring, no caso, que responde requisições Web.
 Essa anotação de nível de classe informa ao Spring Framework que essa classe serve como um controlador no Spring MVC.
 
-### @Retention
+#### @Retention
 Usamos a anotação `@Retention` para dizer em que parte do ciclo de vida do programa nossa anotação se aplica.
 Para fazer isso, precisamos configurar @Retention com uma das três políticas de retenção:
 
@@ -24,19 +24,19 @@ RetentionPolicy.CLASS - visível pelo compilador
 RetentionPolicy.RUNTIME - visível pelo compilador e pelo tempo de execução
 ```
 
-### @Profile
+#### @Profile
 Permite mapear beans para diferentes perfis. Considere um cenário básico: temos um bean que deve estar ativo apenas durante o desenvolvimento, mas não implantado na produção. Apenas Beans anotados com `@Profile("dev")` seriam instanciados caso esteja configurado o perfil de desenvolvimento em application.properties `spring.profiles.active=dev`.
 
-### @Bean
+#### @Bean
 No Spring, os objetos que formam o backbone de seu aplicativo e que são gerenciados pelo contêiner Spring IoC são chamados de beans. Um bean é um objeto instanciado, montado e gerenciado de outra forma por um contêiner Spring IoC (Inversion of Control).
 
-### @Configuration
+#### @Configuration
 As classes de configuração podem conter métodos de definição de bean anotados com `@Bean`.
 
-### Ciclo de vida dos Beans
+#### Ciclo de vida dos Beans
 Inicialização, execução, destruição. Após contrutor e importações é chamado o init (`@PostConstructor`).
 
-### Propriedades
+#### Propriedades
 - Substituindo propriedades via linha de comando, por exemplo:
 `java -jar target/food-api.jar --server.port=8081`
 - Substituindo variáveis por variável de ambiente:
@@ -49,14 +49,27 @@ Inicialização, execução, destruição. Após contrutor e importações é ch
 - Ativando o Spring Profile por variável de ambiente:
 	- `set SPRING_PROFILES_ACTIVE=production` (Windows)
 
-### @ConfigurationProperties
+#### @ConfigurationProperties
 Essa anotação auxilia na configuração externalizada e facilita acesso às propriedades definidas nos arquivos de propriedades
 O Spring vinculará automaticamente qualquer propriedade definida em nosso arquivo de propriedade que tenha o prefixo "notificador.email" e o mesmo nome de um dos campos na classe `NotificadorProperties`.
 
 ## Capítulo 3 - Introdução ao JPA e Hibernate
 
-### EntityManager
+#### EntityManager
 EntityManager é uma parte da Java Persistence API. Principalmente, ele implementa as interfaces de programação e regras de ciclo de vida definidas pela especificação JPA 2.0.
+
+#### @Transactional
+Podemos anotar um bean com @Transactional no nível da classe ou do método. A anotação também oferece suporte a outras configurações:
+
+- o tipo de propagação da transação
+- o nível de isolamento da transação
+- um tempo limite para a operação envolvida pela transação
+- um sinalizador readOnly - uma dica para o provedor de persistência de que a transação deve ser somente leitura
+- as regras de reversão para a transação
+Observe que - por padrão, a reversão acontece para o tempo de execução, exceções não verificadas apenas. A exceção verificada não dispara um rollback da transação.
+
+
+---
 
 ##### Reference Documentation
 For further reference, please consider the following sections:
@@ -72,5 +85,5 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 
-### Developer
+#### Developer
 [Kamila Serpa](https://kamilaserpa.github.io)
