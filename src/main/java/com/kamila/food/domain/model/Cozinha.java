@@ -13,7 +13,7 @@ public class Cozinha {
 	@Column(name = "id_cozinha")
 	private Long idCozinha;
 
-	@Column(name = "nm_cozinha")
+	@Column(name = "nm_cozinha", length = 30)
 	private String nmCozinha;
 
 	public Long getIdCozinha() {

@@ -3,6 +3,7 @@
 
 Curso Especialista Spring da AlgaWorks.
 
+## Capítulo 2
 ### @Component
 Notifica que a classe é um Bean gerenciado pelo Spring. Durante a varredura de componentes, o bootstrap da aplicação, o Spring Framework detecta automaticamente as classes anotadas com @Component e as instancia.
 Por padrão, as instâncias de bean desta classe têm o mesmo nome que o nome da classe com uma inicial minúscula.

@@ -5,14 +5,16 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_restaurante")
 public class Restaurante {
 
 	@Id
 	private Long idRestaurante;
 
-	@Column(name = "nm_restaurante")
+	@Column(name = "nm_restaurante", length = 50)
 	private String nmRestaurante;
 
 	@Column(name = "taxa_frete")
