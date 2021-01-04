@@ -68,6 +68,17 @@ Podemos anotar um bean com @Transactional no nível da classe ou do método. A a
 - as regras de reversão para a transação
 Observe que - por padrão, a reversão acontece para o tempo de execução, exceções não verificadas apenas. A exceção verificada não dispara um rollback da transação.
 
+#### Estados de uma entidade
+Uma entidade pode assumir alguns estados com relação ao EntityManager. Os estados podem ser:
+
+- Novo (new ou transient)
+- Gerenciado (managed) - através dos métodos `persist`, `merge` ou buscar a entidade usando o EntityManager
+- Removido (removed) - método `remove`
+- Desanexado (detached) - método `detach`
+
+Observar que não é possível um objeto em estado *transient* ir direto para o estado *removed*.
+
+![Diagrama de estados JPA](https://s3.amazonaws.com/algaworks-blog/wp-content/uploads/Diagrama-de-estados.png)
 
 ---
 
