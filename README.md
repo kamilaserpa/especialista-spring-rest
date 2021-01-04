@@ -3,7 +3,8 @@
 
 Curso Especialista Spring da AlgaWorks.
 
-## Capítulo 2
+## Capítulo 2 - Spring e Injeção de Dependências
+
 ### @Component
 Notifica que a classe é um Bean gerenciado pelo Spring. Durante a varredura de componentes, o bootstrap da aplicação, o Spring Framework detecta automaticamente as classes anotadas com @Component e as instancia.
 Por padrão, as instâncias de bean desta classe têm o mesmo nome que o nome da classe com uma inicial minúscula.
@@ -51,6 +52,11 @@ Inicialização, execução, destruição. Após contrutor e importações é ch
 ### @ConfigurationProperties
 Essa anotação auxilia na configuração externalizada e facilita acesso às propriedades definidas nos arquivos de propriedades
 O Spring vinculará automaticamente qualquer propriedade definida em nosso arquivo de propriedade que tenha o prefixo "notificador.email" e o mesmo nome de um dos campos na classe `NotificadorProperties`.
+
+## Capítulo 3 - Introdução ao JPA e Hibernate
+
+### EntityManager
+EntityManager é uma parte da Java Persistence API. Principalmente, ele implementa as interfaces de programação e regras de ciclo de vida definidas pela especificação JPA 2.0.
 
 ##### Reference Documentation
 For further reference, please consider the following sections:
