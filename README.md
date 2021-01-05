@@ -92,6 +92,16 @@ Não se deve criar repositórios para entidades que não são agregate root, no 
 #### Propriedade nullable de @Column e @JoinColumn
 Indica que ao criar tabela através da aplicação, os campos serão ou não anuláveis no banco de dados.
 
+## Capítulo 4 - REST com Spring
+
+#### Constraints do REST
+ - Cliente-servidor
+ - Stateless
+ - Cache
+ - Interface uniforme
+ - Sistema em camadas
+ - Código sob demanda
+
 
 ---
 
