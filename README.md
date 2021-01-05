@@ -102,6 +102,9 @@ Indica que ao criar tabela através da aplicação, os campos serão ou não anu
  - Sistema em camadas
  - Código sob demanda
 
+#### REST *vs* RESTful
+REST é o estilo arquitetural que segue as constraints do REST, é a especificação. RESTful é uma API desenvolvida em conformidade com as constraints REST.
+
 
 ---
 
