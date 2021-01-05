@@ -1,7 +1,5 @@
 package com.kamila.food.domain.model;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,27 +11,26 @@ import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "tb_restaurante")
-public class Restaurante {
+@Table(name = "tb_cidade")
+public class Cidade {
 
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_restaurante")
+	@Column(name = "id_cidade")
 	private Long id;
 
-	@Column(name = "nm_restaurante", length = 100, nullable = false)
-	private String nmRestaurante;
-
-	@Column(name = "taxa_frete", nullable = false)
-	private BigDecimal taxaFrete;
+	@Column(nullable = false)
+	private String nmCidade;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cozinha", nullable = false)
-	private Cozinha cozinha;
+	@JoinColumn(name = "id_estado", nullable = false)
+	private Estado estado;
 
 }
