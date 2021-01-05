@@ -86,6 +86,8 @@ Design Orientado a Domínio representa um grupo de objetos de domínio que podem
 
 Não se deve criar repositórios para entidades que não são agregate root, no exemplo o agregate root é o pedido.
 
+#### Dialeto SQL
+Ao inserir relacionamento entre entidades é necessário inserir o dialeto para que o hibernate adicione a *foreign key* ao criar a coluna anotada com o relacionamento: `spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect`.
 
 ---
 
