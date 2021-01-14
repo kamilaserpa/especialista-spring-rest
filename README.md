@@ -105,6 +105,16 @@ Indica que ao criar tabela através da aplicação, os campos serão ou não anu
 #### REST *vs* RESTful
 REST é o estilo arquitetural que segue as constraints do REST, é a especificação. RESTful é uma API desenvolvida em conformidade com as constraints REST.
 
+#### Recursos REST
+
+Coisas expostas na web, possui importância para ser referenciado como uma coisa no software. Pode ser Singleton (representa uma única coisa) ou Collection.
+Rest usa URIs(Uniform Resource Identifier) para identificar um recurso.
+
+URI vs URL -  URL (Uniform Resource Locator) é um tipo de URI, especifica a localização do recurso (com protocolo por exemplo). Ex.: https://market.com.br/produtos. O plural é consenso de utilização.
+URI deve referenciar à alguma coisa, um substantivo e não a um verbo ou ação, coisas possuem propriedades, verbos não.
+
+#### @ResponseBody
+A resposta do método deve ser enviada como resposta da requisição HTTP. `@RestController`engloba as anotations _@Controller_ e _@ResponseBody_.
 
 ---
 
