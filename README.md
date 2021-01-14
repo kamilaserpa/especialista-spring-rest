@@ -119,6 +119,17 @@ A resposta do método deve ser enviada como resposta da requisição HTTP. `@Res
 #### Negociação de conteúdo
 Para realização de content negotiation o cliente afirma qual formato de conteúdo ele aceita através do cabeçalho `Accept` com um MediaType, por exemplo application/json, application/xml, etc.
 
+Ao adicionar dependência jackson a api passa a responder as requisições tanto com json quanto com xml.
+```xml
+<dependency>
+	<groupId>com.fasterxml.jackson.dataformat</groupId>
+	<artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+```
+Ao definir o *MediaType* em um método específico, este passa a responder apenas o tipo configurado, respondendo com `406 Not Acceptable`. Também é possível definir qual método é chamado a partir do tipo de negociação de conteúdo.
+`@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })`
+
+
 ---
 
 ##### Reference Documentation
