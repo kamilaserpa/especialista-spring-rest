@@ -116,6 +116,9 @@ URI deve referenciar à alguma coisa, um substantivo e não a um verbo ou ação
 #### @ResponseBody
 A resposta do método deve ser enviada como resposta da requisição HTTP. `@RestController`engloba as anotations _@Controller_ e _@ResponseBody_.
 
+#### Negociação de conteúdo
+Para realização de content negotiation o cliente afirma qual formato de conteúdo ele aceita através do cabeçalho `Accept` com um MediaType, por exemplo application/json, application/xml, etc.
+
 ---
 
 ##### Reference Documentation
