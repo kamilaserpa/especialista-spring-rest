@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Data;
@@ -28,8 +27,6 @@ public class Cozinha {
 	@Column(name = "id_cozinha")
 	private Long id;
 
-	// @JsonProperty("titulo") // altera representação nas requisições para "titulo"
-	// @JsonIgnore // Ignora este atributo nas requisições
 	@Column(name = "nm_cozinha", length = 50, nullable = false)
 	private String nmCozinha;
 
