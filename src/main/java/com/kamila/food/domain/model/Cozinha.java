@@ -7,10 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+@JsonRootName("cozinha") // Altera o nome do objeto no xml de "Cozinha" para "cozinha"
 @Getter
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -24,7 +28,9 @@ public class Cozinha {
 	@Column(name = "id_cozinha")
 	private Long id;
 
-	@Column(name = "nm_cozinha", length = 30)
+	// @JsonProperty("titulo") // altera representação nas requisições para "titulo"
+	// @JsonIgnore // Ignora este atributo nas requisições
+	@Column(name = "nm_cozinha", length = 50, nullable = false)
 	private String nmCozinha;
 
 }
