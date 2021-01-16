@@ -76,7 +76,7 @@ Uma entidade pode assumir alguns estados com relação ao EntityManager. Os esta
 - Removido (removed) - método `remove`
 - Desanexado (detached) - método `detach`
 
-Observar que não é possível um objeto em estado *transient* ir direto para o estado *removed*.
+Observar que não é possível um objeto em estado *transient* ir direto para o estado *removed*. Por isso a entidade foi buscada, para ficar em estado gerenciado, e só após isso é chamado o método *removed*.
 
 ![Diagrama de estados JPA](https://s3.amazonaws.com/algaworks-blog/wp-content/uploads/Diagrama-de-estados.png)
 
@@ -131,7 +131,10 @@ Ao definir o *MediaType* em um método específico, este passa a responder apena
 
  - Status HTTP para collection resource vazia: 200
  - Status HTTP para singleton resource inexistente: 404. Indica erro do cliente, por exemplo a url `cozinhas/9999` não retorna nenhum recurso, "não existe", já `cozinhas/2` existe.
- 
+
+#### SerialVersionUID
+Ele é o recurso que usamos para dizer ao Java que um objeto serializado é compatível ou não com o .class utilizado para desserializar.
+Dentro da [especificação](https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.html#a4100) existe uma nota recomendando que os desenvolvedores declarem a propriedade explicitamente para evitar problemas de desserialização.
  
 ---
 
