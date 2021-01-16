@@ -3,8 +3,6 @@ package com.kamila.food.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,16 +34,10 @@ public class CozinhaController {
 	@GetMapping("/{idCozinha}")
 	public ResponseEntity<Cozinha> buscar(@PathVariable Long idCozinha) {
 		Cozinha cozinha = cozinhaRepository.buscar(idCozinha);
-		
-//		return ResponseEntity.status(HttpStatus.OK).body(cozinha);
-//		return ResponseEntity.ok(cozinha);
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.LOCATION, "http://localhost:8080/cozinhas");
-		
-		return ResponseEntity.status(HttpStatus.FOUND)
-				.headers(headers)
-				.build();
+		if (cozinha != null) {
+			return ResponseEntity.ok(cozinha);
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 }
