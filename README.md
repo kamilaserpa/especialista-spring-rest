@@ -129,7 +129,10 @@ Ao adicionar dependência jackson a api passa a responder as requisições tanto
 Ao definir o *MediaType* em um método específico, este passa a responder apenas o tipo configurado, respondendo com `406 Not Acceptable`. Também é possível definir qual método é chamado a partir do tipo de negociação de conteúdo.
 `@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })`
 
-
+ - Status HTTP para collection resource vazia: 200
+ - Status HTTP para singleton resource inexistente: 404. Indica erro do cliente, por exemplo a url `cozinhas/9999` não retorna nenhum recurso, "não existe", já `cozinhas/2` existe.
+ 
+ 
 ---
 
 ##### Reference Documentation
