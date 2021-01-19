@@ -2,18 +2,14 @@ package com.kamila.food.domain.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import com.kamila.food.domain.model.Cozinha;
 
-public interface CozinhaRepository {
-
-	List<Cozinha> listar();
+@Repository
+public interface CozinhaRepository extends JpaRepository<Cozinha, Long>{
 
 	List<Cozinha> consultarPorNome(String nmCozinha);
-
-	Cozinha buscar(Long id);
-
-	Cozinha salvar(Cozinha cozinha);
-
-	void remover(Long idCozinha);
 
 }

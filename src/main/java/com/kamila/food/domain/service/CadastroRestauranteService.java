@@ -1,5 +1,7 @@
 package com.kamila.food.domain.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,14 +25,14 @@ public class CadastroRestauranteService {
 
 	public Restaurante salvar(Restaurante restaurante) {
 		Long idCozinha = restaurante.getCozinha().getId();
-		Cozinha cozinha = cozinhaRepository.buscar(idCozinha);
+		Optional<Cozinha> cozinha = cozinhaRepository.findById(idCozinha);
 
 		if (cozinha == null) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Não existe cadastro de cozinha com código %d .", idCozinha));
 		}
 
-		restaurante.setCozinha(cozinha);
+		restaurante.setCozinha(cozinha.get());
 
 		return restauranteRepository.salvar(restaurante);
 	}

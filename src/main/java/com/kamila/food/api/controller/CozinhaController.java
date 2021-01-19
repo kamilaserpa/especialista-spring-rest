@@ -34,12 +34,12 @@ public class CozinhaController {
 
 	@GetMapping
 	public List<Cozinha> listar() {
-		return cozinhaRepository.listar();
+		return cozinhaRepository.findAll();
 	}
 
 	@GetMapping("/{idCozinha}")
 	public ResponseEntity<Cozinha> buscar(@PathVariable Long idCozinha) {
-		Cozinha cozinha = cozinhaRepository.buscar(idCozinha);
+		Cozinha cozinha = cozinhaRepository.findById(idCozinha).get();
 		if (cozinha != null) {
 			return ResponseEntity.ok(cozinha);
 		}
@@ -55,7 +55,7 @@ public class CozinhaController {
 	@PutMapping("/{idCozinha}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Cozinha> atualizar(@PathVariable Long idCozinha, @RequestBody Cozinha cozinha) {
-		Cozinha cozinhaAtual = cozinhaRepository.buscar(idCozinha);
+		Cozinha cozinhaAtual = cozinhaRepository.getOne(idCozinha);
 		if (cozinhaAtual != null) {
 			// Copia propriedades do primeiro objeto no segundo objeto.
 			// Ignora o atributo "id" adicionado como terceiro parâmetro
