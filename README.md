@@ -135,7 +135,11 @@ Ao definir o *MediaType* em um método específico, este passa a responder apena
 #### SerialVersionUID
 Ele é o recurso que usamos para dizer ao Java que um objeto serializado é compatível ou não com o .class utilizado para desserializar.
 Dentro da [especificação](https://docs.oracle.com/javase/8/docs/platform/serialization/spec/class.html#a4100) existe uma nota recomendando que os desenvolvedores declarem a propriedade explicitamente para evitar problemas de desserialização.
- 
+
+## Capítulo 5 - Spring Data JPA
+JPQL é a linguagem de consultas do JPA.
+
+
 ---
 
 ##### Reference Documentation

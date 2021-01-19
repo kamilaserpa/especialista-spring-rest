@@ -24,6 +24,13 @@ public class CozinhaRepositoryImpl implements CozinhaRepository {
 		TypedQuery<Cozinha> query = manager.createQuery("from Cozinha", Cozinha.class);
 		return query.getResultList();
 	}
+	
+	@Override
+	public List<Cozinha> consultarPorNome(String nmCozinha) {
+		return manager.createQuery("from Cozinha where nmCozinha = :nmCozinha", Cozinha.class)
+				.setParameter("nmCozinha", "%" + nmCozinha + "%")
+				.getResultList();
+	}
 
 	@Override
 	public Cozinha buscar(Long id) {
