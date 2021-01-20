@@ -1,17 +1,11 @@
 package com.kamila.food.domain.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.kamila.food.domain.model.Permissao;
 
-public interface PermissaoRepository {
-
-	List<Permissao> listar();
-
-	Permissao buscar(Long id);
-
-	Permissao salvar(Permissao Permissao);
-
-	void remover(Permissao Permissao);
+@Repository
+public interface PermissaoRepository extends JpaRepository<Permissao, Long>{
 
 }

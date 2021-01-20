@@ -1,6 +1,7 @@
 package com.kamila.food.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,14 @@ public class CidadeController {
 	
 	@GetMapping
 	public List<Cidade> listar() {
-		return cidadeRepository.listar();
+		return cidadeRepository.findAll();
 	}
 	
 	@GetMapping("/{idCidade}")
 	public ResponseEntity<Cidade> buscar(@PathVariable Long idCidade) {
-		Cidade cidade = cidadeRepository.buscar(idCidade);
-		if (cidade != null) {
-			return ResponseEntity.ok(cidade);
+		Optional<Cidade> cidade = cidadeRepository.findById(idCidade);
+		if (cidade.isPresent()) {
+			return ResponseEntity.ok(cidade.get());
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -62,13 +63,13 @@ public class CidadeController {
 	@PutMapping("/{idCidade}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Cidade> atualizar(@PathVariable Long idCidade, @RequestBody Cidade cidade) {
-		Cidade cidadeAtual = cidadeRepository.buscar(idCidade);
+		Cidade cidadeAtual = cidadeRepository.findById(idCidade).orElse(null);
 		if (cidadeAtual != null) {
 			BeanUtils.copyProperties(cidade, cidadeAtual, "id");
 
-			cadastroCidadeService.salvar(cidadeAtual);
+			Cidade cidadeSalva = cadastroCidadeService.salvar(cidadeAtual);
 
-			return ResponseEntity.ok(cidadeAtual);
+			return ResponseEntity.ok(cidadeSalva);
 		}
 		return ResponseEntity.notFound().build();
 	}

@@ -3,6 +3,7 @@ package com.kamila.food.api.controller;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,16 @@ public class RestauranteController {
 
 	@GetMapping
 	public List<Restaurante> listar() {
-		return restauranteRepository.listar();
+		return restauranteRepository.findAll();
 	}
 
 	@GetMapping("/{idRestaurante}")
 	public ResponseEntity<Restaurante> buscar(@PathVariable Long idRestaurante) {
-		Restaurante restaurante = restauranteRepository.buscar(idRestaurante);
-		if (restaurante != null) {
-			return ResponseEntity.ok(restaurante);
+		
+		Optional<Restaurante> restaurante = restauranteRepository.findById(idRestaurante);
+		
+		if (restaurante.isPresent()) {
+			return ResponseEntity.ok(restaurante.get());
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -68,7 +71,7 @@ public class RestauranteController {
 			@RequestBody Restaurante restaurante) {
 		try {
 
-			Restaurante restauranteAtual = restauranteRepository.buscar(idRestaurante);
+			Restaurante restauranteAtual = restauranteRepository.findById(idRestaurante).orElse(null);
 			
 			if (restauranteAtual != null) {
 				BeanUtils.copyProperties(restaurante, restauranteAtual, "id");
@@ -88,7 +91,7 @@ public class RestauranteController {
 	public ResponseEntity<?> atualizarParcial(@PathVariable Long idRestaurante,
 			@RequestBody Map<String, Object> campos) {
 		try {
-			Restaurante restauranteAtual = restauranteRepository.buscar(idRestaurante);
+			Restaurante restauranteAtual = restauranteRepository.findById(idRestaurante).orElse(null);
 
 			if (restauranteAtual == null) {
 				return ResponseEntity.notFound().build();

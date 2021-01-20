@@ -23,6 +23,7 @@ public class CadastroCozinhaService {
 	public void remover(Long idCozinha) {
 		try {
 			cozinhaRepository.deleteById(idCozinha);
+			
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Não existe cadastro de cozinha com código %d .", idCozinha));

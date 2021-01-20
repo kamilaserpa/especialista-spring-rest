@@ -1,6 +1,7 @@
 package com.kamila.food.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,14 @@ public class EstadoController {
 	
 	@GetMapping
 	public List<Estado> listar() {
-		return estadoRepository.listar();
+		return estadoRepository.findAll();
 	}
 	
 	@GetMapping("/{idEstado}")
 	public ResponseEntity<Estado> buscar(@PathVariable Long idEstado) {
-		Estado estado = estadoRepository.buscar(idEstado);
-		if (estado != null) {
-			return ResponseEntity.ok(estado);
+		Optional<Estado> estado = estadoRepository.findById(idEstado);
+		if (estado.isPresent()) {
+			return ResponseEntity.ok(estado.get());
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -62,13 +63,13 @@ public class EstadoController {
 	@PutMapping("/{idEstado}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Estado> atualizar(@PathVariable Long idEstado, @RequestBody Estado estado) {
-		Estado estadoAtual = estadoRepository.buscar(idEstado);
+		Estado estadoAtual = estadoRepository.findById(idEstado).orElse(null);
 		if (estadoAtual != null) {
 			BeanUtils.copyProperties(estado, estadoAtual, "id");
 
-			cadastroEstadoService.salvar(estadoAtual);
+			Estado estadoSalvo = cadastroEstadoService.salvar(estadoAtual);
 
-			return ResponseEntity.ok(estadoAtual);
+			return ResponseEntity.ok(estadoSalvo);
 		}
 		return ResponseEntity.notFound().build();
 	}

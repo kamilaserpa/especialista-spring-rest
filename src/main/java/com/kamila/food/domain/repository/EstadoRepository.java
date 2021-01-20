@@ -1,17 +1,11 @@
 package com.kamila.food.domain.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.kamila.food.domain.model.Estado;
 
-public interface EstadoRepository {
-
-	List<Estado> listar();
-
-	Estado buscar(Long id);
-
-	Estado salvar(Estado Estado);
-
-	void remover(Long idEstado);
+@Repository
+public interface EstadoRepository extends JpaRepository<Estado, Long>{
 
 }
