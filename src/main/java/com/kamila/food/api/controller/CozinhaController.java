@@ -1,6 +1,7 @@
 package com.kamila.food.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,9 @@ public class CozinhaController {
 
 	@GetMapping("/{idCozinha}")
 	public ResponseEntity<Cozinha> buscar(@PathVariable Long idCozinha) {
-		Cozinha cozinha = cozinhaRepository.findById(idCozinha).get();
-		if (cozinha != null) {
-			return ResponseEntity.ok(cozinha);
+		Optional<Cozinha> cozinha = cozinhaRepository.findById(idCozinha);
+		if (cozinha.isPresent()) {
+			return ResponseEntity.ok(cozinha.get());
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -55,15 +56,15 @@ public class CozinhaController {
 	@PutMapping("/{idCozinha}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Cozinha> atualizar(@PathVariable Long idCozinha, @RequestBody Cozinha cozinha) {
-		Cozinha cozinhaAtual = cozinhaRepository.getOne(idCozinha);
-		if (cozinhaAtual != null) {
+		Optional<Cozinha> cozinhaAtual = cozinhaRepository.findById(idCozinha);
+		if (cozinhaAtual.isPresent()) {
 			// Copia propriedades do primeiro objeto no segundo objeto.
 			// Ignora o atributo "id" adicionado como terceiro parâmetro
-			BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
+			BeanUtils.copyProperties(cozinha, cozinhaAtual.get(), "id");
 
-			cadastroCozinhaService.salvar(cozinhaAtual);
+			Cozinha cozinhaSalva = cadastroCozinhaService.salvar(cozinhaAtual.get());
 
-			return ResponseEntity.ok(cozinhaAtual);
+			return ResponseEntity.ok(cozinhaSalva);
 		}
 		return ResponseEntity.notFound().build();
 	}

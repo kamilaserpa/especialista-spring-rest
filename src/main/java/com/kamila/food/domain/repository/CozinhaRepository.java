@@ -10,6 +10,6 @@ import com.kamila.food.domain.model.Cozinha;
 @Repository
 public interface CozinhaRepository extends JpaRepository<Cozinha, Long>{
 
-	List<Cozinha> consultarPorNome(String nmCozinha);
+//	List<Cozinha> consultarPorNome(String nmCozinha);
 
 }
