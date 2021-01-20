@@ -13,6 +13,8 @@ public interface CozinhaRepository extends JpaRepository<Cozinha, Long>{
 
 	List<Cozinha> findTodasByNmCozinhaContaining(String nmCozinha);
 	
-	Optional<Cozinha> findByNmCozinha(String nmCozinha);
+	Optional<Cozinha> findByNmCozinha(String nmCozinha); // Espera que só exista uma
+
+	boolean existsByNmCozinha(String nmCozinha); // Nome exato
 
 }

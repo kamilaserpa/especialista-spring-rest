@@ -143,6 +143,8 @@ JPQL é a linguagem de consultas do JPA.
 Mecanismo de criação de queries por meio de palavras chave: Distinct, And, Or, Containing, Between, OrderBy, Null, After, etc.
 [Documentação do Spring Data JPA:Keywords de querymethods](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
 
+Deve começar por "find", mas pode começar também por "read", "get", "Query" ou "stream".
+ - Prefixos de query methods: *count, top, first, exists*, etc.
 
 ---
 
