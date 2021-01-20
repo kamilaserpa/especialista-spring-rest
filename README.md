@@ -139,6 +139,10 @@ Dentro da [especificação](https://docs.oracle.com/javase/8/docs/platform/seria
 ## Capítulo 5 - Spring Data JPA
 JPQL é a linguagem de consultas do JPA.
 
+#### Keywords e Query Methods
+Mecanismo de criação de queries por meio de palavras chave: Distinct, And, Or, Containing, Between, OrderBy, Null, After, etc.
+[Documentação do Spring Data JPA:Keywords de querymethods](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
+
 
 ---
 

@@ -11,7 +11,7 @@ import com.kamila.food.domain.model.Cozinha;
 @Repository
 public interface CozinhaRepository extends JpaRepository<Cozinha, Long>{
 
-	List<Cozinha> findTodasByNmCozinha(String nmCozinha);
+	List<Cozinha> findTodasByNmCozinhaContaining(String nmCozinha);
 	
 	Optional<Cozinha> findByNmCozinha(String nmCozinha);
 
