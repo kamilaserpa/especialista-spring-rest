@@ -35,9 +35,11 @@ public class CadastroRestauranteService {
 	public void remover(Long idRestaurante) {
 		try {
 			restauranteRepository.deleteById(idRestaurante);
+			
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
 					String.format("Não existe cadastro de restaurante com código %d .", idRestaurante));
+			
 		} catch (DataIntegrityViolationException e) {
 			// Caso entidade não possa ser deletada por ter outros objetos relacionados (foreign Key)
 			throw new EntidadeEmUsoException(

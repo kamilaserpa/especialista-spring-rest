@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.kamila.food.domain.model.Restaurante;
@@ -14,7 +15,10 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, Long> 
 
 	List<Restaurante> queryByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
 
-	List<Restaurante> findByNmRestauranteContainingAndCozinhaId(String nmRestaurante, Long idCozinha);
+	@Query("from Restaurante where nmRestaurante like %:nmRestaurante% and cozinha.id = :idCozinha")
+	List<Restaurante> consultarPorNome(String nmRestaurante, Long idCozinha);
+	
+//	List<Restaurante> findByNmRestauranteContainingAndCozinhaId(String nmRestaurante, Long idCozinha);
 	
 	Optional<Restaurante> findFirstQualquerDescricaoByNmRestauranteContaining(String nmRestaurante);
 	
