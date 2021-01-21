@@ -146,6 +146,11 @@ Mecanismo de criação de queries por meio de palavras chave: Distinct, And, Or,
 Deve começar por "find", mas pode começar também por "read", "get", "Query" ou "stream".
  - Prefixos de query methods: *count, top, first, exists*, etc.
 
+#### Criteria
+`CriteriaQuery` é responsável por criar a estrutura de uma query, a composição das cláusulas.
+`CriteriaBuilder` funciona como uma fábrica que contrói elementos para a construção da consulta.
+Não vale a pena ser utilizada para consultas simples por ser mais verbosa e demandar mais esforço programático.
+
 ---
 
 ##### Reference Documentation
