@@ -880,6 +880,47 @@
 					"response": []
 				},
 				{
+					"name": "Teste - restaurantes por nome e txfrete",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/teste/restaurantes/por-nome-e-frete?nmRestaurante=a&taxaFreteInicial=1&taxaFreteFinal=20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teste",
+								"restaurantes",
+								"por-nome-e-frete"
+							],
+							"query": [
+								{
+									"key": "nmRestaurante",
+									"value": "a"
+								},
+								{
+									"key": "taxaFreteInicial",
+									"value": "1"
+								},
+								{
+									"key": "taxaFreteFinal",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Teste - restaurantes primeiro por nome",
 					"request": {
 						"method": "GET",
