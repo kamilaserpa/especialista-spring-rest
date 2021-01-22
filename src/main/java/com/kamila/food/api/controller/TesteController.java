@@ -1,5 +1,8 @@
 package com.kamila.food.api.controller;
 
+import static com.kamila.food.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
+import static com.kamila.food.infrastructure.repository.spec.RestauranteSpecs.comNomeSemelhante;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +17,6 @@ import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.CozinhaRepository;
 import com.kamila.food.domain.repository.RestauranteRepository;
-import com.kamila.food.infrastructure.repository.spec.RestauranteComFreteGratisSpec;
-import com.kamila.food.infrastructure.repository.spec.RestauranteComNomeSemelhanteSpec;
 
 @RestController
 @RequestMapping("/teste")
@@ -73,10 +74,9 @@ public class TesteController {
 	
 	@GetMapping("/restaurantes/com-frete-gratis")
 	public List<Restaurante> restaurantesComFreteGratis(String nmRestaurante) {
-		var comFreteGratis = new RestauranteComFreteGratisSpec();
-		var comNomeSemelhante = new RestauranteComNomeSemelhanteSpec(nmRestaurante);
 		
-		return restauranteRepository.findAll(comFreteGratis.and(comNomeSemelhante));
+		return restauranteRepository.findAll(comFreteGratis()
+				.and(comNomeSemelhante(nmRestaurante)));
 	}
 	
 }

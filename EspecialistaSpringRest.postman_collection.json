@@ -1018,6 +1018,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Teste - restaurantes comFreteGratis",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/teste/restaurantes/com-frete-gratis?nmRestaurante=m",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teste",
+								"restaurantes",
+								"com-frete-gratis"
+							],
+							"query": [
+								{
+									"key": "nmRestaurante",
+									"value": "m"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
