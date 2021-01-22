@@ -1,6 +1,8 @@
 package com.kamila.food.domain.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -36,4 +40,9 @@ public class Restaurante {
 	@JoinColumn(name = "id_cozinha", nullable = false)
 	private Cozinha cozinha;
 
+	@ManyToMany
+	@JoinTable(name = "restaurante_forma_pagamento",
+		joinColumns = @JoinColumn(name = "id_restaurante"), // Afirma a coluna na tabela local (Restaurante) que será o nome da coluna relacionada
+		inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
+	private List<FormaPagamento> formasPagamento = new ArrayList<>();
 }
