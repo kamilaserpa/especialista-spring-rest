@@ -151,6 +151,10 @@ Deve começar por "find", mas pode começar também por "read", "get", "Query" o
 `CriteriaBuilder` funciona como uma fábrica que contrói elementos para a construção da consulta.
 Não vale a pena ser utilizada para consultas simples por ser mais verbosa e demandar mais esforço programático.
 
+#### Specification
+Filtros são as *specifications* de forma mais isolada, de modo que podem ser combinados.
+Ponto negativo, possibilidade de usar o mesmo specification em vários lugares, caso seja necessária alguma alteração, a implementação seria ajustada em vários locais do código. Possível solução, isolar a combinação de specifications em um método na classe RepositoryImpl.
+
 ---
 
 ##### Reference Documentation
