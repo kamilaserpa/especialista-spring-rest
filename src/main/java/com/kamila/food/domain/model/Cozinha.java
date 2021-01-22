@@ -1,12 +1,17 @@
 package com.kamila.food.domain.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Data;
@@ -29,5 +34,9 @@ public class Cozinha {
 
 	@Column(name = "nm_cozinha", length = 50, nullable = false)
 	private String nmCozinha;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cozinha") // Mapeado pelo atributo 'cozinha' na entidade Restaurante
+	private List<Restaurante> restaurantes = new ArrayList<>();
 
 }

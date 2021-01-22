@@ -1,8 +1,5 @@
 package com.kamila.food.api.controller;
 
-import static com.kamila.food.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
-import static com.kamila.food.infrastructure.repository.spec.RestauranteSpecs.comNomeSemelhante;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
