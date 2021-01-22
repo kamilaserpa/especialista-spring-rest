@@ -155,7 +155,15 @@ Não vale a pena ser utilizada para consultas simples por ser mais verbosa e dem
 Filtros são as *specifications* de forma mais isolada, de modo que podem ser combinados.
 Ponto negativo, possibilidade de usar o mesmo specification em vários lugares, caso seja necessária alguma alteração, a implementação seria ajustada em vários locais do código. Possível solução, isolar a combinação de specifications em um método na classe RepositoryImpl.
 
+#### Customizando o repositório Base
+Estendendo *JpaRepository*, utilizando *Generics*, importando *EntityManager* é possível criar um repositório base customizado, com os métodos do JPA e outros mais.
+Necessário inserir a anotação na classe main:
+
+`@EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImpl.class)`
+
+
 ---
+
 
 ##### Reference Documentation
 For further reference, please consider the following sections:

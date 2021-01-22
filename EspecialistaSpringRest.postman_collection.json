@@ -1051,6 +1051,60 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Teste - restaurantes primeiro",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/teste/restaurantes/primeiro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teste",
+								"restaurantes",
+								"primeiro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teste - cozinha primeiro",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/teste/cozinhas/primeira",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teste",
+								"cozinhas",
+								"primeira"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
