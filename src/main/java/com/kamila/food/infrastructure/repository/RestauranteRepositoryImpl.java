@@ -35,7 +35,7 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 	RestauranteRepository restauranteRepository;
 	
 	@Override
-	public List<Restaurante> find(String nmRestaurante, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
+	public List<Restaurante> find(String nome, BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
 		
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		
@@ -44,8 +44,8 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 		
 		var predicates = new ArrayList<Predicate>();
 		
-		if (StringUtils.hasLength(nmRestaurante)) {
-			predicates.add(builder.like(root.get("nmRestaurante"), "%" + nmRestaurante + "%"));
+		if (StringUtils.hasLength(nome)) {
+			predicates.add(builder.like(root.get("nome"), "%" + nome + "%"));
 		}
 		
 		if (taxaFreteInicial != null) {
@@ -63,9 +63,9 @@ public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 	}
 
 	@Override
-	public List<Restaurante> findComFreteGratis(String nmRestaurante) {
+	public List<Restaurante> findComFreteGratis(String nome) {
 		return restauranteRepository.findAll(comFreteGratis()
-				.and(comNomeSemelhante(nmRestaurante)));
+				.and(comNomeSemelhante(nome)));
 	}
 	
 }

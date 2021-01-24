@@ -33,7 +33,7 @@ public class Cozinha {
 	private Long id;
 
 	@Column(name = "nm_cozinha", length = 50, nullable = false)
-	private String nmCozinha;
+	private String nome;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cozinha") // Mapeado pelo atributo 'cozinha' na entidade Restaurante

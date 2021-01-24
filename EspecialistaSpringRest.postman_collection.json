@@ -77,7 +77,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"nmCozinha\": \"Brasileira\" \r\n}",
+							"raw": "{ \r\n    \"nome\": \"Brasileira\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,7 +116,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"nmCozinha\": \"Italiana\" \r\n}"
+							"raw": "{ \r\n    \"nome\": \"Italiana\" \r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/cozinhas/2",
@@ -206,7 +206,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1",
+							"raw": "http://localhost:8080/restaurantes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -214,7 +214,7 @@
 							"port": "8080",
 							"path": [
 								"restaurantes",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -238,7 +238,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"nmRestaurante\": \"Comida Mineira\",\r\n        \"taxaFrete\": 12,\r\n        \"cozinha\": {\r\n            \"id\": 10\r\n        }\r\n    }",
+							"raw": "{\r\n        \"nome\": \"Comida Mineira\",\r\n        \"taxaFrete\": 12,\r\n        \"cozinha\": {\r\n            \"id\": 10\r\n        }\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -277,7 +277,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"nmRestaurante\": \"Thai Delivery\",\r\n        \"taxaFrete\": 8.50,\r\n        \"cozinha\": {\r\n            \"id\": 1,\r\n            \"nmCozinha\": \"Tailandesa\"\r\n        }\r\n    }",
+							"raw": " {\r\n        \"nome\": \"Thai Delivery\",\r\n        \"taxaFrete\": 7.50,\r\n        \"cozinha\": {\r\n            \"id\": 1,\r\n            \"nome\": \"Tailandesa\"\r\n        }\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -317,7 +317,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"nmRestaurante\": \"Thai Delivery iFood\",\r\n        \"taxaFrete\": 3\r\n    }",
+							"raw": " {\r\n        \"nome\": \"Thai Delivery iFood\",\r\n        \"taxaFrete\": 3\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -443,7 +443,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nmEstado\": \"Santa Catarina\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Santa Catarina\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -482,7 +482,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"nmEstado\": \"Sao Paulo\"\r\n    }",
+							"raw": " {\r\n        \"nome\": \"Sao Paulo\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -577,7 +577,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cidades/1",
+							"raw": "http://localhost:8080/cidades/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -585,7 +585,7 @@
 							"port": "8080",
 							"path": [
 								"cidades",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -609,7 +609,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nmCidade\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
+							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -648,7 +648,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"nmEstado\": \"Sao Paulo\"\r\n    }",
+							"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Minas Gerais\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -671,7 +671,7 @@
 					"response": []
 				},
 				{
-					"name": "Estados - Remover",
+					"name": "Cidades - Remover",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -687,14 +687,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estados/4",
+							"raw": "http://localhost:8080/cidades/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"estados",
+								"cidades",
 								"4"
 							]
 						}
@@ -718,7 +718,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/cozinhas/por-nome?nmCozinha=Tailandesa",
+							"raw": "http://localhost:8080/teste/cozinhas/por-nome?nome=Tailandesa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -731,7 +731,7 @@
 							],
 							"query": [
 								{
-									"key": "nmCozinha",
+									"key": "nome",
 									"value": "Tailandesa"
 								}
 							]
@@ -751,7 +751,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/cozinhas/exists?nmCozinha=Tailandesa",
+							"raw": "http://localhost:8080/teste/cozinhas/exists?nome=Tailandesa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -764,7 +764,7 @@
 							],
 							"query": [
 								{
-									"key": "nmCozinha",
+									"key": "nome",
 									"value": "Tailandesa"
 								}
 							]
@@ -784,7 +784,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/cozinhas/unica-por-nome?nmCozinha=Tailandesa",
+							"raw": "http://localhost:8080/teste/cozinhas/unica-por-nome?nome=Tailandesa",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -797,7 +797,7 @@
 							],
 							"query": [
 								{
-									"key": "nmCozinha",
+									"key": "nome",
 									"value": "Tailandesa"
 								}
 							]
@@ -817,7 +817,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/por-taxa-frete?taxaInicial=1&taxaFinal=20",
+							"raw": "http://localhost:8080/teste/restaurantes/por-taxa-frete?taxaInicial=10&taxaFinal=20",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -831,7 +831,7 @@
 							"query": [
 								{
 									"key": "taxaInicial",
-									"value": "1"
+									"value": "10"
 								},
 								{
 									"key": "taxaFinal",
@@ -854,7 +854,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/por-nome?nmRestaurante=del&idCozinha=1",
+							"raw": "http://localhost:8080/teste/restaurantes/por-nome?nome=a&idCozinha=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -867,8 +867,8 @@
 							],
 							"query": [
 								{
-									"key": "nmRestaurante",
-									"value": "del"
+									"key": "nome",
+									"value": "a"
 								},
 								{
 									"key": "idCozinha",
@@ -891,7 +891,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/por-nome-e-frete?nmRestaurante=a&taxaFreteInicial=1&taxaFreteFinal=20",
+							"raw": "http://localhost:8080/teste/restaurantes/por-nome-e-frete?nome=&taxaFreteInicial=&taxaFreteFinal=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -904,16 +904,16 @@
 							],
 							"query": [
 								{
-									"key": "nmRestaurante",
-									"value": "a"
+									"key": "nome",
+									"value": ""
 								},
 								{
 									"key": "taxaFreteInicial",
-									"value": "1"
+									"value": ""
 								},
 								{
 									"key": "taxaFreteFinal",
-									"value": "20"
+									"value": "10"
 								}
 							]
 						}
@@ -932,7 +932,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/primeiro-por-nome?nmRestaurante=a",
+							"raw": "http://localhost:8080/teste/restaurantes/primeiro-por-nome?nome=a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -945,7 +945,7 @@
 							],
 							"query": [
 								{
-									"key": "nmRestaurante",
+									"key": "nome",
 									"value": "a"
 								}
 							]
@@ -965,7 +965,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/top2-por-nome?nmRestaurante=a",
+							"raw": "http://localhost:8080/teste/restaurantes/top2-por-nome?nome=a",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -978,7 +978,7 @@
 							],
 							"query": [
 								{
-									"key": "nmRestaurante",
+									"key": "nome",
 									"value": "a"
 								}
 							]
@@ -998,7 +998,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/count-por-cozinha?idCozinha=2",
+							"raw": "http://localhost:8080/teste/restaurantes/count-por-cozinha?id=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1011,7 +1011,7 @@
 							],
 							"query": [
 								{
-									"key": "idCozinha",
+									"key": "id",
 									"value": "2"
 								}
 							]
@@ -1031,7 +1031,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/teste/restaurantes/com-frete-gratis?nmRestaurante=m",
+							"raw": "http://localhost:8080/teste/restaurantes/com-frete-gratis?nome=s",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1044,8 +1044,8 @@
 							],
 							"query": [
 								{
-									"key": "nmRestaurante",
-									"value": "m"
+									"key": "nome",
+									"value": "s"
 								}
 							]
 						}

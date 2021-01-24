@@ -10,10 +10,10 @@ import com.kamila.food.domain.model.Cozinha;
 @Repository
 public interface CozinhaRepository extends CustomJpaRepository<Cozinha, Long>{
 
-	List<Cozinha> findTodasByNmCozinhaContaining(String nmCozinha);
+	List<Cozinha> findTodasByNomeContaining(String nome);
 	
-	Optional<Cozinha> findByNmCozinha(String nmCozinha); // Espera que só exista uma
+	Optional<Cozinha> findByNome(String nome); // Espera que só exista uma
 
-	boolean existsByNmCozinha(String nmCozinha); // Nome exato
+	boolean existsByNome(String nome); // Nome exato
 
 }

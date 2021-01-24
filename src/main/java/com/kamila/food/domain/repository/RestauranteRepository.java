@@ -15,13 +15,13 @@ public interface RestauranteRepository extends CustomJpaRepository<Restaurante, 
 
 	List<Restaurante> queryByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
 
-	List<Restaurante> consultarPorNome(String nmRestaurante, Long idCozinha);
+	List<Restaurante> consultarPorNome(String nome, Long idCozinha);
 
-//	List<Restaurante> findByNmRestauranteContainingAndCozinhaId(String nmRestaurante, Long idCozinha);
+//	List<Restaurante> findByNomeContainingAndCozinhaId(String nome, Long idCozinha);
 
-	Optional<Restaurante> findFirstQualquerDescricaoByNmRestauranteContaining(String nmRestaurante);
+	Optional<Restaurante> findFirstQualquerDescricaoByNomeContaining(String nome);
 
-	List<Restaurante> findTop2ByNmRestauranteContaining(String nmRestaurante);
+	List<Restaurante> findTop2ByNomeContaining(String nome);
 
 	int countByCozinhaId(Long idCozinha);
 

@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,7 +39,7 @@ public class Restaurante {
 	private Long id;
 
 	@Column(name = "nm_restaurante", length = 100, nullable = false)
-	private String nmRestaurante;
+	private String nome;
 
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;

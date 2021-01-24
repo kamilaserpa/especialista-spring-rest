@@ -23,9 +23,9 @@ public class Permissao {
     private Long id;
     
     @Column(name = "nm_permissao", nullable = false)
-    private String nmPermissao;
+    private String nome;
     
-    @Column(nullable = false)
+    @Column(name = "ds_permissao", nullable = false)
     private String descricao;
 
 }
