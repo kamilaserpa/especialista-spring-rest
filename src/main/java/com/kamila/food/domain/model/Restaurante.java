@@ -23,7 +23,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -46,11 +45,7 @@ public class Restaurante {
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
-	/*
-	 *  Ignora a propriedade "hibernateLazyInitializer" no proxy referente à Cozinha em tempo de execução
-	 *  Carrega de forma preguiçosa o objeto cozinha, apenas quando solicitada a serialização para json o caso de findAll() por exemplo.
-	 */
-	@JsonIgnoreProperties("hibernateLazyInitializer") 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cozinha", nullable = false)
 	private Cozinha cozinha;
@@ -70,7 +65,7 @@ public class Restaurante {
 	private LocalDateTime dataAtualizacao;
 	
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER) // Na prática dificilmente o padrão seria alterado para EAGER em um relacionamento "..ToMany"
 	@JoinTable(name = "tb_restaurante_forma_pagamento",
 		joinColumns = @JoinColumn(name = "id_restaurante"), // Afirma a coluna na tabela local (Restaurante) que será o nome da coluna relacionada
 		inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
