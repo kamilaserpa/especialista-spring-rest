@@ -40,8 +40,9 @@ public class RestauranteController {
 	public List<Restaurante> listar() {
 		List<Restaurante> restaurantes = restauranteRepository.findAll();
 		
-		System.out.println("Buscando formas de pagamento de " + restaurantes.get(0).getNome());
-		restaurantes.get(0).getFormasPagamento().forEach(System.out::println); // Nesse momento realiza a consulta de formasPagemento;
+		System.out.println("O nome da cozinha é: ");
+		// Nesse momento realiza a consulta da cozinha, pois chama um método de Cozinha, que no caso é "getNome()" (Fetch Lazy)
+		System.out.println(restaurantes.get(0).getCozinha().getNome());
 		
 		return restaurantes;
 	}
