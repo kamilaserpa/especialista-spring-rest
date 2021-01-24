@@ -181,6 +181,11 @@ public class Restaurante {
 	@Embedded
 	private Endereco endereco;
 ```
+#### @CreationTimestamp
+Marca uma propriedade como o carimbo de data/hora ao salvar a entidade pela primeira vez. Anotação da implementação Hibernate.
+
+#### @UpdateTimestamp
+Marca uma propriedade como o carimbo de data/hora ao atualizar uma entidade. Anotação da implementação Hibernate. O próprio Hibrenate insere o valor do atibuto.
 
 
 ---
