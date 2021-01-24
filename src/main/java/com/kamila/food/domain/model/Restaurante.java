@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -40,8 +42,9 @@ public class Restaurante {
 	@JoinColumn(name = "id_cozinha", nullable = false)
 	private Cozinha cozinha;
 
+	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "restaurante_forma_pagamento",
+	@JoinTable(name = "tb_restaurante_forma_pagamento",
 		joinColumns = @JoinColumn(name = "id_restaurante"), // Afirma a coluna na tabela local (Restaurante) que será o nome da coluna relacionada
 		inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
 	private List<FormaPagamento> formasPagamento = new ArrayList<>();

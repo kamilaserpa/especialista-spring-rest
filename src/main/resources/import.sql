@@ -25,4 +25,4 @@ insert into tb_forma_pagamento (id_forma_pagamento, descricao) values (3, 'Dinhe
 insert into tb_permissao (id_permissao, nm_permissao, descricao) values (1, 'CONSULTAR_COZINHAS', 'Permite consultar cozinhas');
 insert into tb_permissao (id_permissao, nm_permissao, descricao) values (2, 'EDITAR_COZINHAS', 'Permite editar cozinhas');
 
-insert into restaurante_forma_pagamento (id_restaurante, id_forma_pagamento) values (1, 1), (1, 2), (1, 3), (2, 3), (3, 2), (3, 3);
+insert into tb_restaurante_forma_pagamento (id_restaurante, id_forma_pagamento) values (1, 1), (1, 2), (1, 3), (2, 3), (3, 2), (3, 3);
