@@ -161,6 +161,27 @@ Necessário inserir a anotação na classe main:
 
 `@EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImpl.class)`
 
+## Capítulo 6 - JPA e Hibernate
+
+#### @Embeddable
+JPA fornece a  anotação @Embeddable para declarar que uma classe será integrada por outras entidades.
+
+```java
+@Embeddable // Entidade incorporável
+public class Endereco {
+```
+
+#### @Embedded
+A anotação JPA @Embedded é usada para embutir um tipo em outra entidade. Incorporando para uma única tabela de banco de dados, no exemplo em *tb_restaurante*.
+
+```java
+public class Restaurante {
+	//...
+
+	@Embedded
+	private Endereco endereco;
+```
+
 
 ---
 
