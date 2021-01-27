@@ -45,8 +45,8 @@ public class Restaurante {
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+//	@JsonIgnore
+	@ManyToOne //(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cozinha", nullable = false)
 	private Cozinha cozinha;
 
@@ -64,8 +64,8 @@ public class Restaurante {
 	@Column(nullable = false, columnDefinition = "datetime")
 	private LocalDateTime dataAtualizacao;
 	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.EAGER) // Na prática dificilmente o padrão seria alterado para EAGER em um relacionamento "..ToMany"
+//	@JsonIgnore
+	@ManyToMany
 	@JoinTable(name = "tb_restaurante_forma_pagamento",
 		joinColumns = @JoinColumn(name = "id_restaurante"), // Afirma a coluna na tabela local (Restaurante) que será o nome da coluna relacionada
 		inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
