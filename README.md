@@ -205,6 +205,8 @@ Sem o `@JsonIgnore` é preciso analisar pois a consulta da entidade provalvelmen
 Necessário inserir arquivos *sql* na pasta resources/db/migration com nome de versão, podendo ter pontos, underlines ou data hora, iniciando por V maiúsculo, por exemplo: V1.0.sql, V1_0.sql, V001__descricao.sql, V20212801.
 É criada a tabela `flyway_schema_history` com auditoria de alterações.
 As alterações são incrementais, da versão 1 para a 4, são necessários executar a v2, em seguida v3 e só após a v4. Deve ser evitado inserir inserts de dados de teste em *migrations* para evitar que estes valores entrem em produção.
+Passos sugeridos, criar arquivo .sql dentro da pasta *db/migration* apenas ocm uma descrição, como "cria-tabela-usuario.sql". Em seguida inserir os comandos sql no arquivo, e então renomear inserindo a versão, com V maiúsculo e número da versão.
+Verifica a inalteração de versão arquivo sql anteriormente adicionado pelo campo *checksum*.
 
 
 ---
