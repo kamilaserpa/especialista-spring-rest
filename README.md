@@ -208,6 +208,8 @@ As alterações são incrementais, da versão 1 para a 4, são necessários exec
 Passos sugeridos, criar arquivo .sql dentro da pasta *db/migration* apenas ocm uma descrição, como "cria-tabela-usuario.sql". Em seguida inserir os comandos sql no arquivo, e então renomear inserindo a versão, com V maiúsculo e número da versão.
 Verifica a inalteração de versão arquivo sql anteriormente adicionado pelo campo *checksum*.
 
+Para alterações maiores em banco sugere-se criar um backup/dump do banco de dados em desenvolvimento. Em seguida escrever o script e executar para verificar o funcionamento, após isso restaurar o backup realizado anteriormente, e copiar os comandos *sql* para o arquivo migration dentro do projeto Spring.
+Não se deve inserir dados de teste no banco através de arquivos migration sql.
 
 ---
 
