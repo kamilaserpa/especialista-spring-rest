@@ -31,7 +31,7 @@ public class Endereco {
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "endereco_cidade_id")
+	@JoinColumn(name = "id_endereco_cidade")
 	private Cidade cidade;
 
 }
