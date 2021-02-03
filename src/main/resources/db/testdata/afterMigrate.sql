@@ -1,3 +1,31 @@
+set foreign_key_checks = 0;
+
+delete from tb_cidade;
+delete from tb_cozinha;
+delete from tb_estado;
+delete from tb_forma_pagamento;
+delete from tb_grupo;
+delete from tb_grupo_permissao;
+delete from tb_permissao;
+delete from tb_produto;
+delete from tb_restaurante;
+delete from tb_restaurante_forma_pagamento;
+delete from tb_usuario;
+delete from tb_usuario_grupo;
+
+set foreign_key_checks = 1;
+
+alter table tb_cidade auto_increment = 1;
+alter table tb_cozinha auto_increment = 1;
+alter table tb_estado auto_increment = 1;
+alter table tb_forma_pagamento auto_increment = 1;
+alter table tb_grupo auto_increment = 1;
+alter table tb_permissao auto_increment = 1;
+alter table tb_produto auto_increment = 1;
+alter table tb_restaurante auto_increment = 1;
+alter table tb_usuario auto_increment = 1;
+
+
 insert into tb_cozinha (id_cozinha, nm_cozinha) values (1, 'Tailandesa');
 insert into tb_cozinha (id_cozinha, nm_cozinha) values (2, 'Indiana');
 insert into tb_cozinha (id_cozinha, nm_cozinha) values (3, 'Argentina');
@@ -13,7 +41,7 @@ insert into tb_cidade (id_cidade, nm_cidade, id_estado) values (3, 'São Paulo',
 insert into tb_cidade (id_cidade, nm_cidade, id_estado) values (4, 'Campinas', 2);
 insert into tb_cidade (id_cidade, nm_cidade, id_estado) values (5, 'Fortaleza', 3);
 
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao, endereco_cidade_id, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro) values (1, 'Thai Gourmet', 10, 1, utc_timestamp, utc_timestamp, 1, '38400-999', 'Rua João Pinheiro', '1000', 'Centro');
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao, id_endereco_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro) values (1, 'Thai Gourmet', 10, 1, utc_timestamp, utc_timestamp, 1, '38400-999', 'Rua João Pinheiro', '1000', 'Centro');
 insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (2, 'Thai Delivery', 9.50, 1, utc_timestamp, utc_timestamp);
 insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (3, 'Tuk Tuk Comida Indiana', 15, 2, utc_timestamp, utc_timestamp);    
 insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (4, 'Java Steakhouse', 12, 3, utc_timestamp, utc_timestamp);
