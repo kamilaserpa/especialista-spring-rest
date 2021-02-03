@@ -213,10 +213,16 @@ Verifica a inalteração de versão arquivo sql anteriormente adicionado pelo ca
 Para alterações maiores em banco sugere-se criar um backup/dump do banco de dados em desenvolvimento. Em seguida escrever o script e executar para verificar o funcionamento, após isso restaurar o backup realizado anteriormente, e copiar os comandos *sql* para o arquivo migration dentro do projeto Spring.
 Não se deve inserir dados de teste no banco através de arquivos migration sql.
 
+##### Inserção de dados
 Dados de testepodem ser inseridos no banco através do arquivo `afterMigrate.sql`. Podemos inserir este arquivo em pasta específica e indicar ao Flyway a leitura nessa pasta a través de propriedade em *application*:
 
 	> spring.flyway.locations=classpath:db/migration,classpath:db/testdata
 
+##### Falha
+Quando uma migração **falha** ela fica armazenada na tabela de auditoria criada pelo Flyway chamada *flyway_schema_history*, com o valor 0 na coluna "success". Ainda que seja corrigida, o Flyway não permite a aplicação de uma versão já executada. Portanto deve ser observado até onde o arquivo foi executado, essas alterações devem ser desfeitas, o arquivo corrigido e o comportamento (em tese/desenvolvimento) seria deletar essa tupla em *flyway_schema_history*. Corrigir o arquivo sql migration e executar novamente o projeto.
+
+Outra opção para remover a ultima tupla de *flyway_schema_history* seria executar na pasta do projeto o comando `./mvnw flyway:repair -Dflyway.configFiles=src/main/resources/flyway.properties`. Sendo criado o arquivo mencionado com os dados de conexão com o banco. 
+*Se você copiar (da raiz do nosso projeto, ou qualquer projeto gerado pelo Spring Initializr) os arquivos mvnw, mvnw.cmd e a pasta .mvn você será capaz de executar os comandos maven de dentro do diretório onde colocou esses arquivos.*
 
 ---
 
