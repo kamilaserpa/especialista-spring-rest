@@ -56,7 +56,7 @@ create table tb_restaurante
    not null,
    data_atualizacao datetime not null,
    data_cadastro datetime not null,
-   id_endereco_cidade bigint,
+   endereco_id_cidade bigint,
    endereco_cep varchar (9),
    endereco_logradouro varchar (100),
    endereco_numero varchar (20),
@@ -103,7 +103,7 @@ alter table tb_grupo_permissao add constraint fk_grupo_permissao_permissao forei
 alter table tb_grupo_permissao add constraint fk_grupo_permissao_grupo foreign key (id_grupo) references tb_grupo (id_grupo);
 alter table tb_produto add constraint fk_produto_restaurante foreign key (id_restaurante) references tb_restaurante (id_restaurante);
 alter table tb_restaurante add constraint fk_restaurante_cozinha foreign key (id_cozinha) references tb_cozinha (id_cozinha);
-alter table tb_restaurante add constraint fk_restaurante_cidade foreign key (id_endereco_cidade) references tb_cidade (id_cidade);
+alter table tb_restaurante add constraint fk_restaurante_cidade foreign key (endereco_id_cidade) references tb_cidade (id_cidade);
 alter table tb_restaurante_forma_pagamento add constraint fk_rest_forma_pagto_forma_pagto foreign key (id_forma_pagamento) references tb_forma_pagamento (id_forma_pagamento);
 alter table tb_restaurante_forma_pagamento add constraint fk_rest_forma_pagto_restaurante foreign key (id_restaurante) references tb_restaurante (id_restaurante);
 alter table tb_usuario_grupo add constraint fk_usuario_grupo_grupo foreign key (id_grupo) references tb_grupo (id_grupo);
