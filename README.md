@@ -227,6 +227,10 @@ Outra opção para remover a ultima tupla de *flyway_schema_history* seria execu
 
 ##### Tratamento e modelagem de erros da API
 A anotação `@ResponseStatus(HttpStatus.NO_CONTENT)` acima do método no Controller indica o status http retornado caso não hajam exceções.
+Exceção ainda retornada com atributos: "timestamp", "status", "error", "message", "trace".
+As classes de domínio não devem ter contato com a camada que se relaciona com a web, os controllers têm essa responsabilidade, como por exemplo inserir código de status de resposta Http.
+
+`ResponseStatusException` indicada para projetos menores, quando se deseja que uma única exceção retorne diferentes status Http, quando não tem possui tempo hábil para criação de exceções customizadas. Com esse objeto ainda não é possível customizar corpo da resposta de exceção, apenas status code e mensagem.
 
 
 ---

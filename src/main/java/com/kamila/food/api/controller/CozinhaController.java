@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
@@ -68,21 +69,31 @@ public class CozinhaController {
 		}
 		return ResponseEntity.notFound().build();
 	}
-
+	/*
+	@DeleteMapping("/{idCozinha}")
+	public ResponseEntity<?> remover(@PathVariable Long idCozinha) {
+		try {
+			cadastroCozinhaService.remover(idCozinha);
+			return ResponseEntity.noContent().build();
+			
+		} catch (EntidadeNaoEncontradaException e) {
+			return ResponseEntity.notFound().build();
+			
+		} catch (EntidadeEmUsoException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+		}
+	}
+	*/
+	
 	@DeleteMapping("/{idCozinha}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long idCozinha) {
+		try {
 			cadastroCozinhaService.remover(idCozinha);
-//		try {
-//			cadastroCozinhaService.remover(idCozinha);
-//			return ResponseEntity.noContent().build();
-//			
-//		} catch (EntidadeNaoEncontradaException e) {
-//			return ResponseEntity.notFound().build();
-//			
-//		} catch (EntidadeEmUsoException e) {
-//			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-//		}
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+					String.format("Não existe cadastro de cozinha com código %d .", idCozinha));
+		}
 	}
 
 }
