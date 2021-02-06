@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
+import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.repository.CidadeRepository;
 import com.kamila.food.domain.service.CadastroCidadeService;
@@ -43,7 +45,11 @@ public class CidadeController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cidade salvar(@RequestBody Cidade cidade) {
-		return cadastroCidadeService.salvar(cidade);
+		try {
+			return cadastroCidadeService.salvar(cidade);
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage()); // Alterando código de erro para 400
+		}
 	}
 	
 	@PutMapping("/{id}")
@@ -52,8 +58,12 @@ public class CidadeController {
 		Cidade cidadeAtual = cadastroCidadeService.buscarOuFalhar(id);
 
 		BeanUtils.copyProperties(cidade, cidadeAtual, "id");
-
-		return cadastroCidadeService.salvar(cidadeAtual);
+		
+		try {
+			return cadastroCidadeService.salvar(cidadeAtual);
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage()); // Alterando código de erro para 400
+		}
 	}
 
 	@DeleteMapping("/{idCidade}")
