@@ -13,6 +13,10 @@ import com.kamila.food.domain.repository.EstadoRepository;
 @Service
 public class CadastroEstadoService {
 
+	private static final String MSG_ESTADO_EM_USO = "Estado de código %d não pode ser removido, pois está em uso.";
+
+	private static final String MSG_ESTADO_NAO_ENCONTRADO = "Não existe cadastro de estado com código %d .";
+	
 	@Autowired
 	private EstadoRepository estadoRepository;
 
@@ -26,11 +30,16 @@ public class CadastroEstadoService {
 			
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
-					String.format("Não existe cadastro de estado com código %d .", idEstado));
+					String.format(MSG_ESTADO_NAO_ENCONTRADO, idEstado));
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
-					String.format("Estado de código %d não pode ser removido, pois está em uso.", idEstado));
+					String.format(MSG_ESTADO_EM_USO, idEstado));
 		}
+	}
+
+	public Estado buscarOuFalhar(Long idEstado) {
+		return estadoRepository.findById(idEstado).orElseThrow(
+				() -> new EntidadeNaoEncontradaException(String.format(MSG_ESTADO_NAO_ENCONTRADO, idEstado)));
 	}
 
 }

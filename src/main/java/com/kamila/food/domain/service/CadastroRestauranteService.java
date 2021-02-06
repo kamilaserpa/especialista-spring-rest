@@ -9,24 +9,26 @@ import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
-import com.kamila.food.domain.repository.CozinhaRepository;
 import com.kamila.food.domain.repository.RestauranteRepository;
 
 @Service
 public class CadastroRestauranteService {
 
+	private static final String MSG_RESTAURANTE_EM_USO = "Restaurante de código %d não pode ser removido, pois está em uso.";
+
+	private static final String MSG_RESTAURANTE_NAO_ENCONTRADO = "Não existe cadastro de restaurante com código %d .";
+
 	@Autowired
 	private RestauranteRepository restauranteRepository;
 	
 	@Autowired
-	private CozinhaRepository cozinhaRepository;
+	private CadastroCozinhaService cadastroCozinhaService;
 
 	public Restaurante salvar(Restaurante restaurante) {
 		Long idCozinha = restaurante.getCozinha().getId();
 		
-		Cozinha cozinha = cozinhaRepository.findById(idCozinha).orElseThrow(() -> new EntidadeNaoEncontradaException(
-				String.format("Não existe cadastro de cozinha com código %d .", idCozinha)));
-
+		Cozinha cozinha = cadastroCozinhaService.buscarOuFalhar(idCozinha);
+		
 		restaurante.setCozinha(cozinha);
 
 		return restauranteRepository.save(restaurante);
@@ -38,13 +40,17 @@ public class CadastroRestauranteService {
 			
 		} catch (EmptyResultDataAccessException e) {
 			throw new EntidadeNaoEncontradaException(
-					String.format("Não existe cadastro de restaurante com código %d .", idRestaurante));
+					String.format(MSG_RESTAURANTE_NAO_ENCONTRADO, idRestaurante));
 			
 		} catch (DataIntegrityViolationException e) {
-			// Caso entidade não possa ser deletada por ter outros objetos relacionados (foreign Key)
 			throw new EntidadeEmUsoException(
-					String.format("Restaurante de código %d não pode ser removido, pois está em uso.", idRestaurante));
+					String.format(MSG_RESTAURANTE_EM_USO, idRestaurante));
 		}
+	}
+
+	public Restaurante buscarOuFalhar(Long idRestaurante) {
+		return restauranteRepository.findById(idRestaurante).orElseThrow(() -> new EntidadeNaoEncontradaException(
+				String.format(MSG_RESTAURANTE_NAO_ENCONTRADO, idRestaurante)));
 	}
 
 }

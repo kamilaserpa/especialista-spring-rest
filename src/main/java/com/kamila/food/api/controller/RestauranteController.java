@@ -3,12 +3,10 @@ package com.kamila.food.api.controller;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
@@ -42,67 +39,36 @@ public class RestauranteController {
 	}
 
 	@GetMapping("/{idRestaurante}")
-	public ResponseEntity<Restaurante> buscar(@PathVariable Long idRestaurante) {
-		
-		Optional<Restaurante> restaurante = restauranteRepository.findById(idRestaurante);
-		
-		if (restaurante.isPresent()) {
-			return ResponseEntity.ok(restaurante.get());
-		}
-		return ResponseEntity.notFound().build();
+	public Restaurante buscar(@PathVariable Long idRestaurante) {
+		return cadastroRestauranteService.buscarOuFalhar(idRestaurante);
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<?> salvar(@RequestBody Restaurante restaurante) {
-		try {
-			restaurante = cadastroRestauranteService.salvar(restaurante);
-			return ResponseEntity.status(HttpStatus.CREATED).body(restaurante);
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-			
-		}
+	public Restaurante salvar(@RequestBody Restaurante restaurante) {
+		return cadastroRestauranteService.salvar(restaurante);
 	}
-	
+
 	@PutMapping("/{idRestaurante}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> atualizar(@PathVariable Long idRestaurante,
-			@RequestBody Restaurante restaurante) {
-		try {
+	public Restaurante atualizar(@PathVariable Long idRestaurante, @RequestBody Restaurante restaurante) {
 
-			Restaurante restauranteAtual = restauranteRepository.findById(idRestaurante).orElse(null);
-			
-			if (restauranteAtual != null) {
-				BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro");
-				cadastroRestauranteService.salvar(restauranteAtual);
+		Restaurante restauranteAtual = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
 
-				return ResponseEntity.ok(restauranteAtual);
-			}
-			
-			return ResponseEntity.notFound().build();
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro");
+		
+		return cadastroRestauranteService.salvar(restauranteAtual);
 	}
 
 	@PatchMapping("/{idRestaurante}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> atualizarParcial(@PathVariable Long idRestaurante,
-			@RequestBody Map<String, Object> campos) {
-		try {
-			Restaurante restauranteAtual = restauranteRepository.findById(idRestaurante).orElse(null);
+	public Restaurante atualizarParcial(@PathVariable Long idRestaurante, @RequestBody Map<String, Object> campos) {
 
-			if (restauranteAtual == null) {
-				return ResponseEntity.notFound().build();
-			}
-			merge(campos, restauranteAtual);
-			
-			return atualizar(idRestaurante, restauranteAtual);
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		Restaurante restauranteAtual = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
+
+		merge(campos, restauranteAtual);
+
+		return atualizar(idRestaurante, restauranteAtual);
 	}
 
 	private void merge(Map<String, Object> dadosOrigem, Restaurante restauranteDestino) {
@@ -114,6 +80,7 @@ public class RestauranteController {
 			// findField: Retorna instancia de um campo
 			Field field = ReflectionUtils.findField(Restaurante.class, nomePropriedade);
 			field.setAccessible(true);
+			
 			// GetField: Captura o valor do campo
 			Object novoValor = ReflectionUtils.getField(field, restauranteOrigem);
 			
