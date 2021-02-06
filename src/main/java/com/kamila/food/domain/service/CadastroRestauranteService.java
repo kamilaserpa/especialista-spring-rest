@@ -6,7 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.kamila.food.domain.exception.EntidadeEmUsoException;
-import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
+import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
@@ -15,8 +15,6 @@ import com.kamila.food.domain.repository.RestauranteRepository;
 public class CadastroRestauranteService {
 
 	private static final String MSG_RESTAURANTE_EM_USO = "Restaurante de código %d não pode ser removido, pois está em uso.";
-
-	private static final String MSG_RESTAURANTE_NAO_ENCONTRADO = "Não existe cadastro de restaurante com código %d .";
 
 	@Autowired
 	private RestauranteRepository restauranteRepository;
@@ -39,8 +37,7 @@ public class CadastroRestauranteService {
 			restauranteRepository.deleteById(idRestaurante);
 			
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(
-					String.format(MSG_RESTAURANTE_NAO_ENCONTRADO, idRestaurante));
+			throw new RestauranteNaoEncontradoException(idRestaurante);
 			
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
@@ -49,8 +46,8 @@ public class CadastroRestauranteService {
 	}
 
 	public Restaurante buscarOuFalhar(Long idRestaurante) {
-		return restauranteRepository.findById(idRestaurante).orElseThrow(() -> new EntidadeNaoEncontradaException(
-				String.format(MSG_RESTAURANTE_NAO_ENCONTRADO, idRestaurante)));
+		return restauranteRepository.findById(idRestaurante)
+				.orElseThrow(() -> new RestauranteNaoEncontradoException(idRestaurante));
 	}
 
 }
