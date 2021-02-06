@@ -22,12 +22,12 @@ public class CadastroCidadeService {
 	private CidadeRepository cidadeRepository;
 	
 	@Autowired
-	private CadastroEstadoService cadastroEstadoSerevice;
+	private CadastroEstadoService cadastroEstadoService;
 
 	public Cidade salvar(Cidade cidade) {
 		Long idEstado = cidade.getEstado().getId();
 
-		Estado estado = cadastroEstadoSerevice.buscarOuFalhar(idEstado);
+		Estado estado = cadastroEstadoService.buscarOuFalhar(idEstado);
 
 		cidade.setEstado(estado);
 

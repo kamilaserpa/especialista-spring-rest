@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
+import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.repository.CidadeRepository;
@@ -47,8 +47,8 @@ public class CidadeController {
 	public Cidade salvar(@RequestBody Cidade cidade) {
 		try {
 			return cadastroCidadeService.salvar(cidade);
-		} catch (EntidadeNaoEncontradaException e) {
-			throw new NegocioException(e.getMessage()); // Alterando código de erro para 400
+		} catch (EstadoNaoEncontradoException e) {
+			throw new NegocioException(e.getMessage(), e); // Alterando código de erro para 400
 		}
 	}
 	
@@ -61,8 +61,8 @@ public class CidadeController {
 		
 		try {
 			return cadastroCidadeService.salvar(cidadeAtual);
-		} catch (EntidadeNaoEncontradaException e) {
-			throw new NegocioException(e.getMessage()); // Alterando código de erro para 400
+		} catch (EstadoNaoEncontradoException e) {
+			throw new NegocioException(e.getMessage(), e); // Alterando código de erro para 400
 		}
 	}
 
