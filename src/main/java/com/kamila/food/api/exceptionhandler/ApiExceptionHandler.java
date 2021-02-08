@@ -1,7 +1,5 @@
 package com.kamila.food.api.exceptionhandler;
 
-import java.time.LocalDateTime;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,30 +17,35 @@ import com.kamila.food.domain.exception.NegocioException;
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 	/**
-	 *  Customiza corpo da resposta. Caso haja alguma exceção dentro de @ExceptionHandler está será interceptada por este método.
-	 *  Aresposta será um ResponseEntity. HttpStatus 404.
+	 * Customiza corpo da resposta de erro EntidadeNaoEncontradaException para Problem, e HttpStatus 404
 	 * @param e
 	 * @return
 	 */
 	@ExceptionHandler(EntidadeNaoEncontradaException.class)
-	public ResponseEntity<?> tratarEntidadeNaoEncontradaException(EntidadeNaoEncontradaException ex, WebRequest request) {
-
-		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	public ResponseEntity<?> handleEntidadeNaoEncontradaException(EntidadeNaoEncontradaException ex, WebRequest request) {
+		
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		ProblemType problemType = ProblemType.ENTIDADE_NAO_ENCONTRADA;
+		String detail = ex.getMessage();
+		
+		Problem problem = createProblemBuilder(status, problemType, detail).build();
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
 	
 	/**
-	 * Alterando representação do erro de NegocioException para classe Problema, e httpStatus 400
+	 * Customizando representação do erro de NegocioException para classe Problema, e HttpStatus 400
 	 * @param e
 	 * @return
 	 */
 	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<?> tratarNegocioException(NegocioException ex,  WebRequest request) {
+	public ResponseEntity<?> handleNegocioException(NegocioException ex,  WebRequest request) {
 		
 		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 	
 	@ExceptionHandler(EntidadeEmUsoException.class)
-	public ResponseEntity<?> tratarEntidadeEmUsoException(EntidadeEmUsoException ex, WebRequest request) {
+	public ResponseEntity<?> handleEntidadeEmUsoException(EntidadeEmUsoException ex, WebRequest request) {
 		
 		return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
@@ -56,19 +59,27 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			HttpStatus status, WebRequest request) {
 
 		if (body == null) {
-			body = Problema.builder()
-					.datahora(LocalDateTime.now())
-					.mensagem(status.getReasonPhrase())
+			body = Problem.builder()
+					.title(status.getReasonPhrase())
+					.status(status.value())
 					.build();
 			
 		} else if (body instanceof String) {
-			body = Problema.builder()
-					.datahora(LocalDateTime.now())
-					.mensagem((String) body)
+			body = Problem.builder()
+					.title((String) body)
+					.status(status.value())
 					.build();
 		}
 
 		return super.handleExceptionInternal(ex, body, headers, status, request);
+	}
+	
+	private Problem.ProblemBuilder createProblemBuilder(HttpStatus status, ProblemType problemType, String detail) {
+		return Problem.builder()
+				.status(status.value())
+				.type(problemType.getUri())
+				.title(problemType.getTitle())
+				.detail(detail);
 	}
 
 }
