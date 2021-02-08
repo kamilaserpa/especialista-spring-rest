@@ -7,13 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
 
 @ControllerAdvice
-public class ApiExceptionHandler {
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 	/**
 	 *  Customiza corpo da resposta. Caso haja alguma exceção dentro de @ExceptionHandler está será interceptada por este método,
@@ -46,17 +47,6 @@ public class ApiExceptionHandler {
 				.build();
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problema);
-	}
-	
-	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-	public ResponseEntity<?> tratarHttpMediaTypeNotSupportedException() {
-		
-		Problema problema = Problema.builder()
-				.datahora(LocalDateTime.now())
-				.mensagem("O tipo de mídia não é aceito")
-				.build();
-		
-		return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body(problema);
 	}
 	
 	@ExceptionHandler(EntidadeEmUsoException.class)
