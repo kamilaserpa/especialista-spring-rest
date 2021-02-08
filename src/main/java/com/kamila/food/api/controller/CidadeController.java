@@ -79,37 +79,4 @@ public class CidadeController {
 		cadastroCidadeService.remover(idCidade);
 	}
 	
-	/**
-	 *  Customiza corpo da resposta. Caso haja alguma exceção dentro de @ExceptionHandler está será interceptada por este método,
-	 *  no caso a resposta será um ResponseEntity.
-	 * @param e
-	 * @return
-	 */
-	@ExceptionHandler(EntidadeNaoEncontradaException.class)
-	public ResponseEntity<?> tratarEntidadeNaoEncontradaException(EntidadeNaoEncontradaException e) {
-		
-		Problema problema = Problema.builder()
-				.datahora(LocalDateTime.now())
-				.mensagem(e.getMessage())
-				.build();
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problema);
-	}
-	
-	/**
-	 * Alterando representação do erro para classe Problema
-	 * @param e
-	 * @return
-	 */
-	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<?> tratarNegocioException(NegocioException e) {
-		
-		Problema problema = Problema.builder()
-				.datahora(LocalDateTime.now())
-				.mensagem(e.getMessage())
-				.build();
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problema);
-	}
-	
 }
