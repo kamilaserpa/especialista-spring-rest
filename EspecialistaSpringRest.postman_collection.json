@@ -317,7 +317,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"nome\": \"Thai Delivery iFood\",\r\n        \"taxaFrete\": 3\r\n    }",
+							"raw": " {\r\n        \"nome\": \"Thai Delivery\",\r\n        \"taxaFrete\": 9.50,\r\n        \"descricao\": \"teste\",\r\n        \"enrdereco\": {\r\n            \"cep\":11234123\r\n        }\r\n       \r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
