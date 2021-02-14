@@ -206,7 +206,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2",
+							"raw": "http://localhost:8080/restaurantes/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -214,7 +214,7 @@
 							"port": "8080",
 							"path": [
 								"restaurantes",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -277,7 +277,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n        \"nome\": \"Thai Delivery\",\r\n        \"taxaFrete\": 7.50,\r\n        \"cozinha\": {\r\n            \"id\": 1,\r\n            \"nome\": \"Tailandesa\"\r\n        }\r\n    }",
+							"raw": " {\r\n        \"nome\": \"Thai Delivery\",\r\n        \"taxaFrete\": 7.50,\r\n        \"descricao\": \"teste\",\r\n        \"endereco\": {\r\n            \"cep\": 60000000\r\n        },\r\n        \"cozinha\": {\r\n            \"id\": 1,\r\n            \"nome\": \"Tailandesa\"\r\n        }\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
