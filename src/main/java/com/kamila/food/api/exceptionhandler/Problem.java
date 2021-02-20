@@ -1,5 +1,7 @@
 package com.kamila.food.api.exceptionhandler;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -17,5 +19,6 @@ public class Problem {
 	private String detail;
 	
 	private String userMessage; // Mensagem destinada ao usuário final
+	private LocalDateTime timestamp;
 	
 }
