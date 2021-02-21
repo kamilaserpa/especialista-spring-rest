@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.kamila.food.Groups;
@@ -28,6 +29,7 @@ public class Estado {
 	@Column(name = "id_estado")
 	private Long id;
 
+	@NotBlank
 	@Column(name = "nm_estado", nullable = false)
 	private String nome;
 
