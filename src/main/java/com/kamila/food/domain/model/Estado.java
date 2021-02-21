@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.kamila.food.Groups;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +21,7 @@ import lombok.Getter;
 @Table(name = "tb_estado")
 public class Estado {
 
+	@NotNull(groups = Groups.EstadoId.class)
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

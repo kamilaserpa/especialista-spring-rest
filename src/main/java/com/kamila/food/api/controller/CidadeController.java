@@ -2,6 +2,8 @@ package com.kamila.food.api.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +46,7 @@ public class CidadeController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cidade salvar(@RequestBody Cidade cidade) {
+	public Cidade salvar(@RequestBody @Valid Cidade cidade) {
 		try {
 			return cadastroCidadeService.salvar(cidade);
 		} catch (EstadoNaoEncontradoException e) {
@@ -54,7 +56,7 @@ public class CidadeController {
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Cidade atualizar(@PathVariable Long id, @RequestBody Cidade cidade) {
+	public Cidade atualizar(@PathVariable Long id, @RequestBody @Valid Cidade cidade) {
 		Cidade cidadeAtual = cadastroCidadeService.buscarOuFalhar(id);
 
 		BeanUtils.copyProperties(cidade, cidadeAtual, "id");
