@@ -2,6 +2,7 @@ package com.kamila.food.api.exceptionhandler;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.lang.Nullable;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -150,8 +152,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 		String detail = "Um ou mais campos estão inválidos. Preencha corretamente e tente novamente.";
 
+		BindingResult bindingResult = ex.getBindingResult();
+
+		// Inserindo na resposta os campos inválidos e a mensagem indicando o erro de validação
+		List<Problem.Field> problemFields = bindingResult.getFieldErrors().stream()
+				.map(fieldError -> Problem.Field.builder()
+						.name(fieldError.getField())
+						.userMessage(fieldError.getDefaultMessage())
+						.build())
+				.collect(Collectors.toList());
+		
 		Problem problem = createProblemBuilder(status, problemType, detail)
 						.userMessage(detail)
+						.fields(problemFields)
 						.build();
 				
 		return handleExceptionInternal(ex, problem, headers, status, request);
