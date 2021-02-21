@@ -275,6 +275,7 @@ A partir da versão 2.3.0 do Spring o Bean Validation não é adicionado automat
 ```
 Apenas inserindo critério de validação na entidade, está é implementada no repository. Para validar no controller deve ser inserido `@Valid` no objeto recebido no controller.
 
+Lista e documentação de [validações](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints).
 
 ---
 

@@ -17,7 +17,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -39,10 +41,12 @@ public class Restaurante {
 	@Column(name = "id_restaurante")
 	private Long id;
 
-	@NotNull
+	@NotBlank // Verifica se nullo, vazio ou contendo apenas espaços
 	@Column(name = "nm_restaurante", length = 100, nullable = false)
 	private String nome;
 
+//	@DecimalMin("0")
+	@PositiveOrZero
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
