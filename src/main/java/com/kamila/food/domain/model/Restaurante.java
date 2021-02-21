@@ -26,6 +26,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kamila.food.Groups;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -42,17 +43,17 @@ public class Restaurante {
 	@Column(name = "id_restaurante")
 	private Long id;
 
-	@NotBlank // Verifica se nullo, vazio ou contendo apenas espaços
+	@NotBlank(groups = Groups.CadastroRestaurante.class) // Verifica se nullo, vazio ou contendo apenas espaços
 	@Column(name = "nm_restaurante", length = 100, nullable = false)
 	private String nome;
 
 //	@DecimalMin("0")
-	@PositiveOrZero
+	@PositiveOrZero(groups = Groups.CadastroRestaurante.class)
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
 	@Valid
-	@NotNull
+	@NotNull(groups = Groups.CadastroRestaurante.class)
 	@ManyToOne //(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cozinha", nullable = false)
 	private Cozinha cozinha;
