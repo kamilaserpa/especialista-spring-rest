@@ -277,7 +277,9 @@ Apenas inserindo critério de validação na entidade, está é implementada no 
 
 Lista e documentação de [validações](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints).
 Por padrão uma entidade não valida outra entidade inserida nela em cascata para isso deve-se colocar a anotação `@Valid` no atributo.
-Por padrão a validação utiliza o group `javax.validation.Groups.Default.class`.,
+Por padrão a validação utiliza o group `javax.validation.Groups.Default.class`.
+Anotação `@ConvertGroup` informa pra entidade modelo que ao validar o atributo anotado, deve-se utilizar o group utilizado. Convertendo de group `Default` para um grupo customizado apenas naquele atributo.
+
 ---
 
 ##### Reference Documentation
