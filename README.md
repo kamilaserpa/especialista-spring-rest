@@ -280,6 +280,28 @@ Por padrão uma entidade não valida outra entidade inserida nela em cascata par
 Por padrão a validação utiliza o group `javax.validation.Groups.Default.class`.
 Anotação `@ConvertGroup` informa pra entidade modelo que ao validar o atributo anotado, deve-se utilizar o group utilizado. Convertendo de group `Default` para um grupo customizado apenas naquele atributo.
 
+##### Resource Bundle do Bean Validation
+Pode-se observar nas dependências do projeto o jar `hibernate-validator`, e o resource bundle `ValidationMessages.properties`. Esse arquivo contém as mensagens relacionadas à validação.
+Podemos criar um arquivo de mesmo nome na pasta `resource`do projeto, que será responsável no nosso projeto por resolver as mensagens do *Bean Validator*.
+
+```java
+	// Restaurante.class
+	@NotNull
+	@PositiveOrZero(message = "{TaxaFrete.invalida}")
+	@Column(name = "taxa_frete", nullable = false)
+	private BigDecimal taxaFrete;
+	
+	// ValidationMessages.properties
+	TaxaFrete.invalida = Taxa frete está inválida. Informe um valor positivo. 
+```
+Após a resolução da mensagem pelo Bean Validator o Spring percorre seu resource bundle `messages.properties` e sobrescreve a mensagem caso esteja presente no bundle do Spring.
+
+```java
+	// messages.properties
+	PositiveOrZero={0} deve ser um valor maior ou igual a zero
+```
+Por possuir precedência, recomenda-se a utilização do arquivo *messages.properties*.
+
 ---
 
 ##### Reference Documentation
