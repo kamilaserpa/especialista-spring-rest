@@ -1,4 +1,4 @@
-package com.kamila.food;
+package com.kamila.food.core.validation;
 
 public interface Groups {
 

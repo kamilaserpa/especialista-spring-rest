@@ -20,7 +20,6 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 
@@ -28,7 +27,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kamila.food.Groups;
+import com.kamila.food.core.validation.Groups;
+import com.kamila.food.core.validation.TaxaFrete;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -50,7 +50,7 @@ public class Restaurante {
 	private String nome;
 
 	@NotNull
-	@PositiveOrZero(message = "{TaxaFrete.invalida}")
+	@TaxaFrete
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	

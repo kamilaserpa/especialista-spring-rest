@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.kamila.food.Groups;
+import com.kamila.food.core.validation.Groups;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

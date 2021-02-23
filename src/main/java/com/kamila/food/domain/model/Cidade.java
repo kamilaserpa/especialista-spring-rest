@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 
-import com.kamila.food.Groups;
+import com.kamila.food.core.validation.Groups;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
