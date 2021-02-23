@@ -302,6 +302,13 @@ Após a resolução da mensagem pelo Bean Validator o Spring percorre seu resour
 ```
 Por possuir precedência, recomenda-se a utilização do arquivo *messages.properties*.
 
+##### Eclipse e UTF-8
+Acessar Window > Preferences > Content Types. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
+
+##### Placeholder em Bundle MessagesProperties
+Para o placeholder de índice 0  espera-se o valor da propriedade. Em caso de validação de classe não se tem esse dado, pois não se trata de uma propriedade específica.
+Os placeholders são atribuídos aos índices em sua ordem alfabética.
+
 ---
 
 ##### Reference Documentation
