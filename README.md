@@ -323,6 +323,14 @@ Teste deve validar uma única funcionalidade.
 Deve possuir três partes: cenário, ação, validação.
 É possível executar apenas um método de teste, clicando com o lado direito do mouse, "Run as", "JUnit Test".
 
+##### Nomes de testes
+Ideal escolher um padrão para nomes de métodos de teste, e utilizar esse padrão em todo o projeto.
+É aceitável utilização de padrão under_scores em métodos de teste (separação das palavras por underlines), por exemplo `cadastro_cozinha_com_sucesso()`.
+Utilização de palavras chave, por exemplo, `given` (dado que), `when` (quando), `than` (então), por exemplo: `givenJaExisteCozinhaChinesa_WhenCadastroCozinhaChinesa_ThenDeveFalhar()`.
+Outro exemplo de padrão: `should` (deve acontecer), `when` (quando). Por exemplo: `deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos()`
+Outros exemplos:
+ - `whenCadastroCozinhaComDadosCorretos_ThenDeveAtribuirId()`
+
 ---
 
 ##### Reference Documentation
