@@ -309,6 +309,15 @@ Acessar Window > Preferences > Content Types. Em Default encoding inserir "UTF-8
 Para o placeholder de índice 0  espera-se o valor da propriedade. Em caso de validação de classe não se tem esse dado, pois não se trata de uma propriedade específica.
 Os placeholders são atribuídos aos índices em sua ordem alfabética.
 
+##### Validando objeto Map
+Ao receber um objeto do tipo `Map` o controlador não é capaz de validá-lo. Para validá-lo é necessário convertê-lo em uma classe anotada com validações, em seguida validá-lo programaticamente utilizando `SmartValidator.validate`.
+
+```java
+	BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(objetoASerValidado, "nomeDaEntidade");
+	org.springframework.validation.SmartValidator.validate(objetoASerValidado, bindingResult);
+```
+
+
 ---
 
 ##### Reference Documentation
