@@ -317,6 +317,11 @@ Ao receber um objeto do tipo `Map` o controlador não é capaz de validá-lo. Pa
 	org.springframework.validation.SmartValidator.validate(objetoASerValidado, bindingResult);
 ```
 
+## Capítulo 10 - Testes de integração
+
+Teste deve validar uma única funcionalidade.
+Deve possuir três partes: cenário, ação, validação.
+É possível executar apenas um método de teste, clicando com o lado direito do mouse, "Run as", "JUnit Test".
 
 ---
 
