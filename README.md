@@ -336,7 +336,17 @@ Para executar os testes em um projeto maven execute o comando a seguir na pasta 
 
 > ./mvnw test
 
-Ao gerar um build do projeto mavem com `mvn clean package` os testes também são executados, no caso de falha o build não é gerado, porém torna mais longo o tempo para geração do build.
+Ao gerar um build do projeto maven com `mvn clean package` os testes também são executados, no caso de falha o build não é gerado, porém torna mais longo o tempo para geração do build.
+
+##### Maven Failsafe Plugin
+Com o plugin `maven-failsafe-plugin` é possível gerar o build sem executar os teses de integração. Dessa maneira os testes serão executados apenas pelo comando `./mvnw verify`. `./mvnw test`também não executará os teste de integração. Para identificação pelo plugin as classes de teste de integração devem terminar com IT (Integration Teste).
+
+```java
+	<plugin>
+		<artifactId>maven-failsafe-plugin</artifactId>
+	</plugin>
+```
+
 
 ---
 
