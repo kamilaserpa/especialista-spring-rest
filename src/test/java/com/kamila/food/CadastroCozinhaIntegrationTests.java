@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.service.CadastroCozinhaService;
 
@@ -21,7 +22,7 @@ public class CadastroCozinhaIntegrationTests {
 	private CadastroCozinhaService cadastroCozinhaService;
 	
 	@Test
-	public void testarCadastroCozinhaComSucesso() {
+	public void deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos() {
 		// Cenário
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome("Chinesa");
@@ -38,11 +39,21 @@ public class CadastroCozinhaIntegrationTests {
 	 * Flexibilidade maior em nome de métodos de teste, pois podem ser longos.
 	 */
 	@Test(expected = ConstraintViolationException.class)
-	public void testarCadastroCozinhaSemNome() {
+	public void deveFalhar_QuandoCadastroCozinhaSemNome() {
 		Cozinha novaCozinha = new Cozinha();
 		novaCozinha.setNome(null);
 		
 		novaCozinha = cadastroCozinhaService.salvar(novaCozinha);
+	}
+
+	@Test(expected = EntidadeEmUsoException.class)
+	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
+		cadastroCozinhaService.remover(1L);
+	}
+	
+	@Test(expected  = EntidadeEmUsoException.class)
+	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
+		cadastroCozinhaService.remover(100L);		
 	}
 	
 }
