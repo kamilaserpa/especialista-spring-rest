@@ -331,6 +331,13 @@ Outro exemplo de padrão: `should` (deve acontecer), `when` (quando). Por exempl
 Outros exemplos:
  - `whenCadastroCozinhaComDadosCorretos_ThenDeveAtribuirId()`
 
+##### Executando testes por linha de comando
+Para executar os testes em um projeto maven execute o comando a seguir na pasta do projeto:
+
+> ./mvnw test
+
+Ao gerar um build do projeto mavem com `mvn clean package` os testes também são executados, no caso de falha o build não é gerado, porém torna mais longo o tempo para geração do build.
+
 ---
 
 ##### Reference Documentation
