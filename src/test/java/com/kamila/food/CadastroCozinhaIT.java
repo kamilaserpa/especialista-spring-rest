@@ -1,60 +1,39 @@
 package com.kamila.food;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import javax.validation.ConstraintViolationException;
+import static io.restassured.RestAssured.given;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
-import com.kamila.food.domain.exception.EntidadeEmUsoException;
-import com.kamila.food.domain.model.Cozinha;
-import com.kamila.food.domain.service.CadastroCozinhaService;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CadastroCozinhaIT {
 
-	@Autowired
-	private CadastroCozinhaService cadastroCozinhaService;
+	@LocalServerPort
+	private int port;
 	
 	@Test
-	public void deveAtribuirId_QuandoCadastrarCozinhaComDadosCorretos() {
-		// Cenário
-		Cozinha novaCozinha = new Cozinha();
-		novaCozinha.setNome("Chinesa");
+	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
+		/*
+		 * Habilitando logging da requisição e da resposta para caso a requisição falhar.
+		 * Auxiliando na identificação da causa de erro.
+		 */
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		
-		// Ação
-		novaCozinha = cadastroCozinhaService.salvar(novaCozinha);
-		
-		// Validação
-		assertThat(novaCozinha).isNotNull();
-		assertThat(novaCozinha.getId()).isNotNull();
+		given()
+			.basePath("/cozinhas")
+			.port(port)
+			.accept(ContentType.JSON)
+		.when()
+			.get()
+		.then()
+			.statusCode(HttpStatus.OK.value());
 	}
-
-	/**
-	 * Flexibilidade maior em nome de métodos de teste, pois podem ser longos.
-	 */
-	@Test(expected = ConstraintViolationException.class)
-	public void deveFalhar_QuandoCadastroCozinhaSemNome() {
-		Cozinha novaCozinha = new Cozinha();
-		novaCozinha.setNome(null);
-		
-		novaCozinha = cadastroCozinhaService.salvar(novaCozinha);
-	}
-
-	@Test(expected = EntidadeEmUsoException.class)
-	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
-		cadastroCozinhaService.remover(1L);
-	}
-	
-	@Test(expected  = CozinhaNaoEncontradaException.class)
-	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
-		cadastroCozinhaService.remover(100L);		
-	}
-	
 }

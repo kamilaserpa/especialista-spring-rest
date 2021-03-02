@@ -302,8 +302,14 @@ Após a resolução da mensagem pelo Bean Validator o Spring percorre seu resour
 ```
 Por possuir precedência, recomenda-se a utilização do arquivo *messages.properties*.
 
-##### Eclipse e UTF-8
+##### Eclipse
+
+###### UTF-8
 Acessar Window > Preferences > Content Types. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
+
+###### Importação Estática
+Para importação estática de métodos insira o local do arquivo em:
+> Window > Preferences > Java > Editor > Content Assist > Favorites > New Type
 
 ##### Placeholder em Bundle MessagesProperties
 Para o placeholder de índice 0  espera-se o valor da propriedade. Em caso de validação de classe não se tem esse dado, pois não se trata de uma propriedade específica.
@@ -317,9 +323,10 @@ Ao receber um objeto do tipo `Map` o controlador não é capaz de validá-lo. Pa
 	org.springframework.validation.SmartValidator.validate(objetoASerValidado, bindingResult);
 ```
 
-## Capítulo 10 - Testes de integração
+## Capítulo 10 - Testes
 
-Teste deve validar uma única funcionalidade.
+### Testes de Integração
+Teste de integração deve validar uma única funcionalidade.
 Deve possuir três partes: cenário, ação, validação.
 É possível executar apenas um método de teste, clicando com o lado direito do mouse, "Run as", "JUnit Test".
 
@@ -347,6 +354,11 @@ Com o plugin `maven-failsafe-plugin` é possível gerar o build sem executar os 
 	</plugin>
 ```
 
+### Testes de API
+Testes de API fazem uma chamada real para uma requisição no serviço rest e executa todo o fluxo.
+Para execução do teste não é preciso executar o projeto, a própria classe de teste ao ser executada levanta um container com a aplicação somente para os testes. Através da anotação na classe de teste:
+`@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`
+Executado a classe com JUnit.
 
 ---
 

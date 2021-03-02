@@ -64,6 +64,11 @@
 		    <groupId>org.springframework.boot</groupId> 
 		    <artifactId>spring-boot-starter-validation</artifactId> 
 		</dependency>
+		<dependency>
+		    <groupId>io.rest-assured</groupId> 
+		    <artifactId>rest-assured</artifactId>
+		    <scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
