@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.service.CadastroCozinhaService;
@@ -51,7 +52,7 @@ public class CadastroCozinhaIntegrationTests {
 		cadastroCozinhaService.remover(1L);
 	}
 	
-	@Test(expected  = EntidadeEmUsoException.class)
+	@Test(expected  = CozinhaNaoEncontradaException.class)
 	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
 		cadastroCozinhaService.remover(100L);		
 	}
