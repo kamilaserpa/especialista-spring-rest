@@ -225,6 +225,15 @@ Outra opção para remover a ultima tupla de *flyway_schema_history* seria execu
 
 *Se você copiar (da raiz do nosso projeto, ou qualquer projeto gerado pelo Spring Initializr) os arquivos mvnw, mvnw.cmd e a pasta .mvn você será capaz de executar os comandos maven de dentro do diretório onde colocou esses arquivos.*
 
+##### Criando migração a partir de DDL gerado por schema generation
+Em `application.properties` adicionamos duas propriedades. Elas serão temporárias, após a geração do arquivo serão deletadas.
+ - *spring.jpa.properties.javax.persistence.schema-generation.scripts.action=create* para gerar um script sem que este seja executado automaticamente.
+ - *spring.jpa.properties.javax.persistence.schema-generation.scripts.create-target=src/main/resources/ddl.sql* para informar o arquivo em que o script dll será armazenado
+
+O comportamento esperado é que o script de geração não seja executado, e seja gerado o arquivo de criação das tabelas. Caso haja arquivo `src/main/resources/import.sql` seu conteúdo também será inserido em comandos no arquivo dll gerado.
+Após a captura desse script, faça as devidas revisões e verificações, alteração de nome de foreign keys para um nome mais reconhecível, verificação de length de colunas e demais alterações desejadas.
+Observação: `spring.jpa.properties.` utilizado para adicionar propriedades nativas para o provedor do JPA.
+
 ## Capítulo 8 - Tratamento e modelagem de erros da API
 
 A anotação `@ResponseStatus(HttpStatus.NO_CONTENT)` acima do método no Controller indica o status http retornado caso não hajam exceções.
