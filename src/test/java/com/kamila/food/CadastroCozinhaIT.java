@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasSize;
 
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,17 +22,23 @@ public class CadastroCozinhaIT {
 	@LocalServerPort
 	private int port;
 	
-	@Test
-	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
+	/**
+	 * Método executado antes de cada método @Test
+	 */
+	@Before
+	public void setUp() {
 		/*
 		 * Habilitando logging da requisição e da resposta para caso a requisição falhar.
 		 * Auxiliando na identificação da causa de erro.
 		 */
 		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-		
+		RestAssured.port = port;
+		RestAssured.basePath = "/cozinhas";
+	}
+	
+	@Test
+	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
 		given() // Dado que
-			.basePath("/cozinhas")
-			.port(port)
 			.accept(ContentType.JSON)
 		.when() // Quando
 			.get()
@@ -41,15 +48,7 @@ public class CadastroCozinhaIT {
 	
 	@Test
 	public void deveConter4Cozinhas_QuandoConsultarCozinhas() {
-		/*
-		 * Habilitando logging da requisição e da resposta para caso a requisição falhar.
-		 * Auxiliando na identificação da causa de erro.
-		 */
-		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-		
 		given()
-			.basePath("/cozinhas")
-			.port(port)
 			.accept(ContentType.JSON)
 		.when()
 			.get()
