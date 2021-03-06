@@ -1,6 +1,7 @@
 package com.kamila.food;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
 import org.hamcrest.Matchers;
@@ -88,6 +89,29 @@ public class CadastroCozinhaIT {
 			.post()
 		.then()
 			.statusCode(HttpStatus.CREATED.value());
+	}
+	
+	@Test
+	public void deveRetornarRespostaEStatusCorretos_QuandoConsultarCozinhaExistente() {
+		given()
+			.pathParam("cozinhaId", 2)
+			.accept(ContentType.JSON)
+		.when()
+			.get("/{cozinhaId}")
+		.then()
+			.statusCode(HttpStatus.OK.value())
+			.body("nome", equalTo("Americana"));
+	}
+	
+	@Test
+	public void deveRetornarStatus404_QuandoConsultarCozinhaInexistente() {
+		given()
+		.pathParam("cozinhaId", 200)
+		.accept(ContentType.JSON)
+		.when()
+		.get("/{cozinhaId}")
+		.then()
+		.statusCode(HttpStatus.NOT_FOUND.value());
 	}
 	
 	private void prepararDados() {
