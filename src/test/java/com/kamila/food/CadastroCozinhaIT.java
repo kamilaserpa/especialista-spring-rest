@@ -1,7 +1,9 @@
 package com.kamila.food;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.hasSize;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,6 +29,24 @@ public class CadastroCozinhaIT {
 		 */
 		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		
+		given() // Dado que
+			.basePath("/cozinhas")
+			.port(port)
+			.accept(ContentType.JSON)
+		.when() // Quando
+			.get()
+		.then() // Então
+			.statusCode(HttpStatus.OK.value());
+	}
+	
+	@Test
+	public void deveConter4Cozinhas_QuandoConsultarCozinhas() {
+		/*
+		 * Habilitando logging da requisição e da resposta para caso a requisição falhar.
+		 * Auxiliando na identificação da causa de erro.
+		 */
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+		
 		given()
 			.basePath("/cozinhas")
 			.port(port)
@@ -34,6 +54,8 @@ public class CadastroCozinhaIT {
 		.when()
 			.get()
 		.then()
-			.statusCode(HttpStatus.OK.value());
+			.body("", hasSize(4)) // 4 objetos dentro do array
+			.body("nome", Matchers.hasItems("Indiana", "Tailandesa")); // Deve possuir estes itens no atributo nome
 	}
+	
 }

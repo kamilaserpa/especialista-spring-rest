@@ -311,15 +311,6 @@ Após a resolução da mensagem pelo Bean Validator o Spring percorre seu resour
 ```
 Por possuir precedência, recomenda-se a utilização do arquivo *messages.properties*.
 
-##### Eclipse
-
-###### UTF-8
-Acessar Window > Preferences > Content Types. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
-
-###### Importação Estática
-Para importação estática de métodos insira o local do arquivo em:
-> Window > Preferences > Java > Editor > Content Assist > Favorites > New Type
-
 ##### Placeholder em Bundle MessagesProperties
 Para o placeholder de índice 0  espera-se o valor da propriedade. Em caso de validação de classe não se tem esse dado, pois não se trata de uma propriedade específica.
 Os placeholders são atribuídos aos índices em sua ordem alfabética.
@@ -369,7 +360,23 @@ Para execução do teste não é preciso executar o projeto, a própria classe d
 `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`
 Executado a classe com JUnit.
 
+#### Hamcrest Matchers
+É uma [biblioteca](http://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/Matchers.html) para escrever expressões com regras de correspondência entre objetos. Página: http://hamcrest.org/JavaHamcrest/tutorial.
+
 ---
+
+##### Eclipse
+
+###### UTF-8
+Acessar Window > Preferences > Content Types. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
+
+###### Importação Estática
+Para importação estática de métodos insira o local do arquivo em:
+> Window > Preferences > Java > Editor > Content Assist > Favorites > New Type
+
+Por exemplo, adicionando a biblioteca `org.hamcrest.Matchers` em types, é possível fazer a importação estática de métodos dessa maneira, como o método hasSize, por exemplo, da seguinte maneira:
+
+`import static org.hamcrest.Matchers.hasSize;`
 
 ##### Reference Documentation
 For further reference, please consider the following sections:
