@@ -367,6 +367,12 @@ Executado a classe com JUnit.
 O JUnit não garante a execução dos métodos de teste na ordem em que estão dispostos no código. Desse modo entende-se que os métodos de teste não devem ser condicionados a execução anterior de outro método de teste.
 Um método de teste não pode depender da execução ou não execução de outro método. *Testes devem ser independentes*.
 
+#### Criando um banco somente para testes e usando @TestPropertySource
+Para isto, é criado um arquivo chamado "aplication-test.properties" em "src/test/resources". Foi retirado o trecho "classpath:db/testdata" pois não é desejado que o afterMigrate da aplicação principal seja utilizada para o banco apenas de teste.
+Através da anotação `@TestPropertySource` na classe de teste indicamos que as propriedades em 'applicaiton-test.properties' sobrescreverão as mesmas propriedades em "src/main/resources/application.properties".
+`@TestPropertySource("application-test.properties")`. 
+
+
 ---
 
 ##### Eclipse
