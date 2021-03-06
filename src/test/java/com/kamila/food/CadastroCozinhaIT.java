@@ -3,7 +3,6 @@ package com.kamila.food;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasSize;
 
-import org.flywaydb.core.Flyway;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +13,10 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.kamila.food.domain.model.Cozinha;
+import com.kamila.food.domain.repository.CozinhaRepository;
+import com.kamila.food.util.DatabaseCleaner;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -27,7 +30,10 @@ public class CadastroCozinhaIT {
 	private int port;
 	
 	@Autowired
-	private Flyway flyway;
+	private DatabaseCleaner databaseCleaner;
+	
+	@Autowired
+	private CozinhaRepository cozinhaRepository;
 	
 	/**
 	 * Método executado antes de cada método @Test
@@ -42,11 +48,9 @@ public class CadastroCozinhaIT {
 		RestAssured.port = port;
 		RestAssured.basePath = "/cozinhas";
 		
-		/**
-		 *  O banco de dados será retornado para um estado conhecido antes 
-		 *  de cada execução de método de teste, através do callback afterMigrate
-		 */
-		flyway.migrate();
+		// Antes de cada teste os dados do banco serão deletados e o método prepararDados irá inserir novos valores.
+		databaseCleaner.clearTables();
+		prepararDados();
 	}
 	
 	@Test
@@ -85,6 +89,24 @@ public class CadastroCozinhaIT {
 			.post()
 		.then()
 			.statusCode(HttpStatus.CREATED.value());
+	}
+	
+	private void prepararDados() {
+		Cozinha cozinha1 = new Cozinha();
+		cozinha1.setNome("Tailandesa");
+		cozinhaRepository.save(cozinha1);
+		
+		Cozinha cozinha2 = new Cozinha();
+		cozinha2.setNome("Americana");
+		cozinhaRepository.save(cozinha2);
+		
+		Cozinha cozinha3 = new Cozinha();
+		cozinha3.setNome("Indiana");
+		cozinhaRepository.save(cozinha3);
+		
+		Cozinha cozinha4 = new Cozinha();
+		cozinha4.setNome("Argentina");
+		cozinhaRepository.save(cozinha4);
 	}
 	
 }
