@@ -363,6 +363,10 @@ Executado a classe com JUnit.
 #### Hamcrest Matchers
 É uma [biblioteca](http://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/Matchers.html) para escrever expressões com regras de correspondência entre objetos. Página: http://hamcrest.org/JavaHamcrest/tutorial.
 
+#### Ordem de execução dos testes
+O JUnit não garante a execução dos métodos de teste na ordem em que estão dispostos no código. Desse modo entende-se que os métodos de teste não devem ser condicionados a execução anterior de outro método de teste.
+Um método de teste não pode depender da execução ou não execução de outro método. *Testes devem ser independentes*.
+
 ---
 
 ##### Eclipse

@@ -57,4 +57,21 @@ public class CadastroCozinhaIT {
 			.body("nome", Matchers.hasItems("Indiana", "Tailandesa")); // Deve possuir estes itens no atributo nome
 	}
 	
+	@Test
+	public void deveRetornarStatus201_QuandoCadastrarCozinha() {
+		/**
+		 * Exemplo de problema na ordem dos testes (não deve ser replicado). Ao adicionar uma cozinha
+		 * serão recebidas 5 cozinhas e não 4 no método deveConter4Cozinhas_QuandoConsultarCozinhas.
+		 * Provocando falha no teste. 
+		 */
+		given()
+			.body("{ \"nome\": \"Chinesa\" }")
+			.contentType(ContentType.JSON)
+			.accept(ContentType.JSON)
+		.when()
+			.post()
+		.then()
+			.statusCode(HttpStatus.CREATED.value());
+	}
+	
 }
