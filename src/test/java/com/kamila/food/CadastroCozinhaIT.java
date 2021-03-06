@@ -48,7 +48,11 @@ public class CadastroCozinhaIT {
 		RestAssured.port = port;
 		RestAssured.basePath = "/cozinhas";
 		
-		// Antes de cada teste os dados do banco serão deletados e o método prepararDados irá inserir novos valores.
+		/**
+		 *  Antes de cada teste os dados do banco serão deletados e o método prepararDados irá inserir novos valores.
+		 *  Assim os métodos de teste são executados sobre a mesma base de dados e não dependem de uma sequência determinada
+		 *  ou da execução de outro método
+		 */
 		databaseCleaner.clearTables();
 		prepararDados();
 	}
@@ -76,11 +80,6 @@ public class CadastroCozinhaIT {
 	
 	@Test
 	public void deveRetornarStatus201_QuandoCadastrarCozinha() {
-		/**
-		 * Exemplo de problema na ordem dos testes (não deve ser replicado). Ao adicionar uma cozinha
-		 * serão recebidas 5 cozinhas e não 4 no método deveConter4Cozinhas_QuandoConsultarCozinhas.
-		 * Provocando falha no teste. 
-		 */
 		given()
 			.body("{ \"nome\": \"Chinesa\" }")
 			.contentType(ContentType.JSON)
