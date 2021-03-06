@@ -3,10 +3,12 @@ package com.kamila.food;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasSize;
 
+import org.flywaydb.core.Flyway;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,9 @@ public class CadastroCozinhaIT {
 	@LocalServerPort
 	private int port;
 	
+	@Autowired
+	private Flyway flyway;
+	
 	/**
 	 * Método executado antes de cada método @Test
 	 */
@@ -34,10 +39,16 @@ public class CadastroCozinhaIT {
 		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		RestAssured.port = port;
 		RestAssured.basePath = "/cozinhas";
+		
+		/**
+		 *  O banco de dados será retornado para um estado conhecido antes 
+		 *  de cada execução de método de teste, através do callback afterMigrate
+		 */
+		flyway.migrate();
 	}
 	
 	@Test
-	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
+	public void testeRetornarStatus200_QuandoConsultarCozinhas() {
 		given() // Dado que
 			.accept(ContentType.JSON)
 		.when() // Quando

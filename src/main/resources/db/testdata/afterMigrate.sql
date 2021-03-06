@@ -1,5 +1,7 @@
+-- Desabilita checagem de foreign keys para permitir a deleção dos dados de todas as tabelas a seguir
 set foreign_key_checks = 0;
 
+-- Deleta dados do banco para manter o estado inicial do banco
 delete from tb_cidade;
 delete from tb_cozinha;
 delete from tb_estado;

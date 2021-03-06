@@ -214,7 +214,7 @@ Para alterações maiores em banco sugere-se criar um backup/dump do banco de da
 Não se deve inserir dados de teste no banco através de arquivos migration sql.
 
 ##### Inserção de dados
-Dados de testepodem ser inseridos no banco através do arquivo `afterMigrate.sql`. Podemos inserir este arquivo em pasta específica e indicar ao Flyway a leitura nessa pasta a través de propriedade em *application*:
+Dados de teste podem ser inseridos no banco através do arquivo `afterMigrate.sql`. Ele será executado no callback do Flyway, após executar todas as migrações. Podemos inserir este arquivo em pasta específica e indicar ao Flyway a leitura nessa pasta através de propriedade em *application*:
 
 	> spring.flyway.locations=classpath:db/migration,classpath:db/testdata
 
