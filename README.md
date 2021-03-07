@@ -438,6 +438,24 @@ Fuso horário possui relação ao Merifdiano de Grenwish. Regiões à direita (l
 horas a menos.
 GMT é o um dos fusos horários seguidos por alguns países, sem nenhum offset (deslocamento). `O UTC é o padrão de referência universal` e não o GMT, apesar de compartilharem o mesmo horário base. Por exemplo, horário no Brasil está 3 horas a menos do UTC: BRT = UTC - 3.
 
+##### Boas páticas para trabalhar com datas e horas com Rest APIs
+**1.** Use ISO-8601 para formatar data/hora. Por exemplo:
+ - YYYY-MM-DDThh:mm:ss p.ex. "2007-07-16T19:20:28" 
+ - YYYY-MM-DDThh:mm:ssTZD, insere offset do UTC, p.ex. "2007-07-16T19:20:28-3:00"
+ - YYYY-MM-DDThh:mm:ss, sem nenhum offset, como no fuso geográfico GMT, p.ex. "2007-07-16T19:20:28Z"
+
+**2.** Aceite qualquer fuso horário: A API deve converter para a data/hora que estiver utilizando. </br>
+**3.** Armazene em UTC: sem nenhum offset, pois evita problemas de mudança de fuso horário e erros na apresentação de dados. </br>
+**4.** Retorne em UTC: para que os consumidores recebam em UTC e possam converter para o padrão da aplicação consumidora. </br>
+**5.** Não inclua o horário se não for necessário: em um campo onde só é necessária a data é possível que, ao adicionar a diferença de horas do fuso horário, o dia seja acrescido.</br>
+
+`current_timestamp` utiliza a data/hora do sistema operacional.
+A classe`java.time.OffsetDateTime` possui o offset relacionado ao UTC. `LocalDateTime` não possui o offset do timeZone em relação ao UTC. </br>
+
+Inserindo na aplicação um TimeZone específico como `spring.datasource.url=jdbc:mysql://localhost:3306/food?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo`, é utilizado o timeZone padrão do sistema operacional. Não é a melhor implementação, pois dessa maneira, a hora é salva utilizando o Timezone do SO do servidor, as datas retornadas também utilizam o SO do servidor representando o mesmo dado, porém é desconhecido o Timezone para o consumidor da aplicação. Caso o consumidor esteja em outro Timezone não seria possível identificar a relação do dado recebido com o Timezone UTF.
+
+Em application.properties a propriedade `serverTimezone=UTC` configura o driver JDBC do MySql para usar o UTC, indica que os horários no banco de dados estão em UTC, que é o comportamento desejado.
+
 ---
 
 ##### Eclipse
