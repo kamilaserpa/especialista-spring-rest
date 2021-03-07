@@ -433,6 +433,11 @@ Para não aceitar a propriedade "nome" na desserialização (json -> java object
 Dessa forma anotações do `com.fasterxml.jackson` relacionados a API e não relacionados ao domínio ficam descritas não mais na classe de modelo, mas na classe *mixin*.
 Através do método `setMixInAnnotation` em classe que estende `SimpleModule` podemos relacionar a classe mixin com a classe com o mapeamento da entidade.
 
+#### Data e Hora em REST APIs
+Fuso horário possui relação ao Merifdiano de Grenwish. Regiões à direita (leste) possuem fuso horário com diferença de horas a mais e regiões à esquerda possuem diferença de 
+horas a menos.
+GMT é o um dos fusos horários seguidos por alguns países, sem nenhum offset (deslocamento). `O UTC é o padrão de referência universal` e não o GMT, apesar de compartilharem o mesmo horário base. Por exemplo, horário no Brasil está 3 horas a menos do UTC: BRT = UTC - 3.
+
 ---
 
 ##### Eclipse
