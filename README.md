@@ -398,6 +398,14 @@ Através da anotação `@TestPropertySource` na classe de teste indicamos que as
 
 Ao escolher o que se deve testar o desenvolvedor só deve escolher o que agrega valor. Pode ser focado na interface/contrato da API, como o código de status ou nome de uma propriedade de resposta que não deve ser alterado. Pode-se testar funcionalidades específicas, verificando se a ação esperada é realmente executada. Lembre-se de testar o caminho infeliz.
 
+## Capítulo 11 - Boas práticas e técnicas para APIs
+
+#### Escopo das transações
+É aconselhado anotar métodos com dados que serão commitados com `@Transactional` de "org.springframework.transaction.annotation.Transactiona", métodos save, delete por exemplo.
+Caso haja mais de uma ação em método que manipule valores em banco de dados, é necessário anotar o método com @Transactional para evitar inconsistências no banco. Sem essa anotação caso uma dessas ações falhe a outra seria executada, pois estariam em transações diferentes, provocando inconsistência de dados.
+
+Ao ser chamado o entity manager, e ser executado método do SimpleJpaRepository anotado com @Transactional, a transação iniciada anteriormente em uma classe `Service` é mantida. A Transactional no SimpleJpaRepository é presente para o caso de o método em Service não ter aberto nenhuma transação.
+
 ---
 
 ##### Eclipse
