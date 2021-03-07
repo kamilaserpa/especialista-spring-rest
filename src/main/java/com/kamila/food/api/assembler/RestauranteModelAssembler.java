@@ -10,7 +10,7 @@ import com.kamila.food.api.model.RestauranteModel;
 import com.kamila.food.domain.model.Restaurante;
 
 /**
- * Montador de RestauranteModel
+ * Converte Restaurante em RestauranteModel
  */
 @Component
 public class RestauranteModelAssembler {

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kamila.food.api.assembler.RestauranteInputDisassembler;
 import com.kamila.food.api.assembler.RestauranteModelAssembler;
 import com.kamila.food.api.model.CozinhaModel;
 import com.kamila.food.api.model.RestauranteModel;
@@ -56,6 +57,9 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteModelAssembler restauranteModelAssembler;
 	
+	@Autowired
+	private RestauranteInputDisassembler restauranteInputDisassembler;
+	
 	@GetMapping
 	public List<RestauranteModel> listar() {
 		return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
@@ -71,7 +75,7 @@ public class RestauranteController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public RestauranteModel salvar(@RequestBody @Valid RestauranteInput restauranteInput) {
 		try {
-			Restaurante restaurante = toDomainModel(restauranteInput);
+			Restaurante restaurante = restauranteInputDisassembler.toDomainModel(restauranteInput);
 			return restauranteModelAssembler.toModel(cadastroRestauranteService.salvar(restaurante));
 		} catch (CozinhaNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
@@ -83,7 +87,7 @@ public class RestauranteController {
 	public RestauranteModel atualizar(@PathVariable Long idRestaurante, @RequestBody @Valid RestauranteInput restauranteInput) {
 
 		try {
-			Restaurante restaurante = toDomainModel(restauranteInput);
+			Restaurante restaurante = restauranteInputDisassembler.toDomainModel(restauranteInput);
 
 			Restaurante restauranteAtual = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
 
@@ -149,17 +153,5 @@ public class RestauranteController {
 		}
 	}
 	*/	
-
-	private Restaurante toDomainModel(@Valid RestauranteInput restauranteInput) {
-		Restaurante restaurante = new Restaurante();
-		restaurante.setNome(restauranteInput.getNome());
-		restaurante.setTaxaFrete(restauranteInput.getTaxaFrete());
-		
-		Cozinha cozinha = new Cozinha();
-		cozinha.setId(restauranteInput.getCozinha().getId());
-		
-		restaurante.setCozinha(cozinha);
-		return restaurante;
-	}
 
 }
