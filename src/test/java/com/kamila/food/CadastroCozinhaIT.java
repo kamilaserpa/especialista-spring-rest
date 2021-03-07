@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +27,14 @@ import io.restassured.http.ContentType;
 @TestPropertySource("/application-test.properties")
 public class CadastroCozinhaIT {
 
+	private static final int COZINHA_ID_INEXISTENTE = 100;
+
+	private Cozinha cozinhaAmericana;
+	
+	private int quantidadeCozinhasCadastradas;
+	
+	private String jsonCorretoCozinhaChinesa;
+	
 	@LocalServerPort
 	private int port;
 	
@@ -36,13 +43,6 @@ public class CadastroCozinhaIT {
 	
 	@Autowired
 	private CozinhaRepository cozinhaRepository;
-	
-	private static final int COZINHA_ID_INEXISTENTE = 100;
-
-	private Cozinha cozinhaAmericana;
-	private int quantidadeCozinhasCadastradas;
-	private String jsonCorretoCozinhaChinesa;
-	
 	
 	/**
 	 * Método executado antes de cada método @Test

@@ -330,6 +330,17 @@ Teste de integração deve validar uma única funcionalidade.
 Deve possuir três partes: cenário, ação, validação.
 É possível executar apenas um método de teste, clicando com o lado direito do mouse, "Run as", "JUnit Test".
 
+```java
+	// Exemplo de Teste de Integração
+	@Test(expected = ConstraintViolationException.class)
+	public void deveFalhar_QuandoCadastroCozinhaSemNome() {
+		Cozinha novaCozinha = new Cozinha();
+		novaCozinha.setNome(null);
+		
+		novaCozinha = cadastroCozinhaService.salvar(novaCozinha);
+	}
+```
+
 ##### Nomes de testes
 Ideal escolher um padrão para nomes de métodos de teste, e utilizar esse padrão em todo o projeto.
 É aceitável utilização de padrão under_scores em métodos de teste (separação das palavras por underlines), por exemplo `cadastro_cozinha_com_sucesso()`.
@@ -360,6 +371,19 @@ Para execução do teste não é preciso executar o projeto, a própria classe d
 `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)`
 Executado a classe com JUnit.
 
+```java
+	// Exemplo de Teste de API
+	@Test
+	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
+		RestAssured.given() // Dado que
+			.accept(ContentType.JSON)
+		.when() // Quando
+			.get()
+		.then() // Então
+			.statusCode(HttpStatus.OK.value());
+	}
+```
+
 #### Hamcrest Matchers
 É uma [biblioteca](http://hamcrest.org/JavaHamcrest/javadoc/1.3/org/hamcrest/Matchers.html) para escrever expressões com regras de correspondência entre objetos. Página: http://hamcrest.org/JavaHamcrest/tutorial.
 
@@ -372,6 +396,7 @@ Para isto, é criado um arquivo chamado "aplication-test.properties" em "src/tes
 Através da anotação `@TestPropertySource` na classe de teste indicamos que as propriedades em 'applicaiton-test.properties' sobrescreverão as mesmas propriedades em "src/main/resources/application.properties".
 `@TestPropertySource("application-test.properties")`. 
 
+Ao escolher o que se deve testar o desenvolvedor só deve escolher o que agrega valor. Pode ser focado na interface/contrato da API, como o código de status ou nome de uma propriedade de resposta que não deve ser alterado. Pode-se testar funcionalidades específicas, verificando se a ação esperada é realmente executada. Lembre-se de testar o caminho infeliz.
 
 ---
 
