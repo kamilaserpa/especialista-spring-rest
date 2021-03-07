@@ -214,9 +214,9 @@ Para alterações maiores em banco sugere-se criar um backup/dump do banco de da
 Não se deve inserir dados de teste no banco através de arquivos migration sql.
 
 ##### Inserção de dados
-Dados de teste podem ser inseridos no banco através do arquivo `afterMigrate.sql`. Ele será executado no callback do Flyway, após executar todas as migrações. Podemos inserir este arquivo em pasta específica e indicar ao Flyway a leitura nessa pasta através de propriedade em *application*:
+Dados de teste podem ser inseridos no banco através do arquivo `afterMigrate.sql`. Ele será executado no callback do Flyway, após executar todas as migrações, na prática sempre que a aplicação for iniciada. Podemos inserir este arquivo em pasta específica e indicar ao Flyway a leitura nessa pasta através de propriedade em *application*:
 
-	> spring.flyway.locations=classpath:db/migration,classpath:db/testdata
+> spring.flyway.locations=classpath:db/migration,classpath:db/testdata
 
 ##### Falha
 Quando uma migração **falha** ela fica armazenada na tabela de auditoria criada pelo Flyway chamada *flyway_schema_history*, com o valor 0 na coluna "success". Ainda que seja corrigida, o Flyway não permite a aplicação de uma versão já executada. Portanto deve ser observado até onde o arquivo foi executado, essas alterações devem ser desfeitas, o arquivo corrigido e o comportamento (em tese/desenvolvimento) seria deletar essa tupla em *flyway_schema_history*. Corrigir o arquivo sql migration e executar novamente o projeto.
