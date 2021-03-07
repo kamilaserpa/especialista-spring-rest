@@ -406,6 +406,29 @@ Caso haja mais de uma ação em método que manipule valores em banco de dados, 
 
 Ao ser chamado o entity manager, e ser executado método do SimpleJpaRepository anotado com @Transactional, a transação iniciada anteriormente em uma classe `Service` é mantida. A Transactional no SimpleJpaRepository é presente para o caso de o método em Service não ter aberto nenhuma transação.
 
+#### @JsonIgnoreProperties
+
+Ao executar a chamada rest para atualização de um Restaurante que contém um objeto Cozinha como atributo é possível enviar atributos da cozinha. É interessante que a Api retorne erro, pois o nome da cozinha, por exemplo, não será atualizado nesse método, portanto não deve ser recebido e apenas ignorado.
+
+```json
+{
+    "id": 1,
+    "nome": "Thai Gourmet",
+    "taxaFrete": 15.00,
+    "cozinha": {
+        "id": 1,
+        "nome": "Thai Gourmet alterado" <- Propriedade de cozinha que não será atualizada
+    }
+}
+```
+Para não aceitar a propriedade "nome" na desserialização (json -> java object) adiciona-se a anotação `JsonIgnoreProperties` no atributo Cozinha da classe Restaurante. A fim de retornar ainda o nome da Cozinha no get de Restaurantes, indicaremos a permissão para serialização através do atributo `allowGetters = true`. Ao enviar um Restaurante com o atributo "nome" de cozinha será retornado erro 400 a partir desta alteração.
+
+```java
+	@JsonIgnoreProperties(value = "nome", allowGetters = true) // Ao desserializar (json to java object) um Restaurante ignora o nome de Cozinha
+	...
+	private Cozinha cozinha;
+```
+
 ---
 
 ##### Eclipse

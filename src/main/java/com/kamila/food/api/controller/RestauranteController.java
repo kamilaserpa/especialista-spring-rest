@@ -72,12 +72,13 @@ public class RestauranteController {
 	@ResponseStatus(HttpStatus.OK)
 	public Restaurante atualizar(@PathVariable Long idRestaurante, @RequestBody @Valid Restaurante restaurante) {
 
-		Restaurante restauranteAtual = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
-
-		BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro");
-		
 		try {
-			return cadastroRestauranteService.salvar(restaurante);
+			Restaurante restauranteAtual = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
+
+			BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro",
+					"produtos");
+
+			return cadastroRestauranteService.salvar(restauranteAtual);
 		} catch (CozinhaNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}

@@ -27,6 +27,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kamila.food.core.validation.Groups;
 import com.kamila.food.core.validation.Multiplo;
 import com.kamila.food.core.validation.TaxaFrete;
@@ -58,6 +59,7 @@ public class Restaurante {
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
+	@JsonIgnoreProperties(value = "nome", allowGetters = true) // Ao desserializar (json to java object) um Restaurante ignora o nome de Cozinha
 	@Valid
 	@ConvertGroup(from = Default.class, to = Groups.CozinhaId.class) // Qdo validar a cozinha converta o group Default.class para CozinhaId.class
 	@NotNull
@@ -71,8 +73,7 @@ public class Restaurante {
 
 	@JsonIgnore
 	@CreationTimestamp
-	@Column(nullable = false, columnDefinition = "datetime") // datetime para remover precisão de milisegundos q seria
-																// CreationTimestamp(6)
+	@Column(nullable = false, columnDefinition = "datetime") // datetime para remover precisão de milisegundos q seria CreationTimestamp(6)
 	private LocalDateTime dataCadastro;
 
 	@JsonIgnore
@@ -82,16 +83,9 @@ public class Restaurante {
 
 	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "tb_restaurante_forma_pagamento", joinColumns = @JoinColumn(name = "id_restaurante"), // Afirma a
-																											// coluna na
-																											// tabela
-																											// local
-																											// (Restaurante)
-																											// que será
-																											// o nome da
-																											// coluna
-																											// relacionada
-			inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
+	@JoinTable(name = "tb_restaurante_forma_pagamento", 
+		joinColumns = @JoinColumn(name = "id_restaurante"), // Indica a coluna na tabela local (Restaurante) que será o nome da coluna relacionada
+		inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
 	private List<FormaPagamento> formasPagamento = new ArrayList<>();
 
 	@JsonIgnore
