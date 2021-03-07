@@ -1,7 +1,6 @@
-package com.kamila.food.domain.model.mixin;
+package com.kamila.food.api.model.mixin;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,9 +25,9 @@ public class RestauranteMixin {
 	private LocalDateTime dataAtualizacao;
 
 	@JsonIgnore
-	private List<FormaPagamento> formasPagamento = new ArrayList<>();
+	private List<FormaPagamento> formasPagamento;
 
 	@JsonIgnore
-	private List<Produto> produtos = new ArrayList<>();
+	private List<Produto> produtos;
 
 }
