@@ -473,6 +473,11 @@ Para retornar em UTF Timezone zero iremos configurar o Timezone na aplicação. 
 	}
 ```
 
+#### Domain Model do Representation Model com o padrão DTO
+Quando o controllador retorna uma entidade, uma classe Domain Module está sendo exposta pela API, e sendo utilizada tanto como Domain Module como Representation Module, o que pode provocar problemas.</br>
+Casos de exemplo: uma propriedade que deve ser exposta em um endpoint e ignorada/ocultada em outro; necessidade de ignorar completamente propriedades no Representation Module (como o Mixin está fazendo); ao alterar uma entidade automaticamente a representação também é alterada podendo quebrar nas aplicações consumidoras, congelando suas entidades; necessidade de retornar um objeto com propriedades diferentes do Domain Module. </br>
+Para evitar esses problemas é indicado isolar o Domain Module do Representation Module. Um padrão para este caso é o DTO: "Data Access Object", agrupando um conjunto de propriedades de uma ou mais entidades, em uma classe para transferência de dados apenas com as propriedades necessárias, definindo as propriedades que se desejam serializar. A nomenclatura não é definida, aqui será utilizada a terminação "model". </br>
+Não existe resposta definitiva para momento de utilização, porém para projetos reais é recomendada a utilização desse padrão por oferecer maior segurança, flexibilidade, liberdade de desenvolver o modelo de domínio sobretudo se já está em produção.
 
 ---
 

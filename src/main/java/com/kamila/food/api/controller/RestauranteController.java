@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kamila.food.api.model.RestauranteModel;
 import com.kamila.food.core.validation.ValidacaoException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -54,8 +55,11 @@ public class RestauranteController {
 	}
 
 	@GetMapping("/{idRestaurante}")
-	public Restaurante buscar(@PathVariable Long idRestaurante) {
-		return cadastroRestauranteService.buscarOuFalhar(idRestaurante);
+	public RestauranteModel buscar(@PathVariable Long idRestaurante) {
+		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
+		RestauranteModel restauranteModel = null;
+		
+		return restauranteModel;
 	}
 
 	@PostMapping
