@@ -428,6 +428,10 @@ Para não aceitar a propriedade "nome" na desserialização (json -> java object
 	...
 	private Cozinha cozinha;
 ```
+#### Jackson Mixin
+É uma classe que tem membros da classe original que possuem anotações do Jackson.
+Dessa forma anotações do `com.fasterxml.jackson` relacionados a API e não relacionados ao domínio ficam descritas não mais na classe de modelo, mas na classe *mixin*.
+Através do método `setMixInAnnotation` em classe que estende `SimpleModule` podemos relacionar a classe mixin com a classe com o mapeamento da entidade.
 
 ---
 
