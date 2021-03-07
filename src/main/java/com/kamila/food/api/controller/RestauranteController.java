@@ -18,7 +18,6 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.SmartValidator;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,9 +30,11 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kamila.food.api.model.CozinhaModel;
 import com.kamila.food.api.model.RestauranteModel;
+import com.kamila.food.api.model.input.RestauranteInput;
 import com.kamila.food.core.validation.ValidacaoException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
+import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
@@ -64,8 +65,9 @@ public class RestauranteController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public RestauranteModel salvar(@RequestBody @Valid Restaurante restaurante) {
+	public RestauranteModel salvar(@RequestBody @Valid RestauranteInput restauranteInput) {
 		try {
+			Restaurante restaurante = toDomainModel(restauranteInput);
 			return toModel(cadastroRestauranteService.salvar(restaurante));
 		} catch (CozinhaNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
@@ -74,9 +76,11 @@ public class RestauranteController {
 
 	@PutMapping("/{idRestaurante}")
 	@ResponseStatus(HttpStatus.OK)
-	public RestauranteModel atualizar(@PathVariable Long idRestaurante, @RequestBody @Valid Restaurante restaurante) {
+	public RestauranteModel atualizar(@PathVariable Long idRestaurante, @RequestBody @Valid RestauranteInput restauranteInput) {
 
 		try {
+			Restaurante restaurante = toDomainModel(restauranteInput);
+
 			Restaurante restauranteAtual = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
 
 			BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro",
@@ -87,7 +91,9 @@ public class RestauranteController {
 			throw new NegocioException(e.getMessage());
 		}
 	}
-
+	
+/*
+   // Comentando método de atualização parcial, pelo visto de que não é interessante mantê-lo por hora.
 	@PatchMapping("/{idRestaurante}")
 	@ResponseStatus(HttpStatus.OK)
 	public RestauranteModel atualizarParcial(@PathVariable Long idRestaurante, @RequestBody Map<String, Object> campos,
@@ -97,9 +103,10 @@ public class RestauranteController {
 
 		merge(campos, restauranteAtual, request);
 		validate(restauranteAtual, "restaurante");
+		
 		return atualizar(idRestaurante, restauranteAtual);
 	}
-
+*/
 	private void validate(Restaurante restaurante, String objectName) {
 		
 		BeanPropertyBindingResult bindingResult = new BeanPropertyBindingResult(restaurante, objectName);
@@ -156,6 +163,19 @@ public class RestauranteController {
 		return restaurantes.stream()
 				.map(restaurante -> toModel(restaurante))
 				.collect(Collectors.toList());
+	}
+	
+
+	private Restaurante toDomainModel(@Valid RestauranteInput restauranteInput) {
+		Restaurante restaurante = new Restaurante();
+		restaurante.setNome(restauranteInput.getNome());
+		restaurante.setTaxaFrete(restauranteInput.getTaxaFrete());
+		
+		Cozinha cozinha = new Cozinha();
+		cozinha.setId(restauranteInput.getCozinha().getId());
+		
+		restaurante.setCozinha(cozinha);
+		return restaurante;
 	}
 
 }
