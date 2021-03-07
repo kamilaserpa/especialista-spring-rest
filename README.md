@@ -268,7 +268,7 @@ Pode-se adicionar a pilha de erros à resposta por opção de escolha. Porém em
 Não, pois há problemas já bem documentados pelo protocolo Http. Interessante retornar o *status* e *title* pelo menos.
 
 ##### Benefícios
-Formato único para descrver erros, de forma que o consumidor possa entender o que aconteceu e tomar uma decisão. Facilita a construção e manutenção da API. Caso o cliente utilize mais de uma API, se elas utilizaerem o mesmo padrão de resposta de erro não é necessário tratamentos específicos para compreensão dessa resposta.
+Formato único para descrever erros, de forma que o consumidor possa entender o que aconteceu e tomar uma decisão. Facilita a construção e manutenção da API. Caso o cliente utilize mais de uma API, se elas utilizaerem o mesmo padrão de resposta de erro não é necessário tratamentos específicos para compreensão dessa resposta.
 
 Deve-se analisar se a excepção que ocorreu é um subtipo de outra exceção. Caso positivo, deve-se tratar a exceção mais genérica.
 
@@ -452,12 +452,27 @@ GMT é o um dos fusos horários seguidos por alguns países, sem nenhum offset (
 
 Inserindo na aplicação um TimeZone específico como `spring.datasource.url=jdbc:mysql://localhost:3306/food?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo`, é utilizado o timeZone padrão do sistema operacional. Não é a melhor implementação, pois dessa maneira, a hora é salva utilizando o Timezone do SO do servidor, as datas retornadas também utilizam o SO do servidor representando o mesmo dado, porém é desconhecido o Timezone para o consumidor da aplicação. Caso o consumidor esteja em outro Timezone não seria possível identificar a relação do dado recebido com o Timezone UTF.
 
-Em application.properties a propriedade `serverTimezone=UTC` configura o driver JDBC do MySql para usar o UTC, indica que os horários no banco de dados estão em UTC, que é o comportamento desejado.
+##### Salvando e retornando dados em UTC
 
-A classe`LocalDateTime` não possui o offset do timeZone em relação ao UTC. A classe`java.time.OffsetDateTime` possui o offset relacionado ao UTC, retornando ao consumidor da API:
+Em application.properties a propriedade `serverTimezone=UTC` configura o driver JDBC do MySql para usar o UTC. Indica que os horários no banco de dados estão em UTC, este é o comportamento desejado.
+
+A classe`LocalDateTime` não possui o offset do timeZone em relação ao UTC. A classe`java.time.OffsetDateTime` possui o offset relacionado ao UTC e será utilizada, retornando ao consumidor da API o formato:
 >  "dataCadastro": "2021-03-07T11:57:00-03:00"
 
-A utilizacao em arquivos sql de `current_timestamp` indicam a utilização da data/hora do sistema operacional.
+A utilizacao em arquivos sql de `current_timestamp` indica a utilização da data/hora do sistema operacional. É importante salvar os dados on mesmo timezone configurado no driver JDBC, para que os dados sejam salvos e exibidos em relação ao mesmo timezone não havendo equivocos de conversão data/hora. Assim sendo, nos sqls de inserção deve ser utilizado `utc_timestamp`. Dessa maneira o banco contém o dado:
+`2021-03-07 15:10:32` e a resposta da requisição retorna `2021-03-07T12:10:32-03:00` calculando 15hs (UTC = 0) menos 3 horas de diferença de Timezone em relação ao UTF.
+
+Para retornar em UTF Timezone zero iremos configurar o Timezone na aplicação. Desse modo o cliente receberá o dado `2021-03-07T15:10:32Z`, onde "Z" é igual a "+00:00". O consumidor fica responsável por converter a data/hora para o Timezone desejado. Calculando o dado recebido com o Timezone de utilização do cliente.
+
+```java
+	public class FoodApiApplication {
+		public static void main(String[] args) {
+			TimeZone.setDefault(TimeZone.getTimeZone("UTC"));	
+			SpringApplication.run(FoodApiApplication.class, args);
+		}
+	}
+```
+
 
 ---
 

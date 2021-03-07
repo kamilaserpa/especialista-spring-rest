@@ -43,12 +43,12 @@ insert into tb_cidade (id_cidade, nm_cidade, id_estado) values (3, 'São Paulo',
 insert into tb_cidade (id_cidade, nm_cidade, id_estado) values (4, 'Campinas', 2);
 insert into tb_cidade (id_cidade, nm_cidade, id_estado) values (5, 'Fortaleza', 3);
 
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao, endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro) values (1, 'Thai Gourmet', 10, 1, current_timestamp, current_timestamp, 1, '38400-999', 'Rua João Pinheiro', '1000', 'Centro');
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (2, 'Thai Delivery', 9.50, 1, current_timestamp, current_timestamp);
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (3, 'Tuk Tuk Comida Indiana', 15, 2, current_timestamp, current_timestamp);    
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (4, 'Java Steakhouse', 12, 3, current_timestamp, current_timestamp);
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (5, 'Lanchonete do Tio Sam', 11, 4, current_timestamp, current_timestamp);
-insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (6, 'Bar da Maria', 6, 4, current_timestamp, current_timestamp);
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao, endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_bairro) values (1, 'Thai Gourmet', 10, 1, utc_timestamp, utc_timestamp, 1, '38400-999', 'Rua João Pinheiro', '1000', 'Centro');
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (2, 'Thai Delivery', 9.50, 1, utc_timestamp, utc_timestamp);
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (3, 'Tuk Tuk Comida Indiana', 15, 2, utc_timestamp, utc_timestamp);    
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (4, 'Java Steakhouse', 12, 3, utc_timestamp, utc_timestamp);
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (5, 'Lanchonete do Tio Sam', 11, 4, utc_timestamp, utc_timestamp);
+insert into tb_restaurante (id_restaurante, nm_restaurante, taxa_frete, id_cozinha, data_cadastro, data_atualizacao) values (6, 'Bar da Maria', 6, 4, utc_timestamp, utc_timestamp);
 
 insert into tb_forma_pagamento (id_forma_pagamento, ds_forma_pagamento) values (1, 'Cartão de crédito');
 insert into tb_forma_pagamento (id_forma_pagamento, ds_forma_pagamento) values (2, 'Cartão de débito');
