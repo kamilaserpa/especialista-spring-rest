@@ -449,12 +449,15 @@ GMT é o um dos fusos horários seguidos por alguns países, sem nenhum offset (
 **4.** Retorne em UTC: para que os consumidores recebam em UTC e possam converter para o padrão da aplicação consumidora. </br>
 **5.** Não inclua o horário se não for necessário: em um campo onde só é necessária a data é possível que, ao adicionar a diferença de horas do fuso horário, o dia seja acrescido.</br>
 
-`current_timestamp` utiliza a data/hora do sistema operacional.
-A classe`java.time.OffsetDateTime` possui o offset relacionado ao UTC. `LocalDateTime` não possui o offset do timeZone em relação ao UTC. </br>
 
 Inserindo na aplicação um TimeZone específico como `spring.datasource.url=jdbc:mysql://localhost:3306/food?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo`, é utilizado o timeZone padrão do sistema operacional. Não é a melhor implementação, pois dessa maneira, a hora é salva utilizando o Timezone do SO do servidor, as datas retornadas também utilizam o SO do servidor representando o mesmo dado, porém é desconhecido o Timezone para o consumidor da aplicação. Caso o consumidor esteja em outro Timezone não seria possível identificar a relação do dado recebido com o Timezone UTF.
 
 Em application.properties a propriedade `serverTimezone=UTC` configura o driver JDBC do MySql para usar o UTC, indica que os horários no banco de dados estão em UTC, que é o comportamento desejado.
+
+A classe`LocalDateTime` não possui o offset do timeZone em relação ao UTC. A classe`java.time.OffsetDateTime` possui o offset relacionado ao UTC, retornando ao consumidor da API:
+>  "dataCadastro": "2021-03-07T11:57:00-03:00"
+
+A utilizacao em arquivos sql de `current_timestamp` indicam a utilização da data/hora do sistema operacional.
 
 ---
 
