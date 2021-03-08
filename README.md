@@ -476,13 +476,22 @@ Para retornar em UTF Timezone zero iremos configurar o Timezone na aplicação. 
 #### Domain Model do Representation Model com o padrão DTO
 Quando o controllador retorna uma entidade, uma classe Domain Module está sendo exposta pela API, e sendo utilizada tanto como Domain Module como Representation Module, o que pode provocar problemas.</br>
 Casos de exemplo: uma propriedade que deve ser exposta em um endpoint e ignorada/ocultada em outro; necessidade de ignorar completamente propriedades no Representation Module (como o Mixin está fazendo); ao alterar uma entidade automaticamente a representação também é alterada podendo quebrar nas aplicações consumidoras, congelando suas entidades; necessidade de retornar um objeto com propriedades diferentes do Domain Module. </br>
-Para evitar esses problemas é indicado isolar o Domain Module do Representation Module. Um padrão para este caso é o DTO: "Data Access Object", agrupando um conjunto de propriedades de uma ou mais entidades, em uma classe para transferência de dados apenas com as propriedades necessárias, definindo as propriedades que se desejam serializar. A nomenclatura não é definida, aqui será utilizada a terminação "model". </br>
+Para evitar esses problemas é indicado isolar o Domain Module do Representation Module. Um padrão para este caso é o **DTO*: "Data Access Object", agrupando um conjunto de propriedades de uma ou mais entidades, em uma classe para transferência de dados apenas com as propriedades necessárias, definindo as propriedades que se desejam serializar. A nomenclatura não é definida, aqui será utilizada a terminação "model".
+
 Não existe resposta definitiva para momento de utilização, porém para projetos reais é recomendada a utilização desse padrão por oferecer maior segurança, flexibilidade, liberdade de desenvolver o modelo de domínio sobretudo se já está em produção. </br>
 Nem sempre um objeto retornado pela API é aceito para entrada, por isso existe a possibilidade de criar um modelo apenas para entrada de dados e outro para saída, podendo haver representações diferentes para um mesmo recurso.
 
 Os `mixins` deixam de ser necessários e devem ser removidos.
 
 Sobre as `validações` elas serão inseridas na classe DTO mapeada como input de dados. É possível que elas estejam apenas nas classes DTO de input de dados e não nas entidades, porém assumindo que estas entidades sempre serão salvas e atualizadas passando pelo controller que recebe o DTO de input. No caso de haver outras interfaces, services, salvando ou cadastrando é interessante deixar a anotação de validação na entidade. Pois no momento de persistência o JPA verifica o BeanValidation, porém com um erro menos específico.
+
+#### ModelMapper
+Auxilia no parseamento de atributos entre objetos. Exemplo de utilização, retornando objeto RestauranteModel a partir de instância de objeto Rrestaurante: `modelMapper.map(restaurante,  RestauranteModel.class);`.
+**Algumas regras para match:**
+ - Estratégia padrão, separa o nome das propriedades em pedaços, que são os tokens. Correspondência por semelhança de tokens de atributos, em qualquer ordem.
+ - Todos os tokens da propriedades de destino devem corresponder com tokens de origem.
+ - Nome da propriedade de origem deve ter pelo menos um token de destino. Por exemplo, em Cozinha.nome, nome de origem é "nome", tokens: cozinha, nome. Nome da propriedade de destino em RestauranteModel sendo a String "nomeCozinha" têm-se os tokens: nome, cozinha. Considera-se correspondentes pelo ModelMapper.
+
 
 ---
 
