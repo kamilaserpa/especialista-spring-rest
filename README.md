@@ -487,8 +487,9 @@ Sobre as `validações` elas serão inseridas na classe DTO mapeada como input d
 
 #### ModelMapper
 Auxilia no parseamento de atributos entre objetos. Exemplo de utilização, retornando objeto RestauranteModel a partir de instância de objeto Rrestaurante: `modelMapper.map(restaurante,  RestauranteModel.class);`.
+
 **Algumas regras para match:**
- - Estratégia padrão, separa o nome das propriedades em pedaços, que são os tokens. Correspondência por semelhança de tokens de atributos, em qualquer ordem.
+ - Estratégia padrão, separa o nome das propriedades em pedaços por nome de propriedades, nomes separados no padrão camelCase, são os tokens. Correspondência por semelhança de tokens de atributos, em qualquer ordem.
  - Todos os tokens da propriedades de destino devem corresponder com tokens de origem.
  - Nome da propriedade de origem deve ter pelo menos um token de destino. Por exemplo, em Cozinha.nome, nome de origem é "nome", tokens: cozinha, nome. Nome da propriedade de destino em RestauranteModel sendo a String "nomeCozinha" têm-se os tokens: nome, cozinha. Considera-se correspondentes pelo ModelMapper.
 
