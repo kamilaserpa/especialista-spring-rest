@@ -28,7 +28,9 @@ public class CadastroCozinhaService {
 	public void remover(Long idCozinha) {
 		try {
 			cozinhaRepository.deleteById(idCozinha);
-			
+			// Acionando execução do commit no DB para que qualquer exceção no entityManager
+			// (que implementa o método deleteById) seja imediatamente capturada pelos catchs
+			cozinhaRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
 			throw new CozinhaNaoEncontradaException(idCozinha);
 			
