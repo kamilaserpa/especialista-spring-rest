@@ -5,6 +5,10 @@ Curso Especialista Spring da AlgaWorks.
 
 ## Capítulo 2 - Spring e Injeção de Dependências
 
+[Injeção de dependências](https://blog.algaworks.com/injecao-de-dependencias-com-spring/) é um tipo de inversão de controle (ou Inversion of Control – IoC) que dá nome ao processo de prover instâncias de classes que um objeto precisa para funcionar.
+Dessa forma é possível programar voltados para interfaces e, com isso, manter o baixo acoplamento entre as classes de um mesmo projeto.
+Baixo acoplamento: componentes de um sistema são interconectados de modo que um dependa do outro o mínimo possível.
+
 #### @Component
 Notifica que a classe é um Bean gerenciado pelo Spring. Durante a varredura de componentes, o bootstrap da aplicação, o Spring Framework detecta automaticamente as classes anotadas com @Component e as instancia.
 Por padrão, as instâncias de bean desta classe têm o mesmo nome que o nome da classe com uma inicial minúscula.
@@ -487,6 +491,19 @@ Sobre as `validações` elas serão inseridas na classe DTO mapeada como input d
 
 #### ModelMapper
 Auxilia no parseamento de atributos entre objetos. Exemplo de utilização, retornando objeto RestauranteModel a partir de instância de objeto Rrestaurante: `modelMapper.map(restaurante,  RestauranteModel.class);`.
+Para injetar [Model Mapper](http://modelmapper.org/) nas demais entidades, utilizando uma instancia singleton no contexto do Spring Boot podemos fazer:
+
+```java
+	@Configuration
+	public class ModelMapperConfig {
+		@Bean
+		public ModelMapper modelMapper() {
+			var modelMapper = new ModelMapper();		
+			return modelMapper;
+		}
+		
+	}
+```
 
 **Algumas regras para match:**
  - Estratégia padrão, separa o nome das propriedades em pedaços por nome de propriedades, nomes separados no padrão camelCase, são os tokens. Correspondência por semelhança de tokens de atributos, em qualquer ordem.

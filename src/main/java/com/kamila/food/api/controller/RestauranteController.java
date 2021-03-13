@@ -1,22 +1,12 @@
 package com.kamila.food.api.controller;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.http.server.ServletServerHttpRequest;
-import org.springframework.util.ReflectionUtils;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.SmartValidator;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,17 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kamila.food.api.assembler.RestauranteInputDisassembler;
 import com.kamila.food.api.assembler.RestauranteModelAssembler;
-import com.kamila.food.api.model.CozinhaModel;
 import com.kamila.food.api.model.RestauranteModel;
 import com.kamila.food.api.model.input.RestauranteInput;
-import com.kamila.food.core.validation.ValidacaoException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
-import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
@@ -51,8 +36,8 @@ public class RestauranteController {
 	@Autowired
 	private CadastroRestauranteService cadastroRestauranteService;
 
-	@Autowired
-	private SmartValidator validator;
+//	@Autowired
+//	private SmartValidator validator;
 	
 	@Autowired
 	private RestauranteModelAssembler restauranteModelAssembler;
@@ -95,6 +80,11 @@ public class RestauranteController {
 		} catch (CozinhaNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage());
 		}
+	}
+	
+	@DeleteMapping("/{idRestaurante}")
+	public void remover(@PathVariable Long idRestaurante) {
+		cadastroRestauranteService.remover(idRestaurante);
 	}
 	
 	/*
