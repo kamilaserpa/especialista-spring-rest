@@ -493,6 +493,9 @@ Auxilia no parseamento de atributos entre objetos. Exemplo de utilização, reto
  - Todos os tokens da propriedades de destino devem corresponder com tokens de origem.
  - Nome da propriedade de origem deve ter pelo menos um token de destino. Por exemplo, em Cozinha.nome, nome de origem é "nome", tokens: cozinha, nome. Nome da propriedade de destino em RestauranteModel sendo a String "nomeCozinha" têm-se os tokens: nome, cozinha. Considera-se correspondentes pelo ModelMapper.
 
+#### Snake case
+Se quiseres retornar os dados para o cliente em snake case sem alterar a nomenclatura das propriedades, deixando nas classes modelo a nomenclatura camel case, pode-se adicionar ao application.properties:
+`spring.jackson.property-naming-strategy=SNAKE_CASE`. O mais comum é lower camel case.
 
 ---
 
