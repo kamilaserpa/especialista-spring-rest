@@ -526,6 +526,21 @@ Caso haja uma operação pendente e seja executada outra alteração em banco de
 	cozinhaRepository.findAll();
 ```
 
+## Capítulo 12 - Modelagem avançada e implementação da API
+
+### Modelagem de Sub-recursos
+Qualquer informação que pode ser identificada por um nome é um recurso. Exemplos de modelagem:</br> 
+Sub-recurso:
+ - restaurante/1 (recurso) - Retornando informações do restaurante com granularidade fina, sem dados de outras entidades. Ou com outras entidades aninhadas, granularidade grossa.
+ - restaurante/1/endereco (sub-recurso) - Retorna apenas dados do endereço de um restaurante
+ 
+Sub-recursos de coleções:
+ - /restaurante/1 (recurso) - Retorna Restaurante com todos os seus produtos
+ - /produtor?restaurante=1 - Retorna apenas produtos do restaurante especificado
+ - /restaurantes/1/produtos (sub-recurso de coleção) - Os consumidores da api só podem manipular produtos a partir do Restaurante? Produto só pode existir se Restaurante existir? Nesse caso é retornado array de produtos do restaurante
+ - /restaurantes/1/produtos/100 (recurso únido dentro do sub-recurso de coleção)
+ 
+
 ---
 
 ##### Eclipse
