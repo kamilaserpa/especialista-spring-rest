@@ -17,17 +17,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.kamila.food.core.validation.Groups;
-import com.kamila.food.core.validation.TaxaFrete;
 import com.kamila.food.core.validation.ValorZeroIncluiDescricao;
 
 import lombok.Data;
@@ -46,24 +39,20 @@ public class Restaurante {
 	@Column(name = "id_restaurante")
 	private Long id;
 
-	@NotBlank // Verifica se nullo, vazio ou contém apenas espaços
 	@Column(name = "nm_restaurante", length = 100, nullable = false)
 	private String nome;
 
-	@NotNull
-	@TaxaFrete
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
-	@Valid
-	@ConvertGroup(from = Default.class, to = Groups.CozinhaId.class) // Qdo validar a cozinha converta o group Default.class para CozinhaId.class
-	@NotNull
 	@ManyToOne // (fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cozinha", nullable = false)
 	private Cozinha cozinha;
 
 	@Embedded // Incorporação
 	private Endereco endereco;
+	
+	private Boolean ativo = Boolean.TRUE;
 
 	@CreationTimestamp
 	@Column(nullable = false, columnDefinition = "datetime") // datetime para remover precisão de milisegundos q seria CreationTimestamp(6)
@@ -82,4 +71,13 @@ public class Restaurante {
 	@OneToMany(mappedBy = "restaurante")
 	private List<Produto> produtos = new ArrayList<>();
 
+	// Tornando mais claro o código
+	public void ativar() {
+		setAtivo(true);
+	}
+	
+	public void inativar() {
+		setAtivo(false);
+	}
+	
 }

@@ -48,6 +48,20 @@ public class CadastroRestauranteService {
 					String.format(MSG_RESTAURANTE_EM_USO, idRestaurante));
 		}
 	}
+	
+	@Transactional
+	public void ativar(Long idRestaurante) {
+		Restaurante restauranteAtual = buscarOuFalhar(idRestaurante);
+		// Dada a captura de uma instância em estado gerenciado pelo contexto de persistência do JPA
+		// qualquer alteração nesse objeto será sincronizada com o banco de dados ao final da transação 
+		restauranteAtual.ativar();
+	}
+	
+	@Transactional
+	public void inativar(Long idRestaurante) {
+		Restaurante restauranteAtual = buscarOuFalhar(idRestaurante);
+		restauranteAtual.inativar();
+	}
 
 	public Restaurante buscarOuFalhar(Long idRestaurante) {
 		return restauranteRepository.findById(idRestaurante)

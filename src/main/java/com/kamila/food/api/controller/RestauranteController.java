@@ -87,6 +87,19 @@ public class RestauranteController {
 		cadastroRestauranteService.remover(idRestaurante);
 	}
 	
+	@PutMapping("/{idRestaurante}/ativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void ativar(@PathVariable Long idRestaurante) {
+		// Opção por PUT por ser um método idenpotente, ainda que executado várias vezes provoca o mesmo resultado
+		cadastroRestauranteService.ativar(idRestaurante);
+	}
+	
+	@DeleteMapping("/{idRestaurante}/inativo")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void inativar(@PathVariable Long idRestaurante) {
+		cadastroRestauranteService.inativar(idRestaurante);
+	}
+	
 	/*
    // Comentando método de atualização parcial, pelo visto de que não é interessante mantê-lo por hora.
 	@PatchMapping("/{idRestaurante}")
