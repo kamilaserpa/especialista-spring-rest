@@ -43,8 +43,8 @@ public class CidadeController {
 	private CidadeInputDisassembler cidadeInputDisassembler;
 	
 	@GetMapping
-	public List<Cidade> listar() {
-		return cidadeRepository.findAll();
+	public List<CidadeModel> listar() {
+		return cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
 	}
 	
 	@GetMapping("/{idCidade}")
@@ -58,7 +58,7 @@ public class CidadeController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public CidadeModel salvar(@RequestBody @Valid CidadeInput cidadeInput) {
 		try {
-			Cidade cidade = cidadeInputDisassembler.toDomainModel(cidadeInput);
+			Cidade cidade = cidadeInputDisassembler.toDomainObject(cidadeInput);
 			return cidadeModelAssembler.toModel(cadastroCidadeService.salvar(cidade));
 		} catch (EstadoNaoEncontradoException e) {
 			throw new NegocioException(e.getMessage(), e); // Alterando código de erro para 400
