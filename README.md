@@ -545,6 +545,12 @@ Chatty ("tagarela") é uma API de granularidade fina, onde os consumidores preci
 Chunky ("pedaço grande") API é aquela em que uma operação é feita em uma única requisição.</br>
 Caso haja a possibilidade de o recurso ficar em estado inconsistente, é mais interessante criar o recurso com granularidade grossa. Caso seja algo mais específico da API, sem que haja a possibilidade de inconsistência é possível optar por granularidade fina.
 
+##### Ações não-CRUD como recursos
+ - Quando se nomeia recursos devem ser utilizados substantivos e não verbos. Ex.: restaurantes/1/ativo [put]
+ - É indicada a utilização de hífen para separar palavras. Ex.: restaurantes/1/alteracoes-status [get] Retornando uma lista de eventos de alteração de status, histórico.
+ - Ainda que não exista uma entidade no domain model é possível que exista um recurso com a nomenclatura. Ex.: compras/1/pagamento [post] Admitindo que não exista a entidade pagamento, e nesse recurso seria enviado dados como numero do cartão de crédito, nome do titular, vencimento. Assim utiliza-se de conceitos abstratos, coisificando um objeto pagamento.
+ - É possível a criação de um recurso para um processo de negócio que não representa uma entidade nem persistência em banco. Ex.: recurso que envia notificações para clientes sem persistência, /notificações-restaurantes [post]
+ 
 ---
 
 
