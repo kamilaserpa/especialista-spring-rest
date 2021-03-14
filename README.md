@@ -528,7 +528,7 @@ Caso haja uma operação pendente e seja executada outra alteração em banco de
 
 ## Capítulo 12 - Modelagem avançada e implementação da API
 
-### Modelagem de Sub-recursos
+#### Modelagem de Sub-recursos
 Qualquer informação que pode ser identificada por um nome é um recurso. Exemplos de modelagem:</br> 
 Sub-recurso:
  - restaurante/1 (recurso) - Retornando informações do restaurante com granularidade fina, sem dados de outras entidades. Ou com outras entidades aninhadas, granularidade grossa.
@@ -539,9 +539,14 @@ Sub-recursos de coleções:
  - /produtor?restaurante=1 - Retorna apenas produtos do restaurante especificado
  - /restaurantes/1/produtos (sub-recurso de coleção) - Os consumidores da api só podem manipular produtos a partir do Restaurante? Produto só pode existir se Restaurante existir? Nesse caso é retornado array de produtos do restaurante
  - /restaurantes/1/produtos/100 (recurso únido dentro do sub-recurso de coleção)
- 
+
+#### Chatty vs Chunk API
+Chatty ("tagarela") é uma API de granularidade fina, onde os consumidores precisam fazer várias chamadas para executar uma única operação. 
+Chunky ("pedaço grande") API é aquela em que uma operação é feita em uma única requisição.</br>
+Caso haja a possibilidade de o recurso ficar em estado inconsistente, é mais interessante criar o recurso com granularidade grossa. Caso seja algo mais específico da API, sem que haja a possibilidade de inconsistência é possível optar por granularidade fina.
 
 ---
+
 
 ##### Eclipse
 
