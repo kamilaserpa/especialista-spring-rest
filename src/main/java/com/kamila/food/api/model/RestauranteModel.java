@@ -13,7 +13,7 @@ public class RestauranteModel {
 
 	private String nome;
 	
-	private BigDecimal precoFrete;
+	private BigDecimal precoFrete; // Alteração de "taxaFrete" para "precoFrete" apenas para teste de config do ModelMapper
 	
 	private CozinhaModel cozinha;
 	

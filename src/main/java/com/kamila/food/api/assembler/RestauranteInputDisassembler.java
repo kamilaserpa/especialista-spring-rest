@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kamila.food.api.model.input.RestauranteInput;
+import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
 
@@ -35,6 +36,11 @@ public class RestauranteInputDisassembler {
 		// com.kamila.food.domain.model.COzinha was altered from 1 to 2
 		// Evitando erro de atribuição de ID em uma cozinha com ID preexistente, removendo ID preexistente
 		restaurante.setCozinha(new Cozinha());
+		
+		if (restaurante.getEndereco() != null) {
+			restaurante.getEndereco().setCidade(new Cidade());
+		}
+		
 		modelMapper.map(restauranteInput, restaurante);
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
+import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
@@ -22,14 +23,21 @@ public class CadastroRestauranteService {
 	
 	@Autowired
 	private CadastroCozinhaService cadastroCozinhaService;
+	
+	@Autowired
+	CadastroCidadeService cadastroCidadeService;
 
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
 		Long idCozinha = restaurante.getCozinha().getId();
+		Long idCidade = restaurante.getEndereco().getCidade().getId();
 		
+		// Validando se existem cozinha e cidade com o id informado
 		Cozinha cozinha = cadastroCozinhaService.buscarOuFalhar(idCozinha);
+		Cidade cidade = cadastroCidadeService.buscarOuFalhar(idCidade);
 		
 		restaurante.setCozinha(cozinha);
+		restaurante.getEndereco().setCidade(cidade);
 
 		return restauranteRepository.save(restaurante);
 	}
