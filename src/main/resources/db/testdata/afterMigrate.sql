@@ -78,3 +78,9 @@ insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) va
 insert into tb_grupo (id_grupo, nm_grupo) values (1, 'Gerente');
 insert into tb_grupo (id_grupo, nm_grupo) values (2, 'Vendador');
 insert into tb_grupo (id_grupo, nm_grupo) values (3, 'Cadastrador');
+
+insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) values
+(1, 'João da Silva', 'joao.ger@kfood.com', '123', utc_timestamp),
+(2, 'Maria Joaquina', 'maria.vnd@kfood.com', '123', utc_timestamp),
+(3, 'José Souza', 'jose.aux@kfood.com', '123', utc_timestamp),
+(4, 'Sebastião Martins', 'sebastiao.cad@kfood.com', '123', utc_timestamp);
