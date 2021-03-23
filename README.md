@@ -550,7 +550,13 @@ Caso haja a possibilidade de o recurso ficar em estado inconsistente, é mais in
  - É indicada a utilização de hífen para separar palavras. Ex.: restaurantes/1/alteracoes-status [get] Retornando uma lista de eventos de alteração de status, histórico.
  - Ainda que não exista uma entidade no domain model é possível que exista um recurso com a nomenclatura. Ex.: compras/1/pagamento [post] Admitindo que não exista a entidade pagamento, e nesse recurso seria enviado dados como numero do cartão de crédito, nome do titular, vencimento. Assim utiliza-se de conceitos abstratos, coisificando um objeto pagamento.
  - É possível a criação de um recurso para um processo de negócio que não representa uma entidade nem persistência em banco. Ex.: recurso que envia notificações para clientes sem persistência, /notificações-restaurantes [post]
- 
+
+##### Um pouco mais sobre JPA
+Um objeto alterado fora da transação, uma entidade gerenciada pelo JPA, alterada em um método não transacionado (sem @Transactional) é sincronizado com o banco de dados, se posteriormente o processo participa de uma transação. Ou seja, ao ser executado outro método no mesmo processo transacionado, ainda que o objeto referido não seja alterado nele ou enviado para ele, o objeto gerenciado será persistido em banco ao final da transação quando o commit for realizado.
+
+Caso ocorra uma exception no método transacionado o spring realiza Rollback do comando no banco de dados.
+
+
 ---
 
 
