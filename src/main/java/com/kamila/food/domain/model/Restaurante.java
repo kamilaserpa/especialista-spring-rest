@@ -3,7 +3,9 @@ package com.kamila.food.domain.model;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -66,7 +68,8 @@ public class Restaurante {
 	@JoinTable(name = "tb_restaurante_forma_pagamento", 
 		joinColumns = @JoinColumn(name = "id_restaurante"), // Indica a coluna na tabela local (Restaurante) que será o nome da coluna relacionada
 		inverseJoinColumns = @JoinColumn(name = "id_forma_pagamento"))
-	private List<FormaPagamento> formasPagamento = new ArrayList<>();
+	private Set<FormaPagamento> formasPagamento = new HashSet<>(); 
+	// Set é um conjunto que não aceita elementos duplicados, evitando erro de restaurante receber forma de pagamento já associada
 
 	@OneToMany(mappedBy = "restaurante")
 	private List<Produto> produtos = new ArrayList<>();
@@ -78,6 +81,14 @@ public class Restaurante {
 	
 	public void inativar() {
 		setAtivo(false);
+	}
+	
+	public boolean removerFormaPagamento(FormaPagamento formaPagamento) {
+		return getFormasPagamento().remove(formaPagamento);
+	}
+
+	public boolean adicionarFormaPagamento(FormaPagamento formaPagamento) {
+		return getFormasPagamento().add(formaPagamento);
 	}
 	
 }

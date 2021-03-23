@@ -1,5 +1,6 @@
 package com.kamila.food.api.assembler;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,9 @@ public class FormaPagamentoModelAssembler {
 		return modelMapper.map(formaPagamento, FormaPagamentoModel.class);
 	}
 
-	public List<FormaPagamentoModel> toCollectionModel(List<FormaPagamento> formasPagamentos) {
+	// Alterando objeto recebido para Collection, pois List herad de Collection e Set também,
+	// logo desse modo o método recebe qualquer coleção
+	public List<FormaPagamentoModel> toCollectionModel(Collection<FormaPagamento> formasPagamentos) {
 		return formasPagamentos.stream()
 				.map(formaPagamento -> toModel(formaPagamento))
 				.collect(Collectors.toList());

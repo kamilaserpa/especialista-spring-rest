@@ -10,6 +10,7 @@ import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.model.Cozinha;
+import com.kamila.food.domain.model.FormaPagamento;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 
@@ -26,6 +27,9 @@ public class CadastroRestauranteService {
 	
 	@Autowired
 	CadastroCidadeService cadastroCidadeService;
+	
+	@Autowired
+	CadastroFormaPagamentoService cadastroFormaPagamentoService;
 
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
@@ -74,6 +78,26 @@ public class CadastroRestauranteService {
 	public Restaurante buscarOuFalhar(Long idRestaurante) {
 		return restauranteRepository.findById(idRestaurante)
 				.orElseThrow(() -> new RestauranteNaoEncontradoException(idRestaurante));
+	}
+	
+	@Transactional
+	public void desassociarFormaPagamento(Long idRestaurante, Long idFormaPagamento) {
+		Restaurante restaurante = buscarOuFalhar(idRestaurante);
+		
+		// Valida se formaPagamento existe
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(idFormaPagamento);
+		
+		restaurante.removerFormaPagamento(formaPagamento);
+		// Desnecessário chamar .save() do restaurante por causa do @Transactional que irá realizar a sincronização com o banco
+	}
+	
+	@Transactional
+	public void associarFormaPagamento(Long idRestaurante, Long idFormaPagamento) {
+		Restaurante restaurante = buscarOuFalhar(idRestaurante);
+		
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(idFormaPagamento);
+		
+		restaurante.adicionarFormaPagamento(formaPagamento);
 	}
 
 }
