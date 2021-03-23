@@ -8,8 +8,8 @@ public class CidadeNaoEncontradaException extends EntidadeNaoEncontradaException
 		super(mensagem);
 	}
 	
-	public CidadeNaoEncontradaException(Long idEstado) {
-		this(String.format("Não existe cadastro de cidade com código %d", idEstado));
+	public CidadeNaoEncontradaException(Long idCidade) {
+		this(String.format("Não existe cadastro de cidade com código %d", idCidade));
 	}
 
 }

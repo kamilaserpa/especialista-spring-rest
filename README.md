@@ -516,7 +516,7 @@ Se quiseres retornar os dados para o cliente em snake case sem alterar a nomencl
 
 #### Flush
 Por padrão, o JPA normalmente não grava alterações no banco de dados até que a transação seja completada. Isso normalmente é importante para evitar acessos ao banco de dados até ser realmente necessário. Então quando chamamos o `método flush` todas as alterações no banco de dados (de qualquer entidade) são executadas antes da transação ser finalizada.</br>
-O flush no repository irá executar todas as ações pendentes, independente da entidade, dentro da transação.
+O flush no repository irá executar todas as ações pendentes, dentro da transação, para que o commit não seja efetuado ao final do bloco catch e a exceção não seja capturada.
 Vai sincronizar os dados que estão no entityManager com a base de dados. E apenas no final da transação o commit será de fato efetuado.
 
 Caso haja uma operação pendente e seja executada outra alteração em banco de dados, o gerenciamento do Spring é inteligente o suficiente para executar no banco (fazer o commit) da primeira operação para só posteriormente executar a segunda operação. Exemplo de duas operações:

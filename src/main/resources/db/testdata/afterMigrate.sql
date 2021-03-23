@@ -74,3 +74,7 @@ insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) va
 insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) values ('Sanduíche X-Tudo', 'Sandubão com muito queijo, hamburger bovino, bacon, ovo, salada e maionese', 19, 1, 5);
 
 insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) values ('Espetinho de Cupim', 'Acompanha farinha, mandioca e vinagrete', 8, 1, 6);
+
+insert into tb_grupo (id_grupo, nm_grupo) values (1, 'Gerente');
+insert into tb_grupo (id_grupo, nm_grupo) values (2, 'Vendador');
+insert into tb_grupo (id_grupo, nm_grupo) values (3, 'Cadastrador');
