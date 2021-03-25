@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kamila.food.domain.exception.EntidadeEmUsoException;
 import com.kamila.food.domain.exception.GrupoNaoEncontradoException;
 import com.kamila.food.domain.model.Grupo;
+import com.kamila.food.domain.model.Permissao;
 import com.kamila.food.domain.repository.GrupoRepository;
 
 @Service
@@ -18,6 +19,9 @@ public class CadastroGrupoService {
 
 	@Autowired
 	private GrupoRepository grupoRepository;
+	
+	@Autowired
+	private CadastroPermissaoService cadastroPermissao;
 	
 	@Transactional
 	public Grupo salvar(Grupo cidade) {
@@ -44,5 +48,22 @@ public class CadastroGrupoService {
 		return grupoRepository.findById(idGrupo).orElseThrow(
 				() -> new GrupoNaoEncontradoException(idGrupo));
 	}
+	
+	@Transactional
+	public void desassociarPermissao(Long grupoId, Long permissaoId) {
+	    Grupo grupo = buscarOuFalhar(grupoId);
+	    Permissao permissao = cadastroPermissao.buscarOuFalhar(permissaoId);
+	    
+	    grupo.removerPermissao(permissao);
+	}
+	
+
+	@Transactional
+	public void associarPermissao(Long grupoId, Long permissaoId) {
+	    Grupo grupo = buscarOuFalhar(grupoId);
+	    Permissao permissao = cadastroPermissao.buscarOuFalhar(permissaoId);
+	    
+	    grupo.adicionarPermissao(permissao);
+	} 
 
 }

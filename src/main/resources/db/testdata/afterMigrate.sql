@@ -75,9 +75,10 @@ insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) va
 
 insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) values ('Espetinho de Cupim', 'Acompanha farinha, mandioca e vinagrete', 8, 1, 6);
 
-insert into tb_grupo (id_grupo, nm_grupo) values (1, 'Gerente');
-insert into tb_grupo (id_grupo, nm_grupo) values (2, 'Vendador');
-insert into tb_grupo (id_grupo, nm_grupo) values (3, 'Cadastrador');
+insert into tb_grupo (id_grupo, nm_grupo) values (1, 'Gerente'), (2, 'Vendedor'), (3, 'Secretária'), (4, 'Cadastrador');
+
+insert into tb_grupo_permissao (id_grupo, id_permissao) values (1, 1), (1, 2), (2, 1), (2, 2), (3, 1); 
+
 
 insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) values
 (1, 'João da Silva', 'joao.ger@kfood.com', '123', utc_timestamp),
