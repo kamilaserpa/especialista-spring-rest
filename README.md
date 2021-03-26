@@ -192,8 +192,16 @@ Marca uma propriedade como o carimbo de data/hora ao salvar a entidade pela prim
 Marca uma propriedade como o carimbo de data/hora ao atualizar uma entidade. Anotação da implementação Hibernate. O próprio Hibrenate insere o valor do atibuto.
 
 #### Eager Loading
-Carregamento "ansioso", antecipado. Todas as associações terminados em _"ToOne"_ utilizam a estratégia `Eager Loading`. Ainda com @JsonIgnore o select de entidade mappeada é realizado, por exemplo as buscar um restaurante específico, é feito select de cozinhas realizadas, por causa da estratégia EagerLoading. Ou seja, quando uma entidade é carregada no banco de dados as entidades associadas a ela também serão carregadas.
+Carregamento "ansioso", antecipado. Todas as associações terminados em _"ToOne"_ utilizam a estratégia `Eager Loading`. Ainda com @JsonIgnore o select de entidade mappeada é realizado, por exemplo ao buscar um restaurante específico, é feito select de cozinhas realizadas, por causa da estratégia EagerLoading. Ou seja, quando uma entidade é carregada no banco de dados as entidades associadas a ela também serão carregadas.
 Não significa que a associação Eager será feita em um select apenas através _joins_, pode gerar vários selects. "Problema" "n+1", uma busca na verdade origina mais *n* consultas.
+
+Para melhorar a performance e evitar consultas desnecessárias, é possível utilizar `@ManyToOne(fetch = FetchType.LAZY)` na propriedade do objeto ou `fetch joint` apenas na query JPQL. Aquery pode gerar um produto cartesiano com mais tuplas por causa do join, porém o jpa faz a correspondência para evitar duplicações.
+
+```
+	@Query("from Restaurante r join fetch r.cozinha")
+	List<Restaurante> findAll();
+```
+
 
 #### Lazy Loading
 Carregamento preguiçoso. Todas as associações terminados em _"ToMany"_ utilizam a estratégia `Lazy Loading`. Não realiza consultas de entidade associadas sem que algum método dessa entidade seja explicitamente chamado.

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kamila.food.api.assembler.PedidoModelAssembler;
+import com.kamila.food.api.assembler.PedidoResumoModelAssembler;
 import com.kamila.food.api.model.PedidoModel;
+import com.kamila.food.api.model.PedidoResumoModel;
 import com.kamila.food.domain.model.Pedido;
 import com.kamila.food.domain.service.EmissaoPedidoService;
 
@@ -22,10 +24,13 @@ public class PedidoController {
 
 	@Autowired
 	PedidoModelAssembler pedidoModelAssembler;
+	
+	@Autowired
+	PedidoResumoModelAssembler pedidoResumoModelAssembler;
 
 	@GetMapping
-	public List<PedidoModel> listar() {
-		return pedidoModelAssembler.toCollectionModel(emissaoPedidoService.findAll());
+	public List<PedidoResumoModel> listar() {
+		return pedidoResumoModelAssembler.toCollectionModel(emissaoPedidoService.findAll());
 	}
 
 	@GetMapping("/{idPedido}")

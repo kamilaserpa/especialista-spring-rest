@@ -10,6 +10,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -56,7 +55,7 @@ public class Pedido {
 	
 	private OffsetDateTime dataEntrega;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY) // Só realiza busca de forma de pagamento caso chamado
 	@JoinColumn(nullable = false, name = "id_forma_pagamento")
 	private FormaPagamento formaPagamento;
 	
@@ -68,7 +67,6 @@ public class Pedido {
 	@Column(nullable = false)
 	private StatusPedido status = StatusPedido.CRIADO;
 	
-	@JsonIgnore
 	@Embedded
 	private Endereco enderecoEntrega;
 
