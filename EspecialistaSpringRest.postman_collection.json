@@ -2358,6 +2358,48 @@
 					"response": []
 				},
 				{
+					"name": "Pedido - entregar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/1/entrega",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"1",
+								"entrega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - cancelar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/1/cancelamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"1",
+								"cancelamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Pedido - buscar",
 					"request": {
 						"method": "GET",
