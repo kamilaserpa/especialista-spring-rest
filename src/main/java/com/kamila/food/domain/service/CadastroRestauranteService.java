@@ -1,5 +1,7 @@
 package com.kamila.food.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -77,6 +79,16 @@ public class CadastroRestauranteService {
 	public void inativar(Long idRestaurante) {
 		Restaurante restauranteAtual = buscarOuFalhar(idRestaurante);
 		restauranteAtual.inativar();
+	}
+
+	@Transactional // Transação global para realização de rollback caso haja falha em algum item da lista
+	public void ativar(List<Long> idsRestaurantes) {
+		idsRestaurantes.forEach(this::ativar);
+	}
+	
+	@Transactional
+	public void inativar(List<Long> idsRestaurantes) {
+		idsRestaurantes.forEach(this::inativar);
 	}
 
 	public Restaurante buscarOuFalhar(Long idRestaurante) {

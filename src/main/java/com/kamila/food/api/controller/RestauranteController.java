@@ -23,6 +23,7 @@ import com.kamila.food.api.model.input.RestauranteInput;
 import com.kamila.food.domain.exception.CidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
+import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
@@ -101,16 +102,36 @@ public class RestauranteController {
 		cadastroRestauranteService.inativar(idRestaurante);
 	}
 	
+	@PutMapping("/ativacoes")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void ativarmultiplos(@RequestBody List<Long> idsRestaurantes) {
+		try {
+			cadastroRestauranteService.ativar(idsRestaurantes);
+		} catch (RestauranteNaoEncontradoException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+	}
+	
+	@DeleteMapping("/ativacoes")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void inativarmultiplos(@RequestBody List<Long> idsRestaurantes) {
+		try {
+			cadastroRestauranteService.inativar(idsRestaurantes);
+		} catch (RestauranteNaoEncontradoException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+	}
+	
 	@PutMapping("/{restauranteId}/abertura")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void abrir(@PathVariable Long restauranteId) {
-	    cadastroRestauranteService.abrir(restauranteId);
+	public void abrir(@PathVariable Long idRestaurante) {
+	    cadastroRestauranteService.abrir(idRestaurante);
 	}
 
 	@PutMapping("/{restauranteId}/fechamento")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void fechar(@PathVariable Long restauranteId) {
-	    cadastroRestauranteService.fechar(restauranteId);
+	public void fechar(@PathVariable Long idRestaurante) {
+	    cadastroRestauranteService.fechar(idRestaurante);
 	}
 	
 	/*
