@@ -556,6 +556,9 @@ Um objeto alterado fora da transação, uma entidade gerenciada pelo JPA, alte
 
 Caso ocorra uma exception no método transacionado o spring realiza Rollback do comando no banco de dados.
 
+#### Tipo Enum em Coluna
+Necessária anotação `@Enumerated(EnumType.STRING)` na porpriedade pra evitar erro de des/serialização ao buscar dado do banco.
+
 
 ---
 
