@@ -1,8 +1,8 @@
 package com.kamila.food.domain.model;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +47,7 @@ public class Usuario {
 	@ManyToMany
 	@JoinTable(name = "tb_usuario_grupo", joinColumns = @JoinColumn(name = "id_usuario"),
 			inverseJoinColumns = @JoinColumn(name = "id_grupo"))
-	private List<Grupo> grupos = new ArrayList<>();
+	private Set<Grupo> grupos = new HashSet<>();
 	
 	public boolean senhaCoincideCom(String senha) {
 		return getSenha().equals(senha);
@@ -56,5 +56,14 @@ public class Usuario {
 	public boolean senhaNaoCoincideCom(String senha) {
 		return !senhaCoincideCom(senha);
 	}
+
+	public void associarGrupo(Grupo grupo) {
+		this.getGrupos().add(grupo);
+	}
+	
+	public void desassociarGrupo(Grupo grupo) {
+		this.getGrupos().remove(grupo);
+	}
+	
 	
 }

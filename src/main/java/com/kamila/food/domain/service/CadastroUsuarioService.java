@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.exception.UsuarioNaoEncontradoException;
+import com.kamila.food.domain.model.Grupo;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.repository.UsuarioRepository;
 
@@ -16,6 +17,9 @@ public class CadastroUsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private CadastroGrupoService cadastroGrupoService;
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
@@ -42,9 +46,25 @@ public class CadastroUsuarioService {
 		usuario.setSenha(novaSenha);
 	}
 
-	public Usuario buscarOuFalhar(Long usuarioId) {
-		return usuarioRepository.findById(usuarioId)
-			.orElseThrow(() -> new UsuarioNaoEncontradoException(usuarioId));
+	public Usuario buscarOuFalhar(Long idUsuario) {
+		return usuarioRepository.findById(idUsuario)
+			.orElseThrow(() -> new UsuarioNaoEncontradoException(idUsuario));
+	}
+
+	@Transactional
+	public void desassociarGrupo(Long idUsuario, Long idGrupo) {
+		Usuario usuario = buscarOuFalhar(idUsuario);
+		Grupo grupo = cadastroGrupoService.buscarOuFalhar(idGrupo);
+		
+		usuario.desassociarGrupo(grupo);
+	}
+
+	@Transactional
+	public void associarGrupo(Long idUsuario, Long idGrupo) {
+		Usuario usuario = buscarOuFalhar(idUsuario);
+		Grupo grupo = cadastroGrupoService.buscarOuFalhar(idGrupo);
+		
+		usuario.associarGrupo(grupo);
 	}
 	
 

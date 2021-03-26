@@ -85,3 +85,5 @@ insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) val
 (2, 'Maria Joaquina', 'maria.vnd@kfood.com', '123', utc_timestamp),
 (3, 'José Souza', 'jose.aux@kfood.com', '123', utc_timestamp),
 (4, 'Sebastião Martins', 'sebastiao.cad@kfood.com', '123', utc_timestamp);
+
+insert into tb_usuario_grupo(id_usuario, id_grupo) values (1, 1), (1, 2), (2, 3);
