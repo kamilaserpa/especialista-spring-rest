@@ -54,6 +54,7 @@ public class Restaurante {
 	@Embedded // Incorporação
 	private Endereco endereco;
 	
+	@Column
 	private Boolean ativo = Boolean.TRUE;
 
 	@CreationTimestamp
@@ -71,9 +72,16 @@ public class Restaurante {
 	private Set<FormaPagamento> formasPagamento = new HashSet<>(); 
 	// Set é um conjunto que não aceita elementos duplicados, evitando erro de restaurante receber forma de pagamento já associada
 
+	@ManyToMany
+	@JoinTable(name = "tb_restaurante_usuario_responsavel",
+			joinColumns = @JoinColumn(name = "id_restaurante"),
+			inverseJoinColumns = @JoinColumn(name = "id_usuario"))
+	private Set<Usuario> responsaveis = new HashSet<>();
+	
 	@OneToMany(mappedBy = "restaurante")
 	private List<Produto> produtos = new ArrayList<>();
 
+	@Column
 	private Boolean aberto = Boolean.FALSE;
 
 	public void abrir() {
@@ -99,6 +107,14 @@ public class Restaurante {
 
 	public boolean adicionarFormaPagamento(FormaPagamento formaPagamento) {
 		return getFormasPagamento().add(formaPagamento);
+	}
+	
+	public boolean desassociarResponsavel(Usuario usuario) {
+		return getResponsaveis().remove(usuario);
+	}
+	
+	public boolean associarResponsavel(Usuario usuario) {
+		return getResponsaveis().add(usuario);
 	}
 	
 }

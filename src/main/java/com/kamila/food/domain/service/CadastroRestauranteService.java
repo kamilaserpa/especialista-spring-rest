@@ -12,6 +12,7 @@ import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.FormaPagamento;
 import com.kamila.food.domain.model.Restaurante;
+import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.repository.RestauranteRepository;
 
 @Service
@@ -30,6 +31,9 @@ public class CadastroRestauranteService {
 	
 	@Autowired
 	CadastroFormaPagamentoService cadastroFormaPagamentoService;
+
+	@Autowired
+	CadastroUsuarioService cadastroUsuarioService;
 
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
@@ -101,17 +105,33 @@ public class CadastroRestauranteService {
 	}
 
 	@Transactional
-	public void abrir(Long restauranteId) {
-	    Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+	public void abrir(Long idRestaurante) {
+	    Restaurante restauranteAtual = buscarOuFalhar(idRestaurante);
 	    
 	    restauranteAtual.abrir();
 	}
 
 	@Transactional
-	public void fechar(Long restauranteId) {
-	    Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+	public void fechar(Long idRestaurante) {
+	    Restaurante restauranteAtual = buscarOuFalhar(idRestaurante);
 	    
 	    restauranteAtual.fechar();
+	}
+
+	@Transactional
+	public void desassociarResponsavel(Long idRestaurante, Long idUsuario) {
+		Restaurante restaurante = buscarOuFalhar(idRestaurante);
+		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(idUsuario);
+		
+		restaurante.desassociarResponsavel(usuario);
+	}
+	
+	@Transactional
+	public void associarResponsavel(Long idRestaurante, Long idUsuario) {
+		Restaurante restaurante = buscarOuFalhar(idRestaurante);
+		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(idUsuario);
+		
+		restaurante.associarResponsavel(usuario);
 	}
 	
 }

@@ -57,12 +57,12 @@ public class Usuario {
 		return !senhaCoincideCom(senha);
 	}
 
-	public void associarGrupo(Grupo grupo) {
-		this.getGrupos().add(grupo);
+	public boolean associarGrupo(Grupo grupo) {
+		return getGrupos().add(grupo);
 	}
 	
-	public void desassociarGrupo(Grupo grupo) {
-		this.getGrupos().remove(grupo);
+	public boolean desassociarGrupo(Grupo grupo) {
+		return getGrupos().remove(grupo);
 	}
 	
 	
