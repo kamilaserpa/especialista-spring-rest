@@ -1032,7 +1032,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2/formas-pagamento",
+							"raw": "http://localhost:8080/restaurantes/4/formas-pagamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1040,7 +1040,7 @@
 							"port": "8080",
 							"path": [
 								"restaurantes",
-								"2",
+								"4",
 								"formas-pagamento"
 							]
 						}
@@ -2351,6 +2351,34 @@
 							"path": [
 								"pedidos",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"formaPagamento\": {\r\n        \"id\": 1\r\n    },\r\n    \"restaurante\": {\r\n        \"id\": 4\r\n    },\r\n    \"enderecoEntrega\": {\r\n        \"cep\": \"38400-000\",\r\n        \"logradouro\": \"Rua Floriano Peixoto\",\r\n        \"numero\": \"500\",\r\n        \"complemento\": \"Apto 801\",\r\n        \"bairro\": \"Brasil\",\r\n        \"cidade\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"itens\": [\r\n        {\r\n            \"quantidade\": 1,\r\n            \"observacao\": null,\r\n            \"produtoId\": 6\r\n        },\r\n        {\r\n            \"quantidade\": 2,\r\n            \"observacao\": \"Bem passado\",\r\n            \"produtoId\": 7\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
 							]
 						}
 					},
