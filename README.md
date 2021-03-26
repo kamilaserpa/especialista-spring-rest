@@ -567,6 +567,10 @@ Caso ocorra uma exception no método transacionado o spring realiza Rollback do 
 #### Tipo Enum em Coluna
 Necessária anotação `@Enumerated(EnumType.STRING)` na porpriedade pra evitar erro de des/serialização ao buscar dado do banco.
 
+#### Entidades ricas x Entidades anêmicas
+ - Entidades ricas - entidades que contém regras de negócio.
+ - Entidades anêmicas - servem apenas para representar dados, propriedades, getters e setters.
+
 
 ---
 
