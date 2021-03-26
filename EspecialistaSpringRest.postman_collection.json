@@ -2337,6 +2337,27 @@
 					"response": []
 				},
 				{
+					"name": "Pedido - confirmar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/1/confirmacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"1",
+								"confirmacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Pedido - buscar",
 					"request": {
 						"method": "GET",

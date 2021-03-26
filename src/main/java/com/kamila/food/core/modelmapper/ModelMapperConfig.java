@@ -34,7 +34,7 @@ public class ModelMapperConfig {
 		
 		// ItemPedido
 		modelMapper.createTypeMap(ItemPedidoInput.class, ItemPedido.class)
-	    	.addMappings(mapper -> mapper.skip(ItemPedido::setId));
+	    	.addMappings(mapper -> mapper.skip(ItemPedido::setId)); // Ao fazer o mapeameto ignore o setId
 		
 		return modelMapper;
 	}
