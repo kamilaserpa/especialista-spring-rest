@@ -2342,7 +2342,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/1/confirmacao",
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/confirmacao",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2350,7 +2350,7 @@
 							"port": "8080",
 							"path": [
 								"pedidos",
-								"1",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 								"confirmacao"
 							]
 						}
@@ -2363,7 +2363,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/1/entrega",
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/entrega",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2371,7 +2371,7 @@
 							"port": "8080",
 							"path": [
 								"pedidos",
-								"1",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 								"entrega"
 							]
 						}
@@ -2384,7 +2384,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/1/cancelamento",
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/cancelamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2392,7 +2392,7 @@
 							"port": "8080",
 							"path": [
 								"pedidos",
-								"1",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 								"cancelamento"
 							]
 						}
@@ -2405,7 +2405,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/1",
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2413,7 +2413,7 @@
 							"port": "8080",
 							"path": [
 								"pedidos",
-								"1"
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43"
 							]
 						}
 					},

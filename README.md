@@ -571,6 +571,8 @@ Necessária anotação `@Enumerated(EnumType.STRING)` na porpriedade pra evitar 
  - Entidades ricas - entidades que contém regras de negócio.
  - Entidades anêmicas - servem apenas para representar dados, propriedades, getters e setters.
 
+#### UUID
+Para evitar a exposição de IDs, IDs sequenciais, de determinadas entidades, por ser uma informação desnecessária para o consumidor, evitando expor a quantidade de pedidos existente na aplicação, ou mesmo evitando acesso a informações enviando IDs intuidos. Para isso uma possibilidade é a utilizacao de um código UUID para identificacao do objeto.
 
 ---
 

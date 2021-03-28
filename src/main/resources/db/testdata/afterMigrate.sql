@@ -93,10 +93,10 @@ insert into tb_usuario_grupo(id_usuario, id_grupo) values (1, 1), (1, 2), (2, 3)
 
 insert into tb_restaurante_usuario_responsavel (id_restaurante, id_usuario) values (1, 5), (3, 5);
 
-insert into tb_pedido (id_pedido, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
+insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
     status, data_criacao, subtotal, taxa_frete, valor_total)
-values (1, 1, 1, 1, 1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', 'CRIADO', utc_timestamp, 298.90, 10, 308.90);
+values (1, '335c0344-f4c5-4824-ad8a-944c9e6bdf43', 1, 1, 1, 1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', 'CRIADO', utc_timestamp, 298.90, 10, 308.90);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (1, 1, 1, 1, 78.9, 78.9, null);
@@ -105,10 +105,10 @@ insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, p
 values (2, 1, 2, 2, 110, 220, 'Menos picante, por favor');
 
 
-insert into tb_pedido (id_pedido, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
+insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
         endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
         status, data_criacao, subtotal, taxa_frete, valor_total)
-values (2, 4, 1, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro', 'CRIADO', utc_timestamp, 79, 0, 79);
+values (2, 'ee2f9cc9-a569-4582-9f01-7e53c4f601b8', 4, 1, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro', 'CRIADO', utc_timestamp, 79, 0, 79);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (3, 2, 6, 1, 79, 79, 'Ao ponto');
