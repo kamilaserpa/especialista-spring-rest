@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.kamila.food.api.assembler.RestauranteInputDisassembler;
 import com.kamila.food.api.assembler.RestauranteModelAssembler;
 import com.kamila.food.api.model.RestauranteModel;
 import com.kamila.food.api.model.input.RestauranteInput;
+import com.kamila.food.api.model.view.RestauranteView;
 import com.kamila.food.domain.exception.CidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -47,8 +49,32 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 	
+//	@GetMapping
+//	public MappingJacksonValue listar(@RequestParam(required = false) String projecao) {
+//		List<Restaurante> restaurantes = restauranteRepository.findAll();
+//		List<RestauranteModel> restaurantesModel = restauranteModelAssembler.toCollectionModel(restaurantes);
+//
+//		MappingJacksonValue restaurantesWrapper = new MappingJacksonValue(restaurantesModel);
+//		restaurantesWrapper.setSerializationView(RestauranteView.Resumo.class);
+//
+//		if ("apenas-nome".equals(projecao)) { // para evitar NullPointerException caso parametro não recebido
+//			restaurantesWrapper.setSerializationView(RestauranteView.ApenasNome.class);
+//		} else if ("completo".equals(projecao)) {
+//			restaurantesWrapper.setSerializationView(null);
+//		}
+//
+//		return restaurantesWrapper;
+//	}
+
+	@JsonView(RestauranteView.Resumo.class)
 	@GetMapping
-	public List<RestauranteModel> listar() {
+	public List<RestauranteModel> listarResumido() {
+		return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
+	}
+
+	@JsonView(RestauranteView.ApenasNome.class)
+	@GetMapping(params = "projecao=apenas-nome")
+	public List<RestauranteModel> listarApenasNomes() {
 		return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
 	}
 

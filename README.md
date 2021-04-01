@@ -572,7 +572,28 @@ Necessária anotação `@Enumerated(EnumType.STRING)` na porpriedade pra evitar 
  - Entidades anêmicas - servem apenas para representar dados, propriedades, getters e setters.
 
 #### UUID
-Para evitar a exposição de IDs, IDs sequenciais, de determinadas entidades, por ser uma informação desnecessária para o consumidor, evitando expor a quantidade de pedidos existente na aplicação, ou mesmo evitando acesso a informações enviando IDs intuidos. Para isso uma possibilidade é a utilizacao de um código UUID para identificacao do objeto.
+Para evitar a exposição de IDs, IDs sequenciais, de determinadas entidades, por ser uma informação desnecessária para o consumidor, evitando expor a quantidade de pedidos 
+existente na aplicação, ou mesmo evitando acesso a informações enviando IDs intuidos. Para isso uma possibilidade é a utilizacao de um código UUID para identificacao do objeto.
+
+## Capítulo 13 - Modelagem de projeções, pesquisas e relatórios
+
+#### @JsonView
+Jackson Json View é uma ferramenta para customizar a serialização/desserialização de objetos, através de uma projeção resumida do objeto.
+Assim, cria-se uma interface para referência da representação:
+
+```
+public interface RestauranteView {
+	public interface Resumo {}
+}
+```
+Em seguida anotamos as propriedades do objeto retornado que devem ser serializadas nesse JsonView através de `@JsonView(RestauranteView.Resumo.class)`. Em seguida utiliza-se com a mesma anotação o método rest no controller, para afirmar que ele retornará a projeção JsonView criada.
+
+Em comparativo com o padrão DTO, no dto há uma flexibilidade maior para alteração de serialização, utilizando muitos JsonView pode deixar o código mais poluído, sobretudo as classes model.
+
+##### MappingJacksonValue
+Empacotador que recebe uma interface para projeção do objeto, é um wrapper:
+`restaurantesWrapper.setSerializationView(RestauranteView.ApenasNome.class);`
+
 
 ---
 
