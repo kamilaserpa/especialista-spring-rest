@@ -594,6 +594,8 @@ Em comparativo com o padrão DTO, no dto há uma flexibilidade maior para altera
 Empacotador que recebe uma interface para projeção do objeto, é um wrapper:
 `restaurantesWrapper.setSerializationView(RestauranteView.ApenasNome.class);`
 
+#### @JsonFilter
+Opção de filtrar propriedades dos objetos e retornar apenas as selecionadas. O cliente poderia selecionar os campos que deseja receber, como em `PedidoController.listar()`. Fornece um controle fino do objeto de retorno pelo consumidor da API. Interessante para o caso de os consumidores da API precisarem de muita flexibilidade. Atenção para a aplicação de Over Engeneering, ou seja, tentar otimizar problemas que nem mesmo irão existir. Opiniões contrárias afirmam que esse controle fino deveria pertencer apenas ao servidor, uma Rest API não seria uma ferramente apenas de acesso de dados via HTTP.
 
 ---
 

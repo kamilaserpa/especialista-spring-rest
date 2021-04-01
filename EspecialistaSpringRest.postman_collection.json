@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2e49430a-a1df-453f-8f49-aeaa8885399a",
+		"_postman_id": "773e210c-f301-4017-82e7-c3debae89aec",
 		"name": "EspecialistaSpringRest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -189,6 +189,99 @@
 							"port": "8080",
 							"path": [
 								"restaurantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurantes - Listar Resumido",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes?projecao=resumo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							],
+							"query": [
+								{
+									"key": "projecao",
+									"value": "resumo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurantes - Listar Completo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes?projecao=completo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							],
+							"query": [
+								{
+									"key": "projecao",
+									"value": "completo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurantes - Listar Apenas Nome",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes?projecao=apenas-nome",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							],
+							"query": [
+								{
+									"key": "projecao",
+									"value": "apenas-nome"
+								}
 							]
 						}
 					},
@@ -2331,6 +2424,31 @@
 							"port": "8080",
 							"path": [
 								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - listar Campos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?campos=codigo,valorTotal,restaurante",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "campos",
+									"value": "codigo,valorTotal,restaurante"
+								}
 							]
 						}
 					},
