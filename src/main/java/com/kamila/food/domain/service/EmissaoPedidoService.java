@@ -3,6 +3,8 @@ package com.kamila.food.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +47,10 @@ public class EmissaoPedidoService {
 	
 	public List<Pedido> findAll(PedidoFilter filtro) {
 		return pedidoRepository.findAll(PedidoSpecs.usandoFiltro(filtro));
+	}
+	
+	public Page<Pedido> findAll(PedidoFilter filtro, Pageable pageable) {
+		return pedidoRepository.findAll(PedidoSpecs.usandoFiltro(filtro), pageable);
 	}
 
 	public Pedido buscarOuFalhar(String codigoPedido) {

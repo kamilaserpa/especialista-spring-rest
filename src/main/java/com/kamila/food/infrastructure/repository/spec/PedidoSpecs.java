@@ -14,9 +14,15 @@ public class PedidoSpecs {
 	public static Specification<Pedido> usandoFiltro(PedidoFilter filtro) {
 		return (root, query, builder) -> {
 			
-			// Hibernate realiza apenas uma consulta. Evitando problema do "n+1"
-			root.fetch("restaurante").fetch("cozinha");
-			root.fetch("cliente");
+			/**
+			 * Para o count é executada a consulta com os mesmos filtros. Para evitar erro na consulta count
+			 * por ausência de entidades relacionadas, verifica-se o typo do resultado, se forem pedidos serão executados os fetchs
+			 */
+			if (Pedido.class.equals(query.getResultType())) {
+				// Hibernate realiza apenas uma consulta. Evitando problema do "n+1"
+				root.fetch("restaurante").fetch("cozinha");
+				root.fetch("cliente");
+			}
 
 			var predicates = new ArrayList<Predicate>();
 			
