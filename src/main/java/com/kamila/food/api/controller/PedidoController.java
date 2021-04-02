@@ -52,7 +52,12 @@ public class PedidoController {
 	PedidoInputDisassembler pedidoInputDisassembler;
 	
 	@GetMapping
-	public MappingJacksonValue listar(@RequestParam(required = false) String campos) {
+	public List<PedidoResumoModel> listar() {
+		return pedidoResumoModelAssembler.toCollectionModel(emissaoPedidoService.findAll());
+	}
+	
+	@GetMapping("/filter")
+	public MappingJacksonValue listarPedidosFilter(@RequestParam(required = false) String campos) {
 		List<Pedido> pedidos = emissaoPedidoService.findAll();
 		List<PedidoResumoModel> pedidosModel = pedidoResumoModelAssembler.toCollectionModel(pedidos);
 		// Instancia envelope de pedidos
@@ -70,11 +75,6 @@ public class PedidoController {
 		return pedidosWrapper;
 	}
 	
-	@GetMapping("/resumo")
-	public List<PedidoResumoModel> listarPedidosResumo() {
-		return pedidoResumoModelAssembler.toCollectionModel(emissaoPedidoService.findAll());
-	}
-
 	@GetMapping("/{codigoPedido}")
 	public PedidoModel buscar(@PathVariable String codigoPedido) {
 		Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);

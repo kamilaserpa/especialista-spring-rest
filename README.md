@@ -597,6 +597,14 @@ Empacotador que recebe uma interface para projeção do objeto, é um wrapper:
 #### @JsonFilter
 Opção de filtrar propriedades dos objetos e retornar apenas as selecionadas. O cliente poderia selecionar os campos que deseja receber, como em `PedidoController.listar()`. Fornece um controle fino do objeto de retorno pelo consumidor da API. Interessante para o caso de os consumidores da API precisarem de muita flexibilidade. Atenção para a aplicação de Over Engeneering, ou seja, tentar otimizar problemas que nem mesmo irão existir. Opiniões contrárias afirmam que esse controle fino deveria pertencer apenas ao servidor, uma Rest API não seria uma ferramente apenas de acesso de dados via HTTP.
 
+#### Squiggly
+Biblioteca que permite interceptar as requisições, a fim de receber o parametro "fields" contendo o nome das propriedades que o consumidor deseja receber do objeto retornado. O nome do parâmetro pode ser customizado, foi utilizado "campos". Por exemplo, buscará os campos codigo, valorTotal, qualquer campo que inicie com "sub", todos os atributos de restaurante exceto o "id", apenas o id e nome do cliente:
+
+> http://localhost:8080/pedidos?campos=codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]
+
+Risco: é uma biblioteca pequena, com manutenção desconhecida.
+
+
 ---
 
 
