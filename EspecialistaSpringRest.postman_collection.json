@@ -2422,7 +2422,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos",
+							"raw": "http://localhost:8080/pedidos?restauranteId=1&dataCriacaoInicio=2021-03-02T10:00:00Z",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2430,6 +2430,26 @@
 							"port": "8080",
 							"path": [
 								"pedidos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "1"
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2021-03-02T10:00:00Z"
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								}
 							]
 						}
 					},

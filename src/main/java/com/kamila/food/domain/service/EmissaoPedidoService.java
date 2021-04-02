@@ -15,6 +15,8 @@ import com.kamila.food.domain.model.Produto;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.repository.PedidoRepository;
+import com.kamila.food.domain.repository.filter.PedidoFilter;
+import com.kamila.food.infrastructure.repository.spec.PedidoSpecs;
 
 @Service
 public class EmissaoPedidoService {
@@ -39,6 +41,10 @@ public class EmissaoPedidoService {
 
 	public List<Pedido> findAll() {
 		return pedidoRepository.findAll();
+	}
+	
+	public List<Pedido> findAll(PedidoFilter filtro) {
+		return pedidoRepository.findAll(PedidoSpecs.usandoFiltro(filtro));
 	}
 
 	public Pedido buscarOuFalhar(String codigoPedido) {

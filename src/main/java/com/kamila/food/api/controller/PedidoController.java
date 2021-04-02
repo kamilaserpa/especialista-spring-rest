@@ -29,6 +29,7 @@ import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Pedido;
 import com.kamila.food.domain.model.Usuario;
+import com.kamila.food.domain.repository.filter.PedidoFilter;
 import com.kamila.food.domain.service.CadastroProdutoService;
 import com.kamila.food.domain.service.EmissaoPedidoService;
 
@@ -52,8 +53,9 @@ public class PedidoController {
 	PedidoInputDisassembler pedidoInputDisassembler;
 	
 	@GetMapping
-	public List<PedidoResumoModel> listar() {
-		return pedidoResumoModelAssembler.toCollectionModel(emissaoPedidoService.findAll());
+	public List<PedidoResumoModel> pesquisar(PedidoFilter filtro) {
+		List<Pedido> todosPedidos = emissaoPedidoService.findAll(filtro);
+		return pedidoResumoModelAssembler.toCollectionModel(todosPedidos);
 	}
 	
 	@GetMapping("/filter")
