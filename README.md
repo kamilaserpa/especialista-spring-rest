@@ -615,8 +615,8 @@ Risco: é uma biblioteca pequena, com manutenção desconhecida.
 
 ##### Eclipse
 
-###### UTF-8
-Acessar Window > Preferences > Content Types. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
+###### UTF-8 (9.18)
+Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
 
 ###### Importação Estática
 Para importação estática de métodos insira o local do arquivo em:
