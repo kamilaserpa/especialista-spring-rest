@@ -20,7 +20,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cozinhas",
+							"raw": "http://localhost:8080/cozinhas?size=2&page=0&sort=nome,desc&sort=id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -28,6 +28,24 @@
 							"port": "8080",
 							"path": [
 								"cozinhas"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "nome,desc"
+								},
+								{
+									"key": "sort",
+									"value": "id"
+								}
 							]
 						}
 					},
@@ -2422,7 +2440,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?restauranteId=1&dataCriacaoInicio=2021-03-02T10:00:00Z",
+							"raw": "http://localhost:8080/pedidos?dataCriacaoInicio=adfgadfg&restauranteId=asdaasd",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2439,16 +2457,26 @@
 								},
 								{
 									"key": "restauranteId",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								},
 								{
 									"key": "dataCriacaoInicio",
-									"value": "2021-03-02T10:00:00Z"
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
 								},
 								{
 									"key": "dataCriacaoFim",
 									"value": "2021-03-02T10:00:00Z",
 									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "adfgadfg"
+								},
+								{
+									"key": "restauranteId",
+									"value": "asdaasd"
 								}
 							]
 						}
