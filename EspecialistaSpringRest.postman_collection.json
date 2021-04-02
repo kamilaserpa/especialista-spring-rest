@@ -1223,7 +1223,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos",
+							"raw": "http://localhost:8080/restaurantes/6/produtos?incluirInativos=false",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1231,8 +1231,14 @@
 							"port": "8080",
 							"path": [
 								"restaurantes",
-								"3",
+								"6",
 								"produtos"
+							],
+							"query": [
+								{
+									"key": "incluirInativos",
+									"value": "false"
+								}
 							]
 						}
 					},
