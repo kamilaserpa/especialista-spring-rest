@@ -604,6 +604,11 @@ Biblioteca que permite interceptar as requisições, a fim de receber o parametr
 
 Risco: é uma biblioteca pequena, com manutenção desconhecida.
 
+#### Modelando pesquisas complexas
+* Receber parâmetros de URL no recurso de coleção
+* Considerar a própria pesquisa como recurso. Post passando objeto com as propriedades do filtro. Quebra a constrant de cash do Rest, não considerada restfull por alguns. Segundo  curso deve ser evitado.
+* Considerar a própria pesquisa como recurso (de verdade). POST para criação de objeto de filtro, respondendo com 201 Created com id do filtro. Posteriormente usa id do filtro para pesquisa do resultado: GET pedidos/filtros/<id>
+	* Retornando resultado da pesquisa por parametro de url: GET /pedidos?filtro=<id>
 
 ---
 
