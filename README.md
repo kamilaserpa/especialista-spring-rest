@@ -581,7 +581,7 @@ existente na aplicação, ou mesmo evitando acesso a informações enviando IDs 
 Jackson Json View é uma ferramenta para customizar a serialização/desserialização de objetos, através de uma projeção resumida do objeto.
 Assim, cria-se uma interface para referência da representação:
 
-```
+```java
 public interface RestauranteView {
 	public interface Resumo {}
 }
@@ -609,6 +609,20 @@ Risco: é uma biblioteca pequena, com manutenção desconhecida.
 * Considerar a própria pesquisa como recurso. Post passando objeto com as propriedades do filtro. Quebra a constrant de cash do Rest, não considerada restfull por alguns. Segundo  curso deve ser evitado.
 * Considerar a própria pesquisa como recurso (de verdade). POST para criação de objeto de filtro, respondendo com 201 Created com id do filtro. Posteriormente usa id do filtro para pesquisa do resultado: GET pedidos/filtros/<id>
 	* Retornando resultado da pesquisa por parametro de url: GET /pedidos?filtro=<id>
+
+#### Customizando serializador para Page
+Estendendo `JsonSerializer<Page<?>>` e anotando com `@JsonComponent` é possível alterar os atributos do objetos Page retornados pela API, pelo fato de muitos deles não serem necessários ou utilizados. Sobrescrevendo o método "serialize" é possível definir cada atributo do objeto Page.
+
+```
+@Override
+	public void serialize(Page<?> page, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+		gen.writeStartObject(); // Inicia objeto Json
+		gen.writeObjectField("content", page.getContent()); // Cria atributo com valor
+		// ... outros atributos
+		gen.writeEndObject(); // Finaliza objeto Json
+	}
+```
+
 
 ---
 
