@@ -29,6 +29,8 @@ alter table tb_permissao auto_increment = 1;
 alter table tb_produto auto_increment = 1;
 alter table tb_restaurante auto_increment = 1;
 alter table tb_usuario auto_increment = 1;
+alter table tb_pedido auto_increment = 1;
+alter table tb_item_pedido auto_increment = 1;
 
 
 insert into tb_cozinha (id_cozinha, nm_cozinha) values (1, 'Tailandesa');
@@ -97,7 +99,8 @@ insert into tb_restaurante_usuario_responsavel (id_restaurante, id_usuario) valu
 insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
     status, data_criacao, subtotal, taxa_frete, valor_total)
-values (1, '335c0344-f4c5-4824-ad8a-944c9e6bdf43', 1, 1, 1, 1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', 'Brasil', 'CRIADO', utc_timestamp, 298.90, 10, 308.90);
+values (1, '335c0344-f4c5-4824-ad8a-944c9e6bdf43', 1, 1, 1, 1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801',
+'Brasil', 'CRIADO', utc_timestamp, 298.90, 10, 308.90);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (1, 1, 1, 1, 78.9, 78.9, null);
@@ -106,13 +109,41 @@ insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, p
 values (2, 1, 2, 2, 110, 220, 'Menos picante, por favor');
 
 
-insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
-        endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
-        status, data_criacao, subtotal, taxa_frete, valor_total)
-values (2, 'ee2f9cc9-a569-4582-9f01-7e53c4f601b8', 4, 1, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro', 'CRIADO', utc_timestamp, 79, 0, 79);
+insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
+        endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
+        endereco_bairro, status, data_criacao, subtotal, taxa_frete, valor_total)
+values (2, 'ee2f9cc9-a569-4582-9f01-7e53c4f601b8', 4, 1, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro',
+'CRIADO', utc_timestamp, 79, 0, 79);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (3, 2, 6, 1, 79, 79, 'Ao ponto');
 
-alter table tb_pedido auto_increment = 1;
-alter table tb_item_pedido auto_increment = 1;
+insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
+                    endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
+                    endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
+values (3, 'b5741512-8fbc-47fa-9ac1-b530354fc0ff', 1, 1, 1, 1, '38400-222', 'Rua Natal', '200', null, 'Brasil',
+        'ENTREGUE', '2019-10-30 21:10:00', '2019-10-30 21:10:45', '2019-10-30 21:55:44', 110, 10, 120);
+
+insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
+values (4, 3, 2, 1, 110, 110, null);
+
+
+insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
+                    endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
+                    endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
+values (4, '5c621c9a-ba61-4454-8631-8aabefe58dc2', 1, 2, 1, 1, '38400-800', 'Rua Fortaleza', '900', 'Apto 504', 'Centro',
+        'ENTREGUE', '2019-11-02 20:34:04', '2019-11-02 20:35:10', '2019-11-02 21:10:32', 174.4, 5, 179.4);
+
+insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
+values (5, 4, 3, 2, 87.2, 174.4, null);
+
+
+insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
+                    endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
+                    endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
+values (5, '8d774bcf-b238-42f3-aef1-5fb388754d63', 1, 3, 2, 1, '38400-200', 'Rua 10', '930', 'Casa 20', 'Martins',
+        'ENTREGUE', '2019-11-02 21:00:30', '2019-11-02 21:01:21', '2019-11-02 21:20:10', 87.2, 10, 97.2);
+
+insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
+values (6, 5, 3, 1, 87.2, 87.2, null);
+

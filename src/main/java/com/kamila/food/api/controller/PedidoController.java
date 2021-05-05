@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.google.common.collect.ImmutableMap;
+import com.kamila.food.core.data.PageableTranslator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -59,6 +61,8 @@ public class PedidoController {
 	@GetMapping
 	public Page<PedidoResumoModel> pesquisar(PedidoFilter filtro, @PageableDefault(size = 10) Pageable pageable) {
 
+	    pageable = traduzirPageable(pageable);
+
 		Page<Pedido> pedidosPage = emissaoPedidoService.findAll(filtro, pageable);
 		
 		List<PedidoResumoModel> pedidosResumoModel = pedidoResumoModelAssembler
@@ -113,5 +117,24 @@ public class PedidoController {
 	        throw new NegocioException(e.getMessage(), e);
 	    }
 	}
-	
+
+    /**
+     * Convertendo propriedade recebida no Pageable para outra nomenclatura.
+     * Converte nomeCliente, em propriedade do modelo de domínio Pedido "cliente.nome".
+     * GET /pedidos?sort=nomeCliente
+     * GET /pedidos?sort=cliente.nome
+     */
+    private Pageable traduzirPageable(Pageable apiPageable) {
+
+        // Atributos pelos quais a paginação é ordenável
+        var mapeamento = ImmutableMap.of(
+                "codigo", "codigo",
+                "nomeCliente", "cliente.nome",
+                "restaurante.nome", "restaurante.nome", // pois o retorno possui essa estrutura sendo mais intuitivo para o consumidor
+                "valorTotal", "valorTotal"
+        );
+
+        return PageableTranslator.translate(apiPageable, mapeamento);
+    }
+
 }

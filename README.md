@@ -632,6 +632,11 @@ Estendendo `JsonSerializer<Page<?>>` e anotando com `@JsonComponent` é possíve
 ###### UTF-8 (9.18)
 Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
 
+##### MySql
+[Download](https://dev.mysql.com/downloads/mysql/).
+Acesse "_Go to download page_", instale a versão sem ser web.
+`CREATE DATABASE food`
+
 ###### Importação Estática
 Para importação estática de métodos insira o local do arquivo em:
 > Window > Preferences > Java > Editor > Content Assist > Favorites > New Type
