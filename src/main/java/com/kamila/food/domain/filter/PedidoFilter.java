@@ -1,4 +1,4 @@
-package com.kamila.food.domain.repository.filter;
+package com.kamila.food.domain.filter;
 
 import java.time.OffsetDateTime;
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "773e210c-f301-4017-82e7-c3debae89aec",
+		"_postman_id": "76b9d0e3-55a8-4269-8c43-b81ad0ef4b70",
 		"name": "EspecialistaSpringRest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2440,7 +2440,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?dataCriacaoInicio=adfgadfg&restauranteId=asdaasd",
+							"raw": "http://localhost:8080/pedidos?sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2472,11 +2472,70 @@
 								},
 								{
 									"key": "dataCriacaoInicio",
-									"value": "adfgadfg"
+									"value": "adfgadfg",
+									"disabled": true
 								},
 								{
 									"key": "restauranteId",
-									"value": "asdaasd"
+									"value": "asdaasd",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "nomeCliente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - listar Pageable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?size=20&page=0&sort=codigo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "20"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "codigo"
 								}
 							]
 						}
@@ -2614,6 +2673,45 @@
 							"port": "8080",
 							"path": [
 								"pedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estatísticas",
+			"item": [
+				{
+					"name": "Estatísticas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoInicio=2019-03-02T10:00:00Z&dataCriacaoFim=2021-08-02T10:00:00Z",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estatisticas",
+								"vendas-diarias"
+							],
+							"query": [
+								{
+									"key": "restauranteId",
+									"value": "1"
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2019-03-02T10:00:00Z"
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-08-02T10:00:00Z"
+								}
 							]
 						}
 					},

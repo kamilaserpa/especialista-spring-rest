@@ -35,7 +35,7 @@ import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Pedido;
 import com.kamila.food.domain.model.Usuario;
-import com.kamila.food.domain.repository.filter.PedidoFilter;
+import com.kamila.food.domain.filter.PedidoFilter;
 import com.kamila.food.domain.service.CadastroProdutoService;
 import com.kamila.food.domain.service.EmissaoPedidoService;
 

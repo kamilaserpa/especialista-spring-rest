@@ -1,13 +1,12 @@
 package com.kamila.food.domain.repository;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.kamila.food.domain.model.Pedido;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.kamila.food.domain.model.Pedido;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PedidoRepository extends CustomJpaRepository<Pedido, Long>, JpaSpecificationExecutor<Pedido> {
