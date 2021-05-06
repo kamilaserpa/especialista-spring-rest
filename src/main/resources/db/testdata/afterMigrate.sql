@@ -122,7 +122,7 @@ insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id
                     endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
                     endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
 values (3, 'b5741512-8fbc-47fa-9ac1-b530354fc0ff', 1, 4, 1, 1, '38400-222', 'Rua Natal', '200', null, 'Brasil',
-        'ENTREGUE', '2019-10-30 21:10:00', '2019-10-30 21:10:45', '2019-10-30 21:55:44', 110, 10, 120);
+        'ENTREGUE', '2020-10-30 21:10:00', '2020-10-30 21:10:45', '2020-10-30 21:55:44', 110, 10, 120);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (4, 3, 2, 1, 110, 110, null);
