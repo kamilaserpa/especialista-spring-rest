@@ -623,9 +623,15 @@ Estendendo `JsonSerializer<Page<?>>` e anotando com `@JsonComponent` é possíve
 	}
 ```
 
+#### Data/Hora GMT/UTC +0 em relatórios
+Como a data/hora está sendo persistida no timezone GMT/UTC +0, caso um pedido esteja persistido no dia 06 de maio de 2021 às
+2 horas da madrugada em GMT 0. No horário de Brasília na verdade esse pedido aconteceu no dia 05/05/2021 às 23hs. Isso pode provocar 
+distorções em relatórios de dados.
+Por esse motivo em EstatisticasController há requisições recebendo o timeOffset, dando essa opção de seleção para o consumidor da Api,
+convertendo os dados da busca para o timezone recebido (função _convert_tz_ do mysql, por exemplo).
+
 
 ---
-
 
 ##### Eclipse
 

@@ -2689,7 +2689,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoInicio=2019-03-02T10:00:00Z&dataCriacaoFim=2021-08-02T10:00:00Z",
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2706,11 +2706,22 @@
 								},
 								{
 									"key": "dataCriacaoInicio",
-									"value": "2019-03-02T10:00:00Z"
+									"value": "2019-12-02T10:00:00Z",
+									"disabled": true
 								},
 								{
 									"key": "dataCriacaoFim",
-									"value": "2021-08-02T10:00:00Z"
+									"value": "2021-08-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "123",
+									"disabled": true
+								},
+								{
+									"key": "timeOffset",
+									"value": "-03:00"
 								}
 							]
 						}

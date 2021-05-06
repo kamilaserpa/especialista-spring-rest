@@ -19,7 +19,7 @@ public class VendaQueryServiceJpql implements VendaQueryService {
     private EntityManager manager;
 
     @Override
-    public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro) {
+    public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro, String timeOffset) {
         StringBuilder jpql = new StringBuilder(
                 "SELECT new com.kamila.food.domain.model.dto.VendaDiaria(" +
                         "FUNCTION('date', p.dataCriacao), COUNT(p.id), SUM(p.valorTotal)) " +
