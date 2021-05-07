@@ -2687,9 +2687,21 @@
 					"name": "Estatísticas",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/pdf,application/json",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&timeOffset=-03:00",
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=123&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2716,8 +2728,7 @@
 								},
 								{
 									"key": "dataCriacaoFim",
-									"value": "123",
-									"disabled": true
+									"value": "123"
 								},
 								{
 									"key": "timeOffset",

@@ -1,7 +1,8 @@
-package com.kamila.food.domain.service;
+package com.kamila.food.infrastructure.service.query;
 
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.dto.VendaDiaria;
+import com.kamila.food.domain.service.VendaQueryService;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

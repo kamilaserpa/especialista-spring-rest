@@ -1,4 +1,4 @@
-package com.kamila.food.infrastructure.service;
+package com.kamila.food.infrastructure.service.query;
 
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.Pedido;
