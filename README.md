@@ -630,6 +630,26 @@ distorções em relatórios de dados.
 Por esse motivo em EstatisticasController há requisições recebendo o timeOffset, dando essa opção de seleção para o consumidor da Api,
 convertendo os dados da busca para o timezone recebido (função _convert_tz_ do mysql, por exemplo).
 
+#### JasperReports
+Para fins de teste é possível criar dados randômicos. Para isso acesse na aba esquerda `Repository Explorer`, em `Data adapters`
+clique com lado direito e crie novo `Random Adapter`. Dessa maneira na pre-visualização do seu report será possível selecionar o Random Adapter criado 
+para viasualização de dados.
+
+Bandas de design:
+ - Title: título presente apenas na primeira página
+ - Page Header: título da página, se repete em todas as páginas
+ - Column Header: título do detail, aparece apenas antes do detalhe do relatório, pode conter nomes das colunas por exemplo.
+ - Detail: conteúdo principal do relatório, linhas de um relatório tabular por exemplo.
+ - Column Footer: rodapé, apece apenas ao final do detail
+ - Page Footer: é exibido em cada página, pode conter o número da página.
+ - Summary: é exibido apenas ao final do relatório, pode conter um somatório geral por exemplo.
+
+Basic Elements:
+ - Static Text: bem literal, textos estáticos
+ - Text Field: elementos de texto que receberão valores de dados. Para isso deve-se criar os campos em `Outline`>`Fields`>`Craete field`, selecionando o mesmo nome da propriedade e tipo.
+Em duplo clique sobre o text field é possível adicionar o campo criado. Para formatação monetário, acesse `Properties` do lado inferio direito,
+   Text Field, Pattern.
+
 
 ---
 
