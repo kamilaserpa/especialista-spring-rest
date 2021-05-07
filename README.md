@@ -631,6 +631,7 @@ Por esse motivo em EstatisticasController há requisições recebendo o timeOffs
 convertendo os dados da busca para o timezone recebido (função _convert_tz_ do mysql, por exemplo).
 
 #### JasperReports
+Crie um novo projeto, com o lado direito do mouse crie um novo Jasper Report.
 Para fins de teste é possível criar dados randômicos. Para isso acesse na aba esquerda `Repository Explorer`, em `Data adapters`
 clique com lado direito e crie novo `Random Adapter`. Dessa maneira na pre-visualização do seu report será possível selecionar o Random Adapter criado 
 para viasualização de dados.
@@ -649,6 +650,8 @@ Basic Elements:
  - Text Field: elementos de texto que receberão valores de dados. Para isso deve-se criar os campos em `Outline`>`Fields`>`Craete field`, selecionando o mesmo nome da propriedade e tipo.
 Em duplo clique sobre o text field é possível adicionar o campo criado. Para formatação monetário, acesse `Properties` do lado inferio direito,
    Text Field, Pattern.
+   
+Importando report. Selecione o arquivo .jrxml e clique em `Compile report`, copie e cole o arquivo `.jasper` em resources do projeto Spring.
 
 
 ---
