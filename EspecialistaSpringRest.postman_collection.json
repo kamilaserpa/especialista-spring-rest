@@ -1362,6 +1362,55 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Produto/Foto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Corte macio",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"6",
+								"foto"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2701,7 +2750,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=123&timeOffset=-03:00",
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=2021-08-02T10:00:00Z&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2723,12 +2772,12 @@
 								},
 								{
 									"key": "dataCriacaoFim",
-									"value": "2021-08-02T10:00:00Z",
-									"disabled": true
+									"value": "2021-08-02T10:00:00Z"
 								},
 								{
 									"key": "dataCriacaoFim",
-									"value": "123"
+									"value": "123",
+									"disabled": true
 								},
 								{
 									"key": "timeOffset",
