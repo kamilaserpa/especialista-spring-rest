@@ -1375,8 +1375,14 @@
 							},
 							{
 								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
 								"type": "text",
-								"value": "application/json"
+								"value": "",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -1390,7 +1396,7 @@
 								{
 									"key": "arquivo",
 									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
+									"src": "/C:/Users/ACT/Downloads/carne.tiff"
 								}
 							]
 						},
