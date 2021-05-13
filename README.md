@@ -653,6 +653,10 @@ Em duplo clique sobre o text field é possível adicionar o campo criado. Para f
    
 Importando report. Selecione o arquivo .jrxml e clique em `Compile report`, copie e cole o arquivo `.jasper` em resources do projeto Spring.
 
+## Capítulo 14 - Upload e Download de arquivos
+
+Artigo sobre problemas ao implementar relacionamento bidirecional OneToOne: [Mapeamento OneToOne bidirecional com Lazy Loading](https://blog.algaworks.com/lazy-loading-com-mapeamento-onetoone/).
+Por esse motivo o produto não recebe propriedade FotoProduto nesta implementação.
 
 ---
 
