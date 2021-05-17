@@ -1,8 +1,10 @@
 package com.kamila.food.domain.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
@@ -17,11 +19,11 @@ public class FotoProduto {
     @Column(name = "id_produto")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY) // Quando buscar uma foto prosuto entendesse que não deve retornar dados do produto
-    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto", insertable = false, updatable = false)
     @MapsId // Foto produto é mapeada a partir do produto Id
+    @OneToOne(optional = false, fetch = FetchType.LAZY) // Quando buscar uma foto prosuto entendesse que não deve retornar dados do produto
+    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto", insertable = false, updatable = false)
     private Produto produto;
-
+    
     private String nomeArquivo;
 
     private String descricao;
@@ -29,10 +31,5 @@ public class FotoProduto {
     private String contentType;
 
     private Long tamanho;
-
-    public void setId() {
-        System.out.println("setting Id");
-        this.id = produto.getId();
-    }
 
 }

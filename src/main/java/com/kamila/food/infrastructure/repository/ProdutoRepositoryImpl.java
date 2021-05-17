@@ -17,7 +17,8 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQueries {
     @Transactional
     @Override
     public FotoProduto save(FotoProduto foto) {
-        return manager.merge(foto);
+        manager.persist(foto);
+        return foto;
     }
 
 }

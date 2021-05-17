@@ -1390,18 +1390,18 @@
 							"formdata": [
 								{
 									"key": "descricao",
-									"value": "Corte macio",
+									"value": "Corte macio bife-ancho",
 									"type": "text"
 								},
 								{
 									"key": "arquivo",
 									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/carne.tiff"
+									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1411,7 +1411,7 @@
 								"restaurantes",
 								"4",
 								"produtos",
-								"6",
+								"7",
 								"foto"
 							]
 						}
