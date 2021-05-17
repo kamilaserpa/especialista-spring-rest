@@ -3,6 +3,7 @@ package com.kamila.food.domain.repository;
 import java.util.List;
 import java.util.Optional;
 
+import com.kamila.food.domain.model.FotoProduto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +21,10 @@ public interface ProdutoRepository
 	
 	@Query("from Produto p where p.ativo = true and p.restaurante = :restaurante")
 	List<Produto> findAtivosByRestaurante(Restaurante restaurante);
+
+	@Query("Select f from FotoProduto f join f.produto p " +
+			"where f.produto.id = :idProduto " +
+			"and p.restaurante.id = :idRestaurante")
+	Optional<FotoProduto> findFotoById(Long idRestaurante, Long idProduto);
 	
 }

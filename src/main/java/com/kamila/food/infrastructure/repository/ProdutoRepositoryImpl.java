@@ -21,4 +21,9 @@ public class ProdutoRepositoryImpl implements ProdutoRepositoryQueries {
         return foto;
     }
 
+    @Override
+    public void delete(FotoProduto foto) {
+        manager.remove(foto);
+    }
+
 }

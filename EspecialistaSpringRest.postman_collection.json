@@ -1390,6 +1390,61 @@
 							"formdata": [
 								{
 									"key": "descricao",
+									"value": "Corte macio bife-ancho 400g",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"6",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
 									"value": "Corte macio bife-ancho",
 									"type": "text"
 								},
