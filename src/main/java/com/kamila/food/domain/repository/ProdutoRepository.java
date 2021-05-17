@@ -10,7 +10,8 @@ import org.springframework.data.repository.query.Param;
 import com.kamila.food.domain.model.Produto;
 import com.kamila.food.domain.model.Restaurante;
 
-public interface ProdutoRepository extends JpaRepository<Produto, Long>{
+public interface ProdutoRepository
+		extends JpaRepository<Produto, Long>, ProdutoRepositoryQueries {
 
 	@Query("from Produto where restaurante.id = :idRestaurante and id = :idProduto")
 	Optional<Produto> findById(@Param("idRestaurante") Long idRestaurante, @Param("idProduto") Long idProduto);

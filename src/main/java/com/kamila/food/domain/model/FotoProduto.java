@@ -1,13 +1,10 @@
 package com.kamila.food.domain.model;
 
-import com.kamila.food.core.validation.Groups;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -21,6 +18,7 @@ public class FotoProduto {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY) // Quando buscar uma foto prosuto entendesse que não deve retornar dados do produto
+    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto", insertable = false, updatable = false)
     @MapsId // Foto produto é mapeada a partir do produto Id
     private Produto produto;
 
@@ -31,5 +29,10 @@ public class FotoProduto {
     private String contentType;
 
     private Long tamanho;
+
+    public void setId() {
+        System.out.println("setting Id");
+        this.id = produto.getId();
+    }
 
 }

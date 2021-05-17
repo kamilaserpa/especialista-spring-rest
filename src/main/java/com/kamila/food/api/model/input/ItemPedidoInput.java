@@ -1,8 +1,8 @@
 package com.kamila.food.api.model.input;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import com.sun.istack.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;

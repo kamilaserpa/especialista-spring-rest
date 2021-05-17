@@ -657,6 +657,9 @@ Importando report. Selecione o arquivo .jrxml e clique em `Compile report`, copi
 
 Artigo sobre problemas ao implementar relacionamento bidirecional OneToOne: [Mapeamento OneToOne bidirecional com Lazy Loading](https://blog.algaworks.com/lazy-loading-com-mapeamento-onetoone/).
 Por esse motivo o produto não recebe propriedade FotoProduto nesta implementação.
+Não será criado Repositorio FotoProduto, pois utilizaremos um repositório por agregado.
+Aggregate root, que no caso é o Produto, possui seu repositório que engloba as entidades dentro desse agregado.
+
 
 ---
 
