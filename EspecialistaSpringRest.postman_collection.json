@@ -1390,7 +1390,7 @@
 							"formdata": [
 								{
 									"key": "descricao",
-									"value": "Corte macio bife-ancho 400g",
+									"value": "Corte macio bife-ancho 500g",
 									"type": "text"
 								},
 								{
@@ -1419,9 +1419,67 @@
 					"response": []
 				},
 				{
-					"name": "Produto/Foto Copy",
+					"name": "Produto/Foto - Salvar",
 					"request": {
 						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Corte macio bife-ancho",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"7",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
