@@ -2,12 +2,11 @@ package com.kamila.food.infrastructure.service.storage;
 
 import com.kamila.food.domain.exception.StorageException;
 import com.kamila.food.domain.service.FotoStorageService;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
-import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,6 +16,16 @@ public class LocalFotoStorageService implements FotoStorageService {
 
     @Value("${food.storage.local.diretorio-fotos}")
     private String diretorioFotos;
+
+    @Override
+    public InputStream recuperar(String nomeArquivo) {
+        try {
+            Path arquivoPath = getArquivoPath(nomeArquivo);
+            return Files.newInputStream(arquivoPath);
+        } catch (Exception e) {
+            throw new StorageException("Não foi possível recuperar arquivo.", e);
+        }
+    }
 
     @Override
     public void armazenar(NovaFoto novaFoto) {
