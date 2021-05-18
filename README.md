@@ -660,6 +660,9 @@ Por esse motivo o produto não recebe propriedade FotoProduto nesta implementaç
 Não será criado Repositorio FotoProduto, pois utilizaremos um repositório por agregado.
 Aggregate root, que no caso é o Produto, possui seu repositório que engloba as entidades dentro desse agregado.
 
+Separar services por responsabilidades, como salvar no banco de dados informações da imagem ou salvar em repositório dados em bytes da imagem.
+Ao utilizar `default` na declaração de um método em interface inserimos uma implementação default para este método na própria interface.
+
 
 ---
 
