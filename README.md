@@ -663,6 +663,9 @@ Aggregate root, que no caso é o Produto, possui seu repositório que engloba as
 Separar services por responsabilidades, como salvar no banco de dados informações da imagem ou salvar em repositório dados em bytes da imagem.
 Ao utilizar `default` na declaração de um método em interface inserimos uma implementação default para este método na própria interface.
 
+No endpoint para buscar dados em bytes da imagem, espera-se que o consumidor da aplicação aceite content-type "image/jpeg".
+Devido essa negociação de conteúdo o consumidor não recebe resposta em json com informação de detalhe de erro caso a foto não existe para os ids informados.
+Nesse caso retornamos apenas `HttpStatus.NotFound` 404.
 
 ---
 
