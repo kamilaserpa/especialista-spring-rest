@@ -25,14 +25,18 @@ public class CatalogoFotoProdutoService {
         Long restauranteId = foto.getRestauranteId();
         Long produtoId = foto.getProduto().getId();
         String nomeNovoArquivo = fotoStorageService.gerarNomeArquivo(foto.getNomeArquivo());
+        String nomeArquivoExistente = null;
 
         Optional<FotoProduto> fotoExistente = produtoRepository.findFotoById(restauranteId, produtoId);
 
-        fotoExistente.ifPresent(fotoProduto -> produtoRepository.delete(fotoProduto));
+        if (fotoExistente.isPresent()) {
+            nomeArquivoExistente = fotoExistente.get().getNomeArquivo();
+            produtoRepository.delete(fotoExistente.get());
+        }
 
-
-        // Salva primeiro no BD informações sobre a foto,
-        // casa haja algum problema os dados em bytes do arquivo não são salvos
+        /* Salva primeiro no BD informações sobre a foto,
+         * casa haja algum problema os dados em bytes do arquivo não serão salvos.
+         */
         foto.setNomeArquivo(nomeNovoArquivo);
         foto = produtoRepository.save(foto);
         produtoRepository.flush();
@@ -42,7 +46,7 @@ public class CatalogoFotoProdutoService {
                 .inputStream(dadosArquivo)
                 .build();
 
-        fotoStorageService.armazenar(novaFoto);
+        fotoStorageService.substituir(nomeArquivoExistente, novaFoto);
 
         return foto;
     }
