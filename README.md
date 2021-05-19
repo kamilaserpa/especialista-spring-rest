@@ -667,6 +667,9 @@ No endpoint para buscar dados em bytes da imagem, espera-se que o consumidor da 
 Devido essa negociação de conteúdo o consumidor não recebe resposta em json com informação de detalhe de erro caso a foto não existe para os ids informados.
 Nesse caso retornamos apenas `HttpStatus.NotFound` 404.
 
+Retirando no controller `@GetMapping(produces = MediaType.APPLICATION_JPEG_VALUE)` tiramos a obrigatoriedade de o cliente ter no header da requisição "Accept: image/jpeg".
+Isso porque outros formatos de imagem também são aceitos na aplicação, como png, ou o header "image/*" até. Dessa maneira optamos por verificar se o header presente aceita o tipo de imagem que será retornado para o consumidor.
+
 ---
 
 ##### Eclipse
