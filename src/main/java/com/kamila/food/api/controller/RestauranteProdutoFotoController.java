@@ -11,6 +11,7 @@ import com.kamila.food.domain.service.CatalogoFotoProdutoService;
 import com.kamila.food.domain.service.FotoStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
@@ -95,6 +96,12 @@ public class RestauranteProdutoFotoController {
         FotoProduto fotoSalva = catalogoFotoProdutoService.salvar(foto, arquivo.getInputStream());
 
         return fotoProdutoModelAssembler.toModel(fotoSalva);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long idRestaurante, @PathVariable Long idProduto) {
+        catalogoFotoProdutoService.remover(idRestaurante, idProduto);
     }
 
 }

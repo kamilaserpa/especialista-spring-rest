@@ -2,7 +2,6 @@ package com.kamila.food.domain.service;
 
 import com.kamila.food.domain.exception.FotoProdutoNaoEncontradaException;
 import com.kamila.food.domain.model.FotoProduto;
-import com.kamila.food.domain.model.Produto;
 import com.kamila.food.domain.repository.ProdutoRepository;
 import com.kamila.food.domain.service.FotoStorageService.NovaFoto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +55,14 @@ public class CatalogoFotoProdutoService {
     public FotoProduto buscarOuFalhar(Long idRestaurante, Long idProduto) {
         return produtoRepository.findFotoById(idRestaurante, idProduto).orElseThrow(
                 () -> new FotoProdutoNaoEncontradaException(idRestaurante, idProduto));
+    }
+
+    @Transactional
+    public void remover(Long idRestaurante, Long idProduto) {
+        FotoProduto fotoProduto = buscarOuFalhar(idRestaurante, idProduto);
+        produtoRepository.delete(fotoProduto);
+        produtoRepository.flush();
+
+        fotoStorageService.remover(fotoProduto.getNomeArquivo());
     }
 }

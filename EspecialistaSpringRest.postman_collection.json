@@ -1550,9 +1550,9 @@
 								"type": "text"
 							},
 							{
-								"key": "",
+								"key": "Accept",
 								"type": "text",
-								"value": "",
+								"value": "image/png",
 								"disabled": true
 							}
 						],
@@ -1571,6 +1571,48 @@
 								}
 							]
 						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"7",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Recuperar Bytes Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
 							"protocol": "http",
