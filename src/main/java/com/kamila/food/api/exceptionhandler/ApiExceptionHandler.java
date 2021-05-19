@@ -17,6 +17,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -45,7 +46,22 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	private MessageSource messageSource;
 	
 	// CUSTOMIZANDO EXCEÇÃO PADRÃO DO SPRING (RESPONSE ENTITY EXCEPTION HANDLER)
-	
+	@Override
+	protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable
+	(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+		/* Esse exception handler HttpMediaTypeNotAcceptableException, chama o handleExceptionInternal passando
+		null no parâmetro body. Esse método cria um body default com uma mensagem padrão.
+		Porém essa requisição acontece quando o cliente solitica arquivo image/png por exemplo,
+		e o exceptionHandlerInternal tenta retornar uma representação json do problema na resposta.
+		Que o no caso o consumidor não aceita. Portanto o body Problem desse caso não retornará um body,
+		apenas status Code. Não altera resultado no consumidor e não cria exceção no código.
+		 */
+
+		return ResponseEntity.status(status)
+				.headers(headers)
+				.build();
+	}
+
 	@Override
 	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 	    return handleValidationInternal(ex, ex.getBindingResult(), headers, status, request);
@@ -222,7 +238,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	/**
 	 * Customiza corpo da resposta de erro EntidadeNaoEncontradaException para Problem, e HttpStatus 404
-	 * @param e
+	 * @param ex
 	 * @return
 	 */
 	@ExceptionHandler(EntidadeNaoEncontradaException.class)
@@ -242,8 +258,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	/**
 	 * Customizando representação do erro de NegocioException para classe Problema, e HttpStatus 400
-	 * @param e
-	 * @return
 	 */
 	@ExceptionHandler(NegocioException.class)
 	public ResponseEntity<?> handleNegocio(NegocioException ex,  WebRequest request) {
