@@ -1,4 +1,4 @@
-package com.kamila.food.domain.exception;
+package com.kamila.food.infrastructure.service.storage;
 
 public class StorageException extends RuntimeException {
 
