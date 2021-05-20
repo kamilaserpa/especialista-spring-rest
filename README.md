@@ -687,6 +687,10 @@ Na aba de "Adicionar usuário" atualizar e selecionar a política criada. Ao cri
 Para criar nova chave secreta de acesso é necessário acessa ro serviço `Identity and Access Management (IAM)`, selecionar "Usuários",
 na ana "Credenciais de Segurança" selecionar `Criar chave de acesso`.
 
+##### Properties
+Ao anotar classe com `@ConfigurationProperties` podemos definir o prefixo presente em application.properties
+que será mapeado para as propriedades da classe, como realizado na classe `StorageProperties`.
+
 ---
 
 ##### Eclipse
