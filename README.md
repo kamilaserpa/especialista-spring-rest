@@ -670,6 +670,23 @@ Nesse caso retornamos apenas `HttpStatus.NotFound` 404.
 Retirando no controller `@GetMapping(produces = MediaType.APPLICATION_JPEG_VALUE)` tiramos a obrigatoriedade de o cliente ter no header da requisição "Accept: image/jpeg".
 Isso porque outros formatos de imagem também são aceitos na aplicação, como png, ou o header "image/*" até. Dessa maneira optamos por verificar se o header presente aceita o tipo de imagem que será retornado para o consumidor.
 
+#### Amazon S3
+Criar conta (gratuita).
+Acessar console, serviços, S3 e criar Bucket ("food-kami").
+Acessar serviço "IAM" e adicionar usuário ("food-test-s3"). Habilitar "Acesso programático".
+No passo "Definir permissões", criar nova política. 
+
+Na nova política inserir serviço "S3" e habilitar:
+ - Gravação: PutObject (gravar arquivo), DeleteObject (excluir)
+ - Gerenciamento de permissões: PutObjectAcl, PutObjectVersionAcl (através da API podemos alterar permissões de um arquivo)
+Em "Recursos", "Adicionar ARNs" deve ser inserido o nome do bucket.
+   
+Na aba de "Adicionar usuário" atualizar e selecionar a política criada. Ao criar usuário é exibida a chave secreta.
+
+##### Chave secreta
+Para criar nova chave secreta de acesso é necessário acessa ro serviço `Identity and Access Management (IAM)`, selecionar "Usuários",
+na ana "Credenciais de Segurança" selecionar `Criar chave de acesso`.
+
 ---
 
 ##### Eclipse
