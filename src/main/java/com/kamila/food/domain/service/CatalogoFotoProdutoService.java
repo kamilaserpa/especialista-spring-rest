@@ -44,6 +44,8 @@ public class CatalogoFotoProdutoService {
 
         NovaFoto novaFoto = NovaFoto.builder()
                 .nomeArquivo(foto.getNomeArquivo())
+                .contentType(foto.getContentType())
+                .size(foto.getTamanho())
                 .inputStream(dadosArquivo)
                 .build();
 

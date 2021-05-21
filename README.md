@@ -672,7 +672,7 @@ Isso porque outros formatos de imagem também são aceitos na aplicação, como 
 
 #### Amazon S3
 Criar conta (gratuita).
-Acessar console, serviços, S3 e criar Bucket ("food-kami").
+Acessar console (https://s3.console.aws.amazon.com/), serviços, S3 e criar Bucket ("food-kami").
 Acessar serviço "IAM" e adicionar usuário ("food-test-s3"). Habilitar "Acesso programático".
 No passo "Definir permissões", criar nova política. 
 
@@ -690,6 +690,10 @@ na ana "Credenciais de Segurança" selecionar `Criar chave de acesso`.
 ##### Properties
 Ao anotar classe com `@ConfigurationProperties` podemos definir o prefixo presente em application.properties
 que será mapeado para as propriedades da classe, como realizado na classe `StorageProperties`.
+
+Após salvo no S3, caso a url do arquivo não esteja exibindo a imagem no navegador, porém fazendo download, deve-se observar em "Metadados"
+se o "Content-type" é de imagem como "image/jpg", "image/png".
+Esse contet-type deve ser enviado juntamente com o arquivo ao S3. 
 
 ---
 
