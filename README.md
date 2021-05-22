@@ -695,6 +695,22 @@ Após salvo no S3, caso a url do arquivo não esteja exibindo a imagem no navega
 se o "Content-type" é de imagem como "image/jpg", "image/png".
 Esse contet-type deve ser enviado juntamente com o arquivo ao S3. 
 
+##### Alternância de implementação de Storage
+Para possibilitar alternância de implementação de storage a partir de configuração no `application/properties`
+criamos um `Bean` Spring que verifica qual a implementação selecionada a partir de configuração.
+Sendo que as instâncias retornadas não estão anotaadas com "@Service" dados que não desejamos que alguma seja a implementação padrão.
+
+```java
+  @Bean
+    public FotoStorageService fotoStorageService() {
+        if (TipoStorage.S3.equals(storageProperties.getTipo())) {
+            return new S3FotoStorageService();
+        } else {
+            return new LocalFotoStorageService();
+        }
+    }
+```
+
 ---
 
 ##### Eclipse
