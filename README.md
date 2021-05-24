@@ -711,6 +711,17 @@ Sendo que as instâncias retornadas não estão anotaadas com "@Service" dados q
     }
 ```
 
+## Capítulo 15 - E-mails transacionais e Domain Events
+
+Plataformas de envio de e-mail:
+ - [Amazon Simple Email Service](https://aws.amazon.com/pt/ses/)
+ - [Mandrill](http://mandrill.com/)
+ - [MailGun](https://www.mailgun.com/)
+ - [SendGrid](https://sendgrid.com/)
+ 
+ SendGrid será utilizada por não solicitar cadastro de cartão de crédito.
+
+
 ---
 
 ##### Eclipse
