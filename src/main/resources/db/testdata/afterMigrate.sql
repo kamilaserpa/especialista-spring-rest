@@ -90,7 +90,9 @@ insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) val
 (2, 'Maria Joaquina', 'maria.vnd@kfood.com', '123', utc_timestamp),
 (3, 'José Souza', 'jose.aux@kfood.com', '123', utc_timestamp),
 (4, 'Sebastião Martins', 'sebastiao.cad@kfood.com', '123', utc_timestamp),
-(5, 'Manoel Lima', 'manoel.loja@gmail.com', '123', utc_timestamp);
+(5, 'Manoel Lima', 'manoel.loja@gmail.com', '123', utc_timestamp),
+(6, 'Débora Mendonça', 'ist.kamila.serpa+teste1@gmail.com', '123', utc_timestamp),
+(7, 'Carlos Vinícios', 'ist.kamila.serpa+teste2@gmail.com', '123', utc_timestamp);
 
 insert into tb_usuario_grupo(id_usuario, id_grupo) values (1, 1), (1, 2), (2, 3);
 
@@ -112,7 +114,7 @@ values (2, 1, 2, 2, 110, 220, 'Menos picante, por favor');
 insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
         endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
         endereco_bairro, status, data_criacao, subtotal, taxa_frete, valor_total)
-values (2, 'ee2f9cc9-a569-4582-9f01-7e53c4f601b8', 4, 1, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro',
+values (2, 'ee2f9cc9-a569-4582-9f01-7e53c4f601b8', 4, 6, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro',
 'CRIADO', utc_timestamp, 79, 0, 79);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
@@ -121,7 +123,7 @@ values (3, 2, 6, 1, 79, 79, 'Ao ponto');
 insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
                     endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
                     endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
-values (3, 'b5741512-8fbc-47fa-9ac1-b530354fc0ff', 1, 4, 1, 1, '38400-222', 'Rua Natal', '200', null, 'Brasil',
+values (3, 'b5741512-8fbc-47fa-9ac1-b530354fc0ff', 1, 7, 1, 1, '38400-222', 'Rua Natal', '200', null, 'Brasil',
         'ENTREGUE', '2020-10-30 21:10:00', '2020-10-30 21:10:45', '2020-10-30 21:55:44', 110, 10, 120);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
@@ -131,7 +133,7 @@ values (4, 3, 2, 1, 110, 110, null);
 insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento,
                     endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
                     endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
-values (4, '5c621c9a-ba61-4454-8631-8aabefe58dc2', 1, 2, 1, 1, '38400-800', 'Rua Fortaleza', '900', 'Apto 504', 'Centro',
+values (4, '5c621c9a-ba61-4454-8631-8aabefe58dc2', 1, 7, 1, 1, '38400-800', 'Rua Fortaleza', '900', 'Apto 504', 'Centro',
         'ENTREGUE', '2019-11-02 20:34:04', '2019-11-02 20:35:10', '2019-11-02 21:10:32', 174.4, 5, 179.4);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)

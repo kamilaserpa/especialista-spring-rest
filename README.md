@@ -719,8 +719,8 @@ Plataformas de envio de e-mail:
  - [MailGun](https://www.mailgun.com/)
  - [SendGrid](https://sendgrid.com/)
  
- SendGrid será utilizada por não solicitar cadastro de cartão de crédito.
-
+SendGrid será utilizada por não solicitar cadastro de cartão de crédito.
+O remetente deve ser um e-mail válido, verificado no SendGrid em "Single Sender Verification". 
 
 ---
 
