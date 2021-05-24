@@ -724,6 +724,11 @@ O remetente deve ser um e-mail válido, verificado no SendGrid em "Single Sender
 A dependência `javax.mail`, artifactId mail foi inserida para envio de e-mails.
 
 [Apache FreeMarker](https://freemarker.apache.org/) é um _template engine_, uma biblioteca Java com a qual se pode formar um Html a partir de um template e com a inserção de objetos.
+FreeMarker fornece alguns recursos como [diretivas](https://freemarker.apache.org/docs/ref_directive_list.html) que podem auxiliar na construção do html como: <#list, <#else, <#items.
+
+Práticas recomendadas para html de e-mails requerem adaptações de Html para Web pois muitos clientes de e-mail são restritivos e não renderizam todo o css e tags específicas.
+Segue [artigo com Boas práticas de HTML para e-mails](https://ajuda.locaweb.com.br/wiki/boas-praticas-de-html-para-email-marketing-ajuda-locaweb/).
+
 
 ---
 
