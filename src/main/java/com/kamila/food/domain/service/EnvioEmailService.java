@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.Singular;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -18,13 +19,17 @@ public interface EnvioEmailService {
     class Mensagem {
 
         @Singular
-        private Set<String> destinatarios;
+        private Set<String> destinatarios; // Set para que não haja elementos repetidos
 
         @NonNull // Caso nullo chama Exception na tentativa de criar objeto Mensagem
         private String assunto;
 
         @NonNull
         private String corpo;
+
+        @Singular("variavel") // Nome atribuído ao singular de "variaveis"
+        private Map<String, Object> variaveis;
+
     }
 
 }

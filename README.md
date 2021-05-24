@@ -720,7 +720,10 @@ Plataformas de envio de e-mail:
  - [SendGrid](https://sendgrid.com/)
  
 SendGrid será utilizada por não solicitar cadastro de cartão de crédito.
-O remetente deve ser um e-mail válido, verificado no SendGrid em "Single Sender Verification". 
+O remetente deve ser um e-mail válido, verificado no SendGrid em "Single Sender Verification". </br>
+A dependência `javax.mail`, artifactId mail foi inserida para envio de e-mails.
+
+[Apache FreeMarker](https://freemarker.apache.org/) é um _template engine_, uma biblioteca Java com a qual se pode formar um Html a partir de um template e com a inserção de objetos.
 
 ---
 
