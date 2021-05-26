@@ -22,18 +22,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import com.kamila.food.domain.event.PedidoConfirmadoEvent;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.kamila.food.domain.exception.NegocioException;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity
 @Table(name = "tb_pedido")
-public class Pedido {
+public class Pedido extends AbstractAggregateRoot<Pedido> {
 
 	@EqualsAndHashCode.Include
 	@Id
@@ -98,6 +100,9 @@ public class Pedido {
 	public void confirmar() {
 		setStatus(StatusPedido.CONFIRMADO);
 		setDataConfirmacao(OffsetDateTime.now());
+
+		// Registrando event q será disparado posteriormente
+		registerEvent(new PedidoConfirmadoEvent(this));
 	}
 	
 	public void entregar() {

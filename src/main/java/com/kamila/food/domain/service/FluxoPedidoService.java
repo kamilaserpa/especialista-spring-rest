@@ -1,12 +1,11 @@
 package com.kamila.food.domain.service;
 
-
+import com.kamila.food.domain.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kamila.food.domain.model.Pedido;
-import com.kamila.food.domain.service.EnvioEmailService.Mensagem;
 
 @Service
 public class FluxoPedidoService {
@@ -15,13 +14,18 @@ public class FluxoPedidoService {
     private EmissaoPedidoService emissaoPedidoService;
 
     @Autowired
-    EnvioEmailService envioEmailService;
+    private PedidoRepository pedidoRepository;
 
     @Transactional
     public void confirmar(String codigoPedido) {
         Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);
         pedido.confirmar();
 
+        // Como o método confirmar() faz alterações em uma instâcia gerenciada pelo EntityManager do JPA, o save no DB já está sendo realizado.
+        // Foi necessário chamar o save() explicitamente apenas para disparar Event que é uma implementação do Spring Data
+        // org.springframework.data
+        pedidoRepository.save(pedido);
+/*
         var mensagem = Mensagem.builder()
                 .assunto(pedido.getRestaurante().getNome() + " - Pedido Confirmado")
                 .corpo("pedido-confirmado.html")
@@ -30,6 +34,8 @@ public class FluxoPedidoService {
                 .build();
 
         envioEmailService.enviar(mensagem);
+
+ */
     }
 
     @Transactional

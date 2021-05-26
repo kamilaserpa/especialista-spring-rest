@@ -729,6 +729,9 @@ FreeMarker fornece alguns recursos como [diretivas](https://freemarker.apache.or
 Práticas recomendadas para html de e-mails requerem adaptações de Html para Web, pois muitos clientes de e-mail são restritivos e não renderizam todo o css e tags específicas.
 Segue [artigo com Boas práticas de HTML para e-mails](https://ajuda.locaweb.com.br/wiki/boas-praticas-de-html-para-email-marketing-ajuda-locaweb/).
 
+* Na implementação Sandbox (caixa de areia) enviamos um e-mail real para um endereço específico.
+  Na implementação Fake apenas visdualizamos o corpo do email no log da aplicação.
+  Para evitar enviar e-mails para contatos de email reais do backup de banco de dados.
 
 ---
 
