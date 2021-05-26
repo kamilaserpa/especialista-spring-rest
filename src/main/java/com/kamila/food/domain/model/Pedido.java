@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import com.kamila.food.domain.event.PedidoCanceladoEvent;
 import com.kamila.food.domain.event.PedidoConfirmadoEvent;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -113,6 +114,8 @@ public class Pedido extends AbstractAggregateRoot<Pedido> {
 	public void cancelar() {
 		setStatus(StatusPedido.CANCELADO);
 		setDataCancelamento(OffsetDateTime.now());
+
+		registerEvent(new PedidoCanceladoEvent(this));
 	}
 	
 	private void setStatus(StatusPedido novoStatus) {
