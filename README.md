@@ -737,10 +737,17 @@ Segue [artigo com Boas práticas de HTML para e-mails](https://ajuda.locaweb.com
 Ao chamar o método `registerEvent(T event)` de **AbstractAggregateRoot** em alguma classe/método, os métodos que estiverem anotados com `@EventListener` em uma classe anotada com `@Component` 
 e recebendo o evento T passado como parâmetro serão executados, sem uma chamada direta.
 
-Recomendado garantir é que a transação no banco de dados seja realizada com sucesso antes de disparar o evento, 
-pois o Spring irá esperar que o objeto do Aggregate Root seja salvo antes de publicar o evento.
+Recomendado garantir é que a transação no banco de dados seja realizada com sucesso antes de disparar o evento. 
+O Spring irá publicar o evento um instante antes de o Aggregate Root ser salvo, ou seja realizar o flush().
 
 Artigo sobre [eventos assíncronos](https://www.baeldung.com/spring-events#anonymous-events).
+
+#### @TransactionalEventListener
+Permite vincular o método listener de um evento a uma fase da transação.
+Assim, se o método foi anotado com `@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)` o evento será publicado após o comit da transação e rollback não será possível.
+Já se o método foi anotado com `@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)` o evento será publicado antes do comit da transação e rollback será realizado em caso de exceção.
+
+
 ---
 
 ##### Eclipse

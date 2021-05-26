@@ -124,7 +124,7 @@ insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id
                     endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
                     endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
 values (3, 'b5741512-8fbc-47fa-9ac1-b530354fc0ff', 1, 7, 1, 1, '38400-222', 'Rua Natal', '200', null, 'Brasil',
-        'ENTREGUE', '2020-10-30 21:10:00', '2020-10-30 21:10:45', '2020-10-30 21:55:44', 110, 10, 120);
+        'CRIADO', '2020-10-30 21:10:00', '2020-10-30 21:10:45', '2020-10-30 21:55:44', 110, 10, 120);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (4, 3, 2, 1, 110, 110, null);
@@ -134,7 +134,7 @@ insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id
                     endereco_id_cidade, endereco_cep, endereco_logradouro, endereco_numero, endereco_complemento,
                     endereco_bairro, status, data_criacao, data_confirmacao, data_entrega, subtotal, taxa_frete, valor_total)
 values (4, '5c621c9a-ba61-4454-8631-8aabefe58dc2', 1, 7, 1, 1, '38400-800', 'Rua Fortaleza', '900', 'Apto 504', 'Centro',
-        'ENTREGUE', '2019-11-02 20:34:04', '2019-11-02 20:35:10', '2019-11-02 21:10:32', 174.4, 5, 179.4);
+        'CRIADO', '2019-11-02 20:34:04', '2019-11-02 20:35:10', '2019-11-02 21:10:32', 174.4, 5, 179.4);
 
 insert into tb_item_pedido (id_item_pedido, id_pedido, id_produto, quantidade, preco_unitario, preco_total, observacao)
 values (5, 4, 3, 2, 87.2, 174.4, null);
