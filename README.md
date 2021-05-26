@@ -733,6 +733,14 @@ Segue [artigo com Boas práticas de HTML para e-mails](https://ajuda.locaweb.com
   Na implementação Fake apenas visdualizamos o corpo do email no log da aplicação.
   Para evitar enviar e-mails para contatos de email reais do backup de banco de dados.
 
+### Events
+Ao chamar o método `registerEvent(T event)` de **AbstractAggregateRoot** em alguma classe/método, os métodos que estiverem anotados com `@EventListener` em uma classe anotada com `@Component` 
+e recebendo o evento T passado como parâmetro serão executados, sem uma chamada direta.
+
+Recomendado garantir é que a transação no banco de dados seja realizada com sucesso antes de disparar o evento, 
+pois o Spring irá esperar que o objeto do Aggregate Root seja salvo antes de publicar o evento.
+
+Artigo sobre [eventos assíncronos](https://www.baeldung.com/spring-events#anonymous-events).
 ---
 
 ##### Eclipse

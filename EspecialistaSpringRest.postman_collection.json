@@ -1445,7 +1445,7 @@
 							"formdata": [
 								{
 									"key": "descricao",
-									"value": "Corte macio bife-ancho",
+									"value": "Corte macio osso em T",
 									"type": "text"
 								},
 								{
@@ -1500,7 +1500,7 @@
 							"formdata": [
 								{
 									"key": "descricao",
-									"value": "Corte macio bife-ancho",
+									"value": "Espeto cupim",
 									"type": "text"
 								},
 								{
@@ -2885,6 +2885,27 @@
 									"key": "campos",
 									"value": "codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido/Email - confirmar e enviar e-mail",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/ee2f9cc9-a569-4582-9f01-7e53c4f601b8/confirmacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"ee2f9cc9-a569-4582-9f01-7e53c4f601b8",
+								"confirmacao"
 							]
 						}
 					},

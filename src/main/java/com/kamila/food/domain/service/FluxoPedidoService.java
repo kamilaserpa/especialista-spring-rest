@@ -25,17 +25,6 @@ public class FluxoPedidoService {
         // Foi necessário chamar o save() explicitamente apenas para disparar Event que é uma implementação do Spring Data
         // org.springframework.data
         pedidoRepository.save(pedido);
-/*
-        var mensagem = Mensagem.builder()
-                .assunto(pedido.getRestaurante().getNome() + " - Pedido Confirmado")
-                .corpo("pedido-confirmado.html")
-                .variavel("pedido", pedido)
-                .destinatario(pedido.getCliente().getEmail())
-                .build();
-
-        envioEmailService.enviar(mensagem);
-
- */
     }
 
     @Transactional
