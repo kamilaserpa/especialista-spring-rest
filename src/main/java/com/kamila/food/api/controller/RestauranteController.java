@@ -1,13 +1,5 @@
 package com.kamila.food.api.controller;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
 import com.fasterxml.jackson.annotation.JsonView;
 import com.kamila.food.api.assembler.RestauranteInputDisassembler;
 import com.kamila.food.api.assembler.RestauranteModelAssembler;
@@ -21,8 +13,13 @@ import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", maxAge = 10)
+import javax.validation.Valid;
+import java.util.List;
+
 @RestController
 @RequestMapping("/restaurantes")
 public class RestauranteController {
@@ -149,8 +146,8 @@ public class RestauranteController {
 
 	@PutMapping("/{restauranteId}/fechamento")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void fechar(@PathVariable Long idRestaurante) {
-	    cadastroRestauranteService.fechar(idRestaurante);
+	public void fechar(@PathVariable Long restauranteId) {
+	    cadastroRestauranteService.fechar(restauranteId);
 	}
 	
 	/*

@@ -764,6 +764,9 @@ Requisições "simples" nem sempre ativam o preflight, como tipo get, post, head
 
 A resposta da request `preflight` com os origins permitidos, tipos de métodos permitidos, é armazenada em cache pelo navegador, por padrão por 
 A propriedade "maxAge" indica quanto temp em segundos o navegador pode salvar a resposta do preflight em cache.
+`@CrossOrigin(origins = "*", maxAge = 10)`
+
+
 ---
 
 ##### Eclipse

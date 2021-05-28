@@ -24,4 +24,4 @@ function fecharRestaurantes() {
 }
 
 $("#botao-consultar").click(consultarRestaurantes);
-$("#botao-fechar").click(consultarRestaurantes);
+$("#botao-fechar").click(fecharRestaurantes);
