@@ -749,7 +749,9 @@ Já se o método foi anotado com `@TransactionalEventListener(phase = Transactio
 
 ## Capítulo 16 - CORS e consumo da API com JavaScript e Java
 
-
+#### CORS
+Política de proteção do navegador que bloqueia requisição de origem diferente da origem do servidor, origem cruzada, Control-Allow-Origin.
+Sendo "origem" a combinação de: protocolo + domínio + porta.
 
 ---
 
