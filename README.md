@@ -1,7 +1,11 @@
 # Especialista Spring Rest
 ![Spring](https://static.computerworld.com.pt/media/2010/09/Spring-Logo.png)
 
-Curso Especialista Spring da AlgaWorks.
+Curso Especialista Spring da AlgaWorks. <br>
+Pastas:
+ - food-api: API principal de exploração das funcionalidades
+ - client: Consumidor JavaScript da API principal (food-api)
+ - food-java-client: Consumidor Java da API principal (food-api)
 
 ## Capítulo 2 - Spring e Injeção de Dependências
 
@@ -767,6 +771,7 @@ A propriedade "maxAge" indica quanto temp em segundos o navegador pode salvar a 
 `@CrossOrigin(origins = "*", maxAge = 10)`
 
 [Definição de requisição simples, de acordo com CORS.](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)
+
 
 ---
 
