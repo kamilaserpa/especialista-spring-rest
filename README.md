@@ -766,6 +766,7 @@ A resposta da request `preflight` com os origins permitidos, tipos de métodos p
 A propriedade "maxAge" indica quanto temp em segundos o navegador pode salvar a resposta do preflight em cache.
 `@CrossOrigin(origins = "*", maxAge = 10)`
 
+[Definição de requisição simples, de acordo com CORS.](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)
 
 ---
 

@@ -23,5 +23,32 @@ function fecharRestaurantes() {
   });
 }
 
-$("#botao-consultar").click(consultarRestaurantes);
-$("#botao-fechar").click(fecharRestaurantes);
+function consultarFormasPagamento() {
+  $.ajax({
+    url: "http://localhost:8080/formas-pagamento",
+    type: "get",
+
+    success: function(response) {
+      preencherTabelaFormasPagamento(response);
+    }
+  });
+}
+
+function preencherTabelaFormasPagamento(formasPagamento) {
+  $("#tabela tbody").remove();
+
+  $.each(formasPagamento, function(i, formaPagamento) {
+    var linha = $("<tr>");
+
+    linha.append(
+      $("<td>").text(formaPagamento.id),
+      $("<td>").text(formaPagamento.descricao)
+    );
+
+    linha.appendTo("#tabela");
+  })
+}
+
+$("#btn-consultar-restaurantes").click(consultarRestaurantes);
+$("#btn-fechar-restaurante").click(fecharRestaurantes);
+$("#btn-consultar-formas-pagamento").click(consultarFormasPagamento);
