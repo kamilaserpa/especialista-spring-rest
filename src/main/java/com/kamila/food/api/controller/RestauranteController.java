@@ -22,7 +22,7 @@ import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 
-@CrossOrigin(origins = "*") // http://localhost:8080"
+@CrossOrigin(origins = "*", maxAge = 10)
 @RestController
 @RequestMapping("/restaurantes")
 public class RestauranteController {

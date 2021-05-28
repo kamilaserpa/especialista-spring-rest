@@ -753,6 +753,17 @@ Já se o método foi anotado com `@TransactionalEventListener(phase = Transactio
 Política de proteção do navegador que bloqueia requisição de origem diferente da origem do servidor, origem cruzada, Control-Allow-Origin.
 Sendo "origem" a combinação de: protocolo + domínio + porta.
 
+##### Preflight
+Preflight é uma solicitação de comprovação, uma pequena solicitação enviada pelo navegador antes da solicitação real.
+Ele contém informações como qual método HTTP é usado, bem como se algum cabeçalho HTTP personalizado está presente.
+O preflight dá ao servidor a chance de examinar a aparência da solicitação real antes de ser feita.
+O servidor pode então indicar se o navegador deve enviar a solicitação real, retornando os headers do CORS aceitos, ou retornar um erro ao cliente sem enviar a solicitação.
+Identifica-se pelo Request Method: `OPTIONS` inserido pelo navegador no envio da requisição.
+Só acontece quando a request é realizada de uma origem diferente do servidor.
+Requisições "simples" nem sempre ativam o preflight, como tipo get, post, head, ou requisições com cabeçalhos comuns (não-específicos).
+
+A resposta da request `preflight` com os origins permitidos, tipos de métodos permitidos, é armazenada em cache pelo navegador, por padrão por 
+A propriedade "maxAge" indica quanto temp em segundos o navegador pode salvar a resposta do preflight em cache.
 ---
 
 ##### Eclipse
