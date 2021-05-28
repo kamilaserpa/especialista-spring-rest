@@ -34,6 +34,33 @@ function consultarFormasPagamento() {
   });
 }
 
+function cadastrarFormasPagamento() {
+  var formaPagamentoJson = JSON.stringify({
+    "descricao": $("#campo-descricao").val()
+  });
+
+  $.ajax({
+    url: "http://localhost:8080/formas-pagamento",
+    type: "post",
+    data: formaPagamentoJson,
+    contentType: "application/json",
+
+    success: function(response) {
+      alert("Forma de pagamento adicionada!")
+      consultarFormasPagamento(response);
+    },
+
+    error: function(error) {
+      if (error.status = 400) {
+        var problem = JSON.parse(error.responseText);
+        alert(problem.userMessage);
+      } else {
+        alert("Erro ao cadastrar forma de pagamento.");
+      }
+    }
+  });
+}
+
 function preencherTabelaFormasPagamento(formasPagamento) {
   $("#tabela tbody").remove();
 
@@ -52,3 +79,4 @@ function preencherTabelaFormasPagamento(formasPagamento) {
 $("#btn-consultar-restaurantes").click(consultarRestaurantes);
 $("#btn-fechar-restaurante").click(fecharRestaurantes);
 $("#btn-consultar-formas-pagamento").click(consultarFormasPagamento);
+$("#btn-cadastrar-forma-pagamento").click(cadastrarFormasPagamento);
