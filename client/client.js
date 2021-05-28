@@ -4,7 +4,7 @@ function consultarRestaurantes() {
     type: "get",
 
     success: function(response) {
-      $("#conteudo").text(response);
+      $("#conteudo").text(JSON.stringify(response));
     }
   });
 }
