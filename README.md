@@ -747,6 +747,9 @@ Permite vincular o método listener de um evento a uma fase da transação.
 Assim, se o método foi anotado com `@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)` o evento será publicado após o comit da transação e rollback não será possível.
 Já se o método foi anotado com `@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)` o evento será publicado antes do comit da transação e rollback será realizado em caso de exceção.
 
+## Capítulo 16 - CORS e consumo da API com JavaScript e Java
+
+
 
 ---
 
