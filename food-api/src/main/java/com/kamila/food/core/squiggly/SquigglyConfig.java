@@ -23,7 +23,7 @@ public class SquigglyConfig {
 	public FilterRegistrationBean<SquigglyRequestFilter> squigglyRequestFilter(ObjectMapper objectMapper) {
 		Squiggly.init(objectMapper, new RequestSquigglyContextProvider("campos", null));
 		
-		// Habilitando interceptador apenas para os endpoint listados
+		// Habilitando interceptador apenas para os endpoints listados
 		var urlPatterns = Arrays.asList("/pedidos/*", "/restaurantes/*");
 		
 		var filterRegistrationBean = new FilterRegistrationBean<SquigglyRequestFilter>();
