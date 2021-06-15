@@ -800,14 +800,22 @@ Quando não fazer cache?
  - Quando os consumidores não toleram diferenças entre estados no cache local e no servidor. Quando há diferenças no objeto que não devem ser toleradas pois o dado atualizado é importante para a aplicação.
 
 #### Cabeçalho Cache-Control
-Ao retornar o header Cache-Control o navegador mantém a informação durante o tempo determinado pelo Origin Server, não realizando de fato a requisição durante este período de tempo.
-O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tester` do Chrome pode ser utilizada.
+Ao retornar o header Cache-Control o navegador mantém a informação `fresh` durante o tempo determinado pelo Origin Server, não realizando de fato a requisição durante este período de tempo.
+O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tester` do Chrome pode ser utilizada. Após o tempo determinado em max-age a informação se torna velha, `stale`.
 
 ```java
  return ResponseEntity.ok()
 				.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
 ```
 Navegador indica que o dado foi recuperado do cache local: ![test](/food-api/cache.png)
+
+#### Validações e requisições condicionais com Etags
+
+Entity Tag código que identifica a representação retornada em uma requisição, exemplo: "6198c0be3".
+Após uma request ser considerada stale, ela será realizada novamente com o cabeçalho `If-None-Match`. Por exemplo: 'If-None-Match: "6198c0be3"'.
+ - Servidor, me retorne o dado solicitado caso a representação Etag que eu possuo ("6198c0be3") esteja desatualizada. Caso contrário, apenas me informe que a representação está atualizada.
+ 
+Caso a infromação esteja atualizada o servidor retorna `304 - Not Modified`, sem corpo, e o browser altera a informação para "fresh".
 
 
 ---
