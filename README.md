@@ -783,6 +783,22 @@ Object da biblioteca Jackson utilizada para realizar desserialização de conte�
         var problem = mapper.readValue(cause.getResponseBodyAsString(), Problem.class);
 ```
 
+## Capítulo 17 - Cache de HTTP
+
+Na repetição de uma requisição utilizar a resposta recebida anteriormente armazenada em cache, não realizando uma nova requisição. 
+Cache privado: localizado no consumidor, apenas ele tem acesso.
+Cache compartilhado: localizado no servidor, em um proxy por exemplo.
+
+Benefícios da utilização de cache: 
+ - Reduz uso de banda, importante para dispositivos móveis com banda limitada
+ - Reduz latência
+ - Reduz carga nos servidores, menos requisições são processadas pelo origin server
+ - Esconde problemas na rede
+
+Quando não fazer cache?
+ - Quando os dados mudam com frequência
+ - Quando os consumidores não toleram diferenças entre estados no cache local e no servidor. Quando há diferenças no objeto que não devem ser toleradas pois o dado atualizado é importante para a aplicação.
+
 
 ---
 
