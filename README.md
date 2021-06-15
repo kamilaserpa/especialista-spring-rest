@@ -799,6 +799,16 @@ Quando não fazer cache?
  - Quando os dados mudam com frequência
  - Quando os consumidores não toleram diferenças entre estados no cache local e no servidor. Quando há diferenças no objeto que não devem ser toleradas pois o dado atualizado é importante para a aplicação.
 
+#### Cabeçalho Cache-Control
+Ao retornar o header Cache-Control o navegador mantém a informação durante o tempo determinado pelo Origin Server, não realizando de fato a requisição durante este período de tempo.
+O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tester` do Chrome pode ser utilizada.
+
+```java
+ return ResponseEntity.ok()
+				.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
+```
+![test](/food-api/cache.png)
+
 
 ---
 
