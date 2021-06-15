@@ -807,7 +807,7 @@ O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tes
  return ResponseEntity.ok()
 				.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
 ```
-![test](/food-api/cache.png)
+Navegador indica que o dado foi recuperado do cache local: ![test](/food-api/cache.png)
 
 
 ---

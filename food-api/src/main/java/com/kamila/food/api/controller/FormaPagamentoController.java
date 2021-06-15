@@ -51,19 +51,22 @@ public class FormaPagamentoController {
         List<FormaPagamento> todasFormasPagamento = formaPagamentoRepository.findAll();
 
         List<FormaPagamentoModel> formasPagamentoModel = formaPagamentoModelAssembler
-				.toCollectionModel(todasFormasPagamento);
+                .toCollectionModel(todasFormasPagamento);
 
         // Header de Cache
         return ResponseEntity.ok()
-				.cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
-				.body(formasPagamentoModel);
+                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
+                .body(formasPagamentoModel);
     }
 
     @GetMapping("/{idFormaPagamento}")
-    public FormaPagamentoModel buscar(@PathVariable Long idFormaPagamento) {
+    public ResponseEntity<FormaPagamentoModel> buscar(@PathVariable Long idFormaPagamento) {
         FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(idFormaPagamento);
-        return formaPagamentoModelAssembler.toModel(formaPagamento);
+        FormaPagamentoModel formaPagamentoModel = formaPagamentoModelAssembler.toModel(formaPagamento);
 
+        return ResponseEntity.ok()
+                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
+                .body(formaPagamentoModel);
     }
 
     @PostMapping
