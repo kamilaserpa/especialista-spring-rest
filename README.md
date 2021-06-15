@@ -807,15 +807,24 @@ O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tes
  return ResponseEntity.ok()
 				.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
 ```
-Navegador indica que o dado foi recuperado do cache local: ![test](/food-api/cache.png)
+Navegador indica que o dado foi recuperado do cache local: ![cache](/food-api/cache.png)
 
 #### Validações e requisições condicionais com Etags
 
-Entity Tag código que identifica a representação retornada em uma requisição, exemplo: "6198c0be3".
+Entity Tag código que identifica a representação retornada em uma requisição, exemplo: "6198c0be3", hash calculado a partir do corpo de resposta. Se o corpo for diferente o hash será diferente e a requisição retornara o objeto completo. <br>
 Após uma request ser considerada stale, ela será realizada novamente com o cabeçalho `If-None-Match`. Por exemplo: 'If-None-Match: "6198c0be3"'.
  - Servidor, me retorne o dado solicitado caso a representação Etag que eu possuo ("6198c0be3") esteja desatualizada. Caso contrário, apenas me informe que a representação está atualizada.
  
 Caso a infromação esteja atualizada o servidor retorna `304 - Not Modified`, sem corpo, e o browser altera a informação para "fresh".
+
+```java
+ 	@Bean // Habilitando Filtro comparador de Etags
+    public Filter shallowEtagHeaderFilter() {
+        return new ShallowEtagHeaderFilter();
+    }
+```
+Navegador exibindo Etag recebida: <br>
+ ![etag](/food-api/etag.png)
 
 
 ---
