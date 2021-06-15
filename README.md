@@ -772,6 +772,17 @@ A propriedade "maxAge" indica quanto temp em segundos o navegador pode salvar a 
 
 [Definição de requisição simples, de acordo com CORS.](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)
 
+##### ObjectMapper
+Object da biblioteca Jackson utilizada para realizar desserialização de conteúdo JSON em um objeto Java.
+
+```java
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // Ignorando propriedades recebidas mas não mapeadas
+        mapper.registerModule(new JavaTimeModule()); // Habilitando instanciação de classes Date
+        mapper.findAndRegisterModules();
+        var problem = mapper.readValue(cause.getResponseBodyAsString(), Problem.class);
+```
+
 
 ---
 
