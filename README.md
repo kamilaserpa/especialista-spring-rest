@@ -767,7 +767,7 @@ Só acontece quando a request é realizada de uma origem diferente do servidor.
 Requisições "simples" nem sempre ativam o preflight, como tipo get, post, head, ou requisições com cabeçalhos comuns (não-específicos).
 
 A resposta da request `preflight` com os origins permitidos, tipos de métodos permitidos, é armazenada em cache pelo navegador, por padrão por 
-A propriedade "maxAge" indica quanto temp em segundos o navegador pode salvar a resposta do preflight em cache.
+A propriedade "maxAge" indica quanto tempo em segundos o navegador pode salvar a resposta do preflight em cache.
 `@CrossOrigin(origins = "*", maxAge = 10)`
 
 [Definição de requisição simples, de acordo com CORS.](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests)
@@ -805,9 +805,11 @@ O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tes
 
 ```java
  return ResponseEntity.ok()
-				.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
+ 		.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
+
 ```
 Navegador indica que o dado foi recuperado do cache local: ![cache](/food-api/cache.png)
+
 
 #### Validações e requisições condicionais com Etags
 
@@ -825,6 +827,19 @@ Caso a infromação esteja atualizada o servidor retorna `304 - Not Modified`, s
 ```
 Navegador exibindo Etag recebida: <br>
  ![etag](/food-api/etag.png)
+
+#### Diretivas de Cache-Control na resposta HTTP
+
+ - Private:
+Configuração que informa que a resposta seja armazenada apenas em caches locais, logo, caches compartilhados entre o servidor e o consumidor, como o cache de um proxy reverso, não podem armazenar o dado de resposta.<br>
+O padrão é `cachePublic` caso não configurado. Exemplo: 
+`ResponseEntity.ok().cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePrivate())`
+ - NoCache:
+Indica que se a resposta for cacheada (local ou compartilhado) é necessário sempre que seja realizada a validação pelo servidor. A validação da resposta cache será sempre realizada, a informação está sempre "velha", ou seja, em modo "stale". Sendo enviado o cabeçalho `If-None-Match` para validação. <br>
+`ResponseEntity.ok().cacheControl(CacheControl.noCache())`
+ - NoStore:
+Indica que a resposta não é cacheavél, em nehum tipo de cache.
+`ResponseEntity.ok().cacheControl(CacheControl.noStore())`
 
 
 ---

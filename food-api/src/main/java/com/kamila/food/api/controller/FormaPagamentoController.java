@@ -55,7 +55,10 @@ public class FormaPagamentoController {
 
         // Header de Cache
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
+                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePublic())
+//                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePrivate())
+//                .cacheControl(CacheControl.noCache())
+//                .cacheControl(CacheControl.noStore())
                 .body(formasPagamentoModel);
     }
 

@@ -17,13 +17,13 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**") // Habilita acesso a qlqr origin em todo o Projeto
                 .allowedMethods("*"); // Por padrão estão aqui métodos simples: get, head e post
 //                .allowedOrigins("http://www.food.local")
-//                .maxAge(30);
+//                .maxAge(30); // Tempo (segundos) q o navegador pode armazenar resposta do preflight em cache
     }
 
     /**
      * Ao retornar uma resposta de requisição, ele gera um hash da resposta e insere no cabeçalho Etag
      * e verifica se o hash coincide com o header If-non-match.
-     * Caso seja igual, a requsição retorna apenas 304
+     * Caso seja igual, a requisição retorna apenas 304.
      */
     @Bean
     public Filter shallowEtagHeaderFilter() {
