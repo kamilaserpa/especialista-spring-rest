@@ -817,7 +817,7 @@ Entity Tag código que identifica a representação retornada em uma requisiçã
 Após uma request ser considerada stale, ela será realizada novamente com o cabeçalho `If-None-Match`. Por exemplo: 'If-None-Match: "6198c0be3"'.
  - Servidor, me retorne o dado solicitado caso a representação Etag que eu possuo ("6198c0be3") esteja desatualizada. Caso contrário, apenas me informe que a representação está atualizada.
  
-Caso a infromação esteja atualizada o servidor retorna `304 - Not Modified`, sem corpo, e o browser altera a informação para "fresh".
+Caso a informação esteja atualizada o servidor retorna `304 - Not Modified`, sem corpo, e o browser altera a informação para "fresh".
 
 ```java
  	@Bean // Habilitando Filtro comparador de Etags
@@ -841,6 +841,9 @@ Indica que se a resposta for cacheada (local ou compartilhado) é necessário se
 Indica que a resposta não é cacheavél, em nehum tipo de cache.
 `ResponseEntity.ok().cacheControl(CacheControl.noStore())`
 
+#### Diretiva no-cache no cabeçalho Cache-Control da Requisição
+
+Do lado do consumidor ao adicionar o header `Cache-Control: no-cache` é possível forçar que a requisição seja feita no servidor e não capturada do cache.
 
 ---
 
