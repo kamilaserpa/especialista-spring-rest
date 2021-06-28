@@ -10,6 +10,9 @@ import javax.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.OffsetDateTime;
 
 @Getter
 @Data
@@ -26,5 +29,8 @@ public class FormaPagamento {
 
 	@Column(name = "ds_forma_pagamento", nullable = false)
 	private String descricao;
+
+	@UpdateTimestamp // O Jpa insere a data
+	private OffsetDateTime dataAtualizacao;
 
 }

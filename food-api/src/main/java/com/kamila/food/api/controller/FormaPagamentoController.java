@@ -1,5 +1,6 @@
 package com.kamila.food.api.controller;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +29,8 @@ import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.FormaPagamento;
 import com.kamila.food.domain.repository.FormaPagamentoRepository;
 import com.kamila.food.domain.service.CadastroFormaPagamentoService;
+import org.springframework.web.context.request.ServletWebRequest;
+import org.springframework.web.filter.ShallowEtagHeaderFilter;
 
 @RestController
 @RequestMapping("/formas-pagamento")
@@ -45,17 +48,35 @@ public class FormaPagamentoController {
     @Autowired
     private FormaPagamentoInputDisassembler formaPagamentoInputDisassembler;
 
-
+    /**
+     * Enquanto não houver modificação em alguma tupla da tb_forma_pagamento, consumidor irá usar o cache local, se fresh.
+     * Se stale (após maxAge: 10 segundos), a requisição irá  verificar se eTag é a mesma, caso positivo é retornado null e o consumidor utiliza
+     *  o dado em cache. Cso negativo a consulta é realizada novamente e retornado novo eTag.
+     */
     @GetMapping
-    public ResponseEntity<List<FormaPagamentoModel>> listar() {
-        List<FormaPagamento> todasFormasPagamento = formaPagamentoRepository.findAll();
+    public ResponseEntity<List<FormaPagamentoModel>> listar(ServletWebRequest request) {
+        // Desabilitando ShallowEtagHeaderFilter
+        ShallowEtagHeaderFilter.disableContentCaching(request.getRequest());
 
+        String eTag = "0"; // imaginando eTag padrão para tabela vazia = 0
+
+        OffsetDateTime dataUltimaAtualizacao = formaPagamentoRepository.getDataUltimaAtualizacao();
+        if (dataUltimaAtualizacao != null) {
+            eTag = String.valueOf(dataUltimaAtualizacao.toEpochSecond());
+        }
+        if (request.checkNotModified(eTag)) {
+            // Se eTag recebida coincide com eTag calculada a execução acaba aqui.
+            // É retornado null e o consumidor utiliza o dado em cache
+            return  null;
+        }
+
+        List<FormaPagamento> todasFormasPagamento = formaPagamentoRepository.findAll();
         List<FormaPagamentoModel> formasPagamentoModel = formaPagamentoModelAssembler
                 .toCollectionModel(todasFormasPagamento);
-
         // Header de Cache
         return ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePublic())
+                .eTag(eTag) // ou .header("Etag", eTag)
 //                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePrivate())
 //                .cacheControl(CacheControl.noCache())
 //                .cacheControl(CacheControl.noStore())

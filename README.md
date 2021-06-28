@@ -845,6 +845,13 @@ Indica que a resposta não é cacheavél, em nehum tipo de cache.
 
 Do lado do consumidor ao adicionar o header `Cache-Control: no-cache` é possível forçar que a requisição seja feita no servidor e não capturada do cache.
 
+#### Deep Etags
+
+Implementação realizada "na mão" para verificação de eTags, como a adição de uma coluna referente à data de atualização. Calculando um valor para última data de atualização deuma tupla. Como em `FormaPagamentoController`, a requisiçãor recebe `ServletWebRequest` como parâmetro. Após o maxAge do cache o endpoint verifica se este parâmetro possui eTag é semelhante ao eTag calculado. Caso positivo a request retorna nulo (http status 304) e o consumidor/navegador utiliza o cache armazenado como resposta. <br>
+Verificando se eTag é igual: `request.checkNotModified(eTag)`. Vale ressaltar que nesse caso foi realizado didaticamente, necessário avaliar se vale a pena a implementação.
+
+
+
 ---
 
 ##### Eclipse
