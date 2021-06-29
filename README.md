@@ -857,6 +857,13 @@ Documentar facilita a compreensão e desenvolvimento do consumidor da API. O res
 
  Especificações para descrever a API em formato padrão e gerar documentação através de ferramentas, entre outras funcionalidades: RAML, API Blueprint, OpenAPI Specification (que anteriormente foi chamada Swagger Specification).
 
+### OpenAPI Specification
+
+Padronização para descrever comportamento de Rest API. O resultado final é um arquivo `json` ou `yaml` com as definições da API, descrições dos endpoints, parâmetros de entrada, modelos de representação de entrada e saída, códigos http de retorno e etc. Agnóstica à linguagem de programação (não é apenas pra Java). <br>
+Até a versão 2 era chamada Swagger e proprietária da empresa Smart Bear, após isso se tornou de domínio da comunidade. Atualmente Swagger é um conjunto de ferramentas que auxiliam a espeficidação como: Swagger Editor, Swagger UI, Swagger Codegen (gera código de clientes e controllers).<br>
+Nesse projeto será utilizado o SpringFox para gerar o Json.
+
+
 ---
 
 ##### Eclipse
