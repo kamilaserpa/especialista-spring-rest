@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,19 +44,22 @@ public class CidadeController {
 	
 	@Autowired
 	private CidadeInputDisassembler cidadeInputDisassembler;
-	
+
+	@ApiOperation("Lista as cidades")
 	@GetMapping
 	public List<CidadeModel> listar() {
 		return cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
 	}
-	
+
+	@ApiOperation("Busca uma cidade por ID")
 	@GetMapping("/{idCidade}")
 	public CidadeModel buscar(@PathVariable Long idCidade) {
 		Cidade cidade = cadastroCidadeService.buscarOuFalhar(idCidade);
 		return cidadeModelAssembler.toModel(cidade);
 
 	}
-	
+
+	@ApiOperation("Cadastra uma cidade")
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public CidadeModel salvar(@RequestBody @Valid CidadeInput cidadeInput) {
@@ -66,7 +70,8 @@ public class CidadeController {
 			throw new NegocioException(e.getMessage(), e); // Alterando código de erro para 400
 		}
 	}
-	
+
+	@ApiOperation("Atualiza uma cidade por ID")
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public CidadeModel atualizar(@PathVariable Long id, @RequestBody @Valid CidadeInput cidadeInput) {
@@ -88,6 +93,7 @@ public class CidadeController {
 		}
 	}
 
+	@ApiOperation("Exclui uma cidade por ID")
 	@DeleteMapping("/{idCidade}")
 	public void remover(@PathVariable Long idCidade) {
 		cadastroCidadeService.remover(idCidade);

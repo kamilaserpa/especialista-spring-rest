@@ -885,6 +885,8 @@ public class SpringFoxConfig {
 	...
 ```
 
+ - A descrição dos endpoints tem por padrão o nome do método, para alterar basta utilizar no método a anotação `@ApiOperation("Descrição")`
+
 
 ---
 
