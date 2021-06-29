@@ -885,7 +885,12 @@ public class SpringFoxConfig {
 	...
 ```
 
- - A descrição dos endpoints tem por padrão o nome do método, para alterar basta utilizar no método a anotação `@ApiOperation("Descrição")`
+ - A descrição dos endpoints tem por padrão o nome do método, para alterar basta utilizar no método a anotação `@ApiOperation("Descrição")`.
+ - A descrição de um parâmetro se dá por `@ApiParam(value = "ID de uma cidade", example = "1")`, a propriedade "example" foi inserida para evitar warning message no console.
+ - Descrição de um modelo por anotação na classe model: `@ApiModel(value = "Cidade", description = "Representa uma cidade")`.
+ - Descrição de propriedade de modelo: `@ApiModelProperty(value = "ID da cidade", example = "1")`.
+
+
 
 
 ---
