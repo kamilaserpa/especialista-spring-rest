@@ -861,7 +861,8 @@ Documentar facilita a compreensão e desenvolvimento do consumidor da API. O res
 
 Padronização para descrever comportamento de Rest API. O resultado final é um arquivo `json` ou `yaml` com as definições da API, descrições dos endpoints, parâmetros de entrada, modelos de representação de entrada e saída, códigos http de retorno e etc. Agnóstica à linguagem de programação (não é apenas pra Java). <br>
 Até a versão 2 era chamada Swagger e proprietária da empresa Smart Bear, após isso se tornou de domínio da comunidade. Atualmente Swagger é um conjunto de ferramentas que auxiliam a espeficidação como: Swagger Editor, Swagger UI, Swagger Codegen (gera código de clientes e controllers).<br>
-Nesse projeto será utilizado o SpringFox para gerar o Json.
+Nesse projeto será utilizado o `SpringFox` para gerar o Json. Observação: o SpringFox tem suporte até a especificação OpenAPI 2.
+O Json fica acessível através da url: `http://localhost:8080/v2/api-docs`.
 
 
 ---

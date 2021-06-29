@@ -21,6 +21,7 @@
 		<jasperreports.version>6.16.0</jasperreports.version>
 		<aws-java-sdk-s3.version>1.11.1022</aws-java-sdk-s3.version>
 		<javax-mail.version>1.4.7</javax-mail.version>
+        <springfox.version>2.9.2</springfox.version>
 	</properties>
 
 	<dependencies>
@@ -85,6 +86,12 @@
 		    <groupId>com.github.bohnman</groupId>
 		    <artifactId>squiggly-filter-jackson</artifactId>
 		    <version>${squiggly.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 
 		<dependency>
@@ -120,6 +127,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
 
 	</dependencies>
 
