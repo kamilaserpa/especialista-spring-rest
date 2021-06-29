@@ -864,6 +864,9 @@ Até a versão 2 era chamada Swagger e proprietária da empresa Smart Bear, apó
 Nesse projeto será utilizado o `SpringFox` para gerar o Json. Observação: o SpringFox tem suporte até a especificação OpenAPI 2.
 O Json fica acessível através da url: `http://localhost:8080/v2/api-docs`.
 
+#### [Swagger UI](https://swagger.io/tools/swagger-ui/)
+Projeto implementado para exibir documentações com especificação OpenAPI. Arquivos estáticos que montam dinamicamente a documentação através do Json que descreve a API fornecido pelo SpringFox.
+
 
 ---
 
