@@ -867,6 +867,24 @@ O Json fica acessível através da url: `http://localhost:8080/v2/api-docs`.
 #### [Swagger UI](https://swagger.io/tools/swagger-ui/)
 Projeto implementado para exibir documentações com especificação OpenAPI. Arquivos estáticos que montam dinamicamente a documentação através do Json que descreve a API fornecido pelo SpringFox.
 
+```java
+@Configuration
+@EnableSwagger2
+public class SpringFoxConfig {
+    @Bean
+    public Docket apiDocket() {
+        return new Docket(DocumentationType.SWAGGER_2).select()
+                .apis(Predicates.and( 	// Documenta controllers dos pacotes especificados (mais de um)
+                        RequestHandlerSelectors.basePackage("com.kamila.food.api"),
+                        RequestHandlerSelectors.basePackage("com.kamila.food.api.outro"))
+                )
+                .apis(RequestHandlerSelectors.basePackage("com.kamila.food.api")) // Documenta controllers do pacote específico
+                .paths(PathSelectors.ant("/restaurantes/*")) // Documenta controllers por path
+                .build();
+    }
+	...
+```
+
 
 ---
 

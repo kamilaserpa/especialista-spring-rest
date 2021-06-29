@@ -1,9 +1,11 @@
 package com.kamila.food.core.openapi;
 
+import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -18,7 +20,17 @@ public class SpringFoxConfig implements WebMvcConfigurer {
     public Docket apiDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any()) // Tudo q encontrar relacionado a Rest pode documentar
+//                Documenta todos os controllers que encontrar
+//                .apis(RequestHandlerSelectors.any())
+//                Documenta controllers dos pacotes especificados
+//                .apis(Predicates.and(
+//                        RequestHandlerSelectors.basePackage("com.kamila.food.api"),
+//                        RequestHandlerSelectors.basePackage("com.kamila.food.api.outro"))
+//                )
+//                Documenta controllers do pacote específico
+                .apis(RequestHandlerSelectors.basePackage("com.kamila.food.api"))
+//               Documenta controllers de um path
+//               .paths(PathSelectors.ant("/restaurantes/*"))
                 .build();
     }
 
