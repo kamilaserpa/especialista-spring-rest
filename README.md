@@ -865,7 +865,7 @@ Nesse projeto será utilizado o `SpringFox` para gerar o Json. Observação: o S
 O Json fica acessível através da url: `http://localhost:8080/v2/api-docs`.
 
 #### [Swagger UI](https://swagger.io/tools/swagger-ui/)
-Projeto implementado para exibir documentações com especificação OpenAPI. Arquivos estáticos que montam dinamicamente a documentação através do Json que descreve a API fornecido pelo SpringFox.
+Projeto implementado para exibir documentações com especificação OpenAPI. Arquivos estáticos que montam dinamicamente a documentação através do Json que descreve a API fornecido pelo SpringFox. A documentação fica acessível em `http://localhost:8080/swagger-ui.html`.
 
 ```java
 @Configuration
