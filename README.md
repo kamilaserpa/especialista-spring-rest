@@ -850,7 +850,12 @@ Do lado do consumidor ao adicionar o header `Cache-Control: no-cache` é possív
 Implementação realizada "na mão" para verificação de eTags, como a adição de uma coluna referente à data de atualização. Calculando um valor para última data de atualização de uma tupla. Como em `FormaPagamentoController`, a requisição recebe `ServletWebRequest` como parâmetro. Após o maxAge do cache o endpoint verifica se este parâmetro possui eTag é semelhante ao eTag calculado. Caso positivo a request retorna nulo (http status 304) e o consumidor/navegador utiliza o cache armazenado como resposta. <br>
 Verificando se eTag é igual ao receber `If-None-Match`: `request.checkNotModified(eTag)`. Vale ressaltar que nesse caso foi realizado didaticamente, a ShallowEtagHeaderFilter supriria a necessidade. É necessário avaliar se vale a pena a implementação e o processamento.
 
+## Capítulo 18 - Documentação da API com OpenAPI, Swagger UI e SpringFox
 
+Documentar facilita a compreensão e desenvolvimento do consumidor da API. O resultado do nosso trabalho objetiva ajudar outras pessoas.<br>
+ - Cuidados ao documentar uma API: descrever de forma simples e clara o que o endpoint faz, descrever os parâmetros e o modelo de representação de entrada, descrever o modelo de representação retornado em caso de sucesso, descrever o modelo de representação de um problema, garantir que existe consistência entre a documentação e a forma que a API realmente funciona.
+
+ Especificações para descrever a API em formato padrão e gerar documentação através de ferramentas, entre outras funcionalidades: RAML, API Blueprint, OpenAPI Specification (que anteriormente foi chamada Swagger Specification).
 
 ---
 
