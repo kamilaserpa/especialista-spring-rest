@@ -16,10 +16,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.builders.*;
 import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
@@ -45,14 +42,22 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.kamila.food.api"))
-                    .paths(PathSelectors.any())
-                    .build()
+                .apis(RequestHandlerSelectors.basePackage("com.kamila.food.api"))
+                .paths(PathSelectors.any())
+                .build()
                 .useDefaultResponseMessages(false) // Desabilitando httpStatus codes error padrão
                 .globalResponseMessage(RequestMethod.GET, globalGetResponseMessages())
                 .globalResponseMessage(RequestMethod.POST, globalPostResponseMessages())
                 .globalResponseMessage(RequestMethod.PUT, globalPutResponseMessages())
                 .globalResponseMessage(RequestMethod.DELETE, globalDeleteResponseMessages())
+                .globalOperationParameters(Arrays.asList(
+                        new ParameterBuilder()
+                                .name("campos")
+                                .description("Nomes das propriedades para filtrar na resposta, separados por vírgula")
+                                .parameterType("query")
+                                .modelRef(new ModelRef("string")) // Tipo do model
+                                .build()
+                ))
                 .additionalModels(typeResolver.resolve(Problem.class)) // Adicionando Modelo extra para ser exibido em Models
                 .directModelSubstitute(Pageable.class, PageableModelOpenApi.class) // Para exibir os parâmetros recebidos em um Pageable
                 // Substituindo um Page<CozinhaModel> para CozinhasModelOpenApi

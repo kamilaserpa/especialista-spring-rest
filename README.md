@@ -915,6 +915,11 @@ Caso a propriedade esteja anotada com `@ApiModelProperty` a propriedade required
 Na classe de configuração da Documentação é necessário adicionar os códigos de erro para cada tipo Rest de método, assim eles serão exibidos em todas as requisições desse tipo:
 ` .globalResponseMessage(RequestMethod.GET, globalGetResponseMessages())`
 
+#### Parâmetros implícitos
+O Squiggly, por exemplo, filtra as requisições e é capaz de inserir um parâmetro implícito, no nosso caso é "campos" configurado em `SquigglyConfig`.<br>
+Caso este parâmetro esteja presente globalmente, ou seja, em todo o projeto, pode-se configurar na classe de configuração da documentação através de `globalOperationParameters`.
+
+
 ---
 
 ##### Eclipse
