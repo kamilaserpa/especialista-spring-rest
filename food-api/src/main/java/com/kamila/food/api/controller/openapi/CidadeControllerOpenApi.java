@@ -4,8 +4,6 @@ import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.CidadeModel;
 import com.kamila.food.api.model.input.CidadeInput;
 import io.swagger.annotations.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -27,7 +25,6 @@ public interface CidadeControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 201, message = "Cidade cadastrada")
     })
-    @ResponseStatus(HttpStatus.CREATED)
     public CidadeModel salvar(@ApiParam(name = "corpo", value = "Representação de uma cidade")
                                       CidadeInput cidadeInput);
 
@@ -36,7 +33,6 @@ public interface CidadeControllerOpenApi {
             @ApiResponse(code = 200, message = "Cidade atualizada"),
             @ApiResponse(code = 404, message = "Cidade não encontrada", response = Problem.class)
     })
-    @ResponseStatus(HttpStatus.OK)
     public CidadeModel atualizar(@ApiParam(value = "ID de uma cidade", example = "1")
                                          Long id,
                                  @ApiParam(name = "corpo", value = "Representação de uma cidade com os novos dados")
