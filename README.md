@@ -889,6 +889,8 @@ public class SpringFoxConfig {
  - A descrição de um parâmetro se dá por `@ApiParam(value = "ID de uma cidade", example = "1")`, a propriedade "example" foi inserida para evitar warning message no console.
  - Descrição de um modelo por anotação na classe model: `@ApiModel(value = "Cidade", description = "Representa uma cidade")`.
  - Descrição de propriedade de modelo: `@ApiModelProperty(value = "ID da cidade", example = "1")`.
+ - As propriedades são exibidas em ordem alfabética, para customizar isso adicionar o atributo `position`: <br>
+ `@ApiModelProperty(example = "400", position = 1)`
 
 #### BeanValidation Documentação
 Para exibição de obrigatoriedade de propriedades oriundas do BeanValidation deve ser adicionada a dependência no projeto e inserida na classe de configuração `@Import(BeanValidatorPluginsConfiguration.class)`.
@@ -905,7 +907,8 @@ Caso a propriedade esteja anotada com `@ApiModelProperty` a propriedade required
 É necesário ter atenção pois a biblioteca por si só não exibe as obrigatoriedades em todos os casos.
 
 #### Customizando códigos de erro
-
+Na classe de configuração da Documentação é necessário adicionar os códigos de erro para cada tipo Rest de método, assim eles serão exibidos em todas as requisições desse tipo:
+` .globalResponseMessage(RequestMethod.GET, globalGetResponseMessages())`
 
 ---
 
