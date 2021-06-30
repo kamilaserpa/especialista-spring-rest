@@ -1,40 +1,32 @@
 package com.kamila.food.api.controller;
 
-import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.CacheControl;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.kamila.food.api.assembler.FormaPagamentoInputDisassembler;
 import com.kamila.food.api.assembler.FormaPagamentoModelAssembler;
 import com.kamila.food.api.model.FormaPagamentoModel;
 import com.kamila.food.api.model.input.FormaPagamentoInput;
+import com.kamila.food.api.openapi.controller.FormaPagamentoControllerOpenApi;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.FormaPagamento;
 import com.kamila.food.domain.repository.FormaPagamentoRepository;
 import com.kamila.food.domain.service.CadastroFormaPagamentoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
 
+import javax.validation.Valid;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 @RestController
-@RequestMapping("/formas-pagamento")
-public class FormaPagamentoController {
+@RequestMapping(path = "/formas-pagamento", produces = MediaType.APPLICATION_JSON_VALUE)
+public class FormaPagamentoController implements FormaPagamentoControllerOpenApi {
 
     @Autowired
     private FormaPagamentoRepository formaPagamentoRepository;
@@ -51,7 +43,7 @@ public class FormaPagamentoController {
     /**
      * Enquanto não houver modificação em alguma tupla da tb_forma_pagamento, consumidor irá usar o cache local, se fresh.
      * Se stale (após maxAge: 10 segundos), a requisição irá  verificar se eTag é a mesma, caso positivo é retornado null e o consumidor utiliza
-     *  o dado em cache. Cso negativo a consulta é realizada novamente e retornado novo eTag.
+     * o dado em cache. Cso negativo a consulta é realizada novamente e retornado novo eTag.
      */
     @GetMapping
     public ResponseEntity<List<FormaPagamentoModel>> listar(ServletWebRequest request) {
@@ -67,7 +59,7 @@ public class FormaPagamentoController {
         if (request.checkNotModified(eTag)) {
             // Se eTag recebida coincide com eTag calculada a execução acaba aqui.
             // É retornado null e o consumidor utiliza o dado em cache
-            return  null;
+            return null;
         }
 
         List<FormaPagamento> todasFormasPagamento = formaPagamentoRepository.findAll();
@@ -95,7 +87,7 @@ public class FormaPagamentoController {
             eTag = String.valueOf(dataAtualizacao.toEpochSecond());
         }
         if (request.checkNotModified(eTag)) {
-            return  null;
+            return null;
         }
 
         FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(idFormaPagamento);
