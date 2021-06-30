@@ -890,7 +890,19 @@ public class SpringFoxConfig {
  - Descrição de um modelo por anotação na classe model: `@ApiModel(value = "Cidade", description = "Representa uma cidade")`.
  - Descrição de propriedade de modelo: `@ApiModelProperty(value = "ID da cidade", example = "1")`.
 
+#### BeanValidation Documentação
+Para exibição de obrigatoriedade de propriedades oriundas do BeanValidation deve ser adicionada a dependência no projeto e inserida na classe de configuração `@Import(BeanValidatorPluginsConfiguration.class)`.
 
+```xml
+<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-bean-validators</artifactId>
+</dependency>
+```
+
+Vale observar que não há plugin para `@NotBlank` logo os campos assim anotados não serão automaticamente grafados com * (asterisco) na documentação Swagger. <br>
+Caso a propriedade esteja anotada com `@ApiModelProperty` a propriedade required dessa anotação tem por padrão o valor false, que sobrescreve na documentação o plugin NotNullAnotationPlugin e o asterisco não aparece na documentação. Logo é necessário optar por `@ApiModelProperty(required=true)` ou apenas @NotNull para que a obrigatoriedade seja exibida.<br>
+É necesário ter atenção pois a biblioteca por si só não exibe as obrigatoriedades em todos os casos.
 
 
 ---
