@@ -904,6 +904,8 @@ Vale observar que não há plugin para `@NotBlank` logo os campos assim anotados
 Caso a propriedade esteja anotada com `@ApiModelProperty` a propriedade required dessa anotação tem por padrão o valor false, que sobrescreve na documentação o plugin NotNullAnotationPlugin e o asterisco não aparece na documentação. Logo é necessário optar por `@ApiModelProperty(required=true)` ou apenas @NotNull para que a obrigatoriedade seja exibida.<br>
 É necesário ter atenção pois a biblioteca por si só não exibe as obrigatoriedades em todos os casos.
 
+#### Customizando códigos de erro
+
 
 ---
 
