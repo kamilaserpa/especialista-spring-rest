@@ -1,4 +1,4 @@
-package com.kamila.food.core.openapi.model;
+package com.kamila.food.api.openapi.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

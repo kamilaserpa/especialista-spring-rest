@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import com.kamila.food.api.controller.openapi.GrupoControllerOpenApi;
+import com.kamila.food.api.openapi.controller.GrupoControllerOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

@@ -2,10 +2,13 @@ package com.kamila.food.core.openapi;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.kamila.food.api.exceptionhandler.Problem;
-import com.kamila.food.core.openapi.model.PageableModelOpenApi;
+import com.kamila.food.api.model.CozinhaModel;
+import com.kamila.food.api.openapi.model.CozinhasModelOpenApi;
+import com.kamila.food.api.openapi.model.PageableModelOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +19,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -50,6 +54,10 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .globalResponseMessage(RequestMethod.DELETE, globalDeleteResponseMessages())
                 .additionalModels(typeResolver.resolve(Problem.class)) // Adicionando Modelo extra para ser exibido em Models
                 .directModelSubstitute(Pageable.class, PageableModelOpenApi.class) // Para exibir os parâmetros recebidos em um Pageable
+                // Substituindo um Page<CozinhaModel> para CozinhasModelOpenApi
+                .alternateTypeRules(AlternateTypeRules.newRule(
+                        typeResolver.resolve(Page.class, CozinhaModel.class),
+                        CozinhasModelOpenApi.class))
                 .apiInfo(apiInfo())
                 .tags(new Tag("Cidades", "Gerencia as cidades"))
                 .tags(new Tag("Grupos", "Gerencia os grupos de usuários"));
