@@ -185,6 +185,1644 @@
 			]
 		},
 		{
+			"name": "Estado",
+			"item": [
+				{
+					"name": "Estado - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estados - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estados/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estados - salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Santa Catarina\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estados - atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"nome\": \"Sao Paulo\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/estados/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Estados - Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estados/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estados",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estatísticas",
+			"item": [
+				{
+					"name": "Estatísticas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/pdf,application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=2021-08-02T10:00:00Z&timeOffset=-03:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estatisticas",
+								"vendas-diarias"
+							],
+							"query": [
+								{
+									"key": "restauranteId",
+									"value": "1"
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2019-12-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-08-02T10:00:00Z"
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "123",
+									"disabled": true
+								},
+								{
+									"key": "timeOffset",
+									"value": "-03:00"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Formas Pagamento",
+			"item": [
+				{
+					"name": "Formas Pagamento - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/formas-pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"formas-pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Formas Pagamento - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/formas-pagamento/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"formas-pagamento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Formas Pagamento - salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Pix\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/formas-pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"formas-pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Formas Pagamento - atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"PIX\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/formas-pagamento/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"formas-pagamento",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Formas Pagamento - Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/formas-pagamento/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"formas-pagamento",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Formas Pagamento Restaurante",
+			"item": [
+				{
+					"name": "Formas Pagamento/Restaurante - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/formas-pagamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"formas-pagamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Formas Pagamento/Restaurante - Desassociar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1",
+								"formas-pagamento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Formas Pagamento/Restaurante - Associar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1",
+								"formas-pagamento",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cidade",
+			"item": [
+				{
+					"name": "Cidade - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidades - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CIdades - salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CIdades - atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Minas Gerais\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidades/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidades - Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Grupo",
+			"item": [
+				{
+					"name": "Grupo - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/grupos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupo - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/grupos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupo - Listar Permissoes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/grupos/1/permissoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos",
+								"1",
+								"permissoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupo - Remover Permissão",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/grupos/2/permissoes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos",
+								"2",
+								"permissoes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupo - Adicionar Permissão",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/grupos/2/permissoes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos",
+								"2",
+								"permissoes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupos - Salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Secretária\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/grupos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupos - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Secretários\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/grupos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grupos - Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/grupos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grupos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "Pedido - listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?sort=nomeCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "adfgadfg",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "asdaasd",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "nomeCliente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - listar Pageable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?size=20&page=0&sort=codigo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "20"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "codigo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - listar Campos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?campos=codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "campos",
+									"value": "codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido/Email - confirmar e enviar e-mail",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/ee2f9cc9-a569-4582-9f01-7e53c4f601b8/confirmacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"ee2f9cc9-a569-4582-9f01-7e53c4f601b8",
+								"confirmacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - confirmar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/confirmacao",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
+								"confirmacao"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - entregar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/entrega",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
+								"entrega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - cancelar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/cancelamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
+								"cancelamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"335c0344-f4c5-4824-ad8a-944c9e6bdf43"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - salvar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"formaPagamento\": {\r\n        \"id\": 1\r\n    },\r\n    \"restaurante\": {\r\n        \"id\": 4\r\n    },\r\n    \"enderecoEntrega\": {\r\n        \"cep\": \"38400-000\",\r\n        \"logradouro\": \"Rua Floriano Peixoto\",\r\n        \"numero\": \"500\",\r\n        \"complemento\": \"Apto 801\",\r\n        \"bairro\": \"Brasil\",\r\n        \"cidade\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"itens\": [\r\n        {\r\n            \"quantidade\": 1,\r\n            \"observacao\": null,\r\n            \"produtoId\": 6\r\n        },\r\n        {\r\n            \"quantidade\": 2,\r\n            \"observacao\": \"Bem passado\",\r\n            \"produtoId\": 7\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produto/Restaurante",
+			"item": [
+				{
+					"name": "Produto/Restaurante - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/6/produtos?incluirInativos=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"6",
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "incluirInativos",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Restaurante - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/3/produtos/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"3",
+								"produtos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Restaurante - Salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 61.00,\r\n    \"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/3/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"3",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Restaurante - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 55.00,\r\n    \"ativo\": true\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/3/produtos/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"3",
+								"produtos",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Corte macio bife-ancho 500g",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"6",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Salvar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Corte macio osso em T",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"7",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Salvar Copy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Espeto cupim",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/espeto-cupim.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/6/produtos/9/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"6",
+								"produtos",
+								"9",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Buscar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Corte macio bife-ancho",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"7",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Recuperar Bytes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "image/jpeg"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=0",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "image/png",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "descricao",
+									"value": "Corte macio bife-ancho",
+									"type": "text"
+								},
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"7",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Produto/Foto - Recuperar Bytes Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"4",
+								"produtos",
+								"7",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Restaurantes",
 			"item": [
 				{
@@ -797,1489 +2435,6 @@
 			]
 		},
 		{
-			"name": "Estado",
-			"item": [
-				{
-					"name": "Estado - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/estados",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Estados - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/estados/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Estados - salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Santa Catarina\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/estados",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Estados - atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": " {\r\n        \"nome\": \"Sao Paulo\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/estados/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Estados - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/estados/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados",
-								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Formas Pagamento",
-			"item": [
-				{
-					"name": "Formas Pagamento - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/formas-pagamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"formas-pagamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Formas Pagamento - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/formas-pagamento/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"formas-pagamento",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Formas Pagamento - salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Pix\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/formas-pagamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"formas-pagamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Formas Pagamento - atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"PIX\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/formas-pagamento/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"formas-pagamento",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Formas Pagamento - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/formas-pagamento/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"formas-pagamento",
-								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Formas Pagamento Restaurante",
-			"item": [
-				{
-					"name": "Formas Pagamento/Restaurante - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/formas-pagamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"4",
-								"formas-pagamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Formas Pagamento/Restaurante - Desassociar",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"1",
-								"formas-pagamento",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Formas Pagamento/Restaurante - Associar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"1",
-								"formas-pagamento",
-								"2"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Produto/Restaurante",
-			"item": [
-				{
-					"name": "Produto/Restaurante - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/6/produtos?incluirInativos=false",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"6",
-								"produtos"
-							],
-							"query": [
-								{
-									"key": "incluirInativos",
-									"value": "false"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Restaurante - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"3",
-								"produtos",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Restaurante - Salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 61.00,\r\n    \"ativo\": true\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"3",
-								"produtos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Restaurante - Atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 55.00,\r\n    \"ativo\": true\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos/10",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"3",
-								"produtos",
-								"10"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Foto",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data; boundary=0",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "descricao",
-									"value": "Corte macio bife-ancho 500g",
-									"type": "text"
-								},
-								{
-									"key": "arquivo",
-									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"4",
-								"produtos",
-								"6",
-								"foto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Foto - Salvar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data; boundary=0",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "descricao",
-									"value": "Corte macio osso em T",
-									"type": "text"
-								},
-								{
-									"key": "arquivo",
-									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/bife.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"4",
-								"produtos",
-								"7",
-								"foto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Foto - Salvar Copy",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data; boundary=0",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "descricao",
-									"value": "Espeto cupim",
-									"type": "text"
-								},
-								{
-									"key": "arquivo",
-									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/espeto-cupim.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/6/produtos/9/foto",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"6",
-								"produtos",
-								"9",
-								"foto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Foto - Buscar",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data; boundary=0",
-								"type": "text"
-							},
-							{
-								"key": "",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "descricao",
-									"value": "Corte macio bife-ancho",
-									"type": "text"
-								},
-								{
-									"key": "arquivo",
-									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"4",
-								"produtos",
-								"7",
-								"foto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Foto - Recuperar Bytes",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "image/jpeg"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data; boundary=0",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "image/png",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "descricao",
-									"value": "Corte macio bife-ancho",
-									"type": "text"
-								},
-								{
-									"key": "arquivo",
-									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/bife-ancho.jpg"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"4",
-								"produtos",
-								"7",
-								"foto"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Produto/Foto - Recuperar Bytes Copy",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"4",
-								"produtos",
-								"7",
-								"foto"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Cidade",
-			"item": [
-				{
-					"name": "Cidade - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cidades - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Minas Gerais\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cidades - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Grupo",
-			"item": [
-				{
-					"name": "Grupo - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/grupos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupo - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/grupos/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupo - Listar Permissoes",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/grupos/1/permissoes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"1",
-								"permissoes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupo - Remover Permissão",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/grupos/2/permissoes/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"2",
-								"permissoes",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupo - Adicionar Permissão",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/grupos/2/permissoes/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"2",
-								"permissoes",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupos - Salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Secretária\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/grupos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupos - Atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Secretários\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/grupos/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Grupos - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/grupos/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Usuario",
-			"item": [
-				{
-					"name": "Usuario - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/usuarios/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario - Salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Pedro Primeiro\",\r\n    \"email\": \"pedro.primeirod@kfood.com\",\r\n    \"senha\": 123\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario - Atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Pedro I\",\r\n    \"email\": \"pedro.primeirod@kfood.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Usuario - Atualizar Senha",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"senhaAtual\": \"123\",\r\n    \"novaSenha\": \"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/5/senha",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"5",
-								"senha"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Teste",
 			"item": [
 				{
@@ -2685,6 +2840,182 @@
 			]
 		},
 		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Usuario - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario - Salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Pedro Primeiro\",\r\n    \"email\": \"pedro.primeirod@kfood.com\",\r\n    \"senha\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario - Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Pedro I\",\r\n    \"email\": \"pedro.primeirod@kfood.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario - Atualizar Senha",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senhaAtual\": \"123\",\r\n    \"novaSenha\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/5/senha",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"5",
+								"senha"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Usuario Grupo",
 			"item": [
 				{
@@ -2755,329 +3086,23 @@
 			]
 		},
 		{
-			"name": "Pedidos",
+			"name": "Swagger",
 			"item": [
 				{
-					"name": "Pedido - listar",
+					"name": "Get Docs as Json",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?sort=nomeCliente",
+							"raw": "http://localhost:8080/v2/api-docs",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"pedidos"
-							],
-							"query": [
-								{
-									"key": "clienteId",
-									"value": "4",
-									"disabled": true
-								},
-								{
-									"key": "restauranteId",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "dataCriacaoInicio",
-									"value": "2021-03-02T10:00:00Z",
-									"disabled": true
-								},
-								{
-									"key": "dataCriacaoFim",
-									"value": "2021-03-02T10:00:00Z",
-									"disabled": true
-								},
-								{
-									"key": "dataCriacaoInicio",
-									"value": "adfgadfg",
-									"disabled": true
-								},
-								{
-									"key": "restauranteId",
-									"value": "asdaasd",
-									"disabled": true
-								},
-								{
-									"key": "sort",
-									"value": "nomeCliente"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - listar Pageable",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos?size=20&page=0&sort=codigo",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos"
-							],
-							"query": [
-								{
-									"key": "clienteId",
-									"value": "4",
-									"disabled": true
-								},
-								{
-									"key": "restauranteId",
-									"value": "1",
-									"disabled": true
-								},
-								{
-									"key": "dataCriacaoInicio",
-									"value": "2021-03-02T10:00:00Z",
-									"disabled": true
-								},
-								{
-									"key": "dataCriacaoFim",
-									"value": "2021-03-02T10:00:00Z",
-									"disabled": true
-								},
-								{
-									"key": "size",
-									"value": "20"
-								},
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "sort",
-									"value": "codigo"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - listar Campos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos?campos=codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos"
-							],
-							"query": [
-								{
-									"key": "campos",
-									"value": "codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido/Email - confirmar e enviar e-mail",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/ee2f9cc9-a569-4582-9f01-7e53c4f601b8/confirmacao",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"ee2f9cc9-a569-4582-9f01-7e53c4f601b8",
-								"confirmacao"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - confirmar",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/confirmacao",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
-								"confirmacao"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - entregar",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/entrega",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
-								"entrega"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - cancelar",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/cancelamento",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
-								"cancelamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - buscar",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"335c0344-f4c5-4824-ad8a-944c9e6bdf43"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedido - salvar",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"formaPagamento\": {\r\n        \"id\": 1\r\n    },\r\n    \"restaurante\": {\r\n        \"id\": 4\r\n    },\r\n    \"enderecoEntrega\": {\r\n        \"cep\": \"38400-000\",\r\n        \"logradouro\": \"Rua Floriano Peixoto\",\r\n        \"numero\": \"500\",\r\n        \"complemento\": \"Apto 801\",\r\n        \"bairro\": \"Brasil\",\r\n        \"cidade\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"itens\": [\r\n        {\r\n            \"quantidade\": 1,\r\n            \"observacao\": null,\r\n            \"produtoId\": 6\r\n        },\r\n        {\r\n            \"quantidade\": 2,\r\n            \"observacao\": \"Bem passado\",\r\n            \"produtoId\": 7\r\n        }\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/pedidos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Estatísticas",
-			"item": [
-				{
-					"name": "Estatísticas",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "Accept",
-								"value": "application/pdf,application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=2021-08-02T10:00:00Z&timeOffset=-03:00",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estatisticas",
-								"vendas-diarias"
-							],
-							"query": [
-								{
-									"key": "restauranteId",
-									"value": "1"
-								},
-								{
-									"key": "dataCriacaoInicio",
-									"value": "2019-12-02T10:00:00Z",
-									"disabled": true
-								},
-								{
-									"key": "dataCriacaoFim",
-									"value": "2021-08-02T10:00:00Z"
-								},
-								{
-									"key": "dataCriacaoFim",
-									"value": "123",
-									"disabled": true
-								},
-								{
-									"key": "timeOffset",
-									"value": "-03:00"
-								}
+								"v2",
+								"api-docs"
 							]
 						}
 					},
