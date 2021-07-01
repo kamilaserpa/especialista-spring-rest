@@ -16,11 +16,11 @@ public interface RestauranteControllerOpenApi {
             @ApiImplicitParam(value = "Nome da projecao de pedidos", allowableValues = "apenas-nome",
                     name = "projecao", paramType = "query", type = "string")
     })
-    public List<RestauranteModel> listarResumido();
+    List<RestauranteModel> listarResumido();
 
 
     @ApiOperation(value = "Lista restaurantes", hidden = true)
-    public List<RestauranteModel> listarApenasNomes();
+    List<RestauranteModel> listarApenasNomes();
 
 
     @ApiOperation("Busca um restaurante por ID")
@@ -28,7 +28,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 400, message = "ID do restaurante inválido", response = Problem.class),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public RestauranteModel buscar(@ApiParam(value = "ID de um restaurante", example = "1", required = true)
+    RestauranteModel buscar(@ApiParam(value = "ID de um restaurante", example = "1", required = true)
                                            Long idRestaurante);
 
 
@@ -36,7 +36,7 @@ public interface RestauranteControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 201, message = "Restaurante cadastrado")
     })
-    public RestauranteModel salvar(@ApiParam(name = "corpo", value = "Representação de um restaurante", required = true)
+    RestauranteModel salvar(@ApiParam(name = "corpo", value = "Representação de um restaurante", required = true)
                                            RestauranteInput restauranteInput);
 
 
@@ -45,7 +45,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 200, message = "Restaurante atualizado"),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public RestauranteModel atualizar(
+    RestauranteModel atualizar(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long idRestaurante,
 
@@ -58,7 +58,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 204, message = "Restaurante excluído"),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public void remover(
+    void remover(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long restauranteId);
 
@@ -68,7 +68,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 204, message = "Restaurante ativado com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public void ativar(
+    void ativar(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long restauranteId);
 
@@ -78,7 +78,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 204, message = "Restaurante ativado com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public void inativar(
+    void inativar(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long restauranteId);
 
@@ -87,7 +87,7 @@ public interface RestauranteControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 204, message = "Restaurantes ativados com sucesso")
     })
-    public void ativarMultiplos(
+    void ativarMultiplos(
             @ApiParam(name = "corpo", value = "IDs de restaurantes", required = true)
                     List<Long> restauranteIds);
 
@@ -96,7 +96,7 @@ public interface RestauranteControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 204, message = "Restaurantes inativados com sucesso")
     })
-    public void inativarMultiplos(
+    void inativarMultiplos(
             @ApiParam(name = "corpo", value = "IDs de restaurantes", required = true)
                     List<Long> restauranteIds);
 
@@ -106,7 +106,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 204, message = "Restaurante aberto com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public void abrir(
+    void abrir(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long restauranteId);
 
@@ -117,7 +117,7 @@ public interface RestauranteControllerOpenApi {
             @ApiResponse(code = 204, message = "Restaurante fechado com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    public void fechar(
+    void fechar(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long restauranteId);
 

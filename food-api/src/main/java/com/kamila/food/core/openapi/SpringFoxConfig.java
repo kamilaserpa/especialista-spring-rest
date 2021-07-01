@@ -79,7 +79,8 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .tags(new Tag("Cozinhas", "Gerencia as cozinhas"))
                 .tags(new Tag("Formas de pagamento", "Gerencia as formas de pagamento"))
                 .tags(new Tag("Pedidos", "Gerencia os pedidos"))
-                .tags(new Tag("Restaurantes", "Gerencia os restaurantes"));
+                .tags(new Tag("Restaurantes", "Gerencia os restaurantes"))
+                .tags(new Tag("Estados", "Gerencia os estados"));
     }
 
     // Lista de Códigos de status de erro Globais que serão exibidos na Documentação

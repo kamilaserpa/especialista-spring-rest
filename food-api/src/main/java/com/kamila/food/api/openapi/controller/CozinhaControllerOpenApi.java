@@ -11,7 +11,7 @@ import org.springframework.data.domain.Pageable;
 public interface CozinhaControllerOpenApi {
 
     @ApiOperation("Lista as cozinhas")
-    public Page<CozinhaModel> listar(Pageable pageable);
+    Page<CozinhaModel> listar(Pageable pageable);
 
 
     @ApiOperation("Busca uma cozinha por ID")
@@ -19,7 +19,7 @@ public interface CozinhaControllerOpenApi {
             @ApiResponse(code = 400, message = "ID da cozinha inválido", response = Problem.class),
             @ApiResponse(code = 404, message = "Cozinha não encontrada", response = Problem.class)
     })
-    public CozinhaModel buscar(@ApiParam(value = "ID de uma cozinha", example = "1")
+    CozinhaModel buscar(@ApiParam(value = "ID de uma cozinha", example = "1")
                                        Long idCozinha);
 
 
@@ -27,7 +27,7 @@ public interface CozinhaControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 201, message = "Cozinha cadastrado")
     })
-    public CozinhaModel salvar(@ApiParam(name = "corpo", value = "Representação de uma cozinha")
+    CozinhaModel salvar(@ApiParam(name = "corpo", value = "Representação de uma cozinha")
                                        CozinhaInput grupoInput);
 
 
@@ -36,7 +36,7 @@ public interface CozinhaControllerOpenApi {
             @ApiResponse(code = 200, message = "Cozinha atualizada"),
             @ApiResponse(code = 404, message = "Cozinha não encontrada", response = Problem.class)
     })
-    public CozinhaModel atualizar(@ApiParam(value = "ID de uma cozinha", example = "1")
+    CozinhaModel atualizar(@ApiParam(value = "ID de uma cozinha", example = "1")
                                           Long id,
                                   @ApiParam(name = "corpo", value = "Representação de uma cozinha com os novos dados")
                                           CozinhaInput grupoInput);
@@ -47,7 +47,7 @@ public interface CozinhaControllerOpenApi {
             @ApiResponse(code = 204, message = "Cozinha excluído"),
             @ApiResponse(code = 404, message = "Cozinha não encontrada", response = Problem.class)
     })
-    public void remover(@ApiParam(value = "ID de uma cozinha", example = "1")
+    void remover(@ApiParam(value = "ID de uma cozinha", example = "1")
                                 Long idCozinha);
 
 }
