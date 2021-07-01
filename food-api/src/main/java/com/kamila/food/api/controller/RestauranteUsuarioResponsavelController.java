@@ -2,8 +2,10 @@ package com.kamila.food.api.controller;
 
 import java.util.List;
 
+import com.kamila.food.api.openapi.controller.RestauranteUsuarioResponsavelControllerOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,33 +20,35 @@ import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 
 @RestController
-@RequestMapping(value = "/restaurantes/{idRestaurante}/responsaveis")
-public class RestauranteUsuarioResponsavelController {
+@RequestMapping(value = "/restaurantes/{idRestaurante}/responsaveis",
+        produces = MediaType.APPLICATION_JSON_VALUE)
+public class RestauranteUsuarioResponsavelController implements
+        RestauranteUsuarioResponsavelControllerOpenApi {
 
 
     @Autowired
     private CadastroRestauranteService cadastroRestauranteService;
-    
+
     @Autowired
     private UsuarioModelAssembler usuarioModelAssembler;
-    
+
     @GetMapping
     public List<UsuarioModel> listar(@PathVariable Long idRestaurante) {
-    	Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
-    	
-    	return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
+        Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
+
+        return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
     }
-    
+
     @DeleteMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desassociarResponsavel(@PathVariable Long idRestaurante, @PathVariable Long idUsuario) {
-    	cadastroRestauranteService.desassociarResponsavel(idRestaurante, idUsuario);
+        cadastroRestauranteService.desassociarResponsavel(idRestaurante, idUsuario);
     }
-    
+
     @PutMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void associarResponsavel(@PathVariable Long idRestaurante, @PathVariable Long idUsuario) {
-    	cadastroRestauranteService.associarResponsavel(idRestaurante, idUsuario);
+        cadastroRestauranteService.associarResponsavel(idRestaurante, idUsuario);
     }
-    
+
 }
