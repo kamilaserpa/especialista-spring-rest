@@ -920,6 +920,13 @@ O Squiggly, por exemplo, filtra as requisições e é capaz de inserir um parâm
 Caso este parâmetro esteja presente globalmente, ou seja, em todo o projeto, pode-se configurar na classe de configuração da documentação através de `globalOperationParameters`. <br>
 De forma específica utilizar `@ApiImplicitParams` no endpoint.
 
+#### Descrevendo projeções
+Uma projeção do JsonView pode ocultar algumas propriedades do objeto de retorno como em RestauranteController.listarApenasNomes.
+Dessa forma o objeto retornado no método não condiz com os atributos retornados de fato, pois a sua projeção foi customizada. <br>
+Para descrever isso corretamente foi criado um objeto com os atributos realmente retornados pela projeção, apenas para fins de documentação e foi inserido na anotação *@ApiOperation* na propriedade **response**, sobrescrevendo o retorno do método (apenas na documentação): <br>
+`@ApiOperation(value = "Lista restaurantes", response = RestauranteBasicoModelOpenApi.class)`
+
+
 ---
 
 ##### Eclipse
