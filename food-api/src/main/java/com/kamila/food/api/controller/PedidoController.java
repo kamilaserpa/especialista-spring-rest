@@ -6,6 +6,8 @@ import javax.validation.Valid;
 
 import com.google.common.collect.ImmutableMap;
 import com.kamila.food.core.data.PageableTranslator;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -57,7 +59,11 @@ public class PedidoController {
 
 	@Autowired
 	PedidoInputDisassembler pedidoInputDisassembler;
-	
+
+	@ApiImplicitParams({
+			@ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
+			name = "campos", paramType = "query", type = "string")
+	})
 	@GetMapping
 	public Page<PedidoResumoModel> pesquisar(PedidoFilter filtro, @PageableDefault(size = 10) Pageable pageable) {
 
@@ -92,7 +98,11 @@ public class PedidoController {
 		pedidosWrapper.setFilters(filterProvider);
 		return pedidosWrapper;
 	}
-	
+
+	@ApiImplicitParams({
+			@ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
+					name = "campos", paramType = "query", type = "string")
+	})
 	@GetMapping("/{codigoPedido}")
 	public PedidoModel buscar(@PathVariable String codigoPedido) {
 		Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);

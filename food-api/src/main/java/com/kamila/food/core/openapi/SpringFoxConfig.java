@@ -50,14 +50,14 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .globalResponseMessage(RequestMethod.POST, globalPostResponseMessages())
                 .globalResponseMessage(RequestMethod.PUT, globalPutResponseMessages())
                 .globalResponseMessage(RequestMethod.DELETE, globalDeleteResponseMessages())
-                .globalOperationParameters(Arrays.asList(
-                        new ParameterBuilder()
-                                .name("campos")
-                                .description("Nomes das propriedades para filtrar na resposta, separados por vírgula")
-                                .parameterType("query")
-                                .modelRef(new ModelRef("string")) // Tipo do model
-                                .build()
-                ))
+//                .globalOperationParameters(Arrays.asList(
+//                        new ParameterBuilder()
+//                                .name("campos")
+//                                .description("Nomes das propriedades para filtrar na resposta, separados por vírgula")
+//                                .parameterType("query")
+//                                .modelRef(new ModelRef("string")) // Tipo do model
+//                                .build()
+//                ))
                 .additionalModels(typeResolver.resolve(Problem.class)) // Adicionando Modelo extra para ser exibido em Models
                 .directModelSubstitute(Pageable.class, PageableModelOpenApi.class) // Para exibir os parâmetros recebidos em um Pageable
                 // Substituindo um Page<CozinhaModel> para CozinhasModelOpenApi
