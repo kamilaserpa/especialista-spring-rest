@@ -1,13 +1,23 @@
 package com.kamila.food.api.controller;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.google.common.collect.ImmutableMap;
+import com.kamila.food.api.assembler.PedidoInputDisassembler;
+import com.kamila.food.api.assembler.PedidoModelAssembler;
+import com.kamila.food.api.assembler.PedidoResumoModelAssembler;
+import com.kamila.food.api.model.PedidoModel;
+import com.kamila.food.api.model.PedidoResumoModel;
+import com.kamila.food.api.model.input.PedidoInput;
+import com.kamila.food.api.openapi.controller.PedidoControllerOpenApi;
 import com.kamila.food.core.data.PageableTranslator;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
+import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
+import com.kamila.food.domain.exception.NegocioException;
+import com.kamila.food.domain.filter.PedidoFilter;
+import com.kamila.food.domain.model.Pedido;
+import com.kamila.food.domain.model.Usuario;
+import com.kamila.food.domain.service.CadastroProdutoService;
+import com.kamila.food.domain.service.EmissaoPedidoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,35 +25,16 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.kamila.food.api.assembler.PedidoInputDisassembler;
-import com.kamila.food.api.assembler.PedidoModelAssembler;
-import com.kamila.food.api.assembler.PedidoResumoModelAssembler;
-import com.kamila.food.api.model.PedidoModel;
-import com.kamila.food.api.model.PedidoResumoModel;
-import com.kamila.food.api.model.input.PedidoInput;
-import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
-import com.kamila.food.domain.exception.NegocioException;
-import com.kamila.food.domain.model.Pedido;
-import com.kamila.food.domain.model.Usuario;
-import com.kamila.food.domain.filter.PedidoFilter;
-import com.kamila.food.domain.service.CadastroProdutoService;
-import com.kamila.food.domain.service.EmissaoPedidoService;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
-@RequestMapping("/pedidos")
-public class PedidoController {
+@RequestMapping(value = "/pedidos", produces = MediaType.APPLICATION_JSON_VALUE)
+public class PedidoController implements PedidoControllerOpenApi {
 
 	@Autowired
 	EmissaoPedidoService emissaoPedidoService;
@@ -60,10 +51,6 @@ public class PedidoController {
 	@Autowired
 	PedidoInputDisassembler pedidoInputDisassembler;
 
-	@ApiImplicitParams({
-			@ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
-			name = "campos", paramType = "query", type = "string")
-	})
 	@GetMapping
 	public Page<PedidoResumoModel> pesquisar(PedidoFilter filtro, @PageableDefault(size = 10) Pageable pageable) {
 
@@ -99,10 +86,6 @@ public class PedidoController {
 		return pedidosWrapper;
 	}
 
-	@ApiImplicitParams({
-			@ApiImplicitParam(value = "Nomes das propriedades para filtrar na resposta, separados por vírgula",
-					name = "campos", paramType = "query", type = "string")
-	})
 	@GetMapping("/{codigoPedido}")
 	public PedidoModel buscar(@PathVariable String codigoPedido) {
 		Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);

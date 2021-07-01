@@ -3,8 +3,11 @@ package com.kamila.food.core.openapi;
 import com.fasterxml.classmate.TypeResolver;
 import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.CozinhaModel;
+import com.kamila.food.api.model.PedidoModel;
+import com.kamila.food.api.model.PedidoResumoModel;
 import com.kamila.food.api.openapi.model.CozinhasModelOpenApi;
 import com.kamila.food.api.openapi.model.PageableModelOpenApi;
+import com.kamila.food.api.openapi.model.PedidosResumoModelOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -64,12 +67,16 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .alternateTypeRules(AlternateTypeRules.newRule(
                         typeResolver.resolve(Page.class, CozinhaModel.class),
                         CozinhasModelOpenApi.class))
+                .alternateTypeRules(AlternateTypeRules.newRule(
+                        typeResolver.resolve(Page.class, PedidoResumoModel.class),
+                        PedidosResumoModelOpenApi.class))
                 .apiInfo(apiInfo())
                 .ignoredParameterTypes(ServletWebRequest.class) // Parâmetro injetado pelo Spring, não inserido pelo usuário, desnecessário na doc
                 .tags(new Tag("Cidades", "Gerencia as cidades"))
                 .tags(new Tag("Grupos", "Gerencia os grupos de usuários"))
                 .tags(new Tag("Cozinhas", "Gerencia as cozinhas"))
-                .tags(new Tag("Formas de pagamento", "Gerencia as formas de pagamento"));
+                .tags(new Tag("Formas de pagamento", "Gerencia as formas de pagamento"))
+                .tags(new Tag("Pedidos", "Gerencia os pedidos"));
     }
 
     // Lista de Códigos de status de erro Globais que serão exibidos na Documentação

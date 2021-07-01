@@ -917,8 +917,8 @@ Na classe de configuração da Documentação é necessário adicionar os códig
 
 #### Parâmetros implícitos
 O Squiggly, por exemplo, filtra as requisições e é capaz de inserir um parâmetro implícito, no nosso caso é "campos" configurado em `SquigglyConfig`.<br>
-Caso este parâmetro esteja presente globalmente, ou seja, em todo o projeto, pode-se configurar na classe de configuração da documentação através de `globalOperationParameters`.
-
+Caso este parâmetro esteja presente globalmente, ou seja, em todo o projeto, pode-se configurar na classe de configuração da documentação através de `globalOperationParameters`. <br>
+De forma específica utilizar `@ApiImplicitParams` no endpoint.
 
 ---
 
