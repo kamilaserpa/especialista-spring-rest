@@ -6,7 +6,7 @@ import com.kamila.food.api.assembler.RestauranteModelAssembler;
 import com.kamila.food.api.model.RestauranteModel;
 import com.kamila.food.api.model.input.RestauranteInput;
 import com.kamila.food.api.model.view.RestauranteView;
-import com.kamila.food.api.openapi.model.RestauranteBasicoModelOpenApi;
+import com.kamila.food.api.openapi.controller.RestauranteControllerOpenApi;
 import com.kamila.food.domain.exception.CidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -14,19 +14,18 @@ import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/restaurantes")
-public class RestauranteController {
+@RequestMapping(value = "/restaurantes", produces = MediaType.APPLICATION_JSON_VALUE)
+public class RestauranteController implements RestauranteControllerOpenApi {
 
     @Autowired
     private RestauranteRepository restauranteRepository;
@@ -61,18 +60,12 @@ public class RestauranteController {
 //	}
 
     // Dois métodos semelhantes com serialização resumida dependente do parâmetro "projecao"
-    @ApiOperation(value = "Lista restaurantes", response = RestauranteBasicoModelOpenApi.class)
-    @ApiImplicitParams({
-            @ApiImplicitParam(value = "Nome da projecao de pedidos", allowableValues = "apenas-nome",
-                    name= "projecao", paramType = "query", type = "string")
-    })
     @JsonView(RestauranteView.Resumo.class)
     @GetMapping
     public List<RestauranteModel> listarResumido() {
         return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
     }
 
-    @ApiOperation(value = "Lista restaurantes", hidden = true)
     @JsonView(RestauranteView.ApenasNome.class)
     @GetMapping(params = "projecao=apenas-nome")
     public List<RestauranteModel> listarApenasNomes() {
@@ -131,7 +124,7 @@ public class RestauranteController {
 
     @PutMapping("/ativacoes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void ativarmultiplos(@RequestBody List<Long> idsRestaurantes) {
+    public void ativarMultiplos(@RequestBody List<Long> idsRestaurantes) {
         try {
             cadastroRestauranteService.ativar(idsRestaurantes);
         } catch (RestauranteNaoEncontradoException e) {
@@ -141,7 +134,7 @@ public class RestauranteController {
 
     @DeleteMapping("/ativacoes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void inativarmultiplos(@RequestBody List<Long> idsRestaurantes) {
+    public void inativarMultiplos(@RequestBody List<Long> idsRestaurantes) {
         try {
             cadastroRestauranteService.inativar(idsRestaurantes);
         } catch (RestauranteNaoEncontradoException e) {

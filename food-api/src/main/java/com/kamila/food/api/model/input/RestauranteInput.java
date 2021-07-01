@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import com.kamila.food.core.validation.TaxaFrete;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +16,11 @@ import lombok.Setter;
 @Getter
 public class RestauranteInput {
 
+	@ApiModelProperty(example = "Thai Gourmet", required = true)
 	@NotBlank // Verifica se nullo, vazio ou contém apenas espaços
 	private String nome;
 
+	@ApiModelProperty(example = "10.00", required = true)
 	@NotNull
 	@TaxaFrete
 	private BigDecimal taxaFrete;
