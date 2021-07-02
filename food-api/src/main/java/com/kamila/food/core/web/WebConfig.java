@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Habilita acesso a qlqr origin em todo o Projeto
+                .allowedOrigins("http://localhost:8080")
                 .allowedMethods("*"); // Por padrão estão aqui métodos simples: get, head e post
 //                .allowedOrigins("http://www.food.local")
 //                .maxAge(30); // Tempo (segundos) q o navegador pode armazenar resposta do preflight em cache

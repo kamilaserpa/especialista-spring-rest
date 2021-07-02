@@ -3,6 +3,7 @@ package com.kamila.food.api.controller;
 import com.kamila.food.api.assembler.FotoProdutoModelAssembler;
 import com.kamila.food.api.model.FotoProdutoModel;
 import com.kamila.food.api.model.input.FotoProdutoInput;
+import com.kamila.food.api.openapi.controller.RestauranteProdutoFotoControllerOpenApi;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.model.FotoProduto;
 import com.kamila.food.domain.model.Produto;
@@ -24,8 +25,9 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/restaurantes/{idRestaurante}/produtos/{idProduto}/foto")
-public class RestauranteProdutoFotoController {
+@RequestMapping(value = "/restaurantes/{idRestaurante}/produtos/{idProduto}/foto",
+        produces = MediaType.APPLICATION_JSON_VALUE)
+public class RestauranteProdutoFotoController implements RestauranteProdutoFotoControllerOpenApi {
 
     @Autowired
     private CadastroProdutoService cadastroProdutoService;
@@ -39,16 +41,17 @@ public class RestauranteProdutoFotoController {
     @Autowired
     private FotoStorageService fotoStorageService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
     public FotoProdutoModel buscar(@PathVariable Long idRestaurante, @PathVariable Long idProduto) {
         FotoProduto fotoProduto = catalogoFotoProdutoService.buscarOuFalhar(idRestaurante, idProduto);
         return fotoProdutoModelAssembler.toModel(fotoProduto);
     }
 
-    @GetMapping
-    public ResponseEntity<InputStreamResource> servirFoto
+    @GetMapping(produces = MediaType.ALL_VALUE)
+    public ResponseEntity<?> servirFoto
             (@PathVariable Long idRestaurante, @PathVariable Long idProduto,
-             @RequestHeader(name = "accept") String acceptHeader) throws HttpMediaTypeNotAcceptableException {
+             @RequestHeader(name = "accept") String acceptHeader)
+            throws HttpMediaTypeNotAcceptableException {
         try {
             FotoProduto fotoProduto = catalogoFotoProdutoService.buscarOuFalhar(idRestaurante, idProduto);
 

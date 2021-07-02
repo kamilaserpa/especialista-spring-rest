@@ -22,7 +22,8 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
 	
 	@Autowired
 	private FormaPagamentoModelAssembler formaPagamentoModelAssembler;
-	
+
+	@Override
 	@GetMapping
 	public List<FormaPagamentoModel> listar(@PathVariable Long idRestaurante) {
 		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
