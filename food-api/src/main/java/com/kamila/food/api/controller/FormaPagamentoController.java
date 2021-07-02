@@ -45,6 +45,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
      * Se stale (após maxAge: 10 segundos), a requisição irá  verificar se eTag é a mesma, caso positivo é retornado null e o consumidor utiliza
      * o dado em cache. Cso negativo a consulta é realizada novamente e retornado novo eTag.
      */
+    @Override
     @GetMapping
     public ResponseEntity<List<FormaPagamentoModel>> listar(ServletWebRequest request) {
         // Desabilitando ShallowEtagHeaderFilter
@@ -75,6 +76,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
                 .body(formasPagamentoModel);
     }
 
+    @Override
     @GetMapping("/{idFormaPagamento}")
     public ResponseEntity<FormaPagamentoModel> buscar(ServletWebRequest request, @PathVariable Long idFormaPagamento) {
 
@@ -99,6 +101,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
                 .body(formaPagamentoModel);
     }
 
+    @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public FormaPagamentoModel salvar(@RequestBody @Valid FormaPagamentoInput formaPagamentoInput) {
@@ -110,6 +113,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
         }
     }
 
+    @Override
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public FormaPagamentoModel atualizar(@PathVariable Long id, @RequestBody @Valid FormaPagamentoInput formaPagamentoInput) {
@@ -126,6 +130,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
         }
     }
 
+    @Override
     @DeleteMapping("/{idFormaPagamento}")
     public void remover(@PathVariable Long idFormaPagamento) {
         cadastroFormaPagamentoService.remover(idFormaPagamento);

@@ -59,24 +59,28 @@ public class RestauranteController implements RestauranteControllerOpenApi {
 //	}
 
     // Dois métodos semelhantes com serialização resumida dependente do parâmetro "projecao"
+    @Override
     @JsonView(RestauranteView.Resumo.class)
     @GetMapping
     public List<RestauranteModel> listarResumido() {
         return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
     }
 
+    @Override
     @JsonView(RestauranteView.ApenasNome.class)
     @GetMapping(params = "projecao=apenas-nome")
     public List<RestauranteModel> listarApenasNomes() {
         return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
     }
 
+    @Override
     @GetMapping("/{idRestaurante}")
     public RestauranteModel buscar(@PathVariable Long idRestaurante) {
         Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
         return restauranteModelAssembler.toModel(restaurante);
     }
 
+    @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RestauranteModel salvar(@RequestBody @Valid RestauranteInput restauranteInput) {
@@ -88,6 +92,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @Override
     @PutMapping("/{idRestaurante}")
     @ResponseStatus(HttpStatus.OK)
     public RestauranteModel atualizar(@PathVariable Long idRestaurante, @RequestBody @Valid RestauranteInput restauranteInput) {
@@ -103,11 +108,13 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @Override
     @DeleteMapping("/{idRestaurante}")
     public void remover(@PathVariable Long idRestaurante) {
         cadastroRestauranteService.remover(idRestaurante);
     }
 
+    @Override
     @PutMapping("/{idRestaurante}/ativo")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void ativar(@PathVariable Long idRestaurante) {
@@ -115,12 +122,14 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         cadastroRestauranteService.ativar(idRestaurante);
     }
 
+    @Override
     @DeleteMapping("/{idRestaurante}/inativo")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void inativar(@PathVariable Long idRestaurante) {
         cadastroRestauranteService.inativar(idRestaurante);
     }
 
+    @Override
     @PutMapping("/ativacoes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void ativarMultiplos(@RequestBody List<Long> idsRestaurantes) {
@@ -131,6 +140,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @Override
     @DeleteMapping("/ativacoes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void inativarMultiplos(@RequestBody List<Long> idsRestaurantes) {
@@ -141,12 +151,14 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @Override
     @PutMapping("/{restauranteId}/abertura")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void abrir(@PathVariable Long idRestaurante) {
         cadastroRestauranteService.abrir(idRestaurante);
     }
 
+    @Override
     @PutMapping("/{restauranteId}/fechamento")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void fechar(@PathVariable Long restauranteId) {

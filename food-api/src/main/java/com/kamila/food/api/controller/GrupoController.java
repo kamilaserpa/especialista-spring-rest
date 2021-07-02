@@ -34,19 +34,22 @@ public class GrupoController implements GrupoControllerOpenApi {
 	
 	@Autowired
 	private GrupoInputDisassembler grupoInputDisassembler;
-	
+
+	@Override
 	@GetMapping
 	public List<GrupoModel> listar() {
 		return grupoModelAssembler.toCollectionModel(grupoRepository.findAll());
 	}
-	
+
+	@Override
 	@GetMapping("/{idCidade}")
 	public GrupoModel buscar(@PathVariable Long idCidade) {
 		Grupo grupo = cadastroGrupoService.buscarOuFalhar(idCidade);
 		return grupoModelAssembler.toModel(grupo);
 
 	}
-	
+
+	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public GrupoModel salvar(@RequestBody @Valid GrupoInput grupoInput) {
@@ -57,7 +60,8 @@ public class GrupoController implements GrupoControllerOpenApi {
 			throw new NegocioException(e.getMessage(), e); // Alterando código de erro para 400
 		}
 	}
-	
+
+	@Override
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public GrupoModel atualizar(@PathVariable Long id, @RequestBody @Valid GrupoInput grupoInput) {
@@ -74,6 +78,7 @@ public class GrupoController implements GrupoControllerOpenApi {
 		}
 	}
 
+	@Override
 	@DeleteMapping("/{idCidade}")
 	public void remover(@PathVariable Long idGrupo) {
 		cadastroGrupoService.remover(idGrupo);

@@ -51,6 +51,7 @@ public class PedidoController implements PedidoControllerOpenApi {
 	@Autowired
 	PedidoInputDisassembler pedidoInputDisassembler;
 
+	@Override
 	@GetMapping
 	public Page<PedidoResumoModel> pesquisar(PedidoFilter filtro, @PageableDefault(size = 10) Pageable pageable) {
 
@@ -66,7 +67,8 @@ public class PedidoController implements PedidoControllerOpenApi {
 
 		return pedidosResumoModelPage;
 	}
-	
+
+	@Override
 	@GetMapping("/filter")
 	public MappingJacksonValue listarPedidosFilter(@RequestParam(required = false) String campos) {
 		List<Pedido> pedidos = emissaoPedidoService.findAll();
@@ -86,13 +88,15 @@ public class PedidoController implements PedidoControllerOpenApi {
 		return pedidosWrapper;
 	}
 
+	@Override
 	@GetMapping("/{codigoPedido}")
 	public PedidoModel buscar(@PathVariable String codigoPedido) {
 		Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);
 
 		return pedidoModelAssembler.toModel(pedido);
 	}
-	
+
+	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public PedidoModel adicionar(@Valid @RequestBody PedidoInput pedidoInput) {

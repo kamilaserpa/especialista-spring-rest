@@ -23,6 +23,7 @@ public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi
     @Autowired
     private PermissaoModelAssembler permissaoModelAssembler;
 
+    @Override
     @GetMapping
     public List<PermissaoModel> listar(@PathVariable Long idGrupo) {
         Grupo grupo = cadastroGrupo.buscarOuFalhar(idGrupo);
@@ -30,12 +31,14 @@ public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi
         return permissaoModelAssembler.toCollectionModel(grupo.getPermissoes());
     }
 
+    @Override
     @DeleteMapping("/{idPermissao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desassociar(@PathVariable Long idGrupo, @PathVariable Long idPermissao) {
         cadastroGrupo.desassociarPermissao(idGrupo, idPermissao);
     }
 
+    @Override
     @PutMapping("/{idPermissao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void associar(@PathVariable Long idGrupo, @PathVariable Long idPermissao) {

@@ -31,17 +31,20 @@ public class EstadoController implements EstadoControllerOpenApi {
 	
 	@Autowired
 	private EstadoModelAssembler estadoModelAssembler;
-	
+
+	@Override
 	@GetMapping
 	public List<EstadoModel> listar() {
 		return estadoModelAssembler.toCollectionModel(estadoRepository.findAll());
 	}
-	
+
+	@Override
 	@GetMapping("/{idEstado}")
 	public EstadoModel buscar(@PathVariable Long idEstado) {
 		return estadoModelAssembler.toModel(cadastroEstadoService.buscarOuFalhar(idEstado));
 	}
-	
+
+	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EstadoModel salvar(@RequestBody @Valid EstadoInput estadoInput) {
@@ -52,6 +55,7 @@ public class EstadoController implements EstadoControllerOpenApi {
 		return estadoModelAssembler.toModel(estado);
 	}
 
+	@Override
 	@PutMapping("/{idEstado}")
 	@ResponseStatus(HttpStatus.OK)
 	public EstadoModel atualizar(@PathVariable Long idEstado,
@@ -66,6 +70,7 @@ public class EstadoController implements EstadoControllerOpenApi {
 		return estadoModelAssembler.toModel(estadoAtual);
 	}
 
+	@Override
 	@DeleteMapping("/{idEstado}")
 	public void remover(@PathVariable Long idEstado) {
 			cadastroEstadoService.remover(idEstado);

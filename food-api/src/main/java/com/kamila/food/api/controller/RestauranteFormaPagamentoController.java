@@ -30,12 +30,14 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
 		return formaPagamentoModelAssembler.toCollectionModel(restaurante.getFormasPagamento());
 	}
 
+	@Override
 	@DeleteMapping("/{idFormaPagamento}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void desassociar(@PathVariable Long idRestaurante, @PathVariable Long idFormaPagamento) {
 		cadastroRestauranteService.desassociarFormaPagamento(idRestaurante, idFormaPagamento);
 	}
-	
+
+	@Override
 	@PutMapping("/{idFormaPagamento}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void associar(@PathVariable Long idRestaurante, @PathVariable Long idFormaPagamento) {

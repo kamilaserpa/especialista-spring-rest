@@ -25,6 +25,7 @@ public class RestauranteUsuarioResponsavelController implements
     @Autowired
     private UsuarioModelAssembler usuarioModelAssembler;
 
+    @Override
     @GetMapping
     public List<UsuarioModel> listar(@PathVariable Long idRestaurante) {
         Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
@@ -32,12 +33,14 @@ public class RestauranteUsuarioResponsavelController implements
         return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
     }
 
+    @Override
     @DeleteMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void desassociarResponsavel(@PathVariable Long idRestaurante, @PathVariable Long idUsuario) {
         cadastroRestauranteService.desassociarResponsavel(idRestaurante, idUsuario);
     }
 
+    @Override
     @PutMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void associarResponsavel(@PathVariable Long idRestaurante, @PathVariable Long idUsuario) {

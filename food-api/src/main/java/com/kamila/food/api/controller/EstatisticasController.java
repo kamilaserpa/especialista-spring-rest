@@ -1,5 +1,6 @@
 package com.kamila.food.api.controller;
 
+import com.kamila.food.api.openapi.controller.EstatisticasControllerOpenApi;
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.dto.VendaDiaria;
 import com.kamila.food.domain.service.VendaQueryService;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/estatisticas")
-public class EstatisticasController {
+@RequestMapping(path = "/estatisticas", produces = MediaType.APPLICATION_JSON_VALUE)
+public class EstatisticasController implements EstatisticasControllerOpenApi {
 
     @Autowired
     @Qualifier("VendaQueryServiceImpl")
@@ -27,12 +28,16 @@ public class EstatisticasController {
     @Autowired
     private VendaReportService vendaReportService;
 
+    
+    @Override
     @GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro,
         @RequestParam(required = false, defaultValue = "+00:00") String timeOffset) {
         return vendaQueryService.consultarVendasDiarias(filtro, timeOffset);
     }
 
+
+    @Override
     @GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> consultarVendasDiariasPdf(VendaDiariaFilter filtro,
         @RequestParam(required = false, defaultValue = "+00:00") String timeOffset) {
