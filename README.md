@@ -928,6 +928,21 @@ Para descrever isso corretamente foi criado um objeto com os atributos realmente
 
 Ao enviar um arquivo para o endpoint de salvar imagem de um produto verifica-se o erro de que o Swagger não adiciona o header `Content-type: multipart/form-data` e a requisição ocorre com erro. Por este motivo foi adicionado o parâmetro `@RequestPart(required = true) MultipartFile arquivo` ao recurso.
 
+
+## Capítulo 18 - 
+
+`HATEOAS` é uma restrição que faz parte da arquitetura de aplicações REST, cujo objetivo é ajudar os clientes a consumirem o serviço sem a necessidade de conhecimento prévio profundo da API. 
+
+O acrônimo HATEOAS vem de Hypermedia As the Engine Of Application State, a API passa a fornecer links que indicarão aos clientes como navegar através dos seus recursos. ([artigo](https://www.treinaweb.com.br/blog/o-que-e-hateoas))
+Exemplo:
+![exemplo de resposta hateoas](/food-api/exemplo-hateoas.png)
+
+#### Discoverability vs HATEOAS
+Discoverability é a capacidade que a API dá aos consumidores de navegar por recursos sem conhecer previamente as URIs. Discoverability é um conceito, já o HATEOAS é um componente do REST que torna isso possível, através da inclusão de hypermedia (links) nas respostas através de um ponto de entrada da API (root entry point).
+
+A implantação deve ser analisada, se realmente vai agregar valor ao projeto, ajudar realmente os desenvolvedores e consumidores da API, pois dá muito trabalho, maior custo e deve ser utilizado corretamente.
+A **vantagem** é a possibilidade de evoluir a API sem ficar "quebrando" endpoints a cada alteração, inativação de endpoints, ou alteração de parâmetros de entrada, por exemplo. Pois a API altera o link, ou remove e o consumidor o segue, sem links hardcoded, e não acessa links quebrados.
+
 ---
 
 ##### Eclipse
