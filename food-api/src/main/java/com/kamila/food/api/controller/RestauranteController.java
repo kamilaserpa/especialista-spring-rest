@@ -14,7 +14,6 @@ import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

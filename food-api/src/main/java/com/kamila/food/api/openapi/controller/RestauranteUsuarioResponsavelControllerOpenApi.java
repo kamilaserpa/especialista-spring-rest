@@ -1,7 +1,6 @@
 package com.kamila.food.api.openapi.controller;
 
 import com.kamila.food.api.exceptionhandler.Problem;
-import com.kamila.food.api.model.FormaPagamentoModel;
 import com.kamila.food.api.model.UsuarioModel;
 import io.swagger.annotations.*;
 

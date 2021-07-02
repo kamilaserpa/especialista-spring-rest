@@ -55,4 +55,3 @@ public interface FormaPagamentoControllerOpenApi {
                                 Long idFormaPagamento);
 
 }
-

@@ -1,9 +1,7 @@
 package com.kamila.food.api.openapi.controller;
 
 import com.kamila.food.api.exceptionhandler.Problem;
-import com.kamila.food.api.model.GrupoModel;
 import com.kamila.food.api.model.PermissaoModel;
-import com.kamila.food.api.model.input.GrupoInput;
 import io.swagger.annotations.*;
 
 import java.util.List;

@@ -1,23 +1,16 @@
 package com.kamila.food.api.controller;
 
-import java.util.List;
-
+import com.kamila.food.api.assembler.PermissaoModelAssembler;
+import com.kamila.food.api.model.PermissaoModel;
 import com.kamila.food.api.openapi.controller.GrupoPermissaoControllerOpenApi;
+import com.kamila.food.domain.model.Grupo;
+import com.kamila.food.domain.service.CadastroGrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.kamila.food.api.assembler.PermissaoModelAssembler;
-import com.kamila.food.api.model.PermissaoModel;
-import com.kamila.food.domain.model.Grupo;
-import com.kamila.food.domain.service.CadastroGrupoService;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/grupos/{idGrupo}/permissoes",

@@ -2,10 +2,8 @@ package com.kamila.food.api.openapi.controller;
 
 import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.FotoProdutoModel;
-import com.kamila.food.api.model.ProdutoModel;
 import com.kamila.food.api.model.input.FotoProdutoInput;
 import io.swagger.annotations.*;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.multipart.MultipartFile;
