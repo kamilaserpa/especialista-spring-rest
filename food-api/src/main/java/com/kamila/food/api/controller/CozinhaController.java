@@ -44,8 +44,9 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 	private CozinhaModelAssembler cozinhaModelAssembler;
 
 	@Autowired
-	private CozinhaInputDisassembler cozinhaInputDisassembler;  
-	
+	private CozinhaInputDisassembler cozinhaInputDisassembler;
+
+	@Override
 	@GetMapping
 	public Page<CozinhaModel> listar(@PageableDefault(size = 10) Pageable pageable) { // Alterando padrão size que por default é 20
 		Page<Cozinha> cozinhasPage = cozinhaRepository.findAll(pageable);
@@ -58,6 +59,7 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 		return cozinhasModelPage;
 	}
 
+	@Override
 	@GetMapping("/{idCozinha}")
 	public CozinhaModel buscar(@PathVariable Long idCozinha) {
 		Cozinha cozinha = cadastroCozinhaService.buscarOuFalhar(idCozinha);
@@ -65,6 +67,7 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 		return cozinhaModelAssembler.toModel(cozinha);
 	}
 
+	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public CozinhaModel salvar(@RequestBody @Valid CozinhaInput cozinhaInput) {
@@ -76,6 +79,7 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 	    return cozinhaModelAssembler.toModel(cozinha);
 	}
 
+	@Override
 	@PutMapping("/{idCozinha}")
 	@ResponseStatus(HttpStatus.OK)
 	public CozinhaModel atualizar(@PathVariable Long idCozinha, @RequestBody @Valid CozinhaInput cozinhaInput) {
@@ -87,7 +91,8 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 	    
 	    return cozinhaModelAssembler.toModel(cozinhaAtual);
 	}
-	
+
+	@Override
 	@DeleteMapping("/{idCozinha}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long idCozinha) {

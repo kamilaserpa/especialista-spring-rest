@@ -47,6 +47,7 @@ public class RestauranteProdutoFotoController implements RestauranteProdutoFotoC
         return fotoProdutoModelAssembler.toModel(fotoProduto);
     }
 
+    @Override
     @GetMapping(produces = MediaType.ALL_VALUE)
     public ResponseEntity<?> servirFoto
             (@PathVariable Long idRestaurante, @PathVariable Long idProduto,
@@ -91,13 +92,16 @@ public class RestauranteProdutoFotoController implements RestauranteProdutoFotoC
         }
     }
 
+    @Override
     @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public FotoProdutoModel atualizarFoto(@PathVariable Long idRestaurante, @PathVariable Long idProduto,
-                                          @Valid FotoProdutoInput fotoProdutoInput) throws IOException {
+    public FotoProdutoModel atualizarFoto(
+            @PathVariable Long idRestaurante, @PathVariable Long idProduto,
+            @Valid FotoProdutoInput fotoProdutoInput,
+            @RequestPart(required = true) MultipartFile arquivo) throws IOException {
 
         Produto produto = cadastroProdutoService.buscarOuFalhar(idRestaurante, idProduto);
 
-        MultipartFile arquivo = fotoProdutoInput.getArquivo();
+//        MultipartFile arquivo = fotoProdutoInput.getArquivo();
 
         FotoProduto foto = new FotoProduto();
         foto.setProduto(produto);
@@ -111,6 +115,7 @@ public class RestauranteProdutoFotoController implements RestauranteProdutoFotoC
         return fotoProdutoModelAssembler.toModel(fotoSalva);
     }
 
+    @Override
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long idRestaurante, @PathVariable Long idProduto) {

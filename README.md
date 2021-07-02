@@ -926,6 +926,7 @@ Dessa forma o objeto retornado no método não condiz com os atributos retornado
 Para descrever isso corretamente foi criado um objeto com os atributos realmente retornados pela projeção, apenas para fins de documentação e foi inserido na anotação *@ApiOperation* na propriedade **response**, sobrescrevendo o retorno do método (apenas na documentação): <br>
 `@ApiOperation(value = "Lista restaurantes", response = RestauranteBasicoModelOpenApi.class)`
 
+Ao enviar um arquivo para o endpoint de salvar imagem de um produto verifica-se o erro de que o Swagger não adiciona o header `Content-type: multipart/form-data` e a requisição ocorre com erro. Por este motivo foi adicionado o parâmetro `@RequestPart(required = true) MultipartFile arquivo` ao recurso.
 
 ---
 

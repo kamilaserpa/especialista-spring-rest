@@ -10,6 +10,7 @@ import com.kamila.food.api.openapi.model.PedidosResumoModelOpenApi;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLStreamHandler;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,7 +79,10 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                         typeResolver.resolve(Page.class, PedidoResumoModel.class),
                         PedidosResumoModelOpenApi.class))
                 .apiInfo(apiInfo())
-                .ignoredParameterTypes(ServletWebRequest.class) // Parâmetro injetado pelo Spring, não inserido pelo usuário, desnecessário na doc
+                .ignoredParameterTypes(
+                        ServletWebRequest.class, // Parâmetro injetado pelo Spring, não inserido pelo usuário, desnecessário na doc
+                        URL.class, URI.class, URLStreamHandler.class, // Ignorando a descrição destes tipos de "Model"
+                        Resource.class, File.class, InputStream.class)
                 .tags(new Tag("Cidades", "Gerencia as cidades"))
                 .tags(new Tag("Grupos", "Gerencia os grupos de usuários"))
                 .tags(new Tag("Cozinhas", "Gerencia as cozinhas"))

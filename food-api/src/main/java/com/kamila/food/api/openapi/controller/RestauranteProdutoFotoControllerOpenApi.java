@@ -8,6 +8,7 @@ import io.swagger.annotations.*;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -43,7 +44,10 @@ public interface RestauranteProdutoFotoControllerOpenApi {
             @ApiParam(value = "ID de um produto", example = "1", required = true)
                     Long idProduto,
             @ApiParam(name = "corpo", value = "Representação de uma foto de produto")
-                    FotoProdutoInput fotoProdutoInput) throws IOException;
+                    FotoProdutoInput fotoProdutoInput,
+            @ApiParam(value = "Arquivo da foto do produto (máximo 500KB, apenas JPG e PNG)",
+                    required = true)
+                    MultipartFile arquivo) throws IOException;
 
 
     @ApiOperation("Exclui a foto do produto de um restaurante")
