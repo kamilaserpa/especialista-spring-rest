@@ -3,29 +3,21 @@ package com.kamila.food.api.controller;
 import com.kamila.food.api.ResourceUriHelper;
 import com.kamila.food.api.assembler.CidadeInputDisassembler;
 import com.kamila.food.api.assembler.CidadeModelAssembler;
-import com.kamila.food.api.openapi.controller.CidadeControllerOpenApi;
 import com.kamila.food.api.model.CidadeModel;
 import com.kamila.food.api.model.input.CidadeInput;
+import com.kamila.food.api.openapi.controller.CidadeControllerOpenApi;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.repository.CidadeRepository;
 import com.kamila.food.domain.service.CadastroCidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.IanaLinkRelations;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.LinkRelation;
-import org.springframework.http.HttpHeaders;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -55,11 +47,19 @@ public class CidadeController implements CidadeControllerOpenApi {
 
         Cidade cidade = cadastroCidadeService.buscarOuFalhar(idCidade);
         CidadeModel cidadeModel = cidadeModelAssembler.toModel(cidade);
-        cidadeModel.add(new Link("http://localhost:8080/cidades/" + idCidade));
-        cidadeModel.add(new Link("http://localhost:8080/cidades", "cidades"));
+
+        cidadeModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class)
+                .slash(cidadeModel.getId())
+                .withSelfRel());
+        cidadeModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class)
+                .withRel("cidades"));
+
+//        cidadeModel.add(new Link("http://localhost:8080/cidades", "cidades"));
 //        cidadeModel.add(new Link("http://localhost:8080/cidades", IanaLinkRelations.COLLECTION));
 
-        cidadeModel.getEstado().add(new Link("http://localhost:8080/estados/1"));
+        cidadeModel.getEstado().add(WebMvcLinkBuilder.linkTo(EstadoController.class)
+        .slash(cidadeModel.getEstado().getId())
+        .withSelfRel());
 
         return cidadeModel;
     }

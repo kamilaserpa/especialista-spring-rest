@@ -946,7 +946,7 @@ A **vantagem** é a possibilidade de evoluir a API sem ficar "quebrando" endpoin
 #### Implementação
 A especificação HATEOAS utilizada no projeto é o `HAL` (Hypertext Application Language) um dos mais populares. Outras especificações: Uber, JSON:API, JSON-LD, Collection+JSON, Siren.
 
-`RepresentationModel` é semelhante à um container para coleção de links. Possui métodos para adicionar links ao modelo.
+`RepresentationModel` é semelhante à um container para coleção de links. Possui métodos para adicionar links ao modelo. <br>
 `Link relation` indica o relacionamento do recurso destino do link com o recurso atual, self indica que se refere ao mesmo recurso.
 
 ---
