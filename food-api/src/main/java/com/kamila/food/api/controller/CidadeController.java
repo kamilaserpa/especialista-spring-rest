@@ -1,5 +1,6 @@
 package com.kamila.food.api.controller;
 
+import com.kamila.food.api.ResourceUriHelper;
 import com.kamila.food.api.assembler.CidadeInputDisassembler;
 import com.kamila.food.api.assembler.CidadeModelAssembler;
 import com.kamila.food.api.openapi.controller.CidadeControllerOpenApi;
@@ -11,11 +12,17 @@ import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.repository.CidadeRepository;
 import com.kamila.food.domain.service.CadastroCidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -53,7 +60,12 @@ public class CidadeController implements CidadeControllerOpenApi {
     public CidadeModel salvar(@RequestBody @Valid CidadeInput cidadeInput) {
         try {
             Cidade cidade = cidadeInputDisassembler.toDomainObject(cidadeInput);
-            return cidadeModelAssembler.toModel(cadastroCidadeService.salvar(cidade));
+            cidade = cadastroCidadeService.salvar(cidade);
+            CidadeModel cidadeModel = cidadeModelAssembler.toModel(cidade);
+
+            ResourceUriHelper.addUriInResponseHeader(cidadeModel.getId());
+
+            return cidadeModel;
         } catch (EstadoNaoEncontradoException e) {
             throw new NegocioException(e.getMessage(), e); // Alterando código de erro para 400
         }
