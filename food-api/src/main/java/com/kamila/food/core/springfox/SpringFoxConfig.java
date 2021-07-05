@@ -1,4 +1,4 @@
-package com.kamila.food.core.openapi;
+package com.kamila.food.core.springfox;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.kamila.food.api.exceptionhandler.Problem;
