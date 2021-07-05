@@ -947,7 +947,21 @@ A **vantagem** é a possibilidade de evoluir a API sem ficar "quebrando" endpoin
 A especificação HATEOAS utilizada no projeto é o `HAL` (Hypertext Application Language) um dos mais populares. Outras especificações: Uber, JSON:API, JSON-LD, Collection+JSON, Siren.
 
 `RepresentationModel` é semelhante à um container para coleção de links. Possui métodos para adicionar links ao modelo. <br>
-`Link relation` indica o relacionamento do recurso destino do link com o recurso atual, self indica que se refere ao mesmo recurso.
+`Link relation` indica o relacionamento do recurso destino do link com o recurso atual, self indica que se refere ao mesmo recurso. <br>
+Duas maneiras de inserir o memso link:
+
+ ```java
+ 	cidadeModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class)
+			.slash(cidadeModel.getId())
+			.withSelfRel());
+
+ 	cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
+			.methodOn(CidadeController.class)
+			.buscar(cidadeModel.getId())
+	).withSelfRel());
+
+```
+
 
 ---
 

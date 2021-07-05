@@ -12,7 +12,7 @@ import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.repository.CidadeRepository;
 import com.kamila.food.domain.service.CadastroCidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,8 +38,29 @@ public class CidadeController implements CidadeControllerOpenApi {
     private CidadeInputDisassembler cidadeInputDisassembler;
 
     @GetMapping
-    public List<CidadeModel> listar() {
-        return cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
+    public CollectionModel<CidadeModel> listar() {
+        List<CidadeModel> cidadesModel = cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
+        // HATEOAS
+        cidadesModel.forEach(cidadeModel -> {
+            cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
+                    .methodOn(CidadeController.class)
+                    .buscar(cidadeModel.getId())
+            ).withSelfRel());
+
+            cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
+                    .methodOn(CidadeController.class)
+                    .listar()
+            ).withRel("cidades"));
+
+            cidadeModel.getEstado().add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
+                    .methodOn(EstadoController.class)
+                    .buscar(cidadeModel.getEstado().getId())
+            ).withSelfRel());
+        });
+
+        CollectionModel<CidadeModel> cidadesCollectionModel = new CollectionModel<CidadeModel>(cidadesModel);
+        cidadesCollectionModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class).withSelfRel());
+        return cidadesCollectionModel;
     }
 
     @Override
