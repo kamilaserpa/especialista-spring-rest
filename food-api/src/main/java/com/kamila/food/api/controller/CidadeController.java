@@ -13,13 +13,11 @@ import com.kamila.food.domain.repository.CidadeRepository;
 import com.kamila.food.domain.service.CadastroCidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/cidades", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,28 +37,7 @@ public class CidadeController implements CidadeControllerOpenApi {
 
     @GetMapping
     public CollectionModel<CidadeModel> listar() {
-        List<CidadeModel> cidadesModel = cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
-        // HATEOAS
-        cidadesModel.forEach(cidadeModel -> {
-            cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                    .methodOn(CidadeController.class)
-                    .buscar(cidadeModel.getId())
-            ).withSelfRel());
-
-            cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                    .methodOn(CidadeController.class)
-                    .listar()
-            ).withRel("cidades"));
-
-            cidadeModel.getEstado().add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                    .methodOn(EstadoController.class)
-                    .buscar(cidadeModel.getEstado().getId())
-            ).withSelfRel());
-        });
-
-        CollectionModel<CidadeModel> cidadesCollectionModel = new CollectionModel<CidadeModel>(cidadesModel);
-        cidadesCollectionModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class).withSelfRel());
-        return cidadesCollectionModel;
+        return cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
     }
 
     @Override
@@ -68,38 +45,7 @@ public class CidadeController implements CidadeControllerOpenApi {
     public CidadeModel buscar(@PathVariable Long idCidade) {
 
         Cidade cidade = cadastroCidadeService.buscarOuFalhar(idCidade);
-        CidadeModel cidadeModel = cidadeModelAssembler.toModel(cidade);
-
-        cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                .methodOn(CidadeController.class)
-                .buscar(cidadeModel.getId())
-        ).withSelfRel());
-
-//        cidadeModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class)
-//                .slash(cidadeModel.getId())
-//                .withSelfRel());
-
-        cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                .methodOn(CidadeController.class)
-                .listar()
-        ).withRel("cidades"));
-
-//        cidadeModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class)
-//                .withRel("cidades"));
-
-        cidadeModel.getEstado().add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                .methodOn(EstadoController.class)
-                .buscar(cidadeModel.getEstado().getId())
-        ).withSelfRel());
-
-//        cidadeModel.getEstado().add(WebMvcLinkBuilder.linkTo(EstadoController.class)
-//                .slash(cidadeModel.getEstado().getId())
-//                .withSelfRel());
-
-//        cidadeModel.add(new Link("http://localhost:8080/cidades", "cidades"));
-//        cidadeModel.add(new Link("http://localhost:8080/cidades", IanaLinkRelations.COLLECTION));
-
-        return cidadeModel;
+        return cidadeModelAssembler.toModel(cidade);
     }
 
     @Override
