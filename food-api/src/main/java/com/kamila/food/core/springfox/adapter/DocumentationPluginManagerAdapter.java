@@ -25,6 +25,7 @@ public class DocumentationPluginManagerAdapter extends DocumentationPluginsManag
     @Qualifier("defaultsProviderPluginRegistry")
     private PluginRegistry<DefaultsProviderPlugin, DocumentationType> defaultsProviders;
 
+    // Alterando 'getPluginFor' para 'getPluginOrDefaultFor'
     @Override
     public ResourceGroupingStrategy resourceGroupingStrategy(DocumentationType documentationType) {
         return (ResourceGroupingStrategy) this.resourceGroupingStrategies.getPluginOrDefaultFor(
