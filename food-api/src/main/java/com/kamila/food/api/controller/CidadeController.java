@@ -12,6 +12,9 @@ import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.repository.CidadeRepository;
 import com.kamila.food.domain.service.CadastroCidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.LinkRelation;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -51,7 +54,14 @@ public class CidadeController implements CidadeControllerOpenApi {
     public CidadeModel buscar(@PathVariable Long idCidade) {
 
         Cidade cidade = cadastroCidadeService.buscarOuFalhar(idCidade);
-        return cidadeModelAssembler.toModel(cidade);
+        CidadeModel cidadeModel = cidadeModelAssembler.toModel(cidade);
+        cidadeModel.add(new Link("http://localhost:8080/cidades/" + idCidade));
+        cidadeModel.add(new Link("http://localhost:8080/cidades", "cidades"));
+//        cidadeModel.add(new Link("http://localhost:8080/cidades", IanaLinkRelations.COLLECTION));
+
+        cidadeModel.getEstado().add(new Link("http://localhost:8080/estados/1"));
+
+        return cidadeModel;
     }
 
     @Override

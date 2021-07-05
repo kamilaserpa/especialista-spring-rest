@@ -943,7 +943,11 @@ Discoverability é a capacidade que a API dá aos consumidores de navegar por re
 A implantação deve ser analisada, se realmente vai agregar valor ao projeto, ajudar realmente os desenvolvedores e consumidores da API, pois dá muito trabalho, maior custo e deve ser utilizado corretamente.
 A **vantagem** é a possibilidade de evoluir a API sem ficar "quebrando" endpoints a cada alteração, inativação de endpoints, ou alteração de parâmetros de entrada, por exemplo. Pois a API altera o link, ou remove e o consumidor o segue, sem links hardcoded, e não acessa links quebrados.
 
+#### Implementação
 A especificação HATEOAS utilizada no projeto é o `HAL` (Hypertext Application Language) um dos mais populares. Outras especificações: Uber, JSON:API, JSON-LD, Collection+JSON, Siren.
+
+`RepresentationModel` é semelhante à um container para coleção de links. Possui métodos para adicionar links ao modelo.
+`Link relation` indica o relacionamento do recurso destino do link com o recurso atual, self indica que se refere ao mesmo recurso.
 
 ---
 
