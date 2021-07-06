@@ -6,11 +6,10 @@ import com.kamila.food.api.openapi.controller.RestauranteUsuarioResponsavelContr
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/restaurantes/{idRestaurante}/responsaveis",
@@ -27,7 +26,7 @@ public class RestauranteUsuarioResponsavelController implements
 
     @Override
     @GetMapping
-    public List<UsuarioModel> listar(@PathVariable Long idRestaurante) {
+    public CollectionModel<UsuarioModel> listar(@PathVariable Long idRestaurante) {
         Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
 
         return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());

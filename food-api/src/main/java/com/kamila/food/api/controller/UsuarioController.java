@@ -11,6 +11,7 @@ import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.repository.UsuarioRepository;
 import com.kamila.food.domain.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +37,10 @@ public class UsuarioController implements UsuarioControllerOpenApi {
 
     @Override
     @GetMapping
-    public List<UsuarioModel> listar() {
-        List<Usuario> todasUsuarios = usuarioRepository.findAll();
+    public CollectionModel<UsuarioModel> listar() {
+        List<Usuario> todosUsuarios = usuarioRepository.findAll();
 
-        return usuarioModelAssembler.toCollectionModel(todasUsuarios);
+        return usuarioModelAssembler.toCollectionModel(todosUsuarios);
     }
 
     @Override
