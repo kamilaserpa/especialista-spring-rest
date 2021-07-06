@@ -9,6 +9,7 @@ import com.kamila.food.domain.model.Estado;
 import com.kamila.food.domain.repository.EstadoRepository;
 import com.kamila.food.domain.service.CadastroEstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class EstadoController implements EstadoControllerOpenApi {
 
 	@Override
 	@GetMapping
-	public List<EstadoModel> listar() {
+	public CollectionModel<EstadoModel> listar() {
 		return estadoModelAssembler.toCollectionModel(estadoRepository.findAll());
 	}
 
