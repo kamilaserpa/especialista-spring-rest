@@ -1,34 +1,26 @@
 package com.kamila.food.api.controller;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
+import com.kamila.food.api.assembler.CozinhaInputDisassembler;
+import com.kamila.food.api.assembler.CozinhaModelAssembler;
+import com.kamila.food.api.model.CozinhaModel;
+import com.kamila.food.api.model.input.CozinhaInput;
 import com.kamila.food.api.openapi.controller.CozinhaControllerOpenApi;
+import com.kamila.food.domain.model.Cozinha;
+import com.kamila.food.domain.repository.CozinhaRepository;
+import com.kamila.food.domain.service.CadastroCozinhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.kamila.food.api.assembler.CozinhaInputDisassembler;
-import com.kamila.food.api.assembler.CozinhaModelAssembler;
-import com.kamila.food.api.model.CozinhaModel;
-import com.kamila.food.api.model.input.CozinhaInput;
-import com.kamila.food.domain.model.Cozinha;
-import com.kamila.food.domain.repository.CozinhaRepository;
-import com.kamila.food.domain.service.CadastroCozinhaService;
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/cozinhas", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,17 +38,19 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 	@Autowired
 	private CozinhaInputDisassembler cozinhaInputDisassembler;
 
+	@Autowired
+	private PagedResourcesAssembler<Cozinha> pagedResourcesAssembler;
+
 	@Override
 	@GetMapping
-	public Page<CozinhaModel> listar(@PageableDefault(size = 10) Pageable pageable) { // Alterando padrão size que por default é 20
+	public PagedModel<CozinhaModel> listar(@PageableDefault(size = 10) Pageable pageable) { // Alterando padrão size que por default é 20
 		Page<Cozinha> cozinhasPage = cozinhaRepository.findAll(pageable);
 
-		List<CozinhaModel> cozinhasModel = cozinhaModelAssembler.toCollectionModel(cozinhasPage.getContent());
+		// Convertendo Page em PagedModel. Já 'cozinhaModelAssembler' converte Cozinha em CozinhaModel
+		PagedModel<CozinhaModel> cozinhasPagedModel = pagedResourcesAssembler
+				.toModel(cozinhasPage, cozinhaModelAssembler);
 
-		// Convertendo conteúdo do Page para classe de modelo
-		Page<CozinhaModel> cozinhasModelPage = new PageImpl<>(cozinhasModel, pageable, cozinhasPage.getTotalElements());
-		
-		return cozinhasModelPage;
+		return cozinhasPagedModel;
 	}
 
 	@Override
