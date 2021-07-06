@@ -5,8 +5,6 @@ import com.kamila.food.api.model.UsuarioModel;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.CollectionModel;
 
-import java.util.List;
-
 @Api(tags = "Restaurantes")
 public interface RestauranteUsuarioResponsavelControllerOpenApi {
 
