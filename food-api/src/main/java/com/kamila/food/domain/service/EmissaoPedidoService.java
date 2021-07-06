@@ -1,24 +1,18 @@
 package com.kamila.food.domain.service;
 
-import java.util.List;
-
+import com.kamila.food.domain.exception.NegocioException;
+import com.kamila.food.domain.exception.PedidoNaoEncontradoException;
+import com.kamila.food.domain.filter.PedidoFilter;
+import com.kamila.food.domain.model.*;
+import com.kamila.food.domain.repository.PedidoRepository;
+import com.kamila.food.infrastructure.repository.spec.PedidoSpecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kamila.food.domain.exception.NegocioException;
-import com.kamila.food.domain.exception.PedidoNaoEncontradoException;
-import com.kamila.food.domain.model.Cidade;
-import com.kamila.food.domain.model.FormaPagamento;
-import com.kamila.food.domain.model.Pedido;
-import com.kamila.food.domain.model.Produto;
-import com.kamila.food.domain.model.Restaurante;
-import com.kamila.food.domain.model.Usuario;
-import com.kamila.food.domain.repository.PedidoRepository;
-import com.kamila.food.domain.filter.PedidoFilter;
-import com.kamila.food.infrastructure.repository.spec.PedidoSpecs;
+import java.util.List;
 
 @Service
 public class EmissaoPedidoService {
