@@ -1,18 +1,14 @@
 package com.kamila.food.api.assembler;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.kamila.food.api.FoodLinks;
 import com.kamila.food.api.controller.EstadoController;
-import com.kamila.food.api.controller.UsuarioController;
+import com.kamila.food.api.model.EstadoModel;
+import com.kamila.food.domain.model.Estado;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
-
-import com.kamila.food.api.model.EstadoModel;
-import com.kamila.food.domain.model.Estado;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
@@ -21,6 +17,9 @@ public class EstadoModelAssembler extends RepresentationModelAssemblerSupport<Es
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private FoodLinks foodLinks;
 
     public EstadoModelAssembler() {
         super(EstadoController.class, EstadoModel.class);
@@ -31,7 +30,7 @@ public class EstadoModelAssembler extends RepresentationModelAssemblerSupport<Es
         EstadoModel estadoModel = createModelWithId(estado.getId(), estado);
         modelMapper.map(estado, estadoModel);
 
-        estadoModel.add(linkTo(EstadoController.class).withRel("estados"));
+        estadoModel.add(foodLinks.linkToEstados("estados"));
 
         return estadoModel;
     }

@@ -1,7 +1,7 @@
 package com.kamila.food.api.assembler;
 
+import com.kamila.food.api.FoodLinks;
 import com.kamila.food.api.controller.CidadeController;
-import com.kamila.food.api.controller.EstadoController;
 import com.kamila.food.api.model.CidadeModel;
 import com.kamila.food.domain.model.Cidade;
 import org.modelmapper.ModelMapper;
@@ -18,6 +18,9 @@ public class CidadeModelAssembler extends
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private FoodLinks foodLinks;
+
     public CidadeModelAssembler() {
         // Controlador que gerencia a classe e a classe de representação do modelo
         super(CidadeController.class, CidadeModel.class);
@@ -29,20 +32,9 @@ public class CidadeModelAssembler extends
         CidadeModel cidadeModel = createModelWithId(cidade.getId(), cidade);
         modelMapper.map(cidade, cidadeModel);
 
-//        cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-//                .methodOn(CidadeController.class)
-//                .buscar(cidadeModel.getId())
-//        ).withSelfRel());
+        cidadeModel.add(foodLinks.linkToCidades("cidades"));
 
-        cidadeModel.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                .methodOn(CidadeController.class)
-                .listar()
-        ).withRel("cidades"));
-
-        cidadeModel.getEstado().add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder
-                .methodOn(EstadoController.class)
-                .buscar(cidadeModel.getEstado().getId())
-        ).withSelfRel());
+        cidadeModel.getEstado().add(foodLinks.linkToEstado(cidadeModel.getEstado().getId()));
 
         return cidadeModel;
     }

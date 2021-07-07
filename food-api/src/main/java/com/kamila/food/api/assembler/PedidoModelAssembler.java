@@ -1,7 +1,7 @@
 package com.kamila.food.api.assembler;
 
 import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.controller.*;
+import com.kamila.food.api.controller.PedidoController;
 import com.kamila.food.api.model.PedidoModel;
 import com.kamila.food.domain.model.Pedido;
 import org.modelmapper.ModelMapper;
@@ -11,7 +11,6 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
 public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pedido, PedidoModel> {
@@ -28,31 +27,31 @@ public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pe
 
     @Override
     public PedidoModel toModel(Pedido pedido) {
-        PedidoModel pedidoModel = createModelWithId(pedido.getId(), pedido);
+        PedidoModel pedidoModel = createModelWithId(pedido.getCodigo(), pedido);
         modelMapper.map(pedido, pedidoModel);
 
         pedidoModel.add(foodLinks.linkToPedidos());
 
-        pedidoModel.getRestaurante().add(linkTo(methodOn(RestauranteController.class)
-                .buscar(pedido.getRestaurante().getId())).withSelfRel());
+        pedidoModel.getRestaurante().add(
+                foodLinks.linkToRestaurante(pedido.getRestaurante().getId()));
 
-        pedidoModel.getCliente().add(linkTo(methodOn(UsuarioController.class)
-                .buscar(pedido.getCliente().getId())).withSelfRel());
+        pedidoModel.getCliente().add(
+                foodLinks.linkToUsuario(pedido.getCliente().getId()));
 
-        pedidoModel.getFormaPagamento().add(linkTo(methodOn(FormaPagamentoController.class)
-                .buscar(null, pedido.getFormaPagamento().getId())).withSelfRel());
+        pedidoModel.getFormaPagamento().add(
+                foodLinks.linkToFormaPagamento(pedido.getFormaPagamento().getId()));
 
-        pedidoModel.getEnderecoEntrega().getCidade().add(linkTo(methodOn(CidadeController.class)
-                .buscar(pedido.getEnderecoEntrega().getCidade().getId())).withSelfRel());
+        pedidoModel.getEnderecoEntrega().getCidade().add(
+                foodLinks.linkToCidade(pedido.getEnderecoEntrega().getCidade().getId()));
 
         pedidoModel.getItens().forEach(item -> {
-            item.add(linkTo(methodOn(RestauranteProdutoController.class)
-                    .buscar(pedidoModel.getRestaurante().getId(), item.getProdutoId()))
-                    .withRel("produto"));
+            item.add(foodLinks.linkToProduto(
+                    pedidoModel.getRestaurante().getId(), item.getProdutoId(), "produto"));
         });
 
         return pedidoModel;
     }
+
 
     @Override
     public CollectionModel<PedidoModel> toCollectionModel(Iterable<? extends Pedido> entities) {
