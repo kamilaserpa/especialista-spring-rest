@@ -6,6 +6,172 @@
 	},
 	"item": [
 		{
+			"name": "Cidade",
+			"item": [
+				{
+					"name": "Cidade - Listar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidades - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CIdades - salvar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CIdades - atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Minas Gerais\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidades/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidades - Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Cozinhas",
 			"item": [
 				{
@@ -676,172 +842,6 @@
 			]
 		},
 		{
-			"name": "Cidade",
-			"item": [
-				{
-					"name": "Cidade - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cidades - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - salvar",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Minas Gerais\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cidades - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Grupo",
 			"item": [
 				{
@@ -1154,7 +1154,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?size=20&page=0&sort=codigo",
+							"raw": "http://localhost:8080/pedidos?page=0&sort=restaurante.nome&size=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1185,16 +1185,16 @@
 									"disabled": true
 								},
 								{
-									"key": "size",
-									"value": "20"
-								},
-								{
 									"key": "page",
 									"value": "0"
 								},
 								{
 									"key": "sort",
-									"value": "codigo"
+									"value": "restaurante.nome"
+								},
+								{
+									"key": "size",
+									"value": "2"
 								}
 							]
 						}
@@ -1736,7 +1736,8 @@
 							{
 								"key": "Content-Type",
 								"value": "multipart/form-data; boundary=0",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "Accept",
@@ -1761,7 +1762,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1771,7 +1772,7 @@
 								"restaurantes",
 								"4",
 								"produtos",
-								"7",
+								"6",
 								"foto"
 							]
 						}
