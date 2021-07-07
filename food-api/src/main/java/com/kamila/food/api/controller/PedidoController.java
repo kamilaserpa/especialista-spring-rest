@@ -10,6 +10,7 @@ import com.kamila.food.api.model.PedidoModel;
 import com.kamila.food.api.model.PedidoResumoModel;
 import com.kamila.food.api.model.input.PedidoInput;
 import com.kamila.food.api.openapi.controller.PedidoControllerOpenApi;
+import com.kamila.food.core.data.PageWrapper;
 import com.kamila.food.core.data.PageableTranslator;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/pedidos", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,9 +62,12 @@ public class PedidoController implements PedidoControllerOpenApi {
     @GetMapping
     public PagedModel<PedidoResumoModel> pesquisar(PedidoFilter filtro, @PageableDefault(size = 10) Pageable pageable) {
 
-        pageable = traduzirPageable(pageable);
+        Pageable pageableTraduzido = traduzirPageable(pageable);
 
-        Page<Pedido> pedidosPage = emissaoPedidoService.findAll(filtro, pageable);
+        Page<Pedido> pedidosPage = emissaoPedidoService.findAll(filtro, pageableTraduzido);
+
+        // Para que Hateoas adicione o link com o nome da propriedade em sort corretamente
+        pedidosPage = new PageWrapper<>(pedidosPage, pageable);
 
         return pagedResourcesAssembler.toModel(pedidosPage, pedidoResumoModelAssembler);
     }
@@ -123,11 +128,15 @@ public class PedidoController implements PedidoControllerOpenApi {
     private Pageable traduzirPageable(Pageable apiPageable) {
 
         // Atributos pelos quais a paginação é ordenável
-        var mapeamento = ImmutableMap.of(
+        var mapeamento = Map.of(
                 "codigo", "codigo",
-                "nomeCliente", "cliente.nome",
-                "restaurante.nome", "restaurante.nome", // pois o retorno possui essa estrutura sendo mais intuitivo para o consumidor
-                "valorTotal", "valorTotal"
+                "subtotal", "subtotal",
+                "taxaFrete", "taxaFrete",
+                "valorTotal", "valorTotal",
+                "dataCriacao", "dataCriacao",
+                "nomeRestaurante", "restaurante.nome", // pois o retorno possui essa estrutura sendo mais intuitivo para o consumidor
+                "restaurante.id", "restaurante.id",
+                "nomeCliente", "cliente.nome"
         );
 
         return PageableTranslator.translate(apiPageable, mapeamento);
