@@ -31,6 +31,21 @@ public class FoodLinks {
                 PAGINACAO_VARIABLES.concat(filtroVariables)), "pedidos");
     }
 
+    public Link linkToConfirmarPedido(String codigoPedido, String rel) {
+        return linkTo(methodOn(FluxoPedidoController.class)
+                .confirmar(codigoPedido)).withRel(rel);
+    }
+
+    public Link linkToEntregarPedido(String codigoPedido, String rel) {
+        return linkTo(methodOn(FluxoPedidoController.class)
+                .entregar(codigoPedido)).withRel(rel);
+    }
+
+    public Link linkToCancelarPedido(String codigoPedido, String rel) {
+        return linkTo(methodOn(FluxoPedidoController.class)
+                .cancelar(codigoPedido)).withRel(rel);
+    }
+
     public Link linkToRestaurante(Long restauranteId, String rel) {
         return linkTo(methodOn(RestauranteController.class)
                 .buscar(restauranteId)).withRel(rel);
