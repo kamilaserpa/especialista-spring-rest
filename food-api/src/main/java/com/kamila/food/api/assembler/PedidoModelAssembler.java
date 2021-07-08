@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+/**
+ * Classe responsável por adicionar links
+ * seguindo padrão HATEOAS
+ */
 @Component
 public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pedido, PedidoModel> {
 
@@ -32,9 +36,15 @@ public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pe
 
         pedidoModel.add(foodLinks.linkToPedidos());
 
-        pedidoModel.add(foodLinks.linkToConfirmarPedido(pedido.getCodigo(), "confirmar"));
-        pedidoModel.add(foodLinks.linkToEntregarPedido(pedido.getCodigo(), "entregar"));
-        pedidoModel.add(foodLinks.linkToCancelarPedido(pedido.getCodigo(), "cancelar"));
+        if (pedido.podeSerConfirmado()) {
+            pedidoModel.add(foodLinks.linkToConfirmarPedido(pedido.getCodigo(), "confirmar"));
+        }
+        if (pedido.podeSerEntregue()) {
+            pedidoModel.add(foodLinks.linkToEntregarPedido(pedido.getCodigo(), "entregar"));
+        }
+        if (pedido.podeSerCancelado()) {
+            pedidoModel.add(foodLinks.linkToCancelarPedido(pedido.getCodigo(), "cancelar"));
+        }
 
         pedidoModel.getRestaurante().add(
                 foodLinks.linkToRestaurante(pedido.getRestaurante().getId()));
