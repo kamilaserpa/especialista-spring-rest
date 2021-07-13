@@ -17,10 +17,10 @@ public class FoodLinks {
     /**
      * Atributos com estes nomes serão adicionados ao Json serializado para o front
      * referindo-se ao link correspondente. Por exemplo:
-     *  "first": {
-     *         "href": "http://localhost:8080/pedidos?page=0&size=2&sort=restaurante.nome,asc"
-     *     }
-      */
+     * "first": {
+     * "href": "http://localhost:8080/pedidos?page=0&size=2&sort=restaurante.nome,asc"
+     * }
+     */
     public static final TemplateVariables PAGINACAO_VARIABLES = new TemplateVariables(
             new TemplateVariable("page", VariableType.REQUEST_PARAM),
             new TemplateVariable("size", VariableType.REQUEST_PARAM),
@@ -83,6 +83,16 @@ public class FoodLinks {
                 .listar(restauranteId)).withRel(rel);
     }
 
+    public Link linkToRestauranteFormasPagamento(Long restauranteId) {
+        return linkToRestauranteFormasPagamento(restauranteId, IanaLinkRelations.SELF.value());
+    }
+
+    public Link linkToRestauranteFormaPagamentoDesassociacao(Long restauranteId, Long formaPagamentoId, String rel) {
+        return linkTo(methodOn(RestauranteFormaPagamentoController.class)
+                .desassociar(restauranteId, formaPagamentoId))
+                .withRel(rel);
+    }
+
     public Link linkToUsuario(Long usuarioId, String rel) {
         return linkTo(methodOn(UsuarioController.class)
                 .buscar(usuarioId)).withRel(rel);
@@ -125,6 +135,14 @@ public class FoodLinks {
 
     public Link linkToFormaPagamento(Long formaPagamentoId) {
         return linkToFormaPagamento(formaPagamentoId, IanaLinkRelations.SELF.value());
+    }
+
+    public Link linkToFormasPagamento(String rel) {
+        return linkTo(FormaPagamentoController.class).withRel(rel);
+    }
+
+    public Link linkToFormasPagamento() {
+        return linkToFormasPagamento(IanaLinkRelations.SELF.value());
     }
 
     public Link linkToCidade(Long cidadeId, String rel) {

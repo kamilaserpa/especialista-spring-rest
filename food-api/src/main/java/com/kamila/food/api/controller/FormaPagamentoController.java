@@ -11,6 +11,7 @@ import com.kamila.food.domain.model.FormaPagamento;
 import com.kamila.food.domain.repository.FormaPagamentoRepository;
 import com.kamila.food.domain.service.CadastroFormaPagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -47,7 +48,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
      */
     @Override
     @GetMapping
-    public ResponseEntity<List<FormaPagamentoModel>> listar(ServletWebRequest request) {
+    public ResponseEntity<CollectionModel<FormaPagamentoModel>> listar(ServletWebRequest request) {
         // Desabilitando ShallowEtagHeaderFilter
         ShallowEtagHeaderFilter.disableContentCaching(request.getRequest());
 
@@ -64,7 +65,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
         }
 
         List<FormaPagamento> todasFormasPagamento = formaPagamentoRepository.findAll();
-        List<FormaPagamentoModel> formasPagamentoModel = formaPagamentoModelAssembler
+        CollectionModel<FormaPagamentoModel> formasPagamentoModel = formaPagamentoModelAssembler
                 .toCollectionModel(todasFormasPagamento);
         // Header de Cache
         return ResponseEntity.ok()

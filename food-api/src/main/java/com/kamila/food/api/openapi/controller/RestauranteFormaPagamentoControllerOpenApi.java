@@ -3,8 +3,8 @@ package com.kamila.food.api.openapi.controller;
 import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.FormaPagamentoModel;
 import io.swagger.annotations.*;
-
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
 
 @Api(tags = "Restaurantes")
 public interface RestauranteFormaPagamentoControllerOpenApi {
@@ -13,7 +13,7 @@ public interface RestauranteFormaPagamentoControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    List<FormaPagamentoModel> listar(
+    CollectionModel<FormaPagamentoModel> listar(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long idRestaurante);
 
@@ -23,7 +23,7 @@ public interface RestauranteFormaPagamentoControllerOpenApi {
             @ApiResponse(code = 204, message = "Desassociação realizada com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante ou forma de pagamento não encontrado", response = Problem.class)
     })
-    void desassociar(
+    ResponseEntity<Void> desassociar(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long idRestaurante,
             @ApiParam(value = "ID da forma de pagamento", example = "1", required = true)
