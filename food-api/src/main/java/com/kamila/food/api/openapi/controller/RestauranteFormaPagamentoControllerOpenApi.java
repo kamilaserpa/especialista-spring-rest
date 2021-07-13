@@ -35,7 +35,7 @@ public interface RestauranteFormaPagamentoControllerOpenApi {
             @ApiResponse(code = 204, message = "Associação realizada com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante ou forma de pagamento não encontrado", response = Problem.class)
     })
-    void associar(
+    ResponseEntity<Void> associar( // ResponseEntity<Void> para conseguir utilizar methodOn() em FoodLinks
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long idRestaurante,
             @ApiParam(value = "ID da forma de pagamento", example = "1", required = true)

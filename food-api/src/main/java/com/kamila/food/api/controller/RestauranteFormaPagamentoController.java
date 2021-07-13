@@ -35,7 +35,8 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
         Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
         CollectionModel<FormaPagamentoModel> formaPagamentoModels = formaPagamentoModelAssembler.toCollectionModel(restaurante.getFormasPagamento())
                 .removeLinks()
-                .add(foodLinks.linkToRestauranteFormasPagamento(idRestaurante));
+                .add(foodLinks.linkToRestauranteFormasPagamento(idRestaurante))
+                .add(foodLinks.linkToRestauranteFormaPagamentoAssociacao(idRestaurante, "associar"));
 
         formaPagamentoModels.getContent().forEach(formaPagamentoModel -> {
             formaPagamentoModel.add(foodLinks.linkToRestauranteFormaPagamentoDesassociacao(
@@ -58,8 +59,9 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
     @Override
     @PutMapping("/{idFormaPagamento}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void associar(@PathVariable Long idRestaurante, @PathVariable Long idFormaPagamento) {
+    public ResponseEntity<Void> associar(@PathVariable Long idRestaurante, @PathVariable Long idFormaPagamento) {
         cadastroRestauranteService.associarFormaPagamento(idRestaurante, idFormaPagamento);
+        return ResponseEntity.noContent().build();
     }
 
 
