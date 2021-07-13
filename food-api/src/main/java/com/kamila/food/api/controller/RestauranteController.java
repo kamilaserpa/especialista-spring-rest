@@ -1,6 +1,5 @@
 package com.kamila.food.api.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import com.kamila.food.api.assembler.RestauranteApenasNomeModelAssembler;
 import com.kamila.food.api.assembler.RestauranteBasicoModelAssembler;
 import com.kamila.food.api.assembler.RestauranteInputDisassembler;
@@ -9,7 +8,6 @@ import com.kamila.food.api.model.RestauranteApenasNomeModel;
 import com.kamila.food.api.model.RestauranteBasicoModel;
 import com.kamila.food.api.model.RestauranteModel;
 import com.kamila.food.api.model.input.RestauranteInput;
-import com.kamila.food.api.model.view.RestauranteView;
 import com.kamila.food.api.openapi.controller.RestauranteControllerOpenApi;
 import com.kamila.food.domain.exception.CidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
@@ -169,7 +167,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
     }
 
     @Override
-    @PutMapping("/{restauranteId}/abertura")
+    @PutMapping("/{idRestaurante}/abertura")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> abrir(@PathVariable Long idRestaurante) {
         cadastroRestauranteService.abrir(idRestaurante);
@@ -178,10 +176,10 @@ public class RestauranteController implements RestauranteControllerOpenApi {
     }
 
     @Override
-    @PutMapping("/{restauranteId}/fechamento")
+    @PutMapping("/{idRestaurante}/fechamento")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> fechar(@PathVariable Long restauranteId) {
-        cadastroRestauranteService.fechar(restauranteId);
+    public ResponseEntity<Void> fechar(@PathVariable Long idRestaurante) {
+        cadastroRestauranteService.fechar(idRestaurante);
 
         return ResponseEntity.noContent().build();
     }
