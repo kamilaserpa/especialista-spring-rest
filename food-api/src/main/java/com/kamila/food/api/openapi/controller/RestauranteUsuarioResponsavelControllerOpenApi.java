@@ -4,6 +4,7 @@ import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.UsuarioModel;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
 
 @Api(tags = "Restaurantes")
 public interface RestauranteUsuarioResponsavelControllerOpenApi {
@@ -22,7 +23,7 @@ public interface RestauranteUsuarioResponsavelControllerOpenApi {
             @ApiResponse(code = 204, message = "Desassociação realizada com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante ou usuário não encontrado", response = Problem.class)
     })
-    void desassociarResponsavel(
+    ResponseEntity<Void> desassociarResponsavel(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long idRestaurante,
             @ApiParam(value = "ID ddo usuário", example = "1", required = true)
@@ -34,7 +35,7 @@ public interface RestauranteUsuarioResponsavelControllerOpenApi {
             @ApiResponse(code = 204, message = "Associação realizada com sucesso"),
             @ApiResponse(code = 404, message = "Restaurante ou usuário não encontrado", response = Problem.class)
     })
-    void associarResponsavel(
+    ResponseEntity<Void> associarResponsavel(
             @ApiParam(value = "ID de um restaurante", example = "1", required = true)
                     Long idRestaurante,
             @ApiParam(value = "ID ddo usuário", example = "1", required = true)

@@ -125,13 +125,25 @@ public class FoodLinks {
         return linkToGruposUsuario(usuarioId, IanaLinkRelations.SELF.value());
     }
 
-    public Link linkToResponsaveisRestaurante(Long restauranteId, String rel) {
+    public Link linkToRestauranteResponsaveis(Long restauranteId, String rel) {
         return linkTo(methodOn(RestauranteUsuarioResponsavelController.class)
                 .listar(restauranteId)).withRel(rel);
     }
 
-    public Link linkToResponsaveisRestaurante(Long restauranteId) {
-        return linkToResponsaveisRestaurante(restauranteId, IanaLinkRelations.SELF.value());
+    public Link linkToRestauranteResponsaveis(Long restauranteId) {
+        return linkToRestauranteResponsaveis(restauranteId, IanaLinkRelations.SELF.value());
+    }
+
+    public Link linkToRestauranteUsuarioResponsavelAssociacao(Long restauranteId, String rel) {
+        return linkTo(methodOn(RestauranteUsuarioResponsavelController.class)
+                .associarResponsavel(restauranteId, null))
+                .withRel(rel);
+    }
+
+    public Link linkToRestauranteUsuarioResponsavelDesassociacao(Long restauranteId, Long usuarioId, String rel) {
+        return linkTo(methodOn(RestauranteUsuarioResponsavelController.class)
+                .desassociarResponsavel(restauranteId, usuarioId))
+                .withRel(rel);
     }
 
     public Link linkToFormaPagamento(Long formaPagamentoId, String rel) {
