@@ -1,14 +1,17 @@
 package com.kamila.food.api.model;
 
-import java.math.BigDecimal;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
+import java.math.BigDecimal;
+
+@Relation(collectionRelation = "produtos")
 @Getter
 @Setter
-public class ProdutoModel {
+public class ProdutoModel extends RepresentationModel<ProdutoModel> {
 
     @ApiModelProperty(example = "1")
     private Long id;

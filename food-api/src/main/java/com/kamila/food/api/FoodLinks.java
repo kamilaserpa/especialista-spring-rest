@@ -207,6 +207,17 @@ public class FoodLinks {
         return linkToProduto(restauranteId, produtoId, IanaLinkRelations.SELF.value());
     }
 
+    public Link linkToProdutos(Long restauranteId, String rel) {
+        // com valor null para parâmetro o Spring hateoas adiciona o parâmetro "incluirInativos" automaticamente no link
+        return linkTo(methodOn(RestauranteProdutoController.class)
+                .listar(restauranteId, null))
+                .withRel(rel);
+    }
+
+    public Link linkToProdutos(Long restauranteId) {
+        return linkToProdutos(restauranteId, IanaLinkRelations.SELF.value());
+    }
+
     public Link linkToCozinha(Long cozinhaId, String rel) {
         return linkTo(methodOn(CozinhaController.class)
                 .buscar(cozinhaId)).withRel(rel);

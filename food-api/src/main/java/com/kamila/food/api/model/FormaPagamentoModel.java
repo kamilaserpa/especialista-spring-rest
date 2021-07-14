@@ -9,7 +9,7 @@ import org.springframework.hateoas.server.core.Relation;
 @Relation(collectionRelation = "formasPagamento")
 @Getter
 @Setter
-public class FormaPagamentoModel  extends RepresentationModel<FormaPagamentoModel> {
+public class FormaPagamentoModel extends RepresentationModel<FormaPagamentoModel> {
 
 	@ApiModelProperty(example = "1")
 	private Long id;

@@ -4,6 +4,7 @@ import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.ProdutoModel;
 import com.kamila.food.api.model.input.ProdutoInput;
 import io.swagger.annotations.*;
+import org.springframework.hateoas.CollectionModel;
 
 import java.util.List;
 
@@ -15,12 +16,12 @@ public interface RestauranteProdutoControllerOpenApi {
             @ApiResponse(code = 400, message = "ID do restaurante inválido", response = Problem.class),
             @ApiResponse(code = 404, message = "Restaurante não encontrado", response = Problem.class)
     })
-    List<ProdutoModel> listar(
+    CollectionModel<ProdutoModel> listar(
             @ApiParam(value = "ID do restaurante", example = "1", required = true)
                     Long idRestaurante,
             @ApiParam(value = "Indica se deve ou não incluir produtos inativos no resultado da listagem",
                     example = "false", defaultValue = "false")
-                    boolean incluirInativos);
+                    Boolean incluirInativos);
 
 
     @ApiOperation("Busca um produto de um restaurante")
