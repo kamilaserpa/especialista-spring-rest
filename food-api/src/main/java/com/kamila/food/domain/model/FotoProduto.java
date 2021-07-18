@@ -1,10 +1,7 @@
 package com.kamila.food.domain.model;
 
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Setter;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 
