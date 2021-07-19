@@ -1,5 +1,6 @@
 package com.kamila.food.api.controller;
 
+import com.kamila.food.api.FoodLinks;
 import com.kamila.food.api.assembler.GrupoModelAssembler;
 import com.kamila.food.api.model.GrupoModel;
 import com.kamila.food.api.openapi.controller.UsuarioGrupoControllerOpenApi;
@@ -9,40 +10,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/usuarios/{idUsuario}/grupos",
-		produces = MediaType.APPLICATION_JSON_VALUE)
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
 
-	@Autowired
-	private CadastroUsuarioService cadastroUsuarioService;
-	
-	@Autowired
-	private GrupoModelAssembler grupoModelAssembler;
+    @Autowired
+    private CadastroUsuarioService cadastroUsuarioService;
 
-	@Override
-	@GetMapping
-	public CollectionModel<GrupoModel> listar(@PathVariable Long idUsuario) {
-		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(idUsuario);
+    @Autowired
+    private GrupoModelAssembler grupoModelAssembler;
 
-		return grupoModelAssembler.toCollectionModel(usuario.getGrupos())
-				.removeLinks();
-	}
+    @Autowired
+    private FoodLinks foodLinks;
 
-	@Override
-	@DeleteMapping("/{idGrupo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void desassociarGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
-		cadastroUsuarioService.desassociarGrupo(idUsuario, idGrupo);
-	}
+    @Override
+    @GetMapping
+    public CollectionModel<GrupoModel> listar(@PathVariable Long idUsuario) {
+        Usuario usuario = cadastroUsuarioService.buscarOuFalhar(idUsuario);
 
-	@Override
-	@PutMapping("/{idGrupo}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void associarGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
-		cadastroUsuarioService.associarGrupo(idUsuario, idGrupo);
-	}
-	
+        CollectionModel<GrupoModel> grupoModels = grupoModelAssembler.toCollectionModel(usuario.getGrupos())
+                .removeLinks()
+                .add(foodLinks.linkToUsuarioGrupoAssociacao(idUsuario, "associar"));
+
+        grupoModels.getContent().forEach(grupoModel -> {
+            grupoModel.add(foodLinks.linkToUsuarioGrupoDesassociacao(idUsuario,
+                    grupoModel.getId(), "desassociar"));
+        });
+
+        return grupoModels;
+    }
+
+    @Override
+    @DeleteMapping("/{idGrupo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> desassociarGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
+        cadastroUsuarioService.desassociarGrupo(idUsuario, idGrupo);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    @PutMapping("/{idGrupo}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> associarGrupo(@PathVariable Long idUsuario, @PathVariable Long idGrupo) {
+        cadastroUsuarioService.associarGrupo(idUsuario, idGrupo);
+        return ResponseEntity.noContent().build();
+    }
+
 }
