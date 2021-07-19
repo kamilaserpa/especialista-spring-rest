@@ -4,14 +4,13 @@ import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.GrupoModel;
 import com.kamila.food.api.model.input.GrupoInput;
 import io.swagger.annotations.*;
-
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 @Api(tags = "Grupos")
 public interface GrupoControllerOpenApi {
 
     @ApiOperation("Lista os grupos")
-    List<GrupoModel> listar();
+    CollectionModel<GrupoModel> listar();
 
     @ApiOperation("Busca um grupo por ID")
     @ApiResponses({

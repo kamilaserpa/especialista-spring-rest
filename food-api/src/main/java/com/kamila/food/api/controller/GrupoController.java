@@ -12,6 +12,7 @@ import com.kamila.food.domain.model.Grupo;
 import com.kamila.food.domain.repository.GrupoRepository;
 import com.kamila.food.domain.service.CadastroGrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -37,14 +38,14 @@ public class GrupoController implements GrupoControllerOpenApi {
 
 	@Override
 	@GetMapping
-	public List<GrupoModel> listar() {
+	public CollectionModel<GrupoModel> listar() {
 		return grupoModelAssembler.toCollectionModel(grupoRepository.findAll());
 	}
 
 	@Override
-	@GetMapping("/{idCidade}")
-	public GrupoModel buscar(@PathVariable Long idCidade) {
-		Grupo grupo = cadastroGrupoService.buscarOuFalhar(idCidade);
+	@GetMapping("/{idGrupo}")
+	public GrupoModel buscar(@PathVariable Long idGrupo) {
+		Grupo grupo = cadastroGrupoService.buscarOuFalhar(idGrupo);
 		return grupoModelAssembler.toModel(grupo);
 
 	}

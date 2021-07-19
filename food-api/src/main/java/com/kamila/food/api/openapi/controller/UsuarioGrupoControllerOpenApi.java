@@ -2,10 +2,8 @@ package com.kamila.food.api.openapi.controller;
 
 import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.GrupoModel;
-import com.kamila.food.api.model.UsuarioModel;
 import io.swagger.annotations.*;
-
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 @Api(tags = "Usuários")
 public interface UsuarioGrupoControllerOpenApi {
@@ -14,7 +12,7 @@ public interface UsuarioGrupoControllerOpenApi {
     @ApiResponses({
             @ApiResponse(code = 404, message = "Usuário não encontrado", response = Problem.class)
     })
-    List<GrupoModel> listar(
+    CollectionModel<GrupoModel> listar(
             @ApiParam(value = "ID de um usuário", example = "1", required = true)
                     Long idUsuario);
 

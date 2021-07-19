@@ -95,7 +95,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .tags(new Tag("Estatísticas", "Estatísticas do Food"));
     }
 
-    // Lista de Códigos de status de erro Globais que serão exibidos na Documentação
+    // Lista de Códigos de status de erro Globais que serão exibidos na Documentação (Problem.class)
     private List<ResponseMessage> globalGetResponseMessages() {
         return Arrays.asList(
                 new ResponseMessageBuilder()

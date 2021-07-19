@@ -6,11 +6,10 @@ import com.kamila.food.api.openapi.controller.UsuarioGrupoControllerOpenApi;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/usuarios/{idUsuario}/grupos",
@@ -25,10 +24,11 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
 
 	@Override
 	@GetMapping
-	public List<GrupoModel> listar(@PathVariable Long idUsuario) {
+	public CollectionModel<GrupoModel> listar(@PathVariable Long idUsuario) {
 		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(idUsuario);
-		
-		return grupoModelAssembler.toCollectionModel(usuario.getGrupos());
+
+		return grupoModelAssembler.toCollectionModel(usuario.getGrupos())
+				.removeLinks();
 	}
 
 	@Override
