@@ -1,16 +1,17 @@
 package com.kamila.food.api.controller;
 
+import com.kamila.food.api.FoodLinks;
 import com.kamila.food.api.assembler.PermissaoModelAssembler;
 import com.kamila.food.api.model.PermissaoModel;
 import com.kamila.food.api.openapi.controller.GrupoPermissaoControllerOpenApi;
 import com.kamila.food.domain.model.Grupo;
 import com.kamila.food.domain.service.CadastroGrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/grupos/{idGrupo}/permissoes",
@@ -23,26 +24,40 @@ public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi
     @Autowired
     private PermissaoModelAssembler permissaoModelAssembler;
 
+    @Autowired
+    private FoodLinks foodLinks;
+
     @Override
     @GetMapping
-    public List<PermissaoModel> listar(@PathVariable Long idGrupo) {
+    public CollectionModel<PermissaoModel> listar(@PathVariable Long idGrupo) {
         Grupo grupo = cadastroGrupo.buscarOuFalhar(idGrupo);
+        CollectionModel<PermissaoModel> permissoesModel = permissaoModelAssembler.toCollectionModel(grupo.getPermissoes())
+                .removeLinks()
+                .add(foodLinks.linkToGrupoPermissoes(idGrupo))
+                .add(foodLinks.linkToGrupoPermissaoAssociacao(idGrupo, "associar"));
 
-        return permissaoModelAssembler.toCollectionModel(grupo.getPermissoes());
+        permissoesModel.getContent().forEach(permissaoModel -> {
+            permissaoModel.add(foodLinks.linkToGrupoPermissaoDesassociacao(
+                    idGrupo, permissaoModel.getId(), "desassociar"));
+        });
+
+        return permissoesModel;
     }
 
     @Override
     @DeleteMapping("/{idPermissao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void desassociar(@PathVariable Long idGrupo, @PathVariable Long idPermissao) {
+    public ResponseEntity<Void> desassociar(@PathVariable Long idGrupo, @PathVariable Long idPermissao) {
         cadastroGrupo.desassociarPermissao(idGrupo, idPermissao);
+        return ResponseEntity.noContent().build();
     }
 
     @Override
     @PutMapping("/{idPermissao}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void associar(@PathVariable Long idGrupo, @PathVariable Long idPermissao) {
+    public ResponseEntity<Void> associar(@PathVariable Long idGrupo, @PathVariable Long idPermissao) {
         cadastroGrupo.associarPermissao(idGrupo, idPermissao);
+        return ResponseEntity.noContent().build();
     }
 
 }

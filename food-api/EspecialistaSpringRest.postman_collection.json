@@ -1361,6 +1361,30 @@
 			]
 		},
 		{
+			"name": "Permissões",
+			"item": [
+				{
+					"name": "Permissão - Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/permissoes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"permissoes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Produto/Restaurante",
 			"item": [
 				{

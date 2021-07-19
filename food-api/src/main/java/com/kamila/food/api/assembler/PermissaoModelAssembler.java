@@ -1,30 +1,35 @@
 package com.kamila.food.api.assembler;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import com.kamila.food.api.FoodLinks;
 import com.kamila.food.api.model.PermissaoModel;
 import com.kamila.food.domain.model.Permissao;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
 
 @Component
-public class PermissaoModelAssembler {
+public class PermissaoModelAssembler implements RepresentationModelAssembler<Permissao, PermissaoModel> {
 
-	@Autowired
-	private ModelMapper modelMapper;
+    @Autowired
+    private ModelMapper modelMapper;
 
-	public PermissaoModel toModel(Permissao permissao) {
-		return modelMapper.map(permissao, PermissaoModel.class);
-	}
+    @Autowired
+    private FoodLinks foodLinks;
 
-	public List<PermissaoModel> toCollectionModel(Collection<Permissao> permissoes) {
-		return permissoes.stream()
-				.map(permissao -> toModel(permissao))
-				.collect(Collectors.toList());
-	}
+    @Override
+    public PermissaoModel toModel(Permissao permissao) {
+        PermissaoModel permissaoModel = modelMapper.map(permissao, PermissaoModel.class);
+
+        return permissaoModel;
+    }
+
+    @Override
+    public CollectionModel<PermissaoModel> toCollectionModel(Iterable<? extends Permissao> entities) {
+        return RepresentationModelAssembler.super.toCollectionModel(entities)
+                .add(foodLinks.linkToPermissoes());
+    }
 
 }
+

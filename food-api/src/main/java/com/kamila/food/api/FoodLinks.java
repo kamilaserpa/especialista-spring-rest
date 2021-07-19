@@ -133,6 +133,10 @@ public class FoodLinks {
         return linkToGrupos(IanaLinkRelations.SELF.value());
     }
 
+    public  Link linkToGrupoPermissoes(Long grupoId) {
+        return linkToGrupoPermissoes(grupoId, IanaLinkRelations.SELF.value());
+    }
+
     public  Link linkToGrupoPermissoes(Long grupoId, String rel) {
         return linkTo(methodOn(GrupoPermissaoController.class).listar(grupoId))
                 .withRel(rel);
@@ -276,6 +280,26 @@ public class FoodLinks {
 
     public Link linkToFotoProduto(Long restauranteId, Long produtoId) {
         return linkToFotoProduto(restauranteId, produtoId, IanaLinkRelations.SELF.value());
+    }
+
+    public Link linkToPermissoes(String rel) {
+        return linkTo(PermissaoController.class).withRel(rel);
+    }
+
+    public Link linkToPermissoes() {
+        return linkToPermissoes(IanaLinkRelations.SELF.value());
+    }
+
+    public Link linkToGrupoPermissaoAssociacao(Long idGrupo, String rel) {
+        return linkTo(methodOn(GrupoPermissaoController.class)
+                .associar(idGrupo, null))
+                .withRel(rel);
+    }
+
+    public Link linkToGrupoPermissaoDesassociacao(Long idGrupo, Long idPermissao, String rel) {
+        return linkTo(methodOn(GrupoPermissaoController.class)
+                .desassociar(idGrupo, idPermissao))
+                .withRel(rel);
     }
 
 }
