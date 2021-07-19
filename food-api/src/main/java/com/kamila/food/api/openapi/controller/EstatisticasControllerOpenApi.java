@@ -1,5 +1,6 @@
 package com.kamila.food.api.openapi.controller;
 
+import com.kamila.food.api.controller.EstatisticasController;
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.dto.VendaDiaria;
 import io.swagger.annotations.*;
@@ -9,6 +10,10 @@ import java.util.List;
 
 @Api(tags = "Estatísticas")
 public interface EstatisticasControllerOpenApi {
+
+    @ApiOperation(value = "Estatísticas", hidden = true)
+    EstatisticasController.EstatisticasModel estatisticas();
+
 
     @ApiOperation("Consulta estatísticas de vendas diárias")
     @ApiImplicitParams({

@@ -1,5 +1,6 @@
 package com.kamila.food.api.controller;
 
+import com.kamila.food.api.FoodLinks;
 import com.kamila.food.api.openapi.controller.EstatisticasControllerOpenApi;
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.dto.VendaDiaria;
@@ -7,6 +8,7 @@ import com.kamila.food.domain.service.VendaQueryService;
 import com.kamila.food.domain.service.VendaReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +30,23 @@ public class EstatisticasController implements EstatisticasControllerOpenApi {
     @Autowired
     private VendaReportService vendaReportService;
 
+    @Autowired
+    private FoodLinks foodLinks;
     
+    @Override
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public EstatisticasModel estatisticas() {
+        var estatisticaModel = new EstatisticasModel();
+        estatisticaModel.add(foodLinks.linkToEstatisticasVendasDiarias("vendas-diarias"));
+        return estatisticaModel;
+    }
+
     @Override
     @GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro,
         @RequestParam(required = false, defaultValue = "+00:00") String timeOffset) {
         return vendaQueryService.consultarVendasDiarias(filtro, timeOffset);
     }
-
 
     @Override
     @GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_PDF_VALUE)
@@ -51,6 +62,10 @@ public class EstatisticasController implements EstatisticasControllerOpenApi {
                 .contentType(MediaType.APPLICATION_PDF)
                 .headers(headers)
                 .body(bytesPdf);
+    }
+
+    // Classe interna
+    public static class EstatisticasModel extends RepresentationModel<EstatisticasModel> {
     }
 
 }

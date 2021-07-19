@@ -30,6 +30,7 @@ public class FoodLinks {
     public static final TemplateVariables PROJECAO_VARIABLES = new TemplateVariables(
             new TemplateVariable("projecao", VariableType.REQUEST_PARAM));
 
+    // Descrevendo parâmetros no HATEOAS
     public Link linkToPedidos(String rel) {
         TemplateVariables filtroVariables = new TemplateVariables(
                 new TemplateVariable("clienteId", VariableType.REQUEST_PARAM),
@@ -312,6 +313,24 @@ public class FoodLinks {
         return linkTo(methodOn(UsuarioGrupoController.class)
                 .desassociarGrupo(idUsuario, null))
                 .withRel(rel);
+    }
+
+    public Link linkToEstatisticas(String rel) {
+        return linkTo(EstatisticasController.class).withRel(rel);
+    }
+
+    public Link linkToEstatisticasVendasDiarias(String rel) {
+        TemplateVariables filtroVariables = new TemplateVariables(
+                new TemplateVariable("restauranteId", VariableType.REQUEST_PARAM),
+                new TemplateVariable("dataCriacaoInicio", VariableType.REQUEST_PARAM),
+                new TemplateVariable("timeOffset", VariableType.REQUEST_PARAM)
+        );
+
+        String vendasDiariasUrl = linkTo(methodOn(EstatisticasController.class)
+                .consultarVendasDiarias(null, null)).toUri().toString();
+
+        return new Link(UriTemplate.of(vendasDiariasUrl,
+                filtroVariables), rel);
     }
 
 }
