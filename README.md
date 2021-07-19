@@ -962,6 +962,8 @@ Duas maneiras de inserir o memso link:
 
 ```
 
+#### Root Entry Point
+O consumidor deve poder acessar a API pelo ponto de entrada raiz. Assim, caso algum endpoint tenha alteração na sua URL, os consumidores não sofrerão impacto já que estariam seguindo os links retornados e acessados pela API e pelo `Root Entry Point`.
 
 ---
 
