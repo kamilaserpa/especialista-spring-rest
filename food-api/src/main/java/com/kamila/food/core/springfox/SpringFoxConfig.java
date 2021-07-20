@@ -2,10 +2,7 @@ package com.kamila.food.core.springfox;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.kamila.food.api.exceptionhandler.Problem;
-import com.kamila.food.api.model.CidadeModel;
-import com.kamila.food.api.model.CozinhaModel;
-import com.kamila.food.api.model.EstadoModel;
-import com.kamila.food.api.model.PedidoResumoModel;
+import com.kamila.food.api.model.*;
 import com.kamila.food.api.openapi.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -88,6 +85,9 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .alternateTypeRules(AlternateTypeRules.newRule(
                         typeResolver.resolve(CollectionModel.class, EstadoModel.class),
                         EstadosModelOpenApi.class))
+                .alternateTypeRules(AlternateTypeRules.newRule(
+                        typeResolver.resolve(CollectionModel.class, FormaPagamentoModel.class),
+                        FormasPagamentoModelOpenApi.class))
 
                 .apiInfo(apiInfo())
                 .ignoredParameterTypes(

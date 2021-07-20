@@ -3,6 +3,7 @@ package com.kamila.food.api.openapi.controller;
 import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.FormaPagamentoModel;
 import com.kamila.food.api.model.input.FormaPagamentoInput;
+import com.kamila.food.api.openapi.model.FormasPagamentoModelOpenApi;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.context.request.ServletWebRequest;
 @Api(tags = "Formas de pagamento")
 public interface FormaPagamentoControllerOpenApi {
 
-    @ApiOperation("Lista as formas de pagamento")
+    @ApiOperation(value = "Lista as formas de pagamento", response = FormasPagamentoModelOpenApi.class)
     ResponseEntity<CollectionModel<FormaPagamentoModel>> listar(ServletWebRequest request);
 
 
