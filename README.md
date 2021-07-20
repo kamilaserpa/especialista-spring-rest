@@ -965,6 +965,10 @@ Duas maneiras de inserir o memso link:
 #### Root Entry Point
 O consumidor deve poder acessar a API pelo ponto de entrada raiz. Assim, caso algum endpoint tenha alteração na sua URL, os consumidores não sofrerão impacto já que estariam seguindo os links retornados e acessados pela API e pelo `Root Entry Point`.
 
+#### Comprimindo respostas HTTP com GZIP
+Com um payload maior contendo os links para implantação do HATEOAS pode ser interessante comprimir as respostas da API com GZIP.
+Habilita-se a compressão adicionando `spring.compression.enabled=true` em `application.properties`. Vale ressaltar que o servidor utilizará processamento para comprimir.
+
 ---
 
 ##### Eclipse
