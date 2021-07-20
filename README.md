@@ -948,7 +948,7 @@ A especificação HATEOAS utilizada no projeto é o `HAL` (Hypertext Application
 
 `RepresentationModel` é semelhante à um container para coleção de links. Possui métodos para adicionar links ao modelo. <br>
 `Link relation` indica o relacionamento do recurso destino do link com o recurso atual, self indica que se refere ao mesmo recurso. <br>
-Duas maneiras de inserir o memso link:
+Duas maneiras de inserir o mesmo link:
 
  ```java
  	cidadeModel.add(WebMvcLinkBuilder.linkTo(CidadeController.class)

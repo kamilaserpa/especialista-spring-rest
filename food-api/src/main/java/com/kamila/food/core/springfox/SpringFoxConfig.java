@@ -5,6 +5,7 @@ import com.kamila.food.api.exceptionhandler.Problem;
 import com.kamila.food.api.model.CozinhaModel;
 import com.kamila.food.api.model.PedidoResumoModel;
 import com.kamila.food.api.openapi.model.CozinhasModelOpenApi;
+import com.kamila.food.api.openapi.model.LinksModelOpenApi;
 import com.kamila.food.api.openapi.model.PageableModelOpenApi;
 import com.kamila.food.api.openapi.model.PedidosResumoModelOpenApi;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.Links;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -71,6 +73,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 //                ))
                 .additionalModels(typeResolver.resolve(Problem.class)) // Adicionando Modelo extra para ser exibido em Models
                 .directModelSubstitute(Pageable.class, PageableModelOpenApi.class) // Para exibir os parâmetros recebidos em um Pageable
+                .directModelSubstitute(Links.class, LinksModelOpenApi.class) // Substituindo Links do HATEOAS
                 // Substituindo um Page<CozinhaModel> para CozinhasModelOpenApi
                 .alternateTypeRules(AlternateTypeRules.newRule(
                         typeResolver.resolve(Page.class, CozinhaModel.class),
