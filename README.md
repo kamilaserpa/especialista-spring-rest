@@ -929,7 +929,7 @@ Para descrever isso corretamente foi criado um objeto com os atributos realmente
 Ao enviar um arquivo para o endpoint de salvar imagem de um produto verifica-se o erro de que o Swagger não adiciona o header `Content-type: multipart/form-data` e a requisição ocorre com erro. Por este motivo foi adicionado o parâmetro `@RequestPart(required = true) MultipartFile arquivo` ao recurso.
 
 
-## Capítulo 18 - 
+## Capítulo 19 - Discoverability e HATEOAS: A Glória do REST
 
 `HATEOAS` é uma restrição que faz parte da arquitetura de aplicações REST, cujo objetivo é ajudar os clientes a consumirem o serviço sem a necessidade de conhecimento prévio profundo da API. 
 
@@ -968,6 +968,11 @@ O consumidor deve poder acessar a API pelo ponto de entrada raiz. Assim, caso al
 #### Comprimindo respostas HTTP com GZIP
 Com um payload maior contendo os links para implantação do HATEOAS pode ser interessante comprimir as respostas da API com GZIP.
 Habilita-se a compressão adicionando `spring.compression.enabled=true` em `application.properties`. Vale ressaltar que o servidor utilizará processamento para comprimir.
+
+## Capítulo 20 - Evoluindo e versionando a API
+
+Retrocompatibilidade, consumidores anteriores poderão continuar usando a API após a alteração, vs Quebra de compatibilidade, necessidade de lidar ocm os consumidores que já estão utilizando a API.
+
 
 ---
 
