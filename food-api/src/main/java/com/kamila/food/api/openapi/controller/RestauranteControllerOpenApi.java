@@ -9,6 +9,7 @@ import com.kamila.food.api.openapi.model.RestauranteBasicoModelOpenApi;
 import io.swagger.annotations.*;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public interface RestauranteControllerOpenApi {
 //	@JsonView(RestauranteView.Resumo.class)
     CollectionModel<RestauranteBasicoModel> listar();
 
+    @ApiIgnore // Ignora o tipo de retorno da doc (CollectionModel<RestauranteApenasNomeModel>
     @ApiOperation(value = "Lista restaurantes", hidden = true)
     CollectionModel<RestauranteApenasNomeModel> listarApenasNomes();
 
