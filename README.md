@@ -972,7 +972,13 @@ Habilita-se a compressão adicionando `spring.compression.enabled=true` em `appl
 ## Capítulo 20 - Evoluindo e versionando a API
 
 Retrocompatibilidade, consumidores anteriores poderão continuar usando a API após a alteração, vs Quebra de compatibilidade, necessidade de lidar ocm os consumidores que já estão utilizando a API.
+Deve-se evitar quebrar os clients da API, se possível.
 
+Evitando quebrar clientes:
+ - Nova propriedade de modelo.
+  Em nova propriedade em modelo de saída há retrocompatibilidade, ao adicionar um atributo em objeto de saída o consumidor ignora-o.
+  Em nova propriedade em modelo de entrada (put, post) pode haver quebra de compatibilidade. Caso o atributo seja obrigatório o cliente deve adicioná-lo. Caso seja opcional há retrocompatibilidade.<br>
+  Sugestão alterar atributo para opcional, após estabilidade alterar para obrigatório se necessário.
 
 ---
 
