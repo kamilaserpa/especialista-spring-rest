@@ -983,6 +983,13 @@ Evitando quebrar clientes:
  - Exclusão de propriedades do modelo.
  Ao remover propriedade em objeto de saída há quebra de compatibilidade, pois os consumidores estão esperand receber este atributo. Sugestão: retirar valor da propriedade, retorná-la com valor null ou zero, informando que a propriedade logo será excluída. <br>
  Ao remover atributo em modelo de representação de entrada é possível que haja quebra de compatibilidade, se a API estiver configurada para identificar erro ao receber propriedade não esperada. Sugestão: retirar da documentação a propriedade, para novos clientes não utilizarem, deixá-la no controller e não utilizá-la.
+ 
+ - Alteração de um tipo amplo para específico.
+  Por exemplo, propriedade recebida do tipo String passa a ser do tipo Decimal. É mantida a retrocompatibilidade.
+
+ - Alteração de um tipo específico para amplo.
+  Por exemplo, propriedade recebida do tipo Decimal passa a ser do tipo String. Nesse caso há quebra de compatibilidade, e necessidade de conversão do dado.  Sugestão: adicionar nova propriedade do tipo desejado e depreciar a propriedade anterior.
+
 
 ---
 
