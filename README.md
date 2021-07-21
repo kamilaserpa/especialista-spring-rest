@@ -978,7 +978,11 @@ Evitando quebrar clientes:
  - Nova propriedade de modelo.
   Em nova propriedade em modelo de saída há retrocompatibilidade, ao adicionar um atributo em objeto de saída o consumidor ignora-o.
   Em nova propriedade em modelo de entrada (put, post) pode haver quebra de compatibilidade. Caso o atributo seja obrigatório o cliente deve adicioná-lo. Caso seja opcional há retrocompatibilidade.<br>
-  Sugestão alterar atributo para opcional, após estabilidade alterar para obrigatório se necessário.
+  Sugestão: alterar atributo para opcional, após estabilidade alterar para obrigatório se necessário.
+
+ - Exclusão de propriedades do modelo.
+ Ao remover propriedade em objeto de saída há quebra de compatibilidade, pois os consumidores estão esperand receber este atributo. Sugestão: retirar valor da propriedade, retorná-la com valor null ou zero, informando que a propriedade logo será excluída. <br>
+ Ao remover atributo em modelo de representação de entrada é possível que haja quebra de compatibilidade, se a API estiver configurada para identificar erro ao receber propriedade não esperada. Sugestão: retirar da documentação a propriedade, para novos clientes não utilizarem, deixá-la no controller e não utilizá-la.
 
 ---
 
