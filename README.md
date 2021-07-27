@@ -1006,9 +1006,13 @@ Deve-se evitar alterar muitas versões com brevidade requerendo aos consumidores
 Ao alterar uma versão com quebra de compatibilidade é interessante manter as duas versões sendo executadas. Evite versionar a API ao máximo.
 
 Técnicas de versionamento de APIs:
- - Versionamento por Media Type: enviar o número da versão no header Accept
+ - Versionamento por Media Type: enviar o número da versão no header `Accept`
  - Versionamento por URI: `/v2/cozinhas`
 
+Abordagens para manter a base de código de API versionada:
+ - Projeto separado para cada versão. Com servidor de proxy reverso "roteando" para cada versão sendo executada no servidor. Possui a vantagem de possibilitar alterações em uma versão sem impactar a outra, manter aplicações com linguagens diferentes. Desvantagem seria a duplicação de código, já que alguns recursos se mantem nas duas versões.
+ - Único projeto e reaproveitar código da camada da API. Controllers com endpoints sem alteração para a segunda versão podem ser acessados tanto por "v1" quanto por "v2", e os endpoints específicos da alteração são adicionados para a v2. A vantagem é evitar duplicar código. A desvantagem é que a manutenção de um código para a v2 pode alterar a versão 1 também, havendo maior risco de quebrar compatibilidade. Outra desvantagem é a utilização da mesma stack, mesmas tecnologias, já que se trata do mesmo projeto.
+ - Mesmo projeto com separação total da camada da API. Toda a camada da API é duplicada, sendo uma para v1 e outra para v2. As desvantagens são o código duplicado e utilização da mesma stack. Menor risco de problemas do que a abordagem anterior.
 
 ---
 
