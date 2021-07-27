@@ -1,14 +1,14 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
-import com.kamila.food.api.assembler.PedidoInputDisassembler;
-import com.kamila.food.api.assembler.PedidoModelAssembler;
-import com.kamila.food.api.assembler.PedidoResumoModelAssembler;
-import com.kamila.food.api.model.PedidoModel;
-import com.kamila.food.api.model.PedidoResumoModel;
-import com.kamila.food.api.model.input.PedidoInput;
-import com.kamila.food.api.openapi.controller.PedidoControllerOpenApi;
+import com.kamila.food.api.v1.assembler.PedidoInputDisassembler;
+import com.kamila.food.api.v1.assembler.PedidoModelAssembler;
+import com.kamila.food.api.v1.assembler.PedidoResumoModelAssembler;
+import com.kamila.food.api.v1.model.PedidoModel;
+import com.kamila.food.api.v1.model.PedidoResumoModel;
+import com.kamila.food.api.v1.model.input.PedidoInput;
+import com.kamila.food.api.v1.openapi.controller.PedidoControllerOpenApi;
 import com.kamila.food.core.data.PageWrapper;
 import com.kamila.food.core.data.PageableTranslator;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;

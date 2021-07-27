@@ -1,11 +1,11 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.assembler.ProdutoInputDisassembler;
-import com.kamila.food.api.assembler.ProdutoModelAssembler;
-import com.kamila.food.api.model.ProdutoModel;
-import com.kamila.food.api.model.input.ProdutoInput;
-import com.kamila.food.api.openapi.controller.RestauranteProdutoControllerOpenApi;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.assembler.ProdutoInputDisassembler;
+import com.kamila.food.api.v1.assembler.ProdutoModelAssembler;
+import com.kamila.food.api.v1.model.ProdutoModel;
+import com.kamila.food.api.v1.model.input.ProdutoInput;
+import com.kamila.food.api.v1.openapi.controller.RestauranteProdutoControllerOpenApi;
 import com.kamila.food.domain.model.Produto;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.ProdutoRepository;

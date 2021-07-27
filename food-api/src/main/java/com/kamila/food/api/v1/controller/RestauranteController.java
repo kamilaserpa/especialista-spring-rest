@@ -1,14 +1,14 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.RestauranteApenasNomeModelAssembler;
-import com.kamila.food.api.assembler.RestauranteBasicoModelAssembler;
-import com.kamila.food.api.assembler.RestauranteInputDisassembler;
-import com.kamila.food.api.assembler.RestauranteModelAssembler;
-import com.kamila.food.api.model.RestauranteApenasNomeModel;
-import com.kamila.food.api.model.RestauranteBasicoModel;
-import com.kamila.food.api.model.RestauranteModel;
-import com.kamila.food.api.model.input.RestauranteInput;
-import com.kamila.food.api.openapi.controller.RestauranteControllerOpenApi;
+import com.kamila.food.api.v1.assembler.RestauranteApenasNomeModelAssembler;
+import com.kamila.food.api.v1.assembler.RestauranteBasicoModelAssembler;
+import com.kamila.food.api.v1.assembler.RestauranteInputDisassembler;
+import com.kamila.food.api.v1.assembler.RestauranteModelAssembler;
+import com.kamila.food.api.v1.model.RestauranteApenasNomeModel;
+import com.kamila.food.api.v1.model.RestauranteBasicoModel;
+import com.kamila.food.api.v1.model.RestauranteModel;
+import com.kamila.food.api.v1.model.input.RestauranteInput;
+import com.kamila.food.api.v1.openapi.controller.RestauranteControllerOpenApi;
 import com.kamila.food.domain.exception.CidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;

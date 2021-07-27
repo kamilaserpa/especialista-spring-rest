@@ -1,16 +1,15 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.CozinhaInputDisassembler;
-import com.kamila.food.api.assembler.CozinhaModelAssembler;
-import com.kamila.food.api.model.CozinhaModel;
-import com.kamila.food.api.model.input.CozinhaInput;
-import com.kamila.food.api.openapi.controller.CozinhaControllerOpenApi;
+import com.kamila.food.api.v1.assembler.CozinhaInputDisassembler;
+import com.kamila.food.api.v1.assembler.CozinhaModelAssembler;
+import com.kamila.food.api.v1.model.CozinhaModel;
+import com.kamila.food.api.v1.model.input.CozinhaInput;
+import com.kamila.food.api.v1.openapi.controller.CozinhaControllerOpenApi;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.repository.CozinhaRepository;
 import com.kamila.food.domain.service.CadastroCozinhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -20,7 +19,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/cozinhas", produces = MediaType.APPLICATION_JSON_VALUE)

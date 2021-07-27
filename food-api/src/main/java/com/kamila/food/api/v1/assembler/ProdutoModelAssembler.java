@@ -1,12 +1,11 @@
-package com.kamila.food.api.assembler;
+package com.kamila.food.api.v1.assembler;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.controller.RestauranteProdutoController;
-import com.kamila.food.api.model.ProdutoModel;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.controller.RestauranteProdutoController;
+import com.kamila.food.api.v1.model.ProdutoModel;
 import com.kamila.food.domain.model.Produto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 

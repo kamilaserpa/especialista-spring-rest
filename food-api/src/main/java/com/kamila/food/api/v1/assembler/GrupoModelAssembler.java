@@ -1,18 +1,14 @@
-package com.kamila.food.api.assembler;
+package com.kamila.food.api.v1.assembler;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.controller.GrupoController;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.controller.GrupoController;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.kamila.food.api.model.GrupoModel;
+import com.kamila.food.api.v1.model.GrupoModel;
 import com.kamila.food.domain.model.Grupo;
 
 @Component

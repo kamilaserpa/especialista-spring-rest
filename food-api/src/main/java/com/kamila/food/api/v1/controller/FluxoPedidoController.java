@@ -1,6 +1,6 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.openapi.controller.FluxoPedidoControllerOpenApi;
+import com.kamila.food.api.v1.openapi.controller.FluxoPedidoControllerOpenApi;
 import com.kamila.food.domain.service.FluxoPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

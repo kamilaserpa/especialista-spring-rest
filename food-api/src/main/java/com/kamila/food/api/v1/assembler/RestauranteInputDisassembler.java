@@ -1,4 +1,4 @@
-package com.kamila.food.api.assembler;
+package com.kamila.food.api.v1.assembler;
 
 import javax.validation.Valid;
 
@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.kamila.food.api.model.input.RestauranteInput;
+import com.kamila.food.api.v1.model.input.RestauranteInput;
 import com.kamila.food.domain.model.Cidade;
 import com.kamila.food.domain.model.Cozinha;
 import com.kamila.food.domain.model.Restaurante;

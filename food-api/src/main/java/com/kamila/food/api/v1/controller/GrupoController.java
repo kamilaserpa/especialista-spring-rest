@@ -1,10 +1,10 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.GrupoInputDisassembler;
-import com.kamila.food.api.assembler.GrupoModelAssembler;
-import com.kamila.food.api.model.GrupoModel;
-import com.kamila.food.api.model.input.GrupoInput;
-import com.kamila.food.api.openapi.controller.GrupoControllerOpenApi;
+import com.kamila.food.api.v1.assembler.GrupoInputDisassembler;
+import com.kamila.food.api.v1.assembler.GrupoModelAssembler;
+import com.kamila.food.api.v1.model.GrupoModel;
+import com.kamila.food.api.v1.model.input.GrupoInput;
+import com.kamila.food.api.v1.openapi.controller.GrupoControllerOpenApi;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.GrupoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -18,7 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/grupos", produces = MediaType.APPLICATION_JSON_VALUE)

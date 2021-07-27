@@ -1,7 +1,7 @@
-package com.kamila.food.api.assembler;
+package com.kamila.food.api.v1.assembler;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.model.PermissaoModel;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.model.PermissaoModel;
 import com.kamila.food.domain.model.Permissao;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

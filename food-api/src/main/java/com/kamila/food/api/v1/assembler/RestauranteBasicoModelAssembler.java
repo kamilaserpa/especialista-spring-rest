@@ -1,8 +1,8 @@
-package com.kamila.food.api.assembler;
+package com.kamila.food.api.v1.assembler;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.controller.RestauranteController;
-import com.kamila.food.api.model.RestauranteBasicoModel;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.controller.RestauranteController;
+import com.kamila.food.api.v1.model.RestauranteBasicoModel;
 import com.kamila.food.domain.model.Restaurante;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

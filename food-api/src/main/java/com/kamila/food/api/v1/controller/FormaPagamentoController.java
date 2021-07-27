@@ -1,10 +1,10 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.FormaPagamentoInputDisassembler;
-import com.kamila.food.api.assembler.FormaPagamentoModelAssembler;
-import com.kamila.food.api.model.FormaPagamentoModel;
-import com.kamila.food.api.model.input.FormaPagamentoInput;
-import com.kamila.food.api.openapi.controller.FormaPagamentoControllerOpenApi;
+import com.kamila.food.api.v1.assembler.FormaPagamentoInputDisassembler;
+import com.kamila.food.api.v1.assembler.FormaPagamentoModelAssembler;
+import com.kamila.food.api.v1.model.FormaPagamentoModel;
+import com.kamila.food.api.v1.model.input.FormaPagamentoInput;
+import com.kamila.food.api.v1.openapi.controller.FormaPagamentoControllerOpenApi;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.FormaPagamento;

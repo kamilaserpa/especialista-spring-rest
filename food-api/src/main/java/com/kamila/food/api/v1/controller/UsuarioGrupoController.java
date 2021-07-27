@@ -1,9 +1,9 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.assembler.GrupoModelAssembler;
-import com.kamila.food.api.model.GrupoModel;
-import com.kamila.food.api.openapi.controller.UsuarioGrupoControllerOpenApi;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.assembler.GrupoModelAssembler;
+import com.kamila.food.api.v1.model.GrupoModel;
+import com.kamila.food.api.v1.openapi.controller.UsuarioGrupoControllerOpenApi;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;

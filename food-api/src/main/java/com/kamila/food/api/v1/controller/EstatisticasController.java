@@ -1,7 +1,7 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.openapi.controller.EstatisticasControllerOpenApi;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.openapi.controller.EstatisticasControllerOpenApi;
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.dto.VendaDiaria;
 import com.kamila.food.domain.service.VendaQueryService;

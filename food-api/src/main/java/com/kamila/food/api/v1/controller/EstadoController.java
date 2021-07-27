@@ -1,10 +1,10 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.EstadoInputDisassembler;
-import com.kamila.food.api.assembler.EstadoModelAssembler;
-import com.kamila.food.api.model.EstadoModel;
-import com.kamila.food.api.model.input.EstadoInput;
-import com.kamila.food.api.openapi.controller.EstadoControllerOpenApi;
+import com.kamila.food.api.v1.assembler.EstadoInputDisassembler;
+import com.kamila.food.api.v1.assembler.EstadoModelAssembler;
+import com.kamila.food.api.v1.model.EstadoModel;
+import com.kamila.food.api.v1.model.input.EstadoInput;
+import com.kamila.food.api.v1.openapi.controller.EstadoControllerOpenApi;
 import com.kamila.food.domain.model.Estado;
 import com.kamila.food.domain.repository.EstadoRepository;
 import com.kamila.food.domain.service.CadastroEstadoService;
@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/estados", produces = MediaType.APPLICATION_JSON_VALUE)

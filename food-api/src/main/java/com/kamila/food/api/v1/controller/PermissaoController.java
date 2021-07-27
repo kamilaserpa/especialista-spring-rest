@@ -1,8 +1,8 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.PermissaoModelAssembler;
-import com.kamila.food.api.model.PermissaoModel;
-import com.kamila.food.api.openapi.controller.PermissaoControllerOpenApi;
+import com.kamila.food.api.v1.assembler.PermissaoModelAssembler;
+import com.kamila.food.api.v1.model.PermissaoModel;
+import com.kamila.food.api.v1.openapi.controller.PermissaoControllerOpenApi;
 import com.kamila.food.domain.repository.PermissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;

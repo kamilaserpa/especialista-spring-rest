@@ -1,12 +1,12 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.assembler.UsuarioInputDisassembler;
-import com.kamila.food.api.assembler.UsuarioModelAssembler;
-import com.kamila.food.api.model.UsuarioModel;
-import com.kamila.food.api.model.input.SenhaInput;
-import com.kamila.food.api.model.input.UsuarioComSenhaInput;
-import com.kamila.food.api.model.input.UsuarioInput;
-import com.kamila.food.api.openapi.controller.UsuarioControllerOpenApi;
+import com.kamila.food.api.v1.assembler.UsuarioInputDisassembler;
+import com.kamila.food.api.v1.assembler.UsuarioModelAssembler;
+import com.kamila.food.api.v1.model.UsuarioModel;
+import com.kamila.food.api.v1.model.input.SenhaInput;
+import com.kamila.food.api.v1.model.input.UsuarioComSenhaInput;
+import com.kamila.food.api.v1.model.input.UsuarioInput;
+import com.kamila.food.api.v1.openapi.controller.UsuarioControllerOpenApi;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.repository.UsuarioRepository;
 import com.kamila.food.domain.service.CadastroUsuarioService;

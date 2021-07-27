@@ -1,9 +1,9 @@
-package com.kamila.food.api.controller;
+package com.kamila.food.api.v1.controller;
 
-import com.kamila.food.api.FoodLinks;
-import com.kamila.food.api.assembler.UsuarioModelAssembler;
-import com.kamila.food.api.model.UsuarioModel;
-import com.kamila.food.api.openapi.controller.RestauranteUsuarioResponsavelControllerOpenApi;
+import com.kamila.food.api.v1.FoodLinks;
+import com.kamila.food.api.v1.assembler.UsuarioModelAssembler;
+import com.kamila.food.api.v1.model.UsuarioModel;
+import com.kamila.food.api.v1.openapi.controller.RestauranteUsuarioResponsavelControllerOpenApi;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
