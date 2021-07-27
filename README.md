@@ -997,8 +997,12 @@ Evitando quebrar clientes:
  - Alteração de URL de recurso.
  Deve-se evitar essa alteração. Alternativamente é possível aceitar duas URLs para o recurso, a anterior e a atualizada. Por exemplo:
  > @RequestMapping(value = { "/gastronomias", "/cozinhas" })
+
  Implementando o HATEOAS, não deve haver problemas de compatibilidade caso os consumidores estejam seguindo os links retornados pela API e seguir os fluxos do Root Entry Point. Nesse caso o link relation deve ser mantido, no caso "cozinhas", até que seja descontinuado pelos clientes e pode ser adicionado o link relation "gastronomia".
 
+Deve-se evitar quebrar a compatibilidade. Caso necessário quebrar a compatibilidade versione a API.
+Deve-se evitar alterar muitas versões com brevidade requerendo aos consumidores alterações constantes.
+Ao alterar uma versão com quebra de compatibilidade é interessante manter as duas versões sendo executadas. Evite versionar a API ao máximo.
 
 ---
 
