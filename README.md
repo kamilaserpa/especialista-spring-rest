@@ -994,6 +994,11 @@ Evitando quebrar clientes:
  Por exemplo, a saída de um objeto restaurante contendo a propriedade `cozinha: {id: long, nome: string}` passa a possuir as propriedades `cozinhaId`e `cozinhaNome`. Uma alternativa é manter as duas formas de retorno até que os consumidores estejam adaptados ao novo modelo de saída.
  Na entrada, a alternativa para manter compatibilidade seria permitir as duas formas do modelo, depreciando a representação que deve ser descontinuada no futuro.
   
+ - Alteração de URL de recurso.
+ Deve-se evitar essa alteração. Alternativamente é possível aceitar duas URLs para o recurso, a anterior e a atualizada. Por exemplo:
+ > @RequestMapping(value = { "/gastronomias", "/cozinhas" })
+ Implementando o HATEOAS, não deve haver problemas de compatibilidade caso os consumidores estejam seguindo os links retornados pela API e seguir os fluxos do Root Entry Point. Nesse caso o link relation deve ser mantido, no caso "cozinhas", até que seja descontinuado pelos clientes e pode ser adicionado o link relation "gastronomia".
+
 
 ---
 
