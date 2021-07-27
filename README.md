@@ -974,7 +974,7 @@ Habilita-se a compressão adicionando `spring.compression.enabled=true` em `appl
 Retrocompatibilidade, consumidores anteriores poderão continuar usando a API após a alteração, vs Quebra de compatibilidade, necessidade de lidar ocm os consumidores que já estão utilizando a API.
 Deve-se evitar quebrar os clients da API, se possível.
 
-Evitando quebrar clientes:
+#### Evitando quebrar clientes:
  - Nova propriedade de modelo.
   Em nova propriedade em modelo de saída há retrocompatibilidade, ao adicionar um atributo em objeto de saída o consumidor ignora-o.
   Em nova propriedade em modelo de entrada (put, post) pode haver quebra de compatibilidade. Caso o atributo seja obrigatório o cliente deve adicioná-lo. Caso seja opcional há retrocompatibilidade.<br>
@@ -1000,9 +1000,15 @@ Evitando quebrar clientes:
 
  Implementando o HATEOAS, não deve haver problemas de compatibilidade caso os consumidores estejam seguindo os links retornados pela API e seguir os fluxos do Root Entry Point. Nesse caso o link relation deve ser mantido, no caso "cozinhas", até que seja descontinuado pelos clientes e pode ser adicionado o link relation "gastronomia".
 
+#### Versionamento de APIs
 Deve-se evitar quebrar a compatibilidade. Caso necessário quebrar a compatibilidade versione a API.
 Deve-se evitar alterar muitas versões com brevidade requerendo aos consumidores alterações constantes.
 Ao alterar uma versão com quebra de compatibilidade é interessante manter as duas versões sendo executadas. Evite versionar a API ao máximo.
+
+Técnicas de versionamento de APIs:
+ - Versionamento por Media Type: enviar o número da versão no header Accept
+ - Versionamento por URI: `/v2/cozinhas`
+
 
 ---
 
