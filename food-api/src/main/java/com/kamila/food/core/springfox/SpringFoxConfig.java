@@ -2,8 +2,8 @@ package com.kamila.food.core.springfox;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.kamila.food.api.exceptionhandler.Problem;
-import com.kamila.food.api.model.*;
-import com.kamila.food.api.openapi.model.*;
+import com.kamila.food.api.v1.model.*;
+import com.kamila.food.api.v1.openapi.model.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

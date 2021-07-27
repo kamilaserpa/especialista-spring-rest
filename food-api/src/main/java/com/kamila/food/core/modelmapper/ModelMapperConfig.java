@@ -4,9 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.kamila.food.api.model.EnderecoModel;
-import com.kamila.food.api.model.RestauranteModel;
-import com.kamila.food.api.model.input.ItemPedidoInput;
+import com.kamila.food.api.v1.model.EnderecoModel;
+import com.kamila.food.api.v1.model.RestauranteModel;
+import com.kamila.food.api.v1.model.input.ItemPedidoInput;
 import com.kamila.food.domain.model.Endereco;
 import com.kamila.food.domain.model.ItemPedido;
 import com.kamila.food.domain.model.Restaurante;
