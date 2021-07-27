@@ -990,6 +990,10 @@ Evitando quebrar clientes:
  - Alteração de um tipo específico para amplo.
   Por exemplo, propriedade recebida do tipo Decimal passa a ser do tipo String. Nesse caso há quebra de compatibilidade, e necessidade de conversão do dado.  Sugestão: adicionar nova propriedade do tipo desejado e depreciar a propriedade anterior.
 
+ - Alteração na estrutura de dados do modelo.
+ Por exemplo, a saída de um objeto restaurante contendo a propriedade `cozinha: {id: long, nome: string}` passa a possuir as propriedades `cozinhaId`e `cozinhaNome`. Uma alternativa é manter as duas formas de retorno até que os consumidores estejam adaptados ao novo modelo de saída.
+ Na entrada, a alternativa para manter compatibilidade seria permitir as duas formas do modelo, depreciando a representação que deve ser descontinuada no futuro.
+  
 
 ---
 
