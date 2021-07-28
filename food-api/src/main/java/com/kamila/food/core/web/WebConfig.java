@@ -3,6 +3,7 @@ package com.kamila.food.core.web;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,6 +20,15 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("*"); // Por padrão estão aqui métodos simples: get, head e post
 //                .allowedOrigins("http://www.food.local")
 //                .maxAge(30); // Tempo (segundos) q o navegador pode armazenar resposta do preflight em cache
+    }
+
+    /**
+     * Define versão padrão da API caso não seja especificado MediaType pelo client
+     * no header Accept.
+     */
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.defaultContentType(FoodMediaTypes.V2_APPLICATION_JSON);
     }
 
     /**
