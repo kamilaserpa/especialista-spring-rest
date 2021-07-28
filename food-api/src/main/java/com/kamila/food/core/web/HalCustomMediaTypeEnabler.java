@@ -2,7 +2,6 @@ package com.kamila.food.core.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
@@ -31,8 +30,10 @@ public class HalCustomMediaTypeEnabler {
                 MappingJackson2HttpMessageConverter messageConverter =
                         (MappingJackson2HttpMessageConverter) converter;
 
-                messageConverter.setSupportedMediaTypes(Arrays.asList(MediaTypes.HAL_JSON,
-                        FoodMediaTypes.V1_APPLICATION_JSON));
+                messageConverter.setSupportedMediaTypes(
+                        Arrays.asList(MediaTypes.HAL_JSON,
+                                FoodMediaTypes.V1_APPLICATION_JSON,
+                                FoodMediaTypes.V2_APPLICATION_JSON));
             }
         }
     }

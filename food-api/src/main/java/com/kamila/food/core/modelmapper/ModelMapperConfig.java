@@ -1,5 +1,7 @@
 package com.kamila.food.core.modelmapper;
 
+import com.kamila.food.api.v2.model.input.CidadeInputV2;
+import com.kamila.food.domain.model.Cidade;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +19,13 @@ public class ModelMapperConfig {
 	@Bean
 	public ModelMapper modelMapper() {
 		var modelMapper = new ModelMapper();
-		
+
+		//Cidade
+		// Ao mapear CidadeModelV2 para Cidade não insira o Id
+		// Para evitar que o idEstado seja mapeado para cidade.id
+		modelMapper.createTypeMap(CidadeInputV2.class, Cidade.class)
+		.addMappings(mapper -> mapper.skip(Cidade::setId));
+
 		// Restaurante
 		modelMapper.createTypeMap(Restaurante.class, RestauranteModel.class)
 				.addMapping(Restaurante::getTaxaFrete, RestauranteModel::setPrecoFrete) // Utilizando referências de métodos

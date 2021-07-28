@@ -34,14 +34,64 @@
 					"response": []
 				},
 				{
-					"name": "Cidades - Buscar",
+					"name": "Cidade - Listar V1",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
 								"type": "text",
-								"value": "application/json"
+								"value": "application/vnd.food.v1+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidade - Listar V2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.food.v2+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidades - Buscar V1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.food.v1+json"
 							}
 						],
 						"url": {
@@ -60,14 +110,40 @@
 					"response": []
 				},
 				{
-					"name": "CIdades - salvar",
+					"name": "Cidades - Buscar V2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.food.v2+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cidades/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CIdades - salvar V1",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
 								"type": "text",
-								"value": "application/json"
+								"value": "application/vnd.food.v1+json"
 							},
 							{
 								"key": "Content-Type",
@@ -78,6 +154,45 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CIdades - salvar V2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.food.v2+json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeCidade\": \"Viçosa do Ceará\",\r\n    \"idEstado\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
