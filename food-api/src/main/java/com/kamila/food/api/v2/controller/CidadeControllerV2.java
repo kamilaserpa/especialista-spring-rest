@@ -5,7 +5,6 @@ import com.kamila.food.api.v2.assembler.CidadeInputDisassemblerV2;
 import com.kamila.food.api.v2.assembler.CidadeModelAssemblerV2;
 import com.kamila.food.api.v2.model.CidadeModelV2;
 import com.kamila.food.api.v2.model.input.CidadeInputV2;
-import com.kamila.food.core.web.FoodMediaTypes;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
@@ -14,12 +13,13 @@ import com.kamila.food.domain.service.CadastroCidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/cidades", produces = FoodMediaTypes.V2_APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/v2/cidades", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CidadeControllerV2 {
 
     @Autowired

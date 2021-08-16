@@ -163,7 +163,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
-		ProblemType problemType = ProblemType.RECURSO_NÃO_ENCONTRADO;
+		ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
 
 		String detail = String.format("O recurso '%s', que você tentou acessar, é inexistente.",
 						ex.getRequestURL());
@@ -246,7 +246,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			WebRequest request) {
 
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		ProblemType problemType = ProblemType.RECURSO_NÃO_ENCONTRADO;
+		ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
 		String detail = ex.getMessage();
 
 		Problem problem = createProblemBuilder(status, problemType, detail)

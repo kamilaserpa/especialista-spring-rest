@@ -6,7 +6,6 @@ import com.kamila.food.api.v1.assembler.CidadeModelAssembler;
 import com.kamila.food.api.v1.model.CidadeModel;
 import com.kamila.food.api.v1.model.input.CidadeInput;
 import com.kamila.food.api.v1.openapi.controller.CidadeControllerOpenApi;
-import com.kamila.food.core.web.FoodMediaTypes;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/cidades", produces = FoodMediaTypes.V1_APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/v1/cidades", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CidadeController implements CidadeControllerOpenApi {
 
     @Autowired

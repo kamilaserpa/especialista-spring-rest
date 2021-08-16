@@ -34,7 +34,7 @@
 					"response": []
 				},
 				{
-					"name": "Cidade - Listar V1",
+					"name": "Cidade - Listar V1 (por MediaType)",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -59,7 +59,7 @@
 					"response": []
 				},
 				{
-					"name": "Cidade - Listar V2",
+					"name": "Cidade - Listar V2 (por MediaType)",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -77,6 +77,58 @@
 							],
 							"port": "8080",
 							"path": [
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidade - Listar V1 (por Uri)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"cidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cidade - Listar V2 (por Uri)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v2/cidades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v2",
 								"cidades"
 							]
 						}
