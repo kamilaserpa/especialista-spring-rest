@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/restaurantes/{idRestaurante}/responsaveis",
+@RequestMapping(value = "/v1/restaurantes/{idRestaurante}/responsaveis",
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestauranteUsuarioResponsavelController implements
         RestauranteUsuarioResponsavelControllerOpenApi {

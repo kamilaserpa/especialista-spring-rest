@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "76b9d0e3-55a8-4269-8c43-b81ad0ef4b70",
+		"_postman_id": "ecd61d64-441b-456c-9667-f549d7d31c10",
 		"name": "EspecialistaSpringRest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,29 +9,247 @@
 			"name": "Cidade",
 			"item": [
 				{
-					"name": "Cidade - Listar",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
+					"name": "Versao 1",
+					"item": [
+						{
+							"name": "Cidade - Listar",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/cidades",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"cidades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cidades - Buscar V1",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/cidades/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"cidades",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CIdades - salvar V1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/cidades",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"cidades"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cidades - atualizar",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/cidades/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"cidades",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cidades - Remover",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/cidades/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"cidades",
+										"4"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "Versao 2",
+					"item": [
+						{
+							"name": "Cidades - Buscar V2",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v2/cidades/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v2",
+										"cidades",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CIdades - salvar V2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nomeCidade\": \"Viçosa do Ceará\",\r\n    \"idEstado\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/v2/cidades",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v2",
+										"cidades"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "Cidade - Listar V1 (por MediaType)",
@@ -134,207 +352,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Cidades - Buscar V1",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/vnd.food.v1+json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cidades - Buscar V2",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/vnd.food.v2+json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - salvar V1",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/vnd.food.v1+json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Guaramiranga\",\r\n    \"estado\": {\r\n        \"id\": 3\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - salvar V2",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/vnd.food.v2+json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nomeCidade\": \"Viçosa do Ceará\",\r\n    \"idEstado\": 3\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CIdades - atualizar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"BH\",\r\n     \"estado\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Minas Gerais\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cidades/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cidades - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/cidades/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cidades",
-								"4"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -353,13 +370,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cozinhas?size=2&page=0&sort=nome,desc&sort=id",
+							"raw": "http://localhost:8080/v1/cozinhas?size=2&page=0&sort=nome,desc&sort=id",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"cozinhas"
 							],
 							"query": [
@@ -396,13 +414,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cozinhas/10",
+							"raw": "http://localhost:8080/v1/cozinhas/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"cozinhas",
 								"10"
 							]
@@ -436,13 +455,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cozinhas",
+							"raw": "http://localhost:8080/v1/cozinhas",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"cozinhas"
 							]
 						}
@@ -470,13 +490,14 @@
 							"raw": "{ \r\n    \"nome\": \"Italiana\" \r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/cozinhas/2",
+							"raw": "http://localhost:8080/v1/cozinhas/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"cozinhas",
 								"2"
 							]
@@ -501,13 +522,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cozinhas/1",
+							"raw": "http://localhost:8080/v1/cozinhas/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"cozinhas",
 								"1"
 							]
@@ -532,13 +554,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estados",
+							"raw": "http://localhost:8080/v1/estados",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"estados"
 							]
 						}
@@ -557,13 +580,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estados/1",
+							"raw": "http://localhost:8080/v1/estados/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"estados",
 								"1"
 							]
@@ -597,13 +621,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estados",
+							"raw": "http://localhost:8080/v1/estados",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"estados"
 							]
 						}
@@ -636,13 +661,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estados/2",
+							"raw": "http://localhost:8080/v1/estados/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"estados",
 								"2"
 							]
@@ -667,13 +693,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estados/4",
+							"raw": "http://localhost:8080/v1/estados/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"estados",
 								"4"
 							]
@@ -704,13 +731,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=2021-08-02T10:00:00Z&timeOffset=-03:00",
+							"raw": "http://localhost:8080/v1/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoFim=2021-08-02T10:00:00Z&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"estatisticas",
 								"vendas-diarias"
 							],
@@ -759,13 +787,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/formas-pagamento",
+							"raw": "http://localhost:8080/v1/formas-pagamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"formas-pagamento"
 							]
 						}
@@ -784,13 +813,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/formas-pagamento/1",
+							"raw": "http://localhost:8080/v1/formas-pagamento/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"formas-pagamento",
 								"1"
 							]
@@ -824,13 +854,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/formas-pagamento",
+							"raw": "http://localhost:8080/v1/formas-pagamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"formas-pagamento"
 							]
 						}
@@ -863,13 +894,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/formas-pagamento/4",
+							"raw": "http://localhost:8080/v1/formas-pagamento/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"formas-pagamento",
 								"4"
 							]
@@ -894,13 +926,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/formas-pagamento/4",
+							"raw": "http://localhost:8080/v1/formas-pagamento/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"formas-pagamento",
 								"4"
 							]
@@ -925,13 +958,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/formas-pagamento",
+							"raw": "http://localhost:8080/v1/restaurantes/4/formas-pagamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"4",
 								"formas-pagamento"
@@ -957,13 +991,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/2",
+							"raw": "http://localhost:8080/v1/restaurantes/1/formas-pagamento/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"formas-pagamento",
@@ -990,13 +1025,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/2",
+							"raw": "http://localhost:8080/v1/restaurantes/1/formas-pagamento/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"formas-pagamento",
@@ -1023,13 +1059,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos",
+							"raw": "http://localhost:8080/v1/grupos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos"
 							]
 						}
@@ -1048,13 +1085,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos/2",
+							"raw": "http://localhost:8080/v1/grupos/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos",
 								"2"
 							]
@@ -1074,13 +1112,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos/1/permissoes",
+							"raw": "http://localhost:8080/v1/grupos/1/permissoes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos",
 								"1",
 								"permissoes"
@@ -1101,13 +1140,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos/2/permissoes/2",
+							"raw": "http://localhost:8080/v1/grupos/2/permissoes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos",
 								"2",
 								"permissoes",
@@ -1129,13 +1169,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos/2/permissoes/2",
+							"raw": "http://localhost:8080/v1/grupos/2/permissoes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos",
 								"2",
 								"permissoes",
@@ -1171,13 +1212,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/grupos",
+							"raw": "http://localhost:8080/v1/grupos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos"
 							]
 						}
@@ -1210,13 +1252,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/grupos/4",
+							"raw": "http://localhost:8080/v1/grupos/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos",
 								"4"
 							]
@@ -1241,13 +1284,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos/4",
+							"raw": "http://localhost:8080/v1/grupos/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"grupos",
 								"4"
 							]
@@ -1266,13 +1310,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?sort=nomeCliente",
+							"raw": "http://localhost:8080/v1/pedidos?sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos"
 							],
 							"query": [
@@ -1321,13 +1366,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?page=0&sort=restaurante.nome&size=2",
+							"raw": "http://localhost:8080/v1/pedidos?page=0&sort=restaurante.nome&size=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos"
 							],
 							"query": [
@@ -1374,13 +1420,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?campos=codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]",
+							"raw": "http://localhost:8080/v1/pedidos?campos=codigo,valorTotal,sub*,restaurante[-id],cliente[id,nome]",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos"
 							],
 							"query": [
@@ -1399,13 +1446,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/ee2f9cc9-a569-4582-9f01-7e53c4f601b8/confirmacao",
+							"raw": "http://localhost:8080/v1/pedidos/ee2f9cc9-a569-4582-9f01-7e53c4f601b8/confirmacao",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos",
 								"ee2f9cc9-a569-4582-9f01-7e53c4f601b8",
 								"confirmacao"
@@ -1420,13 +1468,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/confirmacao",
+							"raw": "http://localhost:8080/v1/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/confirmacao",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos",
 								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 								"confirmacao"
@@ -1441,13 +1490,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/entrega",
+							"raw": "http://localhost:8080/v1/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/entrega",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos",
 								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 								"entrega"
@@ -1462,13 +1512,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/cancelamento",
+							"raw": "http://localhost:8080/v1/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43/cancelamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos",
 								"335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 								"cancelamento"
@@ -1483,13 +1534,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43",
+							"raw": "http://localhost:8080/v1/pedidos/335c0344-f4c5-4824-ad8a-944c9e6bdf43",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos",
 								"335c0344-f4c5-4824-ad8a-944c9e6bdf43"
 							]
@@ -1512,13 +1564,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/pedidos",
+							"raw": "http://localhost:8080/v1/pedidos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"pedidos"
 							]
 						}
@@ -1536,13 +1589,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/permissoes",
+							"raw": "http://localhost:8080/v1/permissoes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"permissoes"
 							]
 						}
@@ -1566,13 +1620,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/6/produtos?incluirInativos=false",
+							"raw": "http://localhost:8080/v1/restaurantes/6/produtos?incluirInativos=false",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"6",
 								"produtos"
@@ -1599,13 +1654,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos/4",
+							"raw": "http://localhost:8080/v1/restaurantes/3/produtos/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"3",
 								"produtos",
@@ -1636,13 +1692,14 @@
 							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 61.00,\r\n    \"ativo\": true\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos",
+							"raw": "http://localhost:8080/v1/restaurantes/3/produtos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"3",
 								"produtos"
@@ -1672,13 +1729,14 @@
 							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 55.00,\r\n    \"ativo\": true\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/3/produtos/10",
+							"raw": "http://localhost:8080/v1/restaurantes/3/produtos/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"3",
 								"produtos",
@@ -1726,13 +1784,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
+							"raw": "http://localhost:8080/v1/restaurantes/4/produtos/6/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"4",
 								"produtos",
@@ -1781,13 +1840,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"raw": "http://localhost:8080/v1/restaurantes/4/produtos/7/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"4",
 								"produtos",
@@ -1836,13 +1896,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/6/produtos/9/foto",
+							"raw": "http://localhost:8080/v1/restaurantes/6/produtos/9/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"6",
 								"produtos",
@@ -1894,13 +1955,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"raw": "http://localhost:8080/v1/restaurantes/4/produtos/7/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"4",
 								"produtos",
@@ -1953,13 +2015,14 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/6/foto",
+							"raw": "http://localhost:8080/v1/restaurantes/4/produtos/6/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"4",
 								"produtos",
@@ -1995,13 +2058,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos/7/foto",
+							"raw": "http://localhost:8080/v1/restaurantes/4/produtos/7/foto",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"4",
 								"produtos",
@@ -2029,13 +2093,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes",
+							"raw": "http://localhost:8080/v1/restaurantes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes"
 							]
 						}
@@ -2054,13 +2119,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes?projecao=resumo",
+							"raw": "http://localhost:8080/v1/restaurantes?projecao=resumo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes"
 							],
 							"query": [
@@ -2085,13 +2151,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes?projecao=completo",
+							"raw": "http://localhost:8080/v1/restaurantes?projecao=completo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes"
 							],
 							"query": [
@@ -2116,13 +2183,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes?projecao=apenas-nome",
+							"raw": "http://localhost:8080/v1/restaurantes?projecao=apenas-nome",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes"
 							],
 							"query": [
@@ -2147,13 +2215,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1",
+							"raw": "http://localhost:8080/v1/restaurantes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1"
 							]
@@ -2187,13 +2256,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes",
+							"raw": "http://localhost:8080/v1/restaurantes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes"
 							]
 						}
@@ -2226,13 +2296,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1",
+							"raw": "http://localhost:8080/v1/restaurantes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1"
 							]
@@ -2266,13 +2337,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/ativacoes",
+							"raw": "http://localhost:8080/v1/restaurantes/ativacoes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"ativacoes"
 							]
@@ -2306,13 +2378,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/ativacoes",
+							"raw": "http://localhost:8080/v1/restaurantes/ativacoes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"ativacoes"
 							]
@@ -2346,13 +2419,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/ativo",
+							"raw": "http://localhost:8080/v1/restaurantes/1/ativo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"ativo"
@@ -2387,13 +2461,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/abertura",
+							"raw": "http://localhost:8080/v1/restaurantes/1/abertura",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"abertura"
@@ -2428,13 +2503,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/fechamento",
+							"raw": "http://localhost:8080/v1/restaurantes/1/fechamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"fechamento"
@@ -2469,13 +2545,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/inativo",
+							"raw": "http://localhost:8080/v1/restaurantes/1/inativo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"inativo"
@@ -2510,45 +2587,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2",
+							"raw": "http://localhost:8080/v1/restaurantes/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Restaurantes - Remover",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"4"
 							]
 						}
 					},
@@ -2565,13 +2613,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/responsaveis",
+							"raw": "http://localhost:8080/v1/restaurantes/1/responsaveis",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"1",
 								"responsaveis"
@@ -2586,13 +2635,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2/responsaveis/3",
+							"raw": "http://localhost:8080/v1/restaurantes/2/responsaveis/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"2",
 								"responsaveis",
@@ -2608,13 +2658,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/2/responsaveis/3",
+							"raw": "http://localhost:8080/v1/restaurantes/2/responsaveis/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"restaurantes",
 								"2",
 								"responsaveis",
@@ -3046,13 +3097,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/v1/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios"
 							]
 						}
@@ -3071,13 +3123,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/2",
+							"raw": "http://localhost:8080/v1/usuarios/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios",
 								"2"
 							]
@@ -3111,13 +3164,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/v1/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios"
 							]
 						}
@@ -3150,13 +3204,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/5",
+							"raw": "http://localhost:8080/v1/usuarios/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios",
 								"5"
 							]
@@ -3190,13 +3245,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/5/senha",
+							"raw": "http://localhost:8080/v1/usuarios/5/senha",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios",
 								"5",
 								"senha"
@@ -3216,13 +3272,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1/grupos",
+							"raw": "http://localhost:8080/v1/usuarios/1/grupos",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios",
 								"1",
 								"grupos"
@@ -3237,13 +3294,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1/grupos/2",
+							"raw": "http://localhost:8080/v1/usuarios/1/grupos/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios",
 								"1",
 								"grupos",
@@ -3259,13 +3317,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/2/grupos/2",
+							"raw": "http://localhost:8080/v1/usuarios/2/grupos/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"v1",
 								"usuarios",
 								"2",
 								"grupos",
@@ -3308,14 +3367,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/v1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						""
+						"v1"
 					]
 				}
 			},
