@@ -47,13 +47,14 @@ public class SpringFoxConfig implements WebMvcConfigurer {
 
     // Registrando uma instância de Docket (sumário) como um Componente Spring
     @Bean
-    public Docket apiDocket() {
+    public Docket apiDocketV1() {
         var typeResolver = new TypeResolver();
 
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("V1")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.kamila.food.api"))
-                .paths(PathSelectors.any())
+                .paths(PathSelectors.ant("/v1/**"))
                 .build()
                 .useDefaultResponseMessages(false) // Desabilitando httpStatus codes error padrão
                 .globalResponseMessage(RequestMethod.GET, globalGetResponseMessages())
@@ -103,7 +104,7 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                         typeResolver.resolve(CollectionModel.class, UsuarioModel.class),
                         UsuarioModelOpenApi.class))
 
-                .apiInfo(apiInfo())
+                .apiInfo(apiInfoV1())
                 .ignoredParameterTypes(
                         ServletWebRequest.class, // Parâmetro injetado pelo Spring, não inserido pelo usuário, desnecessário na doc
                         URL.class, URI.class, URLStreamHandler.class, // Ignorando a descrição destes tipos de "Model"
@@ -119,6 +120,29 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .tags(new Tag("Usuários", "Gerencia os usuários"))
                 .tags(new Tag("Estatísticas", "Estatísticas do Food"))
                 .tags(new Tag("Permissões", "Gerencia as permissões"));
+    }
+
+    @Bean
+    public Docket apiDocketV2() {
+        var typeResolver = new TypeResolver();
+
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("V2")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.kamila.food.api"))
+                .paths(PathSelectors.ant("/v2/**"))
+                .build()
+                .useDefaultResponseMessages(false) // Desabilitando httpStatus codes error padrão
+                .globalResponseMessage(RequestMethod.GET, globalGetResponseMessages())
+                .globalResponseMessage(RequestMethod.POST, globalPostResponseMessages())
+                .globalResponseMessage(RequestMethod.PUT, globalPutResponseMessages())
+                .globalResponseMessage(RequestMethod.DELETE, globalDeleteResponseMessages())
+                .additionalModels(typeResolver.resolve(Problem.class)) // Adicionando Modelo extra para ser exibido em Models
+                .directModelSubstitute(Pageable.class, PageableModelOpenApi.class) // Para exibir os parâmetros recebidos em um Pageable
+                .directModelSubstitute(Links.class, LinksModelOpenApi.class) // Substituindo Links do HATEOAS
+
+                // Removidos alternateTypeRules por conter classes do pacote V1
+                .apiInfo(apiInfoV2());
     }
 
     // Lista de Códigos de status de erro Globais que serão exibidos na Documentação (Problem.class)
@@ -206,11 +230,20 @@ public class SpringFoxConfig implements WebMvcConfigurer {
     /*
     Informações do cabeçalho da página http://localhost:8080/swagger-ui.html
      */
-    private ApiInfo apiInfo() {
+    private ApiInfo apiInfoV1() {
         return new ApiInfoBuilder()
                 .title("KamilaFood API")
                 .description("API aberta para clientes e restaurantes")
                 .version("1")
+                .contact(new Contact("Food", "http://www.food.com", "contato@food.com"))
+                .build();
+    }
+
+    private ApiInfo apiInfoV2() {
+        return new ApiInfoBuilder()
+                .title("KamilaFood API")
+                .description("API aberta para clientes e restaurantes")
+                .version("2")
                 .contact(new Contact("Food", "http://www.food.com", "contato@food.com"))
                 .build();
     }

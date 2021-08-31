@@ -1019,6 +1019,10 @@ Abordagens para manter a base de código de API versionada:
 
 Foi adicionado um componente para habilitar o formato Hateoas `HAL` para Media Type customizado chamado `HalCustomMediaTypeEnabler` no projeto.
 
+#### Versionamento por URI
+Neste projeto foi implementada o verisonamento por URI, assim os controllers podem ter "/v1", ou "/v2" no path.
+Para documentar as duas versões foram configurados dois Beans de Dockets, com `groupName` diferentes, assim, a versão da documentação pode ser selecionada no canto superior direito da página swagger, em `Select a spec`.
+
 ---
 
 ##### Eclipse
