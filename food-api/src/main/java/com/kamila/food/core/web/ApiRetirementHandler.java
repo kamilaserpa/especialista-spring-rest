@@ -1,5 +1,6 @@
 package com.kamila.food.core.web;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -8,19 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 // Intercepta requisições da API
 @Component
-public class ApiDeprecatedHandler extends HandlerInterceptorAdapter {
+public class ApiRetirementHandler extends HandlerInterceptorAdapter {
 
     /*
     Adiciona header nas respostas de requests para versão V1
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (request.getRequestURI().startsWith("/v1")) {
-            response.addHeader("X-Food-Deprecated",
-                    "Essa versão da API está depreciada e deixará de existir a partir de 01/01/20XX."
-                            + "Use a versão mais atual da API.");
+        if (request.getRequestURI().startsWith("/v1/")) {
+            response.setStatus(HttpStatus.GONE.value()); // Retorna 410 - Recurso não existe mais no servidor
+            return false; // false - interrompe a execução do método
         }
-        return true; // false interrompe a execução do método
+        return true;
     }
-    
+
 }

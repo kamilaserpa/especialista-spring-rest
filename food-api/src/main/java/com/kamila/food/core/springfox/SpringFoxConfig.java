@@ -50,7 +50,7 @@ import java.util.List;
 public class SpringFoxConfig implements WebMvcConfigurer {
 
     // Registrando uma instância de Docket (sumário) como um Componente Spring
-    @Bean
+//    @Bean
     public Docket apiDocketV1() {
         var typeResolver = new TypeResolver();
 
