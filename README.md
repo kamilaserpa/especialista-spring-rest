@@ -1028,6 +1028,13 @@ Primeiro deve-se depreciar uma versão da API, informando que ela terá uma data
 É importante entrar em contato com os consumidores para que se preparem para a mudança para nova versão. <br>
 Na versão do swagger utilizada, ao incluir a anotação `@Deprecated` na controller, não há sinalização na documentação de que o controller está depreciado. Seria necessário adicionar a mesma anotação em cada um dos métodos.
 
+## Capítulo 21 - Logging
+[Logback](http://logback.qos.ch/) é um framework de log pra aplicações Java, criado para ser o sucessor do Log4j e já é o framework de log padrão Spring. <br>
+SLF4j é uma biblioteca que abstrai diversos frameworks de log, repassando as operações para o framework de log sendo utilizado na aplicação.
+Nosso código conversa com SLF4J e este abstrai o Logback.
+
+O Lombok fornece uma instancia de Logger através da anotação `@Slf4j` na classe.
+
 ---
 
 ##### Eclipse

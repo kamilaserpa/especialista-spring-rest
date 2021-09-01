@@ -18,7 +18,7 @@ public class ApiRetirementHandler extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (request.getRequestURI().startsWith("/v1/")) {
             response.setStatus(HttpStatus.GONE.value()); // Retorna 410 - Recurso não existe mais no servidor
-            return false; // false - interrompe a execução do método
+//            return false; // false - interrompe a execução do método inutilizando a versão V1
         }
         return true;
     }
