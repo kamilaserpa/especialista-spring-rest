@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@Deprecated
 @RestController
 @RequestMapping(path = "/v1/cidades", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CidadeController implements CidadeControllerOpenApi {

@@ -1023,6 +1023,11 @@ Foi adicionado um componente para habilitar o formato Hateoas `HAL` para Media T
 Neste projeto foi implementada o verisonamento por URI, assim os controllers podem ter "/v1", ou "/v2" no path.
 Para documentar as duas versões foram configurados dois Beans de Dockets, com `groupName` diferentes, assim, a versão da documentação pode ser selecionada no canto superior direito da página swagger, em `Select a spec`.
 
+#### Depreciação
+Primeiro deve-se depreciar uma versão da API, informando que ela terá uma data limite de funcionament, para apenas posteriormente descontinuá-la. <br>
+É importante entrar em contato com os consumidores para que se preparem para a mudança para nova versão. <br>
+Na versão do swagger utilizada, ao incluir a anotação `@Deprecated` na controller, não há sinalização na documentação de que o controller está depreciado. Seria necessário adicionar a mesma anotação em cada um dos métodos.
+
 ---
 
 ##### Eclipse

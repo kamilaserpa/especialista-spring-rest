@@ -244,8 +244,10 @@ public class SpringFoxConfig implements WebMvcConfigurer {
      */
     private ApiInfo apiInfoV1() {
         return new ApiInfoBuilder()
-                .title("KamilaFood API")
-                .description("API aberta para clientes e restaurantes")
+                .title("KamilaFood API (Depreciada)")
+                .description("API aberta para clientes e restaurantes. <br>" +
+                        "<strong>Essa versão da API está depreciada e deixará de existir a partir de 01/01/20XX." +
+                        "Use a versão mais atual da API.</strong>")
                 .version("1")
                 .contact(new Contact("Food", "http://www.food.com", "contato@food.com"))
                 .build();
