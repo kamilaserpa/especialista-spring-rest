@@ -1035,6 +1035,10 @@ Nosso código conversa com SLF4J e este abstrai o Logback.
 
 O Lombok fornece uma instancia de Logger através da anotação `@Slf4j` na classe.
 
+#### Gerenciamento de Logs
+Em uma aplicação em nuvem o ideal é não deixar arquivo de logs na própria máquina. Principalmente sendo uma aplicação em container que pode ser descartada, ou dispersa em várias instâncias. <br>
+O serviço de gerenciamento de logs utilizada será o [Loggly](https://www.loggly.com/).
+
 ---
 
 ##### Eclipse
