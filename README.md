@@ -1039,12 +1039,39 @@ O Lombok fornece uma instancia de Logger através da anotação `@Slf4j` na clas
 Em uma aplicação em nuvem o ideal é não deixar arquivo de logs na própria máquina. Principalmente sendo uma aplicação em container que pode ser descartada, ou dispersa em várias instâncias. <br>
 O serviço de gerenciamento de logs utilizada será o [Loggly](https://www.loggly.com/).
 
+Instruções foram capturadas da [documentação do Loggly](https://documentation.solarwinds.com/en/success_center/loggly/content/admin/java-logback.htm). No arquivo `logback-spring.xml` foi configurado um appender com a função de escrever logs em determinado local. Para não remover os logs locais e enviar todos para o Loggly, mas sim replicá-los, foi adicionada a tag `<include />` incluindo o arquivo `base.xml`.
+
+Arquivo *base.xml* padrão de configuração de logback do spring e pode ser localizado na pasta da dependência `spring-boot\2.2.2.RELEASE\org\springframework\boot\logging\logback\base.xml`.<br>
+A inicialização da aplicação fica mais lenta pois aguarda o envio de logs para a nuvem, para evitar isso interceptamos o appender com o `AsyncAppender`, então os logs deixam de bloquear a aplicação e são enviados de forma assíncrona.
+
+```xml
+<configuration>
+	<!-- Incluindo arquivo padrão de log do Spring (console) -->
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+	<!-- Configurando envio de registros para Loggly -->
+    <appender name="loggly" class="ch.qos.logback.ext.loggly.LogglyAppender">
+        <endpointUrl>https://logs-01.loggly.com/inputs/TOKEN/tag/logback</endpointUrl>
+        <pattern>%d{"ISO8601", UTC} %p %t %c %M - %m%n</pattern>
+    </appender>
+	<!-- Configura envio de logs de forma assíncrona, para q a aplicação não seja bloqueada pelo envio de logs para a nuvem -->
+    <appender name="logglyAsync" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="loggly" />
+    </appender>
+	<!-- Referenciando o appender assíncrono, e este por sua vez referencia o envio para Loggly (nuvem) -->
+    <root level="info">
+        <appender-ref ref="logglyAsync"/>
+    </root>
+</configuration>
+```
+
 ---
 
 ##### Eclipse
 
 ###### UTF-8 (9.18)
 Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
+
+Sobrescrevendo propriedades (application.properties), clique com lado direito sobre o projeto no console (Boot Dashboard), Open Config, adicione a propriedade e o valor no bloco "Override properties".
 
 ##### MySql
 [Download](https://dev.mysql.com/downloads/mysql/).
