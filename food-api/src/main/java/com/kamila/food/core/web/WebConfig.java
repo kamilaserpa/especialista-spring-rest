@@ -46,9 +46,9 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     /* Adiciona Interceptador das requests */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(apiRetirementHandler);
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(apiRetirementHandler);
+//    }
 
 }

@@ -1064,6 +1064,8 @@ A inicialização da aplicação fica mais lenta pois aguarda o envio de logs pa
 </configuration>
 ```
 
+Interessante manter o registros de logs quando em teste ou em produção, porém desnecessário em desenvolvimento. Para isso é útil a tag `<springProfile>` em logback-spring.xml.
+
 ---
 
 ##### Eclipse
@@ -1072,6 +1074,9 @@ A inicialização da aplicação fica mais lenta pois aguarda o envio de logs pa
 Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
 
 Sobrescrevendo propriedades (application.properties), clique com lado direito sobre o projeto no console (Boot Dashboard), Open Config, adicione a propriedade e o valor no bloco "Override properties".
+
+##### Intellij
+Inserindo profile: Editar as configurações de build, Modify Options, Add VM options, inserir "-Dspring.profiles.active=production".
 
 ##### MySql
 [Download](https://dev.mysql.com/downloads/mysql/).
