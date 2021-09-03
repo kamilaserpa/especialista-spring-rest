@@ -1066,6 +1066,16 @@ A inicialização da aplicação fica mais lenta pois aguarda o envio de logs pa
 
 Interessante manter o registros de logs quando em teste ou em produção, porém desnecessário em desenvolvimento. Para isso é útil a tag `<springProfile>` em logback-spring.xml.
 
+## Capítulo 22 - Segurança com Spring Security e OAuth2
+Serão abordados Http Basic Authentication e OAuth2, principalmente OAuth2.
+
+#### Http Basic Authentication
+ Na Autenticação básica do Http, deve ser passado um header chamado `Authorization` com vamlor no formato nome_de_usuário:senha codificados em Base64. Estes dados estão em todas as requisições e se capturados podem ser facilmente decodificados. Essa fragilidade pode ser amenizada através do Https, porém o cliente ainda deve armazenar o usuário e senha, fornecendo risco à segurança.<br>
+ Uma opção mais segura seria uma aplicação protegida por firewal em rede privada, bloqueando requisições externas e implementando Https, porém este não é o cenário mais geral.
+
+ #### OAuth2
+O cliente obtém um token de acesso e o envia no header  "Authorization", a API pode verificar as permissões do consumidor.
+
 ---
 
 ##### Eclipse
