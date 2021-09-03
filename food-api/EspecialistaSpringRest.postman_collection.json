@@ -14,6 +14,21 @@
 						{
 							"name": "Cidade - Listar",
 							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "food",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [
 									{
@@ -429,62 +444,39 @@
 					"response": []
 				},
 				{
-					"name": "Cozinhas - Listar V2",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/v2/cozinhas?size=2&page=0&sort=nome,desc&sort=id",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v2",
-								"cozinhas"
-							],
-							"query": [
-								{
-									"key": "size",
-									"value": "2"
-								},
-								{
-									"key": "page",
-									"value": "0"
-								},
-								{
-									"key": "sort",
-									"value": "nome,desc"
-								},
-								{
-									"key": "sort",
-									"value": "id"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Cozinhas - Buscar",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "food",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
 								"type": "text",
 								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic Zm9vZDoxMjM0NTY=",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/v1/cozinhas/10",
+							"raw": "http://localhost:8080/v1/cozinhas/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -493,34 +485,7 @@
 							"path": [
 								"v1",
 								"cozinhas",
-								"10"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Cozinhas - Buscar V2",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/v2/cozinhas/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"v2",
-								"cozinhas",
-								"3"
+								"1"
 							]
 						}
 					},
@@ -629,6 +594,77 @@
 								"v1",
 								"cozinhas",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cozinhas - Listar V2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v2/cozinhas?size=2&page=0&sort=nome,desc&sort=id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v2",
+								"cozinhas"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "nome,desc"
+								},
+								{
+									"key": "sort",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cozinhas - Buscar V2",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v2/cozinhas/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v2",
+								"cozinhas",
+								"3"
 							]
 						}
 					},

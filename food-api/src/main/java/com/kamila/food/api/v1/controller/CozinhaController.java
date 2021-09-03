@@ -46,10 +46,6 @@ public class CozinhaController implements CozinhaControllerOpenApi {
 	public PagedModel<CozinhaModel> listar(@PageableDefault(size = 10) Pageable pageable) { // Alterando padrão size que por default é 20
 		log.info("Consultando cozinhas com páginas de {} registros", pageable.getPageSize());
 
-		if (true) {
-			throw new RuntimeException("Teste de exception");
-		}
-
 		Page<Cozinha> cozinhasPage = cozinhaRepository.findAll(pageable);
 
 		// Convertendo Page em PagedModel. Já 'cozinhaModelAssembler' converte Cozinha em CozinhaModel
