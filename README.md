@@ -1073,12 +1073,21 @@ Serão abordados Http Basic Authentication e OAuth2, principalmente OAuth2.
  Na Autenticação básica do Http, deve ser passado um header chamado `Authorization` com vamlor no formato nome_de_usuário:senha codificados em Base64. Estes dados estão em todas as requisições e se capturados podem ser facilmente decodificados. Essa fragilidade pode ser amenizada através do Https, porém o cliente ainda deve armazenar o usuário e senha, fornecendo risco à segurança.<br>
  Uma opção mais segura seria uma aplicação protegida por firewal em rede privada, bloqueando requisições externas e implementando Https, porém este não é o cenário mais geral.
 
+ Ao adicionar a dependência Spring Boot Security Http Basic Authentication já é implementada por padrão. Com usuário padrão "user" e senha printada no console ao inicializar. Estes valores podem ser alterados através das propriedades da aplicação:
+
+ ```xml
+ spring.security.user.name=username
+ spring.security.user.password=password
+```
+Ao ser autorizado, o cliente recebe uma sessão com tempo determinado para expiração. Essa sessão é identificada pelo cookie `JSESSIONID`. O cliente fica em posse desse cookie e o envia nas requests. Desse modo não é necessário enviar o Authorization (correto) enquanto esse cookie estiver válido.
+
  #### OAuth2
 O cliente obtém um token de acesso e o envia no header  "Authorization", a API pode verificar as permissões do consumidor.
 
+
 ---
 
-##### Eclipse
+#### Eclipse
 
 ###### UTF-8 (9.18)
 Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
