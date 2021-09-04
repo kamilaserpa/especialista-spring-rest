@@ -1083,7 +1083,16 @@ Ao ser autorizado, o cliente recebe uma sessão com tempo determinado para expir
 
  #### OAuth2
 O cliente obtém um token de acesso e o envia no header  "Authorization", a API pode verificar as permissões do consumidor.
+Permitindo que aplicações terceiras tem acesso limitado a uma API. É um conjunto de regras, um protocolo, uma especificação, descrito na RFC6749.
+##### Papéis (Roles)
+ - Resource Server: servidor que hospeda os recursos protegidos, a API
+ - Resource Owner: Usuário final, dono dos recursos. No nosso cenário os donos dos restaurantes realizando atualização dos dados por exemplo.
+ - Client: Aplicação (web, mobile) que acessa os recursos protegidos do Resource Server
+ - Authorization Server: Servidor que autentica o Resource Owner e garante autorização de acesso para o cliente ao Resource Server. 
+ 
+No cenário de portaria de um prédio, o `Authorization Server` seria o porteiro. O `Resource Owner` seria o proprietário de um apartamento. O `Resource Server` é o recurso no interior do apartamento, uma compartimento. E o `Client` é uma visita, solicitando acesso a entrar no apartamento e pegar um recurso. Assim o Authorization Server solicita permissão ao Resource Owner para que o Client acesse o recurso no Resource Server. Veja o Authorization Code Flow (este é um dos fluxos possíveis):
 
+![Authorization Code Flow](food-api/authorization-flow.png)
 
 ---
 
