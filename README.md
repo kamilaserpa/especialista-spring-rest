@@ -1070,7 +1070,7 @@ Interessante manter o registros de logs quando em teste ou em produção, porém
 Serão abordados Http Basic Authentication e OAuth2, principalmente OAuth2.
 
 #### Http Basic Authentication
- Na Autenticação básica do Http, deve ser passado um header chamado `Authorization` com vamlor no formato nome_de_usuário:senha codificados em Base64. Estes dados estão em todas as requisições e se capturados podem ser facilmente decodificados. Essa fragilidade pode ser amenizada através do Https, porém o cliente ainda deve armazenar o usuário e senha, fornecendo risco à segurança.<br>
+ Na Autenticação básica do Http, deve ser passado um header chamado `Authorization` com valor no formato nome_de_usuário:senha codificados em Base64. Estes dados estão em todas as requisições e se capturados podem ser facilmente decodificados. Essa fragilidade pode ser amenizada através do Https, porém o cliente ainda deve armazenar o usuário e senha, fornecendo risco à segurança.<br>
  Uma opção mais segura seria uma aplicação protegida por firewal em rede privada, bloqueando requisições externas e implementando Https, porém este não é o cenário mais geral.
 
  Ao adicionar a dependência Spring Boot Security Http Basic Authentication já é implementada por padrão. Com usuário padrão "user" e senha printada no console ao inicializar. Estes valores podem ser alterados através das propriedades da aplicação:
