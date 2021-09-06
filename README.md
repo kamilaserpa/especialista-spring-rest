@@ -1094,6 +1094,14 @@ No cenário de portaria de um prédio, o `Authorization Server` seria o porteiro
 
 ![Authorization Code Flow](food-api/authorization-flow.png)
 
+##### Soluções Spring OAuth 2
+[Spring Security OAuth](https://spring.io/projects/spring-security-oauth) dá suporte para implementar tanto o Resource Server quanto o Authorization Server. Estes podem estar em projetos diferentes até.<br>
+Houve um movimento para portar o código para outro projeto, o [Spring Security](https://spring.io/projects/spring-security), não dando suporte de OAuth ao Spring Security OAuth e mantendo apenas no `Spring Security`.
+Porém não foi criado suporte ao Authorization Server no Spring Security.
+Spring Security OAuth está sendo depreciado. 
+
+Logo o Resource Server será desenvolvido utilizando o Spring Security e o Authorization Server só tem suporte de implementação através do Spring Security OAuth neste momento(2021.2).
+
 ---
 
 #### Eclipse
