@@ -1069,7 +1069,7 @@ Interessante manter o registros de logs quando em teste ou em produção, porém
 ## Capítulo 22 - Segurança com Spring Security e OAuth2
 Serão abordados Http Basic Authentication e OAuth2, principalmente OAuth2.
 
-#### Http Basic Authentication
+### Http Basic Authentication
  Na Autenticação básica do Http, deve ser passado um header chamado `Authorization` com valor no formato nome_de_usuário:senha codificados em Base64. Estes dados estão em todas as requisições e se capturados podem ser facilmente decodificados. Essa fragilidade pode ser amenizada através do Https, porém o cliente ainda deve armazenar o usuário e senha, fornecendo risco à segurança.<br>
  Uma opção mais segura seria uma aplicação protegida por firewal em rede privada, bloqueando requisições externas e implementando Https, porém este não é o cenário mais geral.
 
@@ -1081,7 +1081,7 @@ Serão abordados Http Basic Authentication e OAuth2, principalmente OAuth2.
 ```
 Ao ser autorizado, o cliente recebe uma sessão com tempo determinado para expiração. Essa sessão é identificada pelo cookie `JSESSIONID`. O cliente fica em posse desse cookie e o envia nas requests. Desse modo não é necessário enviar o Authorization (correto) enquanto esse cookie estiver válido.
 
- #### OAuth2
+ ### OAuth2
 O cliente obtém um token de acesso e o envia no header  "Authorization", a API pode verificar as permissões do consumidor.
 Permitindo que aplicações terceiras tem acesso limitado a uma API. É um conjunto de regras, um protocolo, uma especificação, descrito na RFC6749.
 ##### Papéis (Roles)
@@ -1104,6 +1104,14 @@ Logo o Resource Server será desenvolvido utilizando o Spring Security e o Autho
 
 
 Fluxo Resource Owner Password Credentials [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Resource-Owner-Password-Credentials-Grant-Type-is-not-Authentication-nor-Suitable-for-Modern-Applications) pois delega ao cliente a responsabilidade de manipular as credenciais dos seus usuários.
+
+No nosso cenário:
+ - Resource Server: projeto `Food API`.
+ - Authorization Server: projeto `Food Auth`.
+
+### Authorization Server
+
+[Dependências para resolver problema com Spring Security OAuth2 e Java 11+](https://gist.github.com/thiagofa/ef9a40d495016cb2581add41b5cbde1b).
 
 ---
 
