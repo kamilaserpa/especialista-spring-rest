@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>food-auth</name>
 	<description>Authorization Server do Food API</description>
-	
+
 	<properties>
 		<java.version>11</java.version>
 		<spring-security-oauth2.version>2.3.7.RELEASE</spring-security-oauth2.version>

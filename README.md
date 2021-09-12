@@ -1113,6 +1113,10 @@ No nosso cenário:
 
 [Dependências para resolver problema com Spring Security OAuth2 e Java 11+](https://gist.github.com/thiagofa/ef9a40d495016cb2581add41b5cbde1b).
 
+Para solicitação do token o client se autentica passando o header Http `Basic Auth` com as suas credenciais configuradas na classe `AuthorizationServerConfig`. Autentica também o usuário enviando as credenciais do Resource owner no body do tipo `x-www-form-unlercoded` com as propriedades:
+
+`"username":"kamila", "password": 123", "grant_type": password"`
+
 ---
 
 #### Eclipse
