@@ -1102,6 +1102,9 @@ Spring Security OAuth está sendo depreciado.
 
 Logo o Resource Server será desenvolvido utilizando o Spring Security e o Authorization Server só tem suporte de implementação através do Spring Security OAuth neste momento(2021.2).
 
+
+Fluxo Resource Owner Password Credentials [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Resource-Owner-Password-Credentials-Grant-Type-is-not-Authentication-nor-Suitable-for-Modern-Applications) pois delega ao cliente a responsabilidade de manipular as credenciais dos seus usuários.
+
 ---
 
 #### Eclipse
