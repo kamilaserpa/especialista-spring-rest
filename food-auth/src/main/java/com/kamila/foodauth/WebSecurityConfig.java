@@ -36,5 +36,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-    
+
 }

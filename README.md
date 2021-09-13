@@ -1084,17 +1084,17 @@ Ao ser autorizado, o cliente recebe uma sessão com tempo determinado para expir
  ### OAuth2
 O cliente obtém um token de acesso e o envia no header  "Authorization", a API pode verificar as permissões do consumidor.
 Permitindo que aplicações terceiras tem acesso limitado a uma API. É um conjunto de regras, um protocolo, uma especificação, descrito na RFC6749.
-##### Papéis (Roles)
- - Resource Server: servidor que hospeda os recursos protegidos, a API
+#### Papéis (Roles)
+ - Resource Server: servidor que hospeda os recursos protegidos, a API (Food API)
  - Resource Owner: Usuário final, dono dos recursos. No nosso cenário os donos dos restaurantes realizando atualização dos dados por exemplo.
  - Client: Aplicação (web, mobile) que acessa os recursos protegidos do Resource Server
- - Authorization Server: Servidor que autentica o Resource Owner e garante autorização de acesso para o cliente ao Resource Server. 
+ - Authorization Server: Servidor que autentica o Resource Owner e garante autorização de acesso para o cliente ao Resource Server (Food Auth). 
  
 No cenário de portaria de um prédio, o `Authorization Server` seria o porteiro. O `Resource Owner` seria o proprietário de um apartamento. O `Resource Server` é o recurso no interior do apartamento, uma compartimento. E o `Client` é uma visita, solicitando acesso a entrar no apartamento e pegar um recurso. Assim o Authorization Server solicita permissão ao Resource Owner para que o Client acesse o recurso no Resource Server. Veja o Authorization Code Flow (este é um dos fluxos possíveis):
 
 ![Authorization Code Flow](food-api/authorization-flow.png)
 
-##### Soluções Spring OAuth 2
+#### Soluções Spring OAuth 2
 [Spring Security OAuth](https://spring.io/projects/spring-security-oauth) dá suporte para implementar tanto o Resource Server quanto o Authorization Server. Estes podem estar em projetos diferentes até.<br>
 Houve um movimento para portar o código para outro projeto, o [Spring Security](https://spring.io/projects/spring-security), não dando suporte de OAuth ao Spring Security OAuth e mantendo apenas no `Spring Security`.
 Porém não foi criado suporte ao Authorization Server no Spring Security.
@@ -1102,12 +1102,14 @@ Spring Security OAuth está sendo depreciado.
 
 Logo o Resource Server será desenvolvido utilizando o Spring Security e o Authorization Server só tem suporte de implementação através do Spring Security OAuth neste momento(2021.2).
 
+#### Grant Types
 
-Fluxo Resource Owner Password Credentials [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Resource-Owner-Password-Credentials-Grant-Type-is-not-Authentication-nor-Suitable-for-Modern-Applications) pois delega ao cliente a responsabilidade de manipular as credenciais dos seus usuários.
+**Resource Owner Password Credentials Grant**
 
-No nosso cenário:
- - Resource Server: projeto `Food API`.
- - Authorization Server: projeto `Food Auth`.
+Fluxo `Resource Owner Password Credentials Grant` é uma forma de obter o token de acesso a partir de um usuário e senha, o Client envia o usuário e senha para o Authorization Server, e este emite um token de acesso. É um fluxo que deve ser utilizado apenas para aplicações desenvolvidas pelo grupo proprietário. É um risco para o usuário fornecer seus dados de acesso para clients desenvolvidos por empresas terceiras.<br>
+Hoje ele é [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Resource-Owner-Password-Credentials-Grant-Type-is-not-Authentication-nor-Suitable-for-Modern-Applications) pois delega ao cliente a responsabilidade de manipular as credenciais dos seus usuários.
+
+![Password Grant Flow](food-api/password-credentials.png)
 
 ### Authorization Server
 
@@ -1116,6 +1118,8 @@ No nosso cenário:
 Para solicitação do token o client se autentica passando o header Http `Basic Auth` com as suas credenciais configuradas na classe `AuthorizationServerConfig`. Autentica também o usuário enviando as credenciais do Resource owner no body do tipo `x-www-form-unlercoded` com as propriedades:
 
 `"username":"kamila", "password": 123", "grant_type": password"`
+
+RFC7662 especifica implementação da checagem de token.
 
 ---
 
