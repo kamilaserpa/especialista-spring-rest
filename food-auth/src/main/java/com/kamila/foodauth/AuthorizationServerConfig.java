@@ -25,11 +25,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // Client é a aplicação que utiliza os recursos do Resource Server utilizando um Access Token
         clients.inMemory()
-                .withClient("food-web") // Identificação do client
+                .withClient("food-web") // Identificação do client (aplicação web ou mobile)
                 .secret(passwordEncoder.encode("web123")) // Senha
                 .authorizedGrantTypes("password") // Fluxos
                 .scopes("write", "read")
-                .accessTokenValiditySeconds(60 * 60 * 6); // 6 horas
+                .accessTokenValiditySeconds(60 * 60 * 6) // 6 horas
+        .and()
+                .withClient("checktoken") // Identificação do Resource Server (Food API)
+                .secret(passwordEncoder.encode("check123"));
     }
 
     // Configura acesso ao endpoint de chacagem do token

@@ -1104,7 +1104,7 @@ Logo o Resource Server será desenvolvido utilizando o Spring Security e o Autho
 
 #### Grant Types
 
-**Resource Owner Password Credentials Grant**
+##### Resource Owner Password Credentials Grant
 
 Fluxo `Resource Owner Password Credentials Grant` é uma forma de obter o token de acesso a partir de um usuário e senha, o Client envia o usuário e senha para o Authorization Server, e este emite um token de acesso. É um fluxo que deve ser utilizado apenas para aplicações desenvolvidas pelo grupo proprietário. É um risco para o usuário fornecer seus dados de acesso para clients desenvolvidos por empresas terceiras.<br>
 Hoje ele é [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Resource-Owner-Password-Credentials-Grant-Type-is-not-Authentication-nor-Suitable-for-Modern-Applications) pois delega ao cliente a responsabilidade de manipular as credenciais dos seus usuários.
