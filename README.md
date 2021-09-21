@@ -1081,7 +1081,7 @@ Serão abordados Http Basic Authentication e OAuth2, principalmente OAuth2.
 ```
 Ao ser autorizado, o cliente recebe uma sessão com tempo determinado para expiração. Essa sessão é identificada pelo cookie `JSESSIONID`. O cliente fica em posse desse cookie e o envia nas requests. Desse modo não é necessário enviar o Authorization (correto) enquanto esse cookie estiver válido.
 
- ### OAuth2
+### OAuth2
 O cliente obtém um token de acesso e o envia no header  "Authorization", a API pode verificar as permissões do consumidor.
 Permitindo que aplicações terceiras tem acesso limitado a uma API. É um conjunto de regras, um protocolo, uma especificação, descrito na RFC6749.
 #### Papéis (Roles)
@@ -1120,6 +1120,11 @@ Para solicitação do token o client se autentica passando o header Http `Basic 
 `"username":"kamila", "password": 123", "grant_type": password"`
 
 RFC7662 especifica implementação da checagem de token.
+
+#### Refresh token
+Quando o token expira pode existir um `Refresh Token`, que é utilizado com o objetivo de solicitar outro access token válido. O Authorization Server pode ser configurado para enviar um Refresh Token. <br>
+O Client, em posse do Refresh Token, utiliza-o para solicitar o Access Token para o Authorization Server.
+
 
 ---
 
