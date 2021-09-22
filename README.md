@@ -1111,6 +1111,13 @@ Hoje ele é [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Reso
 
 ![Password Grant Flow](food-api/password-credentials.png)
 
+##### Client Credentials Grant
+Fluxo voltado para a utilização de uma aplicação back-end atuando como cliente de uma API.
+O token de acesso não é uma delegação de acesso de um Resource Owner, ela representa uma chave de acesso em nome do Client.
+Nesse fluxo não deve haver Refresh Token.
+
+![Password Grant Flow](food-api/client_credentials.png)
+
 ### Authorization Server
 
 [Dependências para resolver problema com Spring Security OAuth2 e Java 11+](https://gist.github.com/thiagofa/ef9a40d495016cb2581add41b5cbde1b).
