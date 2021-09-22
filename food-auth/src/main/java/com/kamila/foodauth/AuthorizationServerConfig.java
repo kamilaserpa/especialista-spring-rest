@@ -33,7 +33,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder.encode("web123")) // Senha
                 .authorizedGrantTypes("password", "refresh_token") // Fluxos
                 .scopes("write", "read")
-                .accessTokenValiditySeconds(60 * 60 * 6) // 6 horas
+                .accessTokenValiditySeconds(6 * 60 * 60) // 6 horas
+                .refreshTokenValiditySeconds(60 * 24 * 60 * 60) // 60 dias
+
                 .and()
                 .withClient("checktoken") // Identificação do Resource Server (Food API)
                 .secret(passwordEncoder.encode("check123"));
@@ -56,7 +58,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .reuseRefreshTokens(false);
     }
 
 }
