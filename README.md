@@ -1123,8 +1123,9 @@ RFC7662 especifica implementação da checagem de token.
 
 #### Refresh token
 Quando o token expira pode existir um `Refresh Token`, que é utilizado com o objetivo de solicitar outro access token válido. O Authorization Server pode ser configurado para enviar um Refresh Token. <br>
-O Client, em posse do Refresh Token, utiliza-o para solicitar o Access Token para o Authorization Server.
-
+O Client, em posse do Refresh Token, utiliza-o para solicitar outro Access Token para o Authorization Server.
+O tempo de expiração padrão do refresh token é de 30 dias.<br>
+Ao solicitar um novo token o acces token anterior desse usuário é revogado, já o refresh_token utilizado permanece ativo enquanto no período de expiração estiver ativo.
 
 ---
 
