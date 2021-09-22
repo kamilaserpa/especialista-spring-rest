@@ -37,6 +37,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .refreshTokenValiditySeconds(60 * 24 * 60 * 60) // 60 dias
 
                 .and()
+                .withClient("faturamento") // Identifica aplicação back-end que consulta a API
+                .secret(passwordEncoder.encode("faturamento123")) // Senha
+                .authorizedGrantTypes("client_credentials") // Fluxos
+                .scopes("write", "read")
+
+                .and()
                 .withClient("checktoken") // Identificação do Resource Server (Food API)
                 .secret(passwordEncoder.encode("check123"));
     }

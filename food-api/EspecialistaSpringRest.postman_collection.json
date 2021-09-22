@@ -2337,6 +2337,51 @@
 				{
 					"name": "Restaurantes - Listar",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientSecret",
+									"value": "faturamento123",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "faturamento",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "kamila",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8081/oauth/token",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Token Food API",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -3673,6 +3718,63 @@
 					"response": []
 				},
 				{
+					"name": "Client Credentials - Solicitar token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "faturamento123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "faturamento",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Refresh Token - Solicitar token",
 					"request": {
 						"auth": {
@@ -3696,24 +3798,26 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "username",
-									"value": "kamila",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "123",
-									"type": "text"
-								},
-								{
 									"key": "grant_type",
 									"value": "refresh_token",
 									"type": "text"
 								},
 								{
 									"key": "refresh_token",
-									"value": "5f64c3b4-0668-4978-9f67-e3f29a1791cf",
+									"value": "b27be4c1-ae9f-4b62-acfd-56508d19f207",
 									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -3734,14 +3838,11 @@
 				},
 				{
 					"name": "Check token",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "noauth"
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
@@ -3754,7 +3855,7 @@
 							"urlencoded": [
 								{
 									"key": "token",
-									"value": "c327be5b-a541-4c5f-9285-9dd6b1fda61e",
+									"value": "6ed26656-5f4c-4272-82e7-28678c18d92e",
 									"type": "text"
 								},
 								{
