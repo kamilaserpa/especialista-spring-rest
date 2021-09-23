@@ -1118,6 +1118,20 @@ Nesse fluxo não deve haver Refresh Token.
 
 ![Password Grant Flow](food-api/client_credentials.png)
 
+##### Authorization Code
+Uri de redirecionamento deve estar cadastrada no Authorization Server. Authorization Server exibe formulário de login para o Resource Owner autenticar e autorizar o acesso aos recursos.
+
+O atributo State é apenas enviado e recebido posteriormente pelo client, verificando igualdade, com o objetivo de envitar ataque crsf.
+
+```
+Client -> Authorization Server
+https://AUTHORIZATION-SERVER/oauth/authorize?response_type=code&client_id=id_do_cliente&state=abc&redirecet_uri=https://CLIENT/
+Authorization Server -> Client
+https://CLIENT/?code=ZQwg6B&state=abc
+Client -> Authorization Server
+/oauth/token?code=ZQwg6B&grabt_type=authorization_code // Troca o código pelo access token, podendo ser retornado refresn_token
+```
+
 ### Authorization Server
 
 [Dependências para resolver problema com Spring Security OAuth2 e Java 11+](https://gist.github.com/thiagofa/ef9a40d495016cb2581add41b5cbde1b).
