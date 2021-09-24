@@ -1,0 +1,24 @@
+{
+  "name": "client-foodanalytics",
+  "version": "1.0.0",
+  "description": "Aplicação cliente para teste do fluxo Authorization Code",
+  "main": "client.js",
+  "start": "node client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kamila Serpa",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "jsdom": "^17.0.0",
+    "express": "~3.0.1",
+    "sequelize": "latest",
+    "q": "latest",
+    "tedious": "latest",
+    "angular": "latest",
+    "angular-ui-router": "~0.2.11",
+    "path": "latest",
+    "dat-gui": "latest"
+  }
+}

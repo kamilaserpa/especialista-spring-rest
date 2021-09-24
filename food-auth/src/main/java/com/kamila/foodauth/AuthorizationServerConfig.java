@@ -41,7 +41,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                     .secret(passwordEncoder.encode("food123")) // Senha
                     .authorizedGrantTypes("authorization_code") // Fluxos
                     .scopes("write", "read")
-                    .redirectUris("http://aplicacao-cliente")
+                    .redirectUris("http://aplicacao-cliente",
+                            "http://localhost:3000")
 
                 .and()
                     .withClient("faturamento") // Identifica aplicação back-end que consulta a API

@@ -1123,14 +1123,16 @@ Uri de redirecionamento deve estar cadastrada no Authorization Server. Authoriza
 
 O atributo State é apenas enviado e recebido posteriormente pelo client, verificando igualdade, com o objetivo de envitar ataque crsf.
 
-```
-Client -> Authorization Server
-https://AUTHORIZATION-SERVER/oauth/authorize?response_type=code&client_id=id_do_cliente&state=abc&redirecet_uri=https://CLIENT/
-Authorization Server -> Client
+```javascript
+// Client solicita login ao Authorization Server
+(GET) https://AUTHORIZATION-SERVER/oauth/authorize?response_type=code&client_id=id_do_cliente&state=abc&redirecet_uri=https://CLIENT/
+// Authorization Server redireciona Client para página de login (uri)
 https://CLIENT/?code=ZQwg6B&state=abc
-Client -> Authorization Server
-/oauth/token?code=ZQwg6B&grant_type=authorization_code // Troca o código pelo access token, podendo ser retornado
+// Client envia code e solicita Access Token para o Authorization Server
+(POST) http://localhost:8081/oauth/token?code=ZQwg6B&grant_type=authorization_code // Troca o código pelo access token, podendo ser retornado
 ```
+
+Link para [configuração de CORS no Authorization Server com CorsFilter](https://gist.github.com/thiagofa/764260dfd8ba21f30f2f79806d734563), na qual adiciona um filtro de servlet queretorna os cabeçalhos para as requisições `OPTIONS`.
 
 ### Authorization Server
 
