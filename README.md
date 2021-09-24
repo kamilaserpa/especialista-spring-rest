@@ -1129,7 +1129,7 @@ https://AUTHORIZATION-SERVER/oauth/authorize?response_type=code&client_id=id_do_
 Authorization Server -> Client
 https://CLIENT/?code=ZQwg6B&state=abc
 Client -> Authorization Server
-/oauth/token?code=ZQwg6B&grabt_type=authorization_code // Troca o código pelo access token, podendo ser retornado refresn_token
+/oauth/token?code=ZQwg6B&grant_type=authorization_code // Troca o código pelo access token, podendo ser retornado
 ```
 
 ### Authorization Server
