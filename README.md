@@ -1118,7 +1118,7 @@ Nesse fluxo não deve haver Refresh Token.
 
 ![Password Grant Flow](food-api/client_credentials.png)
 
-##### Authorization Code
+##### Authorization Code Grant Type
 Uri de redirecionamento deve estar cadastrada no Authorization Server. Authorization Server exibe formulário de login para o Resource Owner autenticar e autorizar o acesso aos recursos.
 
 O atributo State é apenas enviado e recebido posteriormente pelo client, verificando igualdade, com o objetivo de envitar ataque crsf.
@@ -1133,6 +1133,10 @@ https://CLIENT/?code=ZQwg6B&state=abc
 ```
 
 Link para [configuração de CORS no Authorization Server com CorsFilter](https://gist.github.com/thiagofa/764260dfd8ba21f30f2f79806d734563), na qual adiciona um filtro de servlet queretorna os cabeçalhos para as requisições `OPTIONS`.
+
+##### Implicit Grant
+Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.
+O uso desse fluxo é desencorajado, pois retornar o access token na URL gera um risco de segurança, é um fluxo legado. É possível ver mais detalhes do fluxo na [imagem](food-api/implicit_flow_grant.png).
 
 ### Authorization Server
 
