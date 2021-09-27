@@ -1141,11 +1141,17 @@ Objetiva trazer mais segurança, pois havendo um Cliente público no fluxo que r
 Nesse fluxo o cliente cria em tempo de execução um código chamado `Code Verifier`, sobre ele são aplicadas duas codificações, o SHA 256 e em seguida o Base64. O código gerado por essas codificações é chamado `Code Challenge`. <br>
 O cliente envia para o Authorization Server o Code Challenge no momento em que solicita a autorização (redirect), o Authorization o armazena e gera/retorna o código de autorização.<br>
 O cliente então envia o código de autorização recebido e o `Code Verifier`, nesse momento o `AS` (Authorization Server) aplica as codificações correspondentes (SHA 256 e BASE 64) e valida se o Code Verifier codificado corresponde ao Code Challenge armazenado. Verificando que quem está enviando o Code Verifier é realmente o cliente, e não um software malicioso que interceptou o code, retornando o `Access Token`.<br>
-Quem decide o método de verificação do Code Challenge é o cliente, sendo eles s256 (SHA256, recomendado) ou Plain (texto comum).
+Quem decide o método de verificação do Code Challenge é o cliente, sendo eles s256 (SHA256, recomendado) ou Plain (texto comum). <br>
+O ideal seria dar opção ao usuário, se usar o PKCE não seria necessário autenticar o usuário com o header Authorization Basic, caso contrario seria necessário autenticar o usuário.
 
 ![Authorization Code PKCE](food-api/authorization-flow-pkce.png)
 
 [Implementação de PKCE para Spring Security OAuth2](https://gist.github.com/thiagofa/daca4f4790b5b18fed800b83747127ca)
+
+ - Exemplo 1:
+Requisição para receber code: (GET - navegador) `http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://aplicacao-cliente&code_challenge=codeteste123&code_challenge_method=plain`
+Code Verifier: codeteste123
+Code Challenge (usando method plain): codeteste123
 
 ##### Implicit Grant
 Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.

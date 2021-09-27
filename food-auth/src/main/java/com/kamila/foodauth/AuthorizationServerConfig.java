@@ -43,7 +43,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // Com PKCE, se cliente passar Code Challenge
                 .and()
                 .withClient("foodanalytics") // Identifica aplicação back-end que consulta a API
-                .secret(passwordEncoder.encode("food123")) // Senha
+                .secret(passwordEncoder.encode("")) // Senha, removida para implementação do PKCE q não exige autenticação do usuário
                 .authorizedGrantTypes("authorization_code") // Fluxos
                 .scopes("write", "read")
                 .redirectUris("http://aplicacao-cliente",
@@ -74,7 +74,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // Afirma que é necessário o client estar autenticado para acessar o endpoint check token
         // security.checkTokenAccess("isAuthenticated()");
 
-        security.checkTokenAccess("permitAll()");
+        security.checkTokenAccess("permitAll()")
+                .allowFormAuthenticationForClients(); // Permite passar as credenciais do cliente no corpo da requisição
     }
 
     /* Especifica um Authentication Manager para o Password Flow.
