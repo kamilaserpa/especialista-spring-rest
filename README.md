@@ -1138,6 +1138,9 @@ Link para [configuração de CORS no Authorization Server com CorsFilter](https:
 Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.
 O uso desse fluxo é desencorajado, pois retornar o access token na URL gera um risco de segurança, é um fluxo legado. É possível ver mais detalhes do fluxo na [imagem](food-api/implicit_flow_grant.png).
 
+Para a url acessada no navegador: `http://localhost:8081/oauth/authorize?response_type=token&client_id=webadmin&state=abc&redirect_uri=http://aplicacao-cliente` <br>
+Recebemos a resposta com o token: `http://aplicacao-cliente/#access_token=c0b6cfa1-aad1-491c-9e52-f723e6186c73&token_type=bearer&state=abc&expires_in=43199&scope=read%20write`
+
 ### Authorization Server
 
 [Dependências para resolver problema com Spring Security OAuth2 e Java 11+](https://gist.github.com/thiagofa/ef9a40d495016cb2581add41b5cbde1b).
