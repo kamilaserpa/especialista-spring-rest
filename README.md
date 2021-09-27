@@ -1119,7 +1119,7 @@ Nesse fluxo não deve haver Refresh Token.
 ![Password Grant Flow](food-api/client_credentials.png)
 
 ##### Authorization Code Grant Type
-Uri de redirecionamento deve estar cadastrada no Authorization Server. Authorization Server exibe formulário de login para o Resource Owner autenticar e autorizar o acesso aos recursos.
+Uri de redirecionamento deve estar cadastrada no Authorization Server. Authorization Server exibe formulário de login para o Resource Owner autenticar e autorizar o acesso aos recursos. É ideal para a integração de Front-end com o Back-end.
 
 O atributo State é apenas enviado e recebido posteriormente pelo client, verificando igualdade, com o objetivo de envitar ataque crsf.
 

@@ -28,17 +28,17 @@
                 <a href="http://localhost:3000/pkce">Authorization Grant Type PKCE</a>
             </button>
         </div>
-        
+
         <hr>
 
         <h5>Authorization Grant Type com PKCE</h5>
 
-        <div>Testando o fluxo Authorization Code Grant Type. Login em conta de usuário com credenciais do Authorization Server:</div>
+        <div>Testando o fluxo Authorization Code Grant Type PKCE. Login em conta de usuário com credenciais do Authorization Server:</div>
         <div class="row">
-            <button id="btn-login" class="btn btn-primary">Login</button>
+            <button id="btn-login" class="btn btn-info">Login</button>
         </div>
         <div class="row">
-            <button id="btn-consultar" class="btn btn-primary">Consultar Cozinhas</button>
+            <button id="btn-consultar" class="btn btn-info">Consultar Cozinhas</button>
         </div>
 
         <div class="row">
@@ -51,19 +51,50 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+
 
     <script>
 
         const config = {
             clientId: "foodanalytics",
-            clientSecret: "food123",
             authorizeUrl: "http://localhost:8081/oauth/authorize",
             tokenUrl: "http://localhost:8081/oauth/token",
-            callbackUrl: "http://localhost:3000",
+            callbackUrl: "http://localhost:3000/pkce",
             cozinhasUrl: "http://localhost:8080/v1/cozinhas"
         };
 
         let accessToken = "";
+
+        function generateCodeVerifier() {
+            let codeVerifier = generateRandomString(128);
+            localStorage.setItem("codeVerifier", codeVerifier);
+
+            return codeVerifier;
+        }
+
+        function generateRandomString(length) {
+            let text = "";
+            let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (let i = 0; i < length; i++) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+
+            return text;
+        }
+
+        function generateCodeChallenge(codeVerifier) {
+            return base64URL(CryptoJS.SHA256(codeVerifier));
+        }
+
+        function getCodeVerifier() {
+            return localStorage.getItem("codeVerifier");
+        }
+
+        function base64URL(string) {
+            return string.toString(CryptoJS.enc.Base64).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+        }
 
         function consultar() {
             alert("Consultando recurso com access token " + accessToken);
@@ -90,24 +121,20 @@
         function gerarAccessToken(code) {
             alert("Gerando access token com code " + code);
 
-            let clientAuth = btoa(config.clientId + ":" + config.clientSecret);
+            let codeVerifier = getCodeVerifier();
 
             let params = new URLSearchParams();
             params.append("grant_type", "authorization_code");
             params.append("code", code);
             params.append("redirect_uri", config.callbackUrl);
             params.append("client_id", config.clientId);
+            params.append("code_verifier", codeVerifier);
 
             $.ajax({
                 url: config.tokenUrl,
                 type: "post",
                 data: params.toString(),
                 contentType: "application/x-www-form-urlencoded",
-
-                // Comentado pois foodanalytics está com password = "" no backend
-                // beforeSend: function (request) {
-                //     request.setRequestHeader("Authorization", "Basic " + clientAuth);
-                // },
 
                 success: function (response) {
                     accessToken = response.access_token;
@@ -122,29 +149,20 @@
         }
 
         function login() {
-            // https://auth0.com/docs/protocols/oauth2/oauth-state
-            let state = btoa(Math.random());
-            localStorage.setItem("clientState", state);
+            let codeVerifier = generateCodeVerifier();
+            let codeChallenge = generateCodeChallenge(codeVerifier);
 
-            window.location.href = `${config.authorizeUrl}?response_type=code&client_id=${config.clientId}&state=${state}&redirect_uri=${config.callbackUrl}`;
+            window.location.href = `${config.authorizeUrl}?response_type=code&client_id=${config.clientId}&redirect_uri=${config.callbackUrl}&code_challenge_method=s256&code_challenge=${codeChallenge}`;
         }
 
         $(document).ready(function () {
-            console.log("Capturando código: " + window.location.search);
             let params = new URLSearchParams(window.location.search);
 
             let code = params.get("code");
-            let state = params.get("state");
-            let currentState = localStorage.getItem("clientState");
 
             if (code) {
                 // window.history.replaceState(null, null, "/");
-
-                if (currentState == state) {
-                    gerarAccessToken(code);
-                } else {
-                    alert("State inválido");
-                }
+                gerarAccessToken(code);
             }
         });
 

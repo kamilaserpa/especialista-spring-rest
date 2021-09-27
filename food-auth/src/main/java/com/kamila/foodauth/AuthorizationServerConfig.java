@@ -47,7 +47,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorizedGrantTypes("authorization_code") // Fluxos
                 .scopes("write", "read")
                 .redirectUris("http://aplicacao-cliente",
-                        "http://localhost:3000") // Projeto Node "client-foodanalytics"
+                        "http://localhost:3000", "http://localhost:3000/pkce") // Projeto Node "client-foodanalytics"
 
                 .and()
                 .withClient("webadmin") // Identifica aplicação back-end que consulta a API
