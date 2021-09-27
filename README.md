@@ -1145,6 +1145,8 @@ Quem decide o método de verificação do Code Challenge é o cliente, sendo ele
 
 ![Authorization Code PKCE](food-api/authorization-flow-pkce.png)
 
+[Implementação de PKCE para Spring Security OAuth2](https://gist.github.com/thiagofa/daca4f4790b5b18fed800b83747127ca)
+
 ##### Implicit Grant
 Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.
 O uso desse fluxo é desencorajado, pois retornar o access token na URL gera um risco de segurança, é um fluxo legado. É possível ver mais detalhes do fluxo na [imagem](food-api/implicit_flow_grant.png).

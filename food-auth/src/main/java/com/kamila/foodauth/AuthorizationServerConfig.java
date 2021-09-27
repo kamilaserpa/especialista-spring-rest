@@ -10,6 +10,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.CompositeTokenGranter;
+import org.springframework.security.oauth2.provider.TokenGranter;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer // Configura a aplicação como Authorization Server
@@ -36,30 +40,31 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .accessTokenValiditySeconds(6 * 60 * 60) // 6 horas
                 .refreshTokenValiditySeconds(60 * 24 * 60 * 60) // 60 dias
 
+                // Com PKCE, se cliente passar Code Challenge
                 .and()
-                    .withClient("foodanalytics") // Identifica aplicação back-end que consulta a API
-                    .secret(passwordEncoder.encode("food123")) // Senha
-                    .authorizedGrantTypes("authorization_code") // Fluxos
-                    .scopes("write", "read")
-                    .redirectUris("http://aplicacao-cliente",
-                            "http://localhost:3000") // Projeto Node "client-foodanalytics"
-
-                .and()
-                    .withClient("webadmin") // Identifica aplicação back-end que consulta a API
-                    .authorizedGrantTypes("implicit") // Fluxo, "refresh_token" não funciona aqui
-                    .scopes("write", "read")
-                    .redirectUris("http://aplicacao-cliente",
+                .withClient("foodanalytics") // Identifica aplicação back-end que consulta a API
+                .secret(passwordEncoder.encode("food123")) // Senha
+                .authorizedGrantTypes("authorization_code") // Fluxos
+                .scopes("write", "read")
+                .redirectUris("http://aplicacao-cliente",
                         "http://localhost:3000") // Projeto Node "client-foodanalytics"
 
                 .and()
-                    .withClient("faturamento") // Identifica aplicação back-end que consulta a API
-                    .secret(passwordEncoder.encode("faturamento123")) // Senha
-                    .authorizedGrantTypes("client_credentials") // Fluxos
-                    .scopes("write", "read")
+                .withClient("webadmin") // Identifica aplicação back-end que consulta a API
+                .authorizedGrantTypes("implicit") // Fluxo, "refresh_token" não funciona aqui
+                .scopes("write", "read")
+                .redirectUris("http://aplicacao-cliente",
+                        "http://localhost:3000") // Projeto Node "client-foodanalytics"
 
                 .and()
-                    .withClient("checktoken") // Identificação do Resource Server (Food API)
-                    .secret(passwordEncoder.encode("check123"));
+                .withClient("faturamento") // Identifica aplicação back-end que consulta a API
+                .secret(passwordEncoder.encode("faturamento123")) // Senha
+                .authorizedGrantTypes("client_credentials") // Fluxos
+                .scopes("write", "read")
+
+                .and()
+                .withClient("checktoken") // Identificação do Resource Server (Food API)
+                .secret(passwordEncoder.encode("check123"));
     }
 
     // Configura acesso ao endpoint de chacagem do token
@@ -80,7 +85,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
-                .reuseRefreshTokens(false);
+                .reuseRefreshTokens(false).
+                tokenGranter(tokenGranter(endpoints));
+    }
+
+
+    private TokenGranter tokenGranter(AuthorizationServerEndpointsConfigurer endpoints) {
+        var pkceAuthorizationCodeTokenGranter = new PkceAuthorizationCodeTokenGranter(
+                endpoints.getTokenServices(),
+                endpoints.getAuthorizationCodeServices(),
+                endpoints.getClientDetailsService(),
+                endpoints.getOAuth2RequestFactory());
+
+        var granters = Arrays.asList(
+                pkceAuthorizationCodeTokenGranter, // PKCE
+                endpoints.getTokenGranter()); // Demais fluxos granters implementados
+
+        return new CompositeTokenGranter(granters);
     }
 
 }
