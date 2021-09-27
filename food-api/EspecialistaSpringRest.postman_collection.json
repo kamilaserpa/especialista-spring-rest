@@ -4009,7 +4009,7 @@
 					"response": []
 				},
 				{
-					"name": "Authorization Code - Solicitar token pelo Code",
+					"name": "Authorization Code - Solicitar token pelo Code Copy",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -4058,6 +4058,233 @@
 							"path": [
 								"oauth",
 								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization Code Grant Type PKCE",
+			"item": [
+				{
+					"name": "Authorization Code PKCE Plain- Solicitar token pelo Code",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "food123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "foodanalytics",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "DJ5ybF",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://aplicacao-cliente",
+									"type": "text"
+								},
+								{
+									"key": "code_verifier",
+									"value": "8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "foodanalytics",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization Code PKCE Plain - (Deve ser acessado no Navegador para receber code)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://aplicacao-cliente&code_challenge=8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7&code_challenge_method=plain",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "client_id",
+									"value": "foodanalytics"
+								},
+								{
+									"key": "state",
+									"value": "abc"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://aplicacao-cliente"
+								},
+								{
+									"key": "code_challenge",
+									"value": "8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7"
+								},
+								{
+									"key": "code_challenge_method",
+									"value": "plain"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization Code PKCE SHA256- Solicitar token pelo Code Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "food123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "foodanalytics",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "92skTc",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "text"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://aplicacao-cliente",
+									"type": "text"
+								},
+								{
+									"key": "code_verifier",
+									"value": "8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "foodanalytics",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization Code PKCE SHA256 - (Deve ser acessado no Navegador para receber code) Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://aplicacao-cliente&code_challenge=g6nNGXtOvJTmVan5pklZV99qNyH4JR09TGg0a_AIfCA&code_challenge_method=s256",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "response_type",
+									"value": "code"
+								},
+								{
+									"key": "client_id",
+									"value": "foodanalytics"
+								},
+								{
+									"key": "state",
+									"value": "abc"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://aplicacao-cliente"
+								},
+								{
+									"key": "code_challenge",
+									"value": "g6nNGXtOvJTmVan5pklZV99qNyH4JR09TGg0a_AIfCA"
+								},
+								{
+									"key": "code_challenge_method",
+									"value": "s256"
+								}
 							]
 						}
 					},

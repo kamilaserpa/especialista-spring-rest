@@ -1150,8 +1150,9 @@ O ideal seria dar opção ao usuário, se usar o PKCE não seria necessário aut
 
  - Exemplo 1:
 Requisição para receber code: (GET - navegador) `http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://aplicacao-cliente&code_challenge=codeteste123&code_challenge_method=plain`
-Code Verifier: codeteste123
-Code Challenge (usando method plain): codeteste123
+**Code Verifier** (string alfanumérica de no mínimo 43 e máximo de 128 caracteres): 8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7
+**Code Challenge** (usando method plain): 8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7
+**Code Challenge** (usando s256): base64(sha256("8a76sd5f098cv7bx98wrtw54e654r123p4oklklm09jd94385jhngfe8fgh7")) = g6nNGXtOvJTmVan5pklZV99qNyH4JR09TGg0a_AIfCA
 
 ##### Implicit Grant
 Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.
