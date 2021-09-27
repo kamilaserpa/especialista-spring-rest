@@ -3718,7 +3718,7 @@
 					"response": []
 				},
 				{
-					"name": "Client Credentials - Solicitar token Copy",
+					"name": "Client Credentials - Solicitar token",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -3886,6 +3886,44 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Implicit Grant (Deve ser acessado no Navegador)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/oauth/authorize?response_type=token&client_id=webadmin&state=abc&redirect_uri=http://aplicacao-cliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"authorize"
+							],
+							"query": [
+								{
+									"key": "response_type",
+									"value": "token"
+								},
+								{
+									"key": "client_id",
+									"value": "webadmin"
+								},
+								{
+									"key": "state",
+									"value": "abc"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://aplicacao-cliente"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -3893,7 +3931,7 @@
 			"name": "Authorization Code Grant Type",
 			"item": [
 				{
-					"name": "Authorize - Login Navegador (Loga c/ usuario no Authorization Server e recebe CODE)",
+					"name": "Authorize -  Deve ser acessado no Navegador (Loga c/ usuario no Authorization Server e recebe CODE)",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},

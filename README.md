@@ -1134,6 +1134,17 @@ https://CLIENT/?code=ZQwg6B&state=abc
 
 Link para [configuração de CORS no Authorization Server com CorsFilter](https://gist.github.com/thiagofa/764260dfd8ba21f30f2f79806d734563), na qual adiciona um filtro de servlet queretorna os cabeçalhos para as requisições `OPTIONS`.
 
+##### Authorization Code com PKCE
+`Prove Key for Code Exchange`, é uma técnica para reduzir o risco de ataque de interceptação de código de autorização, gerada pelo fluxo Authorization Code.<br>
+Objetiva trazer mais segurança, pois havendo um Cliente público no fluxo que recebe o Código de autorização, é possível que um software malicioso intercepte o Código antes do cliente legítimo e o utilize para obter o Access Token.
+
+Nesse fluxo o cliente cria em tempo de execução um código chamado `Code Verifier`, sobre ele são aplicadas duas codificações, o SHA 256 e em seguida o Base64. O código gerado por essas codificações é chamado `Code Challenge`. <br>
+O cliente envia para o Authorization Server o Code Challenge no momento em que solicita a autorização (redirect), o Authorization o armazena e gera/retorna o código de autorização.<br>
+O cliente então envia o código de autorização recebido e o `Code Verifier`, nesse momento o `AS` (Authorization Server) aplica as codificações correspondentes (SHA 256 e BASE 64) e valida se o Code Verifier codificado corresponde ao Code Challenge armazenado. Verificando que quem está enviando o Code Verifier é realmente o cliente, e não um software malicioso que interceptou o code, retornando o `Access Token`.<br>
+Quem decide o método de verificação do Code Challenge é o cliente, sendo eles s256 (SHA256, recomendado) ou Plain (texto comum).
+
+![Authorization Code PKCE](food-api/authorization-flow-pkce.png)
+
 ##### Implicit Grant
 Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.
 O uso desse fluxo é desencorajado, pois retornar o access token na URL gera um risco de segurança, é um fluxo legado. É possível ver mais detalhes do fluxo na [imagem](food-api/implicit_flow_grant.png).
