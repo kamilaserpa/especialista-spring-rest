@@ -6,6 +6,8 @@ Pastas:
  - food-api: API principal de exploração das funcionalidades
  - client: Consumidor JavaScript da API principal (food-api)
  - food-java-client: Consumidor Java da API principal (food-api)
+ - client-foodanalytics: Consumidor JavaScript NodeJs da API principal implementando fluxo de autenticação Authorization Code.
+  
 
 ## Capítulo 2 - Spring e Injeção de Dependências
 
@@ -1178,6 +1180,18 @@ O tempo de expiração padrão do refresh token é de 30 dias.<br>
 Ao solicitar um novo token, o access token anterior desse usuário é revogado, já o refresh_token utilizado permanece ativo enquanto estiver no seu tempo de vida, podendo ser utiizado mais de uma vez para gerar access token essa é a configuração padrão.<br>
 Para garantir maior segurança foi **desabilitada a reutilização** do refresh token na aplicação. Fazendo com que o cliente descarte o refresh token após utilizá-lo, pois fica inutilizável, e passe a utilizar o novo refresh-token recebido. <br>
 Em caso de captura de um refresh_token por um estranho, quando um cliente legítimo o utiliza para gerar o access token ele fica inválido, não sendo mais de utilidade para um terceiro.
+
+### Decidindo qual fluxo OAuth2 usar
+Tipo de cliente:
+ - Público: usuário pode visualizar ou modificar o código fonte e acessar o *client secret*, como aplicações javascript executadas no navegador, como Single Page Applications ou aplicações nativas mobile ou desktop.
+ - Confidencial: código não pode ser acessado pelo usuário, como aplicação web executada no servidor.
+<br>
+ - Confiável: aplicação própria, a mesma empresa desenvolveu.
+ - Não Confiável: aplicação de terceiro, cujos reais objetivos são desconhecidos.
+
+![OAuth2 Fluxo](food-api/oauth2-fluxo.png)
+
+*Obs.*: Cliente sem usuários finais seria uma aplicação back-end se comportando como cliente de uma API.
 
 ---
 
