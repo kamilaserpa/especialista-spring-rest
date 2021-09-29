@@ -3941,12 +3941,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "faturamento123",
+									"value": "",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "faturamento",
+									"value": "",
 									"type": "string"
 								}
 							]
@@ -3976,7 +3976,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://aplicacao-cliente",
+							"raw": "http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://localhost:3000",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -4001,7 +4001,7 @@
 								},
 								{
 									"key": "redirect_uri",
-									"value": "http://aplicacao-cliente"
+									"value": "http://localhost:3000"
 								}
 							]
 						}
@@ -4012,19 +4012,7 @@
 					"name": "Authorization Code - Solicitar token pelo Code Copy",
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "food123",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "foodanalytics",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
@@ -4033,7 +4021,7 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "5CaUlD",
+									"value": "8xxFCj",
 									"type": "text"
 								},
 								{
@@ -4043,8 +4031,14 @@
 								},
 								{
 									"key": "redirect_uri",
-									"value": "http://aplicacao-cliente",
+									"value": "http://localhost:3000",
 									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "foodanalytics",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},

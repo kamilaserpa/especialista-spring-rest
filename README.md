@@ -1197,10 +1197,17 @@ Tipo de cliente:
 
 No fluxo anterior o Access Token e o Refresh Token estão armazenados na memória do Authorization Server. Desse modo, caso as aplicações estejam implantadas em várias instâncias na nuvem, os tokens são específicos e armazenados em cada instância, caso o balanceador de carga redirecione a requisição de usuário autorizado na instancia 1 para uma instância 2 em que ele não está autorizado, o acesso não será possível.
 
-### Instalação do Redis
+### Redis
 Por isso é aconselhada a criação deum banco armazenando os tokens, `Token Store no Redis`. <br>
 **Redis** é um banco de dados Não relacional (NoSQL) para armazenamento de dados em memória, que armazena dados como chave valor, open source. <br>
-Download do arquivo [Redis-64-3.0.504.zip](https://github.com/microsoftarchive/redis/releases/tag/win-3.0.504). Executar o arquivo redis-server e em seguida redis-cli. Sempre que precisar executar o Redis, precisara executar estes dois arquivos.
+Download do arquivo [Redis-64-3.0.504.zip](https://github.com/microsoftarchive/redis/releases/tag/win-3.0.504). Executar o arquivo redis-server e em seguida redis-cli. Sempre que precisar executar o Redis, precisará executar estes dois arquivos.
+
+Com as configurações o token será armazenado no Redis, e ao gerar um token, reiniciar a aplicação e checar esse token, ele continuará válido, pois o token não foi periddo na memória local.
+
+Ao acessar `redis-cli` é possível visualizar as chaves armazenadas, no nosso caso os tokens. Comandos:
+ > AUTH password // Onde password é a senha caso esta tenha sido configurada
+ > keys * // Lista todas as chaves armazenadas
+ > flushall // Exclui todos os ddados do banco 
 
 ---
 
