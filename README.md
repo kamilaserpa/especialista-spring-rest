@@ -1209,6 +1209,23 @@ Ao acessar `redis-cli` é possível visualizar as chaves armazenadas, no nosso c
  > keys * // Lista todas as chaves armazenadas
  > flushall // Exclui todos os ddados do banco 
 
+### Stateless vs Statefull
+Em tradução livre Stateless significa "sem estado" e Statefull "com estado". Roy Fielding é quem descreve estes conceitos: *"A comunicação deve ser stateless (sem estado) por natureza (...). O estado da sessão deve ser armazenado inteiramente no cliente."* <br>
+ - Application State: estado da aplicação, estado da sessão do usuário, é este que deve ser Stateless segundo Roy Fielding. Não deve ser armazenado o estado da aplicação no servidor, no nosso caso o usuário monta todo seu pedido no cliente e envia todos os dados de um pedido em uam requisição apenas. O pedido não é feito passo a passo no servidor.
+ - Resource State: estado dos recursos, dados relacionados ao domínio do negócio.
+
+#### Statefull Authentication
+Vantagem: revogação da sessão removendo token do Token Store; dados relacionados ao token podem ser alterados a quelquer momento. Desvantagem: maior infraestrutura do lado do Authorization Server (banco de dados); dependência entre todos os Resources Server no Authorization Server; Authorization Server funciona como um Single Point of Failure, se ele falhar para completamente todo o sistema (minimizado com várias instâncias).
+
+#### Stateless Authentication
+Dados da sessão do usuário são armazenados do lado do cliente, servidor desconhece os tokens que emitiu, apenas consegue identificar se está válido ou não.
+AS (Authorization Server) retorna para o cliente um `Transparent Token`. São aqueles que não são codificados e possuem todas as informações contidas nele, assinados com algoritmo criptográfico. Nesse caso o próprio Resource Server valida o token.
+<b>Vantagens</b>: não é necessário infraestrutura do lado do AS para armazenar tokens; uma vez que o token é emitido o AS não é mais um ponto de falha do sistema. <br>
+<b>Desvantagens</b>: não é possível revogar um token, necessário esperar a data de expiração; mais dados trafegados nas requisições, token possui mais informações e deve ser enviado em todas as requisições.
+
+<b>Qual utilizar?</b> Caso seja necessário gerenciar tokens já emitidos a solução indicada seria Statefull, caso contrário Stateless pode ser utilizada. Necessário análise de cada caso.
+
+
 ---
 
 #### Eclipse
