@@ -1193,6 +1193,15 @@ Tipo de cliente:
 
 *Obs.*: Cliente sem usuários finais seria uma aplicação back-end se comportando como cliente de uma API.
 
+## Capítulo 23 - OAuth2 avançado com JWT e controle de acesso
+
+No fluxo anterior o Access Token e o Refresh Token estão armazenados na memória do Authorization Server. Desse modo, caso as aplicações estejam implantadas em várias instâncias na nuvem, os tokens são específicos e armazenados em cada instância, caso o balanceador de carga redirecione a requisição de usuário autorizado na instancia 1 para uma instância 2 em que ele não está autorizado, o acesso não será possível.
+
+### Instalação do Redis
+Por isso é aconselhada a criação deum banco armazenando os tokens, `Token Store no Redis`. <br>
+**Redis** é um banco de dados Não relacional (NoSQL) para armazenamento de dados em memória, que armazena dados como chave valor, open source. <br>
+Download do arquivo [Redis-64-3.0.504.zip](https://github.com/microsoftarchive/redis/releases/tag/win-3.0.504). Executar o arquivo redis-server e em seguida redis-cli. Sempre que precisar executar o Redis, precisara executar estes dois arquivos.
+
 ---
 
 #### Eclipse
