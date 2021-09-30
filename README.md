@@ -1225,6 +1225,20 @@ AS (Authorization Server) retorna para o cliente um `Transparent Token`. São aq
 
 <b>Qual utilizar?</b> Caso seja necessário gerenciar tokens já emitidos a solução indicada seria Statefull, caso contrário Stateless pode ser utilizada. Necessário análise de cada caso.
 
+### JSON Web Tokens (JWT)
+É um tipo de token transparente JSON especificado na [RFC7519](https://tools.ietf.org/html/rfc7519) utilizado em autenticação Stateless. Resulta em uma string codificada em Base64 assinada por um hash criptográfico. Um token JWT possui três partes separadas por ponto ("."): header, payload e assinatura. 
+```json
+// Header
+{
+  "alg": "HS256", // Algoritmo criptográfico para geração do hash
+  "typ": "JWT" // Tipo do token
+}
+```
+O Payload contém as `clains`, afirmações chave/valor armazenadas no token.<br>
+A assinatura é um hash criptográfico especificado no header, deve ser verificada através do secret.
+
+[Ferramenta online para debugging de JWT](https://jwt.io/), permite codificar e decodificar o token. Não deve ter informações sensíveis, cmo senha do usuário. 
+
 
 ---
 
