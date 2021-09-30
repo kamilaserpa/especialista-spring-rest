@@ -1209,6 +1209,13 @@ Ao acessar `redis-cli` é possível visualizar as chaves armazenadas, no nosso c
  > keys * // Lista todas as chaves armazenadas
  > flushall // Exclui todos os ddados do banco 
 
+Propriedades a ser adicionadas no projeto Authorization Server:
+```properties
+spring.redis.host=localhost
+spring.redis.password=
+spring.redis.port=6379
+```
+
 ### Stateless vs Statefull
 Em tradução livre Stateless significa "sem estado" e Statefull "com estado". Roy Fielding é quem descreve estes conceitos: *"A comunicação deve ser stateless (sem estado) por natureza (...). O estado da sessão deve ser armazenado inteiramente no cliente."* <br>
  - Application State: estado da aplicação, estado da sessão do usuário, é este que deve ser Stateless segundo Roy Fielding. Não deve ser armazenado o estado da aplicação no servidor, no nosso caso o usuário monta todo seu pedido no cliente e envia todos os dados de um pedido em uam requisição apenas. O pedido não é feito passo a passo no servidor.
@@ -1235,7 +1242,8 @@ AS (Authorization Server) retorna para o cliente um `Transparent Token`. São aq
 }
 ```
 O Payload contém as `clains`, afirmações chave/valor armazenadas no token.<br>
-A assinatura é um hash criptográfico especificado no header, deve ser verificada através do secret.
+A assinatura é um hash criptográfico especificado no header, deve ser verificada através do secret key.
+Quem tem a chave secreta pode verificar a integridade do token e também emitir novos tokens.
 
 [Ferramenta online para debugging de JWT](https://jwt.io/), permite codificar e decodificar o token. Não deve ter informações sensíveis, cmo senha do usuário. 
 
