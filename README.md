@@ -1245,6 +1245,8 @@ O Payload contém as `clains`, afirmações chave/valor armazenadas no token.<br
 A assinatura é um hash criptográfico especificado no header, deve ser verificada através do secret key.
 Quem tem a chave secreta pode verificar a integridade do token e também emitir novos tokens.
 
+Nesse fluxo o AS é responsável pela geração do token e a verificação fica a cargo do RS, caso o AS deixe de funcionar, um usuário com token válido continua tendo acesso aos recursos do RS.
+
 [Ferramenta online para debugging de JWT](https://jwt.io/), permite codificar e decodificar o token. Não deve ter informações sensíveis, cmo senha do usuário. 
 
 
