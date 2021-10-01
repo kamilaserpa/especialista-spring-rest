@@ -1245,9 +1245,16 @@ O Payload contém as `clains`, afirmações chave/valor armazenadas no token.<br
 A assinatura é um hash criptográfico especificado no header, deve ser verificada através do secret key.
 Quem tem a chave secreta pode verificar a integridade do token e também emitir novos tokens.
 
-Nesse fluxo o AS é responsável pela geração do token e a verificação fica a cargo do RS, caso o AS deixe de funcionar, um usuário com token válido continua tendo acesso aos recursos do RS.
+Nesse fluxo o AS é responsável pela geração do token e a verificação fica a cargo do RS, caso o AS deixe de funcionar, um usuário com token válido continua tendo acesso aos recursos do RS (chave simétrica).
 
 [Ferramenta online para debugging de JWT](https://jwt.io/), permite codificar e decodificar o token. Não deve ter informações sensíveis, cmo senha do usuário. 
+
+#### Chave Simétrica vs Chave Assimétrica
+Com a utilização da chave simétrica o Resource Server fica em posse da key de verficação de tokens, que é a mesma chave utilizada para criação de novos tokens. Portanto as aplicações autenticadas com o AS devem ser muito confiáveis para utilização desse método. Aqui foi utiizado o algoritmo HS256.
+
+Para utilização de chave assimétrica, há uma chave privada para a criação de novos tokens e outra pública para verificação de autenticidade. Aqui utilizaremos o algoritmo RS256. Assim não é possível criar tokens com a chave pública.
+
+<img src="food-api/chave-assimetrica.png" width="450"/>
 
 
 ---
