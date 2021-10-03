@@ -1256,6 +1256,12 @@ Para utilização de chave assimétrica, há uma chave privada para a criação 
 
 <img src="food-api/chave-assimetrica.png" width="450"/>
 
+Para criar um par de chaves é possível utilizar a ferramenta utilitária proveniente do jdk chamada `keytool`, através do prompt de comando.
+Gerando um arquivo JKS com um par de chaves:
+> keytool -genkeypair -alias food -keyalg RSA -keypass 123456 -keystore food.jks -storepass 123456
+
+Listando as entradas de um arquivo JKS:
+> keytool -list -keystore food.jks
 
 ---
 
