@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 @Validated
 @Component
-@ConfigurationProperties("food.keystore")
+@ConfigurationProperties("food.jwt.keystore")
 public class JwtKeyStoreProperties {
 
     @NotBlank

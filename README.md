@@ -1263,6 +1263,11 @@ Gerando um arquivo JKS com um par de chaves:
 Listando as entradas de um arquivo JKS:
 > keytool -list -keystore food.jks
 
+Para extrair a chave pública do arquivo .jks inicialmente deve-se extrair o certificado. `-rfc` informa que queremos exportar em formato textual definido na RFC1421.
+> keytool -export -rfc -alias food -keystore food.jks -file food-cert.pem
+Após isso deve-se executar o comando para ser exibida a chave pública:
+> openssl x509 -pubkey -noout -in food-cert.pem > food-pkey.pem
+
 ---
 
 #### Eclipse

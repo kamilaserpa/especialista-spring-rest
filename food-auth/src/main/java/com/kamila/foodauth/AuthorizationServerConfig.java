@@ -83,6 +83,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // security.checkTokenAccess("isAuthenticated()");
 
         security.checkTokenAccess("permitAll()")
+                .tokenKeyAccess("permitAll()")
                 .allowFormAuthenticationForClients(); // Permite passar as credenciais do cliente no corpo da requisição
     }
 
