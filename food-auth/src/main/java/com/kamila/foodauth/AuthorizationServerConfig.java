@@ -3,6 +3,7 @@ package com.kamila.foodauth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +15,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.CompositeTokenGranter;
 import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
+import java.security.KeyPair;
 import java.util.Arrays;
 
 @Configuration
@@ -95,13 +98,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     /*
      * Converte as informações de um usuário logado para JWT e vice-versa.
-     * Algoritmo: Mac SHA 256 simétrica.
-     * Para ser válido um token deve ter a mesma key configurada aqui, inserida na sua assinatura.
      */
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("0DEF419417A1C1B371E29B143D49D6F707D8FC008EC55E73270D1647F3CD2054"); // A chave deve ser complexa e secreta
+        var jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        // Algoritmo: Mac SHA 256 simétrica.
+        // Para ser válido um token deve ter a mesma key configurada aqui, inserida na sua assinatura.
+        // jwtAccessTokenConverter.setSigningKey("0DEF419417A1C1B371E29B143D49D6F707D8FC008EC55E73270D1647F3CD2054"); // A chave deve ser complexa e secreta
+
+        // Algoritmo RSA SHA-256, chave Assimétrica
+        var jksResource = new ClassPathResource("keystores/food.jks");
+        var keyStorepass = "123456"; // Senha para abrir arquivo jks
+        var keyPairAlias = "food"; // Apelido de identificação do par de chaves, pois dentro do arquivo pode haver mais de um par
+
+        var keyStoreKeyFactory = new KeyStoreKeyFactory(jksResource, keyStorepass.toCharArray());
+        var keyPair = keyStoreKeyFactory.getKeyPair(keyPairAlias);
+
+        jwtAccessTokenConverter.setKeyPair(keyPair);
 
         return jwtAccessTokenConverter;
     }
