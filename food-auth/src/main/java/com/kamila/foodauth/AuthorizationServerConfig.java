@@ -33,6 +33,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private JwtKeyStoreProperties jwtKeyStoreProperties;
+
     // Configura os clients que vão acessar o Resource Server
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -107,9 +110,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // jwtAccessTokenConverter.setSigningKey("0DEF419417A1C1B371E29B143D49D6F707D8FC008EC55E73270D1647F3CD2054"); // A chave deve ser complexa e secreta
 
         // Algoritmo RSA SHA-256, chave Assimétrica
-        var jksResource = new ClassPathResource("keystores/food.jks");
-        var keyStorepass = "123456"; // Senha para abrir arquivo jks
-        var keyPairAlias = "food"; // Apelido de identificação do par de chaves, pois dentro do arquivo pode haver mais de um par
+        var jksResource = new ClassPathResource(jwtKeyStoreProperties.getPath());
+        var keyStorepass = jwtKeyStoreProperties.getPassword(); // Senha para abrir arquivo jks
+        var keyPairAlias = jwtKeyStoreProperties.getKeypairAlias(); // Apelido de identificação do par de chaves, pois dentro do arquivo pode haver mais de um par
 
         var keyStoreKeyFactory = new KeyStoreKeyFactory(jksResource, keyStorepass.toCharArray());
         var keyPair = keyStoreKeyFactory.getKeyPair(keyPairAlias);
