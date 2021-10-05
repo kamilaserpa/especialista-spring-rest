@@ -86,13 +86,13 @@ insert into tb_grupo (id_grupo, nm_grupo) values (1, 'Gerente'), (2, 'Vendedor')
 insert into tb_grupo_permissao (id_grupo, id_permissao) values (1, 1), (1, 2), (2, 1), (2, 2), (3, 1); 
 
 insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) values
-(1, 'João da Silva', 'joao.ger@kfood.com', '123', utc_timestamp),
-(2, 'Maria Joaquina', 'maria.vnd@kfood.com', '123', utc_timestamp),
-(3, 'José Souza', 'jose.aux@kfood.com', '123', utc_timestamp),
-(4, 'Sebastião Martins', 'sebastiao.cad@kfood.com', '123', utc_timestamp),
-(5, 'Manoel Lima', 'manoel.loja@gmail.com', '123', utc_timestamp),
-(6, 'Débora Mendonça', 'ist.kamila.serpa+teste1@gmail.com', '123', utc_timestamp),
-(7, 'Carlos Vinícios', 'ist.kamila.serpa+teste2@gmail.com', '123', utc_timestamp);
+(1, 'João da Silva', 'joao.ger@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(2, 'Maria Joaquina', 'maria.vnd@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(3, 'José Souza', 'jose.aux@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(4, 'Sebastião Martins', 'sebastiao.cad@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(5, 'Manoel Lima', 'manoel.loja@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(6, 'Débora Mendonça', 'ist.kamila.serpa+teste1@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(7, 'Carlos Vinícios', 'ist.kamila.serpa+teste2@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp);
 
 insert into tb_usuario_grupo(id_usuario, id_grupo) values (1, 1), (1, 2), (2, 3);
 

@@ -3634,13 +3634,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "food-web",
+									"key": "password",
+									"value": "web123",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "web123",
+									"key": "username",
+									"value": "food-web",
 									"type": "string"
 								}
 							]
@@ -3652,7 +3652,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "kamila",
+									"value": "jose.aux@kfood.com",
 									"type": "text"
 								},
 								{

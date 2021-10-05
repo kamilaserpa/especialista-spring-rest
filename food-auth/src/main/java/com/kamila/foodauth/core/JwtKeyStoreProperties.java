@@ -1,4 +1,4 @@
-package com.kamila.foodauth;
+package com.kamila.foodauth.core;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
