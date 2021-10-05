@@ -14,6 +14,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.CompositeTokenGranter;
 import org.springframework.security.oauth2.provider.TokenGranter;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.TokenApprovalStore;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
@@ -87,6 +90,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .allowFormAuthenticationForClients(); // Permite passar as credenciais do cliente no corpo da requisição
     }
 
+
     /* Especifica um Authentication Manager para o Password Flow.
      * Somente o Password Flow necessita, através dele o Authorization Server valida o usuário/senha
      * passado na autenticação via API.
@@ -97,8 +101,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userDetailsService(userDetailsService)
                 .reuseRefreshTokens(false)
                 .accessTokenConverter(jwtAccessTokenConverter())
+                // Habilita opção de escolha granular de 'scopes' do usuário. Deve ser chamado após accessTokenConverter()
+                .approvalStore(approvalStore(endpoints.getTokenStore()))
                 .tokenGranter(tokenGranter(endpoints));
     }
+
+
+    public ApprovalStore approvalStore(TokenStore tokenStore) {
+        var approvalStore = new TokenApprovalStore();
+        approvalStore.setTokenStore(tokenStore);
+
+        return approvalStore;
+    }
+
 
     /*
      * Converte as informações de um usuário logado para JWT e vice-versa.

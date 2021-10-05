@@ -1256,17 +1256,21 @@ Para utilização de chave assimétrica, há uma chave privada para a criação 
 
 <img src="food-api/chave-assimetrica.png" width="450"/>
 
-Para criar um par de chaves é possível utilizar a ferramenta utilitária proveniente do jdk chamada `keytool`, através do prompt de comando.
+Para **criar um par de chaves** é possível utilizar a ferramenta utilitária proveniente do jdk chamada `keytool`, através do prompt de comando.
 Gerando um arquivo JKS com um par de chaves:
 > keytool -genkeypair -alias food -keyalg RSA -keypass 123456 -keystore food.jks -storepass 123456
 
 Listando as entradas de um arquivo JKS:
 > keytool -list -keystore food.jks
 
-Para extrair a chave pública do arquivo .jks inicialmente deve-se extrair o certificado. `-rfc` informa que queremos exportar em formato textual definido na RFC1421.
+Para **extrair a chave pública** do arquivo .jks inicialmente deve-se extrair o certificado. `-rfc` informa que queremos exportar em formato textual definido na RFC1421.
 > keytool -export -rfc -alias food -keystore food.jks -file food-cert.pem
 Após isso deve-se executar o comando para ser exibida a chave pública:
 > openssl x509 -pubkey -noout -in food-cert.pem > food-pkey.pem
+
+Outra forma possível é realizar a requisição GET no Authorization Server `oauth/token_key`. Estando habilitada a permissão para acessar o endpoint sem autenticação.
+
+Após implantação da autorização com chave assimétrica, ao acessar com o client `foodanalytics` e efetuar login, não haverá mais a opção para aprovar ou negar cada escopo de atuação (write, read, por exemplo). Para habilitar esse comportamento novamente foi adicionado `.approvalStore()` em AuthorizationServerConfig.
 
 ---
 
