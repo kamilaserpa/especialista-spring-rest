@@ -33,12 +33,13 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .oauth2ResourceServer().jwt();
     }
 
-    @Bean
-    public JwtDecoder jwtDecoder() {
-        var secretKey = new SecretKeySpec("0DEF419417A1C1B371E29B143D49D6F707D8FC008EC55E73270D1647F3CD2054".getBytes(), "HmacSHA256");
-
-        return NimbusJwtDecoder.withSecretKey(secretKey).build();
-    }
+//    // Comentado para habilitar JWT Chave Assimétrica
+//    @Bean
+//    public JwtDecoder jwtDecoder() {
+//        Chave Simétrica
+//        var secretKey = new SecretKeySpec("0DEF419417A1C1B371E29B143D49D6F707D8FC008EC55E73270D1647F3CD2054".getBytes(), "HmacSHA256");
+//        return NimbusJwtDecoder.withSecretKey(secretKey).build();
+//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

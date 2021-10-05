@@ -447,46 +447,11 @@
 					"name": "Cozinhas - Buscar",
 					"request": {
 						"auth": {
-							"type": "oauth2",
-							"oauth2": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "clientId",
-									"value": "food-web",
-									"type": "string"
-								},
-								{
-									"key": "grant_type",
-									"value": "password_credentials",
-									"type": "string"
-								},
-								{
-									"key": "clientSecret",
-									"value": "web123",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "123",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "kamila",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "http://localhost:8081/oauth/token",
-									"type": "string"
-								},
-								{
-									"key": "tokenName",
-									"value": "Token Food API",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzM0NTc5NjYsInVzZXJfbmFtZSI6ImthbWlsYSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZWI0MGVmN2EtNjFmZi00MDM2LTlkOGQtNzQ3NzNjNTRkMDJjIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIiLCJzY29wZSI6WyJ3cml0ZSIsInJlYWQiXX0.QVGmBzEnZX6g6DidI3RKCyXGb3oPoS39MXYl3N6dGK7FwLsk5dyWnt2FDhnngsb9zotEZN77c-bPIiagMP6TdWIzCWNFcA-HpPkyyy_uJ8-EtPusjU59CXrBVhx15PhhW2wXiS27czbXwHPlLqU4F3afkBoBXgu-w4kcHOn_Ah1iNf29oeo4y1E_BUwK736lJeUurQXbCrY5VSZlR4THTvECDo7aR1s71GcAtWvyJZUqAdLbgrMM8nJ6Uywnd_hZKjtuk5KiE1CBToIPtmOmoH9aKzYUekFcUBo9S20Lm9ucnK3WJCm1v1jfvH6kDxh0jXSxPUYW44tH0EwPNDDM8g",
 									"type": "string"
 								}
 							]
@@ -3855,7 +3820,7 @@
 							"urlencoded": [
 								{
 									"key": "token",
-									"value": "6ed26656-5f4c-4272-82e7-28678c18d92e",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzM0NTc5NjYsInVzZXJfbmFtZSI6ImthbWlsYSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZWI0MGVmN2EtNjFmZi00MDM2LTlkOGQtNzQ3NzNjNTRkMDJjIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIiLCJzY29wZSI6WyJ3cml0ZSIsInJlYWQiXX0.QVGmBzEnZX6g6DidI3RKCyXGb3oPoS39MXYl3N6dGK7FwLsk5dyWnt2FDhnngsb9zotEZN77c-bPIiagMP6TdWIzCWNFcA-HpPkyyy_uJ8-EtPusjU59CXrBVhx15PhhW2wXiS27czbXwHPlLqU4F3afkBoBXgu-w4kcHOn_Ah1iNf29oeo4y1E_BUwK736lJeUurQXbCrY5VSZlR4THTvECDo7aR1s71GcAtWvyJZUqAdLbgrMM8nJ6Uywnd_hZKjtuk5KiE1CBToIPtmOmoH9aKzYUekFcUBo9S20Lm9ucnK3WJCm1v1jfvH6kDxh0jXSxPUYW44tH0EwPNDDM8g",
 									"type": "text"
 								},
 								{
@@ -3882,6 +3847,35 @@
 							"path": [
 								"oauth",
 								"check_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token Key - get public key",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/oauth/token_key",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token_key"
 							]
 						}
 					},
