@@ -64,6 +64,13 @@ public class Usuario {
 	public boolean desassociarGrupo(Grupo grupo) {
 		return getGrupos().remove(grupo);
 	}
-	
-	
+
+
+	/**
+	 * Retorna verdadeiro se o usuário não possui Id.
+	 */
+	public boolean isNovo() {
+		return this.getId() == null;
+	}
+
 }

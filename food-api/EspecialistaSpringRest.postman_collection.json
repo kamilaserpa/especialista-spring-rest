@@ -3404,6 +3404,16 @@
 				{
 					"name": "Usuario - Salvar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzM2NTYzMTAsInVzZXJfbmFtZSI6Impvc2UuYXV4QGtmb29kLmNvbSIsImp0aSI6ImU2ZGViMmI2LWEwYzMtNDY4NC1iYTAzLTMyZmVlMWExMTM2NyIsImNsaWVudF9pZCI6ImZvb2Qtd2ViIiwic2NvcGUiOlsid3JpdGUiLCJyZWFkIl19.UfmfnsldI5SneCR14rK9uIVGruSG7tUtw2hqXIS774woDsuRly7DzDmafKAYViJTivICwyz1ze0JD05P5uo7MrI2A5tSok8M2ep6emV2wHvl3PEQS6_7EQSXwOqhZ2OPFGJzKL33Px0yC-zmVpF3djT3hkLBfNpT5EevbUCtpee-yC6onN0Rh1a2Zepg62TWYPQDey4znRQvAtT1TJS3EDhQ-wVWmwjCiN0qaR4LGEwjq9D9uIcoYbJUPpTxXl3mhQ2FmTnj5VntHQPYFQMhPxLmI6DScUPGQl_h9W_WoKa4rXe_gNvFbj-NH7v6sIR2rrKxuzKX1Vs4gmTC8lawXA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
