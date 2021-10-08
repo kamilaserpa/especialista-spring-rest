@@ -810,7 +810,7 @@ O Postman não consegue reproduzir esse comportamento. Extensão `Talent API Tes
  		.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS))
 
 ```
-Navegador indica que o dado foi recuperado do cache local: ![cache](/food-api/cache.png)
+Navegador indica que o dado foi recuperado do cache local: ![cache](/food-api/images/cache.png)
 
 
 #### Validações e requisições condicionais com Etags
@@ -828,7 +828,7 @@ Caso a informação esteja atualizada o servidor retorna `304 - Not Modified`, s
     }
 ```
 Navegador exibindo Etag recebida: <br>
- ![etag](/food-api/etag.png)
+ ![etag](/food-api/images/etag.png)
 
 #### Diretivas de Cache-Control na resposta HTTP
 
@@ -937,7 +937,7 @@ Ao enviar um arquivo para o endpoint de salvar imagem de um produto verifica-se 
 
 O acrônimo HATEOAS vem de Hypermedia As the Engine Of Application State, a API passa a fornecer links que indicarão aos clientes como navegar através dos seus recursos. ([artigo](https://www.treinaweb.com.br/blog/o-que-e-hateoas))
 Exemplo:
-![exemplo de resposta hateoas](/food-api/exemplo-hateoas.png)
+![exemplo de resposta hateoas](/food-api/images/exemplo-hateoas.png)
 
 #### Discoverability vs HATEOAS
 Discoverability é a capacidade que a API dá aos consumidores de navegar por recursos sem conhecer previamente as URIs. Discoverability é um conceito, já o HATEOAS é um componente do REST que torna isso possível, através da inclusão de hypermedia (links) nas respostas através de um ponto de entrada da API (root entry point).
@@ -1094,7 +1094,7 @@ Permitindo que aplicações terceiras tem acesso limitado a uma API. É um conju
  
 No cenário de portaria de um prédio, o `Authorization Server` seria o porteiro. O `Resource Owner` seria o proprietário de um apartamento. O `Resource Server` é o recurso no interior do apartamento, uma compartimento. E o `Client` é uma visita, solicitando acesso a entrar no apartamento e pegar um recurso. Assim o Authorization Server solicita permissão ao Resource Owner para que o Client acesse o recurso no Resource Server. Veja o Authorization Code Flow (este é um dos fluxos possíveis):
 
-![Authorization Code Flow](food-api/authorization-flow.png)
+![Authorization Code Flow](food-api/images/authorization-flow.png)
 
 #### Soluções Spring OAuth 2
 [Spring Security OAuth](https://spring.io/projects/spring-security-oauth) dá suporte para implementar tanto o Resource Server quanto o Authorization Server. Estes podem estar em projetos diferentes até.<br>
@@ -1111,14 +1111,14 @@ Logo o Resource Server será desenvolvido utilizando o Spring Security e o Autho
 Fluxo `Resource Owner Password Credentials Grant` é uma forma de obter o token de acesso a partir de um usuário e senha, o Client envia o usuário e senha para o Authorization Server, e este emite um token de acesso. É um fluxo que deve ser utilizado apenas para aplicações desenvolvidas pelo grupo proprietário. É um risco para o usuário fornecer seus dados de acesso para clients desenvolvidos por empresas terceiras.<br>
 Hoje ele é [não aconselhável](https://www.scottbrady91.com/OAuth/Why-the-Resource-Owner-Password-Credentials-Grant-Type-is-not-Authentication-nor-Suitable-for-Modern-Applications) pois delega ao cliente a responsabilidade de manipular as credenciais dos seus usuários.
 
-![Password Grant Flow](food-api/password-credentials.png)
+![Password Grant Flow](food-api/images/password-credentials.png)
 
 ##### Client Credentials Grant
 Fluxo voltado para a utilização de uma aplicação back-end atuando como cliente de uma API.
 O token de acesso não é uma delegação de acesso de um Resource Owner, ela representa uma chave de acesso em nome do Client.
 Nesse fluxo não deve haver Refresh Token.
 
-![Password Grant Flow](food-api/client_credentials.png)
+![Password Grant Flow](food-api/images/client_credentials.png)
 
 ##### Authorization Code Grant Type
 Uri de redirecionamento deve estar cadastrada no Authorization Server. Authorization Server exibe formulário de login para o Resource Owner autenticar e autorizar o acesso aos recursos. É ideal para a integração de Front-end com o Back-end.
@@ -1146,7 +1146,7 @@ O cliente então envia o código de autorização recebido e o `Code Verifier`, 
 Quem decide o método de verificação do Code Challenge é o cliente, sendo eles s256 (SHA256, recomendado) ou Plain (texto comum). <br>
 O ideal seria dar opção ao usuário, se usar o PKCE não seria necessário autenticar o usuário com o header Authorization Basic, caso contrario seria necessário autenticar o usuário.
 
-![Authorization Code PKCE](food-api/authorization-flow-pkce.png)
+![Authorization Code PKCE](food-api/images/authorization-flow-pkce.png)
 
 [Implementação de PKCE para Spring Security OAuth2](https://gist.github.com/thiagofa/daca4f4790b5b18fed800b83747127ca)
 
@@ -1158,7 +1158,7 @@ Requisição para receber code: (GET - navegador) `http://localhost:8081/oauth/a
 
 ##### Implicit Grant
 Authorization Server replica o fluxo do Authorization Code Grant Type, porém não retorna um código para obtenção do access token, retorna diretamente o access token.
-O uso desse fluxo é desencorajado, pois retornar o access token na URL gera um risco de segurança, é um fluxo legado. É possível ver mais detalhes do fluxo na [imagem](food-api/implicit_flow_grant.png).
+O uso desse fluxo é desencorajado, pois retornar o access token na URL gera um risco de segurança, é um fluxo legado. É possível ver mais detalhes do fluxo na [imagem](food-api/images/implicit_flow_grant.png).
 
 Para a url acessada no navegador: `http://localhost:8081/oauth/authorize?response_type=token&client_id=webadmin&state=abc&redirect_uri=http://aplicacao-cliente` <br>
 Recebemos a resposta com o token: `http://aplicacao-cliente/#access_token=c0b6cfa1-aad1-491c-9e52-f723e6186c73&token_type=bearer&state=abc&expires_in=43199&scope=read%20write`
@@ -1189,7 +1189,7 @@ Tipo de cliente:
  - Confiável: aplicação própria, a mesma empresa desenvolveu.
  - Não Confiável: aplicação de terceiro, cujos reais objetivos são desconhecidos.
 
-![OAuth2 Fluxo](food-api/oauth2-fluxo.png)
+![OAuth2 Fluxo](food-api/images/oauth2-fluxo.png)
 
 *Obs.*: Cliente sem usuários finais seria uma aplicação back-end se comportando como cliente de uma API.
 
@@ -1254,7 +1254,7 @@ Com a utilização da chave simétrica o Resource Server fica em posse da key de
 
 Para utilização de chave assimétrica, há uma chave privada para a criação de novos tokens e outra pública para verificação de autenticidade. Aqui utilizaremos o algoritmo RS256. Assim não é possível criar tokens com a chave pública.
 
-<img src="food-api/chave-assimetrica.png" width="450"/>
+<img src="food-api/images/chave-assimetrica.png" width="450"/>
 
 Para **criar um par de chaves** é possível utilizar a ferramenta utilitária proveniente do jdk chamada `keytool`, através do prompt de comando.
 Gerando um arquivo JKS com um par de chaves:
