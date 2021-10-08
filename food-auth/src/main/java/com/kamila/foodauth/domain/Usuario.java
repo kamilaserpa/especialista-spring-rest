@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -25,5 +27,10 @@ public class Usuario {
 
     @Column(nullable = false)
     private String senha;
+
+    @ManyToMany
+    @JoinTable(name = "tb_usuario_grupo", joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_grupo"))
+    private Set<Grupo> grupos = new HashSet<>();
 
 }
