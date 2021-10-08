@@ -62,6 +62,21 @@ insert into tb_forma_pagamento (id_forma_pagamento, ds_forma_pagamento, data_atu
 
 insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (1, 'CONSULTAR_COZINHAS', 'Permite consultar cozinhas');
 insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (2, 'EDITAR_COZINHAS', 'Permite editar cozinhas');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (3, 'CONSULTAR_FORMAS_PAGAMENTO', 'Permite consultar formas de pagamento');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (4, 'EDITAR_FORMAS_PAGAMENTO', 'Permite criar ou editar formas de pagamento');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (5, 'CONSULTAR_CIDADES', 'Permite consultar cidades');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (6, 'EDITAR_CIDADES', 'Permite criar ou editar cidades');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (7, 'CONSULTAR_ESTADOS', 'Permite consultar estados');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (8, 'EDITAR_ESTADOS', 'Permite criar ou editar estados');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (9, 'CONSULTAR_USUARIOS', 'Permite consultar usuários');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (10, 'EDITAR_USUARIOS', 'Permite criar ou editar usuários');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (11, 'CONSULTAR_RESTAURANTES', 'Permite consultar restaurantes');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (12, 'EDITAR_RESTAURANTES', 'Permite criar, editar ou gerenciar restaurantes');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (13, 'CONSULTAR_PRODUTOS', 'Permite consultar produtos');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (14, 'EDITAR_PRODUTOS', 'Permite criar ou editar produtos');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (15, 'CONSULTAR_PEDIDOS', 'Permite consultar pedidos');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (16, 'GERENCIAR_PEDIDOS', 'Permite gerenciar pedidos');
+insert into tb_permissao (id_permissao, nm_permissao, ds_permissao) values (17, 'GERAR_RELATORIOS', 'Permite gerar relatórios');
 
 insert into tb_restaurante_forma_pagamento (id_restaurante, id_forma_pagamento) values (1, 1), (1, 2), (1, 3), (2, 3), (3, 2), (3, 3), (4, 1), (4, 2), (5, 1), (5, 2), (6, 3);
 
@@ -83,7 +98,23 @@ insert into tb_produto (nm_produto, ds_produto, preco, ativo, id_restaurante) va
 
 insert into tb_grupo (id_grupo, nm_grupo) values (1, 'Gerente'), (2, 'Vendedor'), (3, 'Secretária'), (4, 'Cadastrador');
 
-insert into tb_grupo_permissao (id_grupo, id_permissao) values (1, 1), (1, 2), (2, 1), (2, 2), (3, 1); 
+# Adiciona todas as permissoes no grupo do gerente
+insert into tb_grupo_permissao (id_grupo, id_permissao)
+select 1, id_permissao from tb_permissao;
+
+# Adiciona permissoes no grupo do vendedor
+insert into tb_grupo_permissao (id_grupo, id_permissao)
+select 2, id_permissao from tb_permissao where nm_permissao like 'CONSULTAR_%';
+
+insert into tb_grupo_permissao (id_grupo, id_permissao) values (2, 14);
+
+# Adiciona permissoes no grupo do auxiliar
+insert into tb_grupo_permissao (id_grupo, id_permissao)
+select 3, id_permissao from tb_permissao where nm_permissao like 'CONSULTAR_%';
+
+# Adiciona permissoes no grupo cadastrador
+insert into tb_grupo_permissao (id_grupo, id_permissao)
+select 4, id_permissao from tb_permissao where nm_permissao like '%_RESTAURANTES' or nm_permissao like '%_PRODUTOS';
 
 insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) values
 (1, 'João da Silva', 'joao.ger@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
