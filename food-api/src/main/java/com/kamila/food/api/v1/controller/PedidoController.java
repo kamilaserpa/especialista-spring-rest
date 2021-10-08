@@ -11,6 +11,7 @@ import com.kamila.food.api.v1.model.input.PedidoInput;
 import com.kamila.food.api.v1.openapi.controller.PedidoControllerOpenApi;
 import com.kamila.food.core.data.PageWrapper;
 import com.kamila.food.core.data.PageableTranslator;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.filter.PedidoFilter;
@@ -56,6 +57,9 @@ public class PedidoController implements PedidoControllerOpenApi {
 
     @Autowired
     private PagedResourcesAssembler<Pedido> pagedResourcesAssembler;
+
+    @Autowired
+    private FoodSecurity foodSecurity;
 
     @Override
     @GetMapping
@@ -106,9 +110,10 @@ public class PedidoController implements PedidoControllerOpenApi {
         try {
             Pedido novoPedido = pedidoInputDisassembler.toDomainObject(pedidoInput);
 
-            // TODO pegar usuário autenticado
+
             novoPedido.setCliente(new Usuario());
-            novoPedido.getCliente().setId(1L);
+            // Capturando dados do usuário logado. (Get logged User)
+            novoPedido.getCliente().setId(foodSecurity.getUsuarioId());
 
             novoPedido = emissaoPedidoService.emitir(novoPedido);
 

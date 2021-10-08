@@ -1525,6 +1525,16 @@
 				{
 					"name": "Pedido - listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjozLCJ1c2VyX25hbWUiOiJqb3NlLmF1eEBrZm9vZC5jb20iLCJzY29wZSI6WyJ3cml0ZSIsInJlYWQiXSwiZXhwIjoxNjMzNzE3NDQ1LCJqdGkiOiI5NWRlYTEwMy1hMjU4LTRhMGEtOTg4ZS1kMDBkZjk0MWYzOTciLCJub21lX2NvbXBsZXRvIjoiSm9zw6kgU291emEiLCJjbGllbnRfaWQiOiJmb29kLXdlYiJ9.BFqIHwHPX3beOER72g1_V86RO-x222emNMdVZQCfCWkh4v4qG2Kx_G7ex0lx4g0ejdz5q-T7jZ-_p6rGS_4hk3KwjcYfJvP8pOCETeN4mRMbBZrNulJJkIVRbhgOzn17iGv8N3h1J8WQGXD4amMLJCMT25dilfgl20jXoDvoCBn7Yat7oERtrHbIC6YZL1o-BsY7PgbvlfOSE84rsfpNgaO0eI9332G3uq75XBLtOqPsAmkOifuMM-HDOsZ2_2FUv4KNf-4EFNhUCPldlWS-QqI09WQN49-Dg12QDyoWWbBZLfPgCgyelsKrMX2iAiBBktHf-S0WNtbdAe12ddJ0iQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1747,7 +1757,7 @@
 					"response": []
 				},
 				{
-					"name": "Pedido - buscar",
+					"name": "Pedido - buscar por codigo UUID",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1770,6 +1780,16 @@
 				{
 					"name": "Pedido - salvar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjozLCJ1c2VyX25hbWUiOiJqb3NlLmF1eEBrZm9vZC5jb20iLCJzY29wZSI6WyJ3cml0ZSIsInJlYWQiXSwiZXhwIjoxNjMzNzE3NDQ1LCJqdGkiOiI5NWRlYTEwMy1hMjU4LTRhMGEtOTg4ZS1kMDBkZjk0MWYzOTciLCJub21lX2NvbXBsZXRvIjoiSm9zw6kgU291emEiLCJjbGllbnRfaWQiOiJmb29kLXdlYiJ9.BFqIHwHPX3beOER72g1_V86RO-x222emNMdVZQCfCWkh4v4qG2Kx_G7ex0lx4g0ejdz5q-T7jZ-_p6rGS_4hk3KwjcYfJvP8pOCETeN4mRMbBZrNulJJkIVRbhgOzn17iGv8N3h1J8WQGXD4amMLJCMT25dilfgl20jXoDvoCBn7Yat7oERtrHbIC6YZL1o-BsY7PgbvlfOSE84rsfpNgaO0eI9332G3uq75XBLtOqPsAmkOifuMM-HDOsZ2_2FUv4KNf-4EFNhUCPldlWS-QqI09WQN49-Dg12QDyoWWbBZLfPgCgyelsKrMX2iAiBBktHf-S0WNtbdAe12ddJ0iQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
