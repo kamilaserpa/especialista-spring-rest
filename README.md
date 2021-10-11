@@ -1270,10 +1270,12 @@ Após isso deve-se executar o comando para ser exibida a chave pública:
 
 Outra forma possível é realizar a requisição GET no Authorization Server `oauth/token_key`. Estando habilitada a permissão para acessar o endpoint sem autenticação.
 
-Após implantação da autorização com chave assimétrica, ao acessar com o client `foodanalytics` e efetuar login, não haverá mais a opção para aprovar ou negar cada escopo de atuação (write, read, por exemplo). Para habilitar esse comportamento novamente foi adicionado `.approvalStore()` em AuthorizationServerConfig.
+Após implantação da autorização com chave assimétrica, ao acessar com o client `foodanalytics` e efetuar login, não haverá mais a opção para aprovar ou negar cada escopo de atuação (write, read, por exemplo). Para habilitar esse comportamento novamente foi adicionado `.approvalStore()` em AuthorizationServerConfig. (Em outras palavras: João realiza login e aprova os escopos que o FoodAnalytics pode usar na API em nome dele)
 
 #### Autorização de usuário com dados do Bando de Dados
 Para autenticação dos usuários em banco de dados é necessário enviar o password real e salvá-lo encriptado, pois o Password Encoder selecionado na classe WebSecurityConfig é o `BCryptPasswordEncoder`. Desse modo encriptamos os passwords com a feramenta [Bcrypt Generator](https://bcrypt-generator.com/).
+
+`Scopes`, os escopos apenas limitam acesso, e devem ser checados no Resource Server. A granularidade é definida conforme a necessidade da API.
 
 ---
 
