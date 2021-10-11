@@ -47,7 +47,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("food-web") // Identificação do client (aplicação web ou mobile)
                 .secret(passwordEncoder.encode("web123")) // Senha
                 .authorizedGrantTypes("password", "refresh_token") // Fluxos
-                .scopes("write", "read")
+                .scopes("WRITE", "READ")
                 .accessTokenValiditySeconds(6 * 60 * 60) // 6 horas
                 .refreshTokenValiditySeconds(60 * 24 * 60 * 60) // 60 dias
 
@@ -56,14 +56,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("foodanalytics") // Identifica aplicação back-end que consulta a API
                 .secret(passwordEncoder.encode("")) // Senha, removida para implementação do PKCE q não exige autenticação do usuário
                 .authorizedGrantTypes("authorization_code") // Fluxos
-                .scopes("write", "read")
+                .scopes("WRITE", "READ")
                 .redirectUris("http://aplicacao-cliente",
                         "http://localhost:3000", "http://localhost:3000/pkce") // Projeto Node "client-foodanalytics"
 
                 .and()
                 .withClient("webadmin") // Identifica aplicação back-end que consulta a API
                 .authorizedGrantTypes("implicit") // Fluxo, "refresh_token" não funciona aqui
-                .scopes("write", "read")
+                .scopes("WRITE", "READ")
                 .redirectUris("http://aplicacao-cliente",
                         "http://localhost:3000") // Projeto Node "client-foodanalytics"
 
@@ -71,7 +71,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("faturamento") // Identifica aplicação back-end que consulta a API
                 .secret(passwordEncoder.encode("faturamento123")) // Senha
                 .authorizedGrantTypes("client_credentials") // Fluxos
-                .scopes("write", "read")
+                .scopes("WRITE", "READ")
 
                 .and()
                 .withClient("checktoken") // Identificação do Resource Server (Food API)

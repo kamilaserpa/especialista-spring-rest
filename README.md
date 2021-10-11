@@ -1275,7 +1275,7 @@ Após implantação da autorização com chave assimétrica, ao acessar com o cl
 #### Autorização de usuário com dados do Bando de Dados
 Para autenticação dos usuários em banco de dados é necessário enviar o password real e salvá-lo encriptado, pois o Password Encoder selecionado na classe WebSecurityConfig é o `BCryptPasswordEncoder`. Desse modo encriptamos os passwords com a feramenta [Bcrypt Generator](https://bcrypt-generator.com/).
 
-`Scopes`, os escopos apenas limitam acesso, e devem ser checados no Resource Server. A granularidade é definida conforme a necessidade da API.
+`Scopes`, os escopos apenas limitam acesso, e devem ser checados no Resource Server. A granularidade é definida conforme a necessidade da API. Os escopos inseridos no token são carregados automaticamente como Authorities, com o JwtAuthenticationConverter padrão.
 
 ---
 
