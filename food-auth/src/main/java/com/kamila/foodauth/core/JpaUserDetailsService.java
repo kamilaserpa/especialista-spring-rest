@@ -34,6 +34,9 @@ public class JpaUserDetailsService implements UserDetailsService {
         return new AuthUser(usuario, getAuthorities(usuario));
     }
 
+    /**
+     * Retorna permissões de usuário capturadas do banco de dados
+     */
     private Collection<GrantedAuthority> getAuthorities(Usuario usuario) {
         return usuario.getGrupos().stream()
                 .flatMap(grupo -> grupo.getPermissoes().stream())

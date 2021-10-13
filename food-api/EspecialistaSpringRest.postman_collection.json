@@ -3658,7 +3658,7 @@
 			"name": "AuthorizationServer",
 			"item": [
 				{
-					"name": "Password Flow - Solicitar token",
+					"name": "Password Flow - Solicitar token GERENTE",
 					"request": {
 						"auth": {
 							"type": "basic",
@@ -3682,7 +3682,62 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "jose.aux@kfood.com",
+									"value": "joao.ger@kfood.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Flow - Solicitar token VENDEDOR(A)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "web123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "food-web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "maria.vnd@kfood.com",
 									"type": "text"
 								},
 								{
