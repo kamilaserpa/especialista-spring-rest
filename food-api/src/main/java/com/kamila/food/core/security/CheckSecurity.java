@@ -27,10 +27,22 @@ public @interface CheckSecurity {
 
     public @interface Restaurantes {
 
+        // Usuário responsável não pode editar dados diretamente, tem de solicitar a um funcionário da KamilaFood
         @PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_RESTAURANTES')")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
-        public @interface PodeEditar {
+        public @interface PodeGerenciarCadastro {
+        }
+
+        /**
+         * Dá permissão de abrir/fechar restaurante para usuários responsáveis
+         */
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') " +
+                "and (hasAuthority('EDITAR_RESTAURANTES') " + // KamilaFood funcionário
+                "or @foodSecurity.gerenciaRestaurante(#idRestaurante))") // RestauranteUsuarioResponsavel. @ dá acesso a um Bean do SPring
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeGerenciarFuncionamento {
         }
 
         @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")

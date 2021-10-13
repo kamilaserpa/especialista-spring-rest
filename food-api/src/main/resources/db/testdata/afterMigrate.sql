@@ -105,13 +105,14 @@ select 3, id_permissao from tb_permissao where nm_permissao like 'CONSULTAR_%';
 
 # Adiciona permissoes no grupo cadastrador
 insert into tb_grupo_permissao (id_grupo, id_permissao)
-select 4, id_permissao from tb_permissao where nm_permissao like '%_RESTAURANTES' or nm_permissao like '%_PRODUTOS';
+select 4, id_permissao from tb_permissao where nm_permissao like '%_RESTAURANTES';
 
 insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) values
 (1, 'João da Silva', 'joao.ger@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (2, 'Maria Joaquina', 'maria.vnd@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (3, 'José Souza', 'jose.sec@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (4, 'Sebastião Martins', 'sebastiao.cad@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+# Usuário responsável (proprietário) de restaurante
 (5, 'Manoel Lima', 'manoel.loja@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (6, 'Débora Mendonça', 'ist.kamila.serpa+teste1@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (7, 'Carlos Vinícios', 'ist.kamila.serpa+teste2@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp);

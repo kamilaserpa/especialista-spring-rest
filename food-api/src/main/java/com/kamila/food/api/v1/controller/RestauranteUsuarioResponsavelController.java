@@ -48,7 +48,7 @@ public class RestauranteUsuarioResponsavelController implements
         return usuarioModels;
     }
 
-    @CheckSecurity.Restaurantes.PodeEditar
+    @CheckSecurity.Restaurantes.PodeGerenciarCadastro
     @Override
     @DeleteMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -57,7 +57,7 @@ public class RestauranteUsuarioResponsavelController implements
         return ResponseEntity.noContent().build();
     }
 
-    @CheckSecurity.Restaurantes.PodeEditar
+    @CheckSecurity.Restaurantes.PodeGerenciarCadastro
     @Override
     @PutMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
