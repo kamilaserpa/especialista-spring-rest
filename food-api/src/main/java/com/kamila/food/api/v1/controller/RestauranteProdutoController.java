@@ -6,6 +6,7 @@ import com.kamila.food.api.v1.assembler.ProdutoModelAssembler;
 import com.kamila.food.api.v1.model.ProdutoModel;
 import com.kamila.food.api.v1.model.input.ProdutoInput;
 import com.kamila.food.api.v1.openapi.controller.RestauranteProdutoControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.model.Produto;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.ProdutoRepository;
@@ -43,6 +44,7 @@ public class RestauranteProdutoController implements RestauranteProdutoControlle
     @Autowired
     private FoodLinks foodLinks;
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping
     public CollectionModel<ProdutoModel> listar(@PathVariable Long idRestaurante,
@@ -60,6 +62,7 @@ public class RestauranteProdutoController implements RestauranteProdutoControlle
                 .add(foodLinks.linkToProdutos(idRestaurante));
     }
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping("/{idProduto}")
     public ProdutoModel buscar(@PathVariable Long idRestaurante, @PathVariable Long idProduto) {
@@ -67,6 +70,7 @@ public class RestauranteProdutoController implements RestauranteProdutoControlle
         return produtoModelAssembler.toModel(produto);
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -81,6 +85,7 @@ public class RestauranteProdutoController implements RestauranteProdutoControlle
         return produtoModelAssembler.toModel(produto);
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idProduto}")
     public ProdutoModel atualizar(@PathVariable Long idRestaurante, @PathVariable Long idProduto,

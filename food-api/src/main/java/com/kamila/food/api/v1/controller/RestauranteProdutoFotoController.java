@@ -4,6 +4,7 @@ import com.kamila.food.api.v1.assembler.FotoProdutoModelAssembler;
 import com.kamila.food.api.v1.model.FotoProdutoModel;
 import com.kamila.food.api.v1.model.input.FotoProdutoInput;
 import com.kamila.food.api.v1.openapi.controller.RestauranteProdutoFotoControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.model.FotoProduto;
 import com.kamila.food.domain.model.Produto;
@@ -41,6 +42,7 @@ public class RestauranteProdutoFotoController implements RestauranteProdutoFotoC
     @Autowired
     private FotoStorageService fotoStorageService;
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @GetMapping
     public FotoProdutoModel buscar(@PathVariable Long idRestaurante, @PathVariable Long idProduto) {
         FotoProduto fotoProduto = catalogoFotoProdutoService.buscarOuFalhar(idRestaurante, idProduto);
@@ -92,6 +94,7 @@ public class RestauranteProdutoFotoController implements RestauranteProdutoFotoC
         }
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public FotoProdutoModel atualizarFoto(
@@ -115,6 +118,7 @@ public class RestauranteProdutoFotoController implements RestauranteProdutoFotoC
         return fotoProdutoModelAssembler.toModel(fotoSalva);
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

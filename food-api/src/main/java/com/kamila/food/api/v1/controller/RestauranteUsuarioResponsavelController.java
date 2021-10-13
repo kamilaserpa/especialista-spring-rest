@@ -4,6 +4,7 @@ import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.assembler.UsuarioModelAssembler;
 import com.kamila.food.api.v1.model.UsuarioModel;
 import com.kamila.food.api.v1.openapi.controller.RestauranteUsuarioResponsavelControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class RestauranteUsuarioResponsavelController implements
     @Autowired
     private FoodLinks foodLinks;
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping
     public CollectionModel<UsuarioModel> listar(@PathVariable Long idRestaurante) {
@@ -46,6 +48,7 @@ public class RestauranteUsuarioResponsavelController implements
         return usuarioModels;
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @DeleteMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -54,6 +57,7 @@ public class RestauranteUsuarioResponsavelController implements
         return ResponseEntity.noContent().build();
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idUsuario}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

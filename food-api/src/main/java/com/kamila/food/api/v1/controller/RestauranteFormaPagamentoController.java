@@ -4,6 +4,7 @@ import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.assembler.FormaPagamentoModelAssembler;
 import com.kamila.food.api.v1.model.FormaPagamentoModel;
 import com.kamila.food.api.v1.openapi.controller.RestauranteFormaPagamentoControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
     @Autowired
     private FoodLinks foodLinks;
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping
     public CollectionModel<FormaPagamentoModel> listar(@PathVariable Long idRestaurante) {
@@ -46,6 +48,7 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
         return formaPagamentoModels;
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @DeleteMapping("/{idFormaPagamento}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -54,6 +57,7 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
         return ResponseEntity.noContent().build();
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idFormaPagamento}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -61,6 +65,5 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
         cadastroRestauranteService.associarFormaPagamento(idRestaurante, idFormaPagamento);
         return ResponseEntity.noContent().build();
     }
-
 
 }

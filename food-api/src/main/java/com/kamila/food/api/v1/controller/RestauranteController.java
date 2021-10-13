@@ -9,6 +9,7 @@ import com.kamila.food.api.v1.model.RestauranteBasicoModel;
 import com.kamila.food.api.v1.model.RestauranteModel;
 import com.kamila.food.api.v1.model.input.RestauranteInput;
 import com.kamila.food.api.v1.openapi.controller.RestauranteControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.exception.CidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.CozinhaNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -70,6 +71,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
 
     // Dois métodos semelhantes com serialização resumida dependente do parâmetro "projecao"
 //    @JsonView(RestauranteView.Resumo.class)
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping
     public CollectionModel<RestauranteBasicoModel> listar() {
@@ -77,6 +79,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         return restauranteBasicoModelAssembler.toCollectionModel(restaurantes);
     }
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
 //    @JsonView(RestauranteView.ApenasNome.class)
     @GetMapping(params = "projecao=apenas-nome")
@@ -84,6 +87,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         return restauranteApenasNomeModelAssembler.toCollectionModel(restauranteRepository.findAll());
     }
 
+    @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping("/{idRestaurante}")
     public RestauranteModel buscar(@PathVariable Long idRestaurante) {
@@ -91,6 +95,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         return restauranteModelAssembler.toModel(restaurante);
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -103,6 +108,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idRestaurante}")
     @ResponseStatus(HttpStatus.OK)
@@ -119,12 +125,14 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @DeleteMapping("/{idRestaurante}")
     public void remover(@PathVariable Long idRestaurante) {
         cadastroRestauranteService.remover(idRestaurante);
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idRestaurante}/ativo")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -135,6 +143,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         return ResponseEntity.noContent().build();
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @DeleteMapping("/{idRestaurante}/inativo")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -144,6 +153,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         return ResponseEntity.noContent().build();
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/ativacoes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -155,6 +165,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @DeleteMapping("/ativacoes")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -166,6 +177,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         }
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idRestaurante}/abertura")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -175,6 +187,7 @@ public class RestauranteController implements RestauranteControllerOpenApi {
         return ResponseEntity.noContent().build();
     }
 
+    @CheckSecurity.Restaurantes.PodeEditar
     @Override
     @PutMapping("/{idRestaurante}/fechamento")
     @ResponseStatus(HttpStatus.NO_CONTENT)
