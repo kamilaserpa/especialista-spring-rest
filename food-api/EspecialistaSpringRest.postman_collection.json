@@ -1757,6 +1757,16 @@
 				{
 					"name": "Pedido - confirmar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoyLCJ1c2VyX25hbWUiOiJtYXJpYS52bmRAa2Zvb2QuY29tIiwic2NvcGUiOlsiV1JJVEUiLCJSRUFEIl0sImV4cCI6MTYzNDMzMzAwOSwiYXV0aG9yaXRpZXMiOlsiQ09OU1VMVEFSX1VTVUFSSU9TIiwiQ09OU1VMVEFSX1BFRElET1MiXSwianRpIjoiODIzNDUyNzQtODJkNS00N2Q0LWIwMWItNDIxOGQ5NjRiYzViIiwibm9tZV9jb21wbGV0byI6Ik1hcmlhIEpvYXF1aW5hIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIifQ.ex6uJxGMlp3ZFFSC_nGSWzody62jRZKG1cfHBNPktxv3mAIvETeIfFjRRGmHlN6-x0eHB-cDyA1r_GAxoTBFCzrUhhMrHxr1m_3-Btiwtl1Xt8XwQVCzmMelzJUcNBYXO0wdDTQzu88wctaJ3pZJMGTMzWX3On3tfkm3JDXYNzO7qRJvqD9tH7B0kIxvS0mYhfn1mn3yMLg5e8VwI8uS2C_bP5jWaO82lGilnU4SwexQGEPjU9BVyEOZ87AOouI2aPb6HKVpgUN4Egc2BVrSBawKrTb0f3WF-orhSmq-5L7fI6iH3E2CsLOYYOaU26mLLhk6EjRAeRAtke6fQgkP-g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"url": {

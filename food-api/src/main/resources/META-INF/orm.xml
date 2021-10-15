@@ -21,5 +21,15 @@
 			and resp.id = :idUsuario
 		</query>
 	</named-query>
+	
+	<named-query name="Pedido.isPedidoGerenciadoPor">
+		<query>select case when count(1) > 0 then true else false end
+			from Pedido ped
+			join ped.restaurante rest
+			join rest.responsaveis resp
+			where ped.codigo = :codigoPedido
+			and resp.id = :usuarioId
+		</query>
+	</named-query>
 
 </entity-mappings>

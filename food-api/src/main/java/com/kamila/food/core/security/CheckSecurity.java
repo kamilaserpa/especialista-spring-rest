@@ -57,6 +57,12 @@ public @interface CheckSecurity {
 
     public @interface Pedidos {
 
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and isAuthenticated()")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeCriar {
+        }
+
         /**
          * PreAuthorize realiza verificações antes da execução do método anotado.
          * PostAuthorize é realizado após a execução do método anotado.
@@ -83,9 +89,17 @@ public @interface CheckSecurity {
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodePesquisar {
-            // Possui condição 'CONSLTAR_PEDIDOS'
+            // Possui condição 'CONSULTAR_PEDIDOS'
             // Pedidos que ele emitiu
             // Pedidos de um restaurante que ele é responsável
+        }
+
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
+                "(hasAuthority('GERENCIAR_PEDIDOS') or " +
+                "@foodSecurity.gerenciaRestauranteDoPedido(#codigoPedido))")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeGerenciarPedidos {
         }
     }
 
