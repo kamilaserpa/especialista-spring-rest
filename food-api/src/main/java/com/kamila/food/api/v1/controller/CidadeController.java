@@ -6,6 +6,7 @@ import com.kamila.food.api.v1.assembler.CidadeModelAssembler;
 import com.kamila.food.api.v1.model.CidadeModel;
 import com.kamila.food.api.v1.model.input.CidadeInput;
 import com.kamila.food.api.v1.openapi.controller.CidadeControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
@@ -41,6 +42,7 @@ public class CidadeController implements CidadeControllerOpenApi {
         return cidadeModelAssembler.toCollectionModel(cidadeRepository.findAll());
     }
 
+    @CheckSecurity.Cidades.PodeConsultar
     @Override
     @GetMapping("/{idCidade}")
     public CidadeModel buscar(@PathVariable Long idCidade) {
@@ -49,6 +51,7 @@ public class CidadeController implements CidadeControllerOpenApi {
         return cidadeModelAssembler.toModel(cidade);
     }
 
+    @CheckSecurity.Cidades.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -66,6 +69,7 @@ public class CidadeController implements CidadeControllerOpenApi {
         }
     }
 
+    @CheckSecurity.Cidades.PodeEditar
     @Override
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -90,6 +94,7 @@ public class CidadeController implements CidadeControllerOpenApi {
         }
     }
 
+    @CheckSecurity.Cidades.PodeEditar
     @Override
     @DeleteMapping("/{idCidade}")
     public void remover(@PathVariable Long idCidade) {

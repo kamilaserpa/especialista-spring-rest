@@ -6,6 +6,7 @@ import com.kamila.food.api.v2.assembler.CidadeModelAssemblerV2;
 import com.kamila.food.api.v2.model.CidadeModelV2;
 import com.kamila.food.api.v2.model.input.CidadeInputV2;
 import com.kamila.food.api.v2.openapi.controller.CidadeControllerV2OpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.Cidade;
@@ -40,6 +41,7 @@ public class CidadeControllerV2 implements CidadeControllerV2OpenApi {
         return cidadeModelAssemblerV2.toCollectionModel(cidadeRepository.findAll());
     }
 
+    @CheckSecurity.Cidades.PodeConsultar
     @GetMapping("/{idCidade}")
     public CidadeModelV2 buscar(@PathVariable Long idCidade) {
 
@@ -47,6 +49,7 @@ public class CidadeControllerV2 implements CidadeControllerV2OpenApi {
         return cidadeModelAssemblerV2.toModel(cidade);
     }
 
+    @CheckSecurity.Cidades.PodeEditar
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CidadeModelV2 salvar(@RequestBody @Valid CidadeInputV2 cidadeInput) {
@@ -63,6 +66,7 @@ public class CidadeControllerV2 implements CidadeControllerV2OpenApi {
         }
     }
 
+    @CheckSecurity.Cidades.PodeEditar
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CidadeModelV2 atualizar(@PathVariable Long id,
@@ -81,6 +85,7 @@ public class CidadeControllerV2 implements CidadeControllerV2OpenApi {
         }
     }
 
+    @CheckSecurity.Cidades.PodeEditar
     @DeleteMapping("/{idCidade}")
     public void remover(@PathVariable Long idCidade) {
         cadastroCidadeService.remover(idCidade);
