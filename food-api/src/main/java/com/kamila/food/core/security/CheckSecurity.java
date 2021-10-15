@@ -175,11 +175,22 @@ public @interface CheckSecurity {
         }
 
         @PreAuthorize("hasAuthority('SCOPE_READ') and " +
-                "hasAuthority('CONSLTAR_USUARIOS_GRUPOS_PERMISSOES')")
+                "hasAuthority('CONSULTAR_USUARIOS_GRUPOS_PERMISSOES')")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
         }
     }
+
+    public @interface Estatisticas {
+
+        @PreAuthorize("hasAuthority('SCOPE_READ') and " +
+                "hasAuthority('GERAR_RELATORIOS')")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeConsultar {
+        }
+    }
+
 
 }

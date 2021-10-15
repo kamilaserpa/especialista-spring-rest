@@ -2,6 +2,7 @@ package com.kamila.food.api.v1.controller;
 
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.openapi.controller.EstatisticasControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.filter.VendaDiariaFilter;
 import com.kamila.food.domain.model.dto.VendaDiaria;
 import com.kamila.food.domain.service.VendaQueryService;
@@ -32,7 +33,8 @@ public class EstatisticasController implements EstatisticasControllerOpenApi {
 
     @Autowired
     private FoodLinks foodLinks;
-    
+
+    @CheckSecurity.Estatisticas.PodeConsultar
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public EstatisticasModel estatisticas() {
@@ -41,6 +43,7 @@ public class EstatisticasController implements EstatisticasControllerOpenApi {
         return estatisticaModel;
     }
 
+    @CheckSecurity.Estatisticas.PodeConsultar
     @Override
     @GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro,
@@ -48,6 +51,7 @@ public class EstatisticasController implements EstatisticasControllerOpenApi {
         return vendaQueryService.consultarVendasDiarias(filtro, timeOffset);
     }
 
+    @CheckSecurity.Estatisticas.PodeConsultar
     @Override
     @GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> consultarVendasDiariasPdf(VendaDiariaFilter filtro,
