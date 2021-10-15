@@ -1530,7 +1530,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjozLCJ1c2VyX25hbWUiOiJqb3NlLmF1eEBrZm9vZC5jb20iLCJzY29wZSI6WyJ3cml0ZSIsInJlYWQiXSwiZXhwIjoxNjMzNzE3NDQ1LCJqdGkiOiI5NWRlYTEwMy1hMjU4LTRhMGEtOTg4ZS1kMDBkZjk0MWYzOTciLCJub21lX2NvbXBsZXRvIjoiSm9zw6kgU291emEiLCJjbGllbnRfaWQiOiJmb29kLXdlYiJ9.BFqIHwHPX3beOER72g1_V86RO-x222emNMdVZQCfCWkh4v4qG2Kx_G7ex0lx4g0ejdz5q-T7jZ-_p6rGS_4hk3KwjcYfJvP8pOCETeN4mRMbBZrNulJJkIVRbhgOzn17iGv8N3h1J8WQGXD4amMLJCMT25dilfgl20jXoDvoCBn7Yat7oERtrHbIC6YZL1o-BsY7PgbvlfOSE84rsfpNgaO0eI9332G3uq75XBLtOqPsAmkOifuMM-HDOsZ2_2FUv4KNf-4EFNhUCPldlWS-QqI09WQN49-Dg12QDyoWWbBZLfPgCgyelsKrMX2iAiBBktHf-S0WNtbdAe12ddJ0iQ",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxLCJ1c2VyX25hbWUiOiJqb2FvLmdlckBrZm9vZC5jb20iLCJzY29wZSI6WyJXUklURSIsIlJFQUQiXSwiZXhwIjoxNjM0MzMxNjAzLCJhdXRob3JpdGllcyI6WyJHRVJBUl9SRUxBVE9SSU9TIiwiRURJVEFSX0NPWklOSEFTIiwiRURJVEFSX0NJREFERVMiLCJFRElUQVJfRk9STUFTX1BBR0FNRU5UTyIsIkVESVRBUl9SRVNUQVVSQU5URVMiLCJHRVJFTkNJQVJfUEVESURPUyIsIkNPTlNVTFRBUl9VU1VBUklPUyIsIkVESVRBUl9VU1VBUklPUyIsIkNPTlNVTFRBUl9QRURJRE9TIiwiRURJVEFSX0VTVEFET1MiXSwianRpIjoiZjQzMjBlMzgtODU2Yi00MmZiLWI3N2UtMTM3YTliYzQyZjRiIiwibm9tZV9jb21wbGV0byI6Ikpvw6NvIGRhIFNpbHZhIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIifQ.IDBhMCD41K6Azi3v722829COeYIFmZsQJxAelFiXe_g7HKFPUc3I_zofM-o3UT7YECPEMnw_Ttp_egoxVSwwH95PAWqH9oTMlm70idQ1QwMXc_VckXFCkBIO1d8iojAhTLFatYwt1LMZpRJLnHg2Cng4MMs9UI9_qMFdWnfjOFJN6M3u6pTIhqBHrae8E7mtnDSio9g1DZx_YoiPAPu-Y1Tmr1Q_7hu4SWyq3MMkGwxl0tnERyqIqDJIQhN279ryv94kDlmuD-OAyhjFJ3UHoFlYIB4NuRbYV6QgFih5K4RU2z9jkkSEuvZ0wn-vpQTePYmyzmCbvu7tPfAcXiKV_w",
 									"type": "string"
 								}
 							]
@@ -1538,7 +1538,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/v1/pedidos?sort=nomeCliente",
+							"raw": "http://localhost:8080/v1/pedidos?clienteId=1&sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1551,8 +1551,7 @@
 							"query": [
 								{
 									"key": "clienteId",
-									"value": "4",
-									"disabled": true
+									"value": "1"
 								},
 								{
 									"key": "restauranteId",
@@ -1578,6 +1577,71 @@
 									"key": "restauranteId",
 									"value": "asdaasd",
 									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "nomeCliente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedido - listar [Token de Usuario id 8]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjo4LCJ1c2VyX25hbWUiOiJtYXRldXMubG9qYUBrZm9vZC5jb20iLCJzY29wZSI6WyJXUklURSIsIlJFQUQiXSwiZXhwIjoxNjM0MzMxMTI2LCJqdGkiOiIyYTEwMWViOS01MTMyLTQwNmUtOTUwYS1iOWE2Y2I0NTlhYzQiLCJub21lX2NvbXBsZXRvIjoiTWF0ZXVzIFRhYm9zYSIsImNsaWVudF9pZCI6ImZvb2Qtd2ViIn0.OH5HygiRaQaMEZmYMR6P7dzbIuOCHlD2qxCTny2oU8AvN8j0lbHda915nyEKRQSjGVjbFszVwrSf_3NNcJT0G2ZOaaZheEHsZ_lJpzCQILVuup8HhwCjyKM-grXfSussGG4Z_1etzL8QZvHdmGrNNZ-x4DbNiNiVbjt3CQTi7xWn-vh8-KloSLRTh1zsM5KSnikkZcXpwkI_e1VDL5jDQXmHElSkKb_MjOunvQ9ITWdp2Ug0y2DN1lYdsfOaednHM47wBMZz-GFzh-1_NmsjD9cqz65vakSJ0xH7ty53F6tr4EVx_4KaMsgqX95Rz9xONZ5jW7pW_9cLMmBaLx79aQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/pedidos?restauranteId=4&sort=nomeCliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "6",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2021-03-02T10:00:00Z",
+									"disabled": true
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "adfgadfg",
+									"disabled": true
+								},
+								{
+									"key": "restauranteId",
+									"value": "4"
 								},
 								{
 									"key": "sort",

@@ -115,11 +115,12 @@ insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) val
 # Usuário responsável (proprietário) de restaurante
 (5, 'Manoel Lima', 'manoel.loja@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (6, 'Débora Mendonça', 'ist.kamila.serpa+teste1@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
-(7, 'Carlos Vinícios', 'ist.kamila.serpa+teste2@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp);
+(7, 'Carlos Vinícios', 'ist.kamila.serpa+teste2@gmail.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
+(8, 'Mateus Tabosa', 'mateus.loja@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp);
 
 insert into tb_usuario_grupo(id_usuario, id_grupo) values (1, 1), (1,2), (2, 2), (3,3), (4,4);
 
-insert into tb_restaurante_usuario_responsavel (id_restaurante, id_usuario) values (1, 5), (3, 5);
+insert into tb_restaurante_usuario_responsavel (id_restaurante, id_usuario) values (1, 5), (3, 5), (4, 8);
 
 insert into tb_pedido (id_pedido, codigo, id_restaurante, id_usuario_cliente, id_forma_pagamento, endereco_id_cidade, endereco_cep, 
     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,

@@ -66,12 +66,27 @@ public @interface CheckSecurity {
         @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
         @PostAuthorize("hasAuthority('CONSULTAR_PEDIDOS') or " +
                 "@foodSecurity.getUsuarioId() == returnObject.cliente.id or " + // Usuario é o q realizou o pedido permitido
-                "@foodSecurity.gerenciaRestaurante(returnObject.restaurante.id)") // Proprietário do Restaurante a qual o pedido pertence
+                "@foodSecurity.gerenciaRestaurante(returnObject.restaurante.id)")
+        // Proprietário do Restaurante a qual o pedido pertence
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeBuscar {
         }
 
+        /**
+         * Pode pesquisar em todos os pedidos do projeto
+         */
+        @PreAuthorize("hasAuthority('SCOPE_READ') and " +
+                "(hasAuthority('CONSULTAR_PEDIDOS') or " +
+                "@foodSecurity.getUsuarioId() == #filtro.clienteId or " +
+                "@foodSecurity.gerenciaRestaurante(#filtro.restauranteId))")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodePesquisar {
+            // Possui condição 'CONSLTAR_PEDIDOS'
+            // Pedidos que ele emitiu
+            // Pedidos de um restaurante que ele é responsável
+        }
     }
 
 }

@@ -26,6 +26,10 @@ public class FoodSecurity {
 
     // Verifica se usuário é responsável pelo Restaurante
     public boolean gerenciaRestaurante(Long idRestaurante) {
+        if (idRestaurante == null) {
+            return false;
+        }
+
         return restauranteRepository.existsResponsavel(idRestaurante, getUsuarioId());
     }
 
