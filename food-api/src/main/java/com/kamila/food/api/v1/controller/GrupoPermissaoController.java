@@ -4,6 +4,7 @@ import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.assembler.PermissaoModelAssembler;
 import com.kamila.food.api.v1.model.PermissaoModel;
 import com.kamila.food.api.v1.openapi.controller.GrupoPermissaoControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.model.Grupo;
 import com.kamila.food.domain.service.CadastroGrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi
     @Autowired
     private FoodLinks foodLinks;
 
+    @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
     public CollectionModel<PermissaoModel> listar(@PathVariable Long idGrupo) {

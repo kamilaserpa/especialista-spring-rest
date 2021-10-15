@@ -150,4 +150,36 @@ public @interface CheckSecurity {
 
     }
 
+    public @interface UsuariosGruposPermissoes {
+
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
+                "@foodSecurity.getUsuarioId() == #usuarioId")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeAlterarPropriaSenha {
+        }
+
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and (" +
+                "hasAuthority('EDITAR_USUARIOS_GRUPOS_PERMISSOES') or " +
+                "@foodSecurity.getUsuarioId() == #usuarioId)")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeAlterarUsuario {
+        }
+
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
+                "hasAuthority('EDITAR_USUARIOS_GRUPOS_PERMISSOES')")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeEditar {
+        }
+
+        @PreAuthorize("hasAuthority('SCOPE_READ') and " +
+                "hasAuthority('CONSLTAR_USUARIOS_GRUPOS_PERMISSOES')")
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeConsultar {
+        }
+    }
+
 }

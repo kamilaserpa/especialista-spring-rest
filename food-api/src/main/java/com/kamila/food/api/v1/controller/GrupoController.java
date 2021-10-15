@@ -5,6 +5,7 @@ import com.kamila.food.api.v1.assembler.GrupoModelAssembler;
 import com.kamila.food.api.v1.model.GrupoModel;
 import com.kamila.food.api.v1.model.input.GrupoInput;
 import com.kamila.food.api.v1.openapi.controller.GrupoControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.GrupoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -35,12 +36,14 @@ public class GrupoController implements GrupoControllerOpenApi {
 	@Autowired
 	private GrupoInputDisassembler grupoInputDisassembler;
 
+	@CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
 	@Override
 	@GetMapping
 	public CollectionModel<GrupoModel> listar() {
 		return grupoModelAssembler.toCollectionModel(grupoRepository.findAll());
 	}
 
+	@CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
 	@Override
 	@GetMapping("/{idGrupo}")
 	public GrupoModel buscar(@PathVariable Long idGrupo) {
@@ -49,6 +52,7 @@ public class GrupoController implements GrupoControllerOpenApi {
 
 	}
 
+	@CheckSecurity.UsuariosGruposPermissoes.PodeEditar
 	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -61,6 +65,7 @@ public class GrupoController implements GrupoControllerOpenApi {
 		}
 	}
 
+	@CheckSecurity.UsuariosGruposPermissoes.PodeEditar
 	@Override
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
@@ -78,6 +83,7 @@ public class GrupoController implements GrupoControllerOpenApi {
 		}
 	}
 
+	@CheckSecurity.UsuariosGruposPermissoes.PodeEditar
 	@Override
 	@DeleteMapping("/{idCidade}")
 	public void remover(@PathVariable Long idGrupo) {
