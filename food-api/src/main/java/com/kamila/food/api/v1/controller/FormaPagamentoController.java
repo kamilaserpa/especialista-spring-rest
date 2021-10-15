@@ -5,6 +5,7 @@ import com.kamila.food.api.v1.assembler.FormaPagamentoModelAssembler;
 import com.kamila.food.api.v1.model.FormaPagamentoModel;
 import com.kamila.food.api.v1.model.input.FormaPagamentoInput;
 import com.kamila.food.api.v1.openapi.controller.FormaPagamentoControllerOpenApi;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.domain.exception.EstadoNaoEncontradoException;
 import com.kamila.food.domain.exception.NegocioException;
 import com.kamila.food.domain.model.FormaPagamento;
@@ -46,6 +47,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
      * Se stale (após maxAge: 10 segundos), a requisição irá  verificar se eTag é a mesma, caso positivo é retornado null e o consumidor utiliza
      * o dado em cache. Cso negativo a consulta é realizada novamente e retornado novo eTag.
      */
+    @CheckSecurity.FormaPagamento.PodeConsultar
     @Override
     @GetMapping
     public ResponseEntity<CollectionModel<FormaPagamentoModel>> listar(ServletWebRequest request) {
@@ -77,6 +79,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
                 .body(formasPagamentoModel);
     }
 
+    @CheckSecurity.FormaPagamento.PodeConsultar
     @Override
     @GetMapping("/{idFormaPagamento}")
     public ResponseEntity<FormaPagamentoModel> buscar(ServletWebRequest request, @PathVariable Long idFormaPagamento) {
@@ -102,6 +105,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
                 .body(formaPagamentoModel);
     }
 
+    @CheckSecurity.FormaPagamento.PodeEditar
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -114,6 +118,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
         }
     }
 
+    @CheckSecurity.FormaPagamento.PodeEditar
     @Override
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -131,6 +136,7 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
         }
     }
 
+    @CheckSecurity.FormaPagamento.PodeEditar
     @Override
     @DeleteMapping("/{idFormaPagamento}")
     public void remover(@PathVariable Long idFormaPagamento) {
