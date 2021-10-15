@@ -11,6 +11,7 @@ import com.kamila.food.api.v1.model.input.PedidoInput;
 import com.kamila.food.api.v1.openapi.controller.PedidoControllerOpenApi;
 import com.kamila.food.core.data.PageWrapper;
 import com.kamila.food.core.data.PageableTranslator;
+import com.kamila.food.core.security.CheckSecurity;
 import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.exception.EntidadeNaoEncontradaException;
 import com.kamila.food.domain.exception.NegocioException;
@@ -19,6 +20,7 @@ import com.kamila.food.domain.model.Pedido;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.service.CadastroProdutoService;
 import com.kamila.food.domain.service.EmissaoPedidoService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,12 +32,14 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/v1/pedidos", produces = MediaType.APPLICATION_JSON_VALUE)
 public class PedidoController implements PedidoControllerOpenApi {
@@ -95,9 +99,11 @@ public class PedidoController implements PedidoControllerOpenApi {
         return pedidosWrapper;
     }
 
+    @CheckSecurity.Pedidos.PodeBuscar
     @Override
     @GetMapping("/{codigoPedido}")
     public PedidoModel buscar(@PathVariable String codigoPedido) {
+        log.info(">> Authorities do usuario: " + String.valueOf(SecurityContextHolder.getContext().getAuthentication().getAuthorities()));
         Pedido pedido = emissaoPedidoService.buscarOuFalhar(codigoPedido);
 
         return pedidoModelAssembler.toModel(pedido);

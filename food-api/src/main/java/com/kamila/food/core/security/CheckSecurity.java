@@ -1,5 +1,6 @@
 package com.kamila.food.core.security;
 
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.lang.annotation.ElementType;
@@ -39,7 +40,8 @@ public @interface CheckSecurity {
          */
         @PreAuthorize("hasAuthority('SCOPE_WRITE') " +
                 "and (hasAuthority('EDITAR_RESTAURANTES') " + // KamilaFood funcionário
-                "or @foodSecurity.gerenciaRestaurante(#idRestaurante))") // RestauranteUsuarioResponsavel. @ dá acesso a um Bean do SPring
+                "or @foodSecurity.gerenciaRestaurante(#idRestaurante))")
+        // RestauranteUsuarioResponsavel. @ dá acesso a um Bean do SPring
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeGerenciarFuncionamento {
@@ -49,6 +51,25 @@ public @interface CheckSecurity {
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
+        }
+
+    }
+
+    public @interface Pedidos {
+
+        /**
+         * PreAuthorize realiza verificações antes da execução do método anotado.
+         * PostAuthorize é realizado após a execução do método anotado.
+         * "returnObject" é uma variável implícita na expressão referente ao objeto de retorno do método anotado,
+         * no caso PedidoModel, em PedidoController.buscar()
+         */
+        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PostAuthorize("hasAuthority('CONSULTAR_PEDIDOS') or " +
+                "@foodSecurity.getUsuarioId() == returnObject.cliente.id or " + // Usuario é o q realizou o pedido permitido
+                "@foodSecurity.gerenciaRestaurante(returnObject.restaurante.id)") // Proprietário do Restaurante a qual o pedido pertence
+        @Retention(RUNTIME)
+        @Target(ElementType.METHOD)
+        public @interface PodeBuscar {
         }
 
     }

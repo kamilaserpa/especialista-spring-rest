@@ -7,6 +7,7 @@ Pastas:
  - client: Consumidor JavaScript da API principal (food-api)
  - food-java-client: Consumidor Java da API principal (food-api)
  - client-foodanalytics: Consumidor JavaScript NodeJs da API principal implementando fluxo de autenticação Authorization Code.
+ - food-api/EspecialistaSpringRest.postman_collection.json: requisições CURL da API principal.
   
 
 ## Capítulo 2 - Spring e Injeção de Dependências
@@ -38,13 +39,13 @@ RetentionPolicy.RUNTIME - visível pelo compilador e pelo tempo de execução
 Permite mapear beans para diferentes perfis. Considere um cenário básico: temos um bean que deve estar ativo apenas durante o desenvolvimento, mas não implantado na produção. Apenas Beans anotados com `@Profile("dev")` seriam instanciados caso esteja configurado o perfil de desenvolvimento em application.properties `spring.profiles.active=dev`.
 
 #### @Bean
-No Spring, os objetos que formam o backbone de seu aplicativo e que são gerenciados pelo contêiner Spring IoC são chamados de beans. Um bean é um objeto instanciado, montado e gerenciado de outra forma por um contêiner Spring IoC (Inversion of Control).
+No Spring, os objetos que formam o backbone de seu aplicativo e que são gerenciados pelo container Spring IoC são chamados de beans. Um bean é um objeto instanciado, montado e gerenciado de outra forma por um container [Spring IoC](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/beans.html#beans) (Inversion of Control).
 
 #### @Configuration
 As classes de configuração podem conter métodos de definição de bean anotados com `@Bean`.
 
 #### Ciclo de vida dos Beans
-Inicialização, execução, destruição. Após contrutor e importações é chamado o init (`@PostConstructor`).
+Inicialização, execução, destruição. Após construtor e importações é chamado o init (`@PostConstructor`).
 
 #### Propriedades
 - Substituindo propriedades via linha de comando, por exemplo:
@@ -1276,6 +1277,11 @@ Após implantação da autorização com chave assimétrica, ao acessar com o cl
 Para autenticação dos usuários em banco de dados é necessário enviar o password real e salvá-lo encriptado, pois o Password Encoder selecionado na classe WebSecurityConfig é o `BCryptPasswordEncoder`. Desse modo encriptamos os passwords com a feramenta [Bcrypt Generator](https://bcrypt-generator.com/).
 
 `Scopes`, os escopos apenas limitam acesso, e devem ser checados no Resource Server. A granularidade é definida conforme a necessidade da API. Os escopos inseridos no token são carregados automaticamente como Authorities, com o JwtAuthenticationConverter padrão.
+
+<b>Segurança em métodos com anotações:</b>
+ - `@PreAuthorize` - realiza a verificação antes do método anotado ser executado
+  `@PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")`
+ - `@PostAuthorize` - realiza a verificação após o método anotado ser executado, deve ser utilizado se a execução do método não gerar efeito colateral. No seu valor é possível acessar a variável `returnObject` que é uma variável implícita com valor do objeto de retorno do método anotado. Veja lista de expressões para Controle de acesso baseado em Expressões: [Expression-Based Access Control](https://docs.spring.io/spring-security/site/docs/4.1.x/reference/html/el-access.html#el-access). Também é possível [estender as expressões disponíveis](https://docs.spring.io/spring-security/site/docs/4.1.x/reference/html/el-access.html#el-access-web-beans), podendo facilmente referir-se a qualquer Spring Bean que expor, como `@beanName.functionName()`
 
 ---
 

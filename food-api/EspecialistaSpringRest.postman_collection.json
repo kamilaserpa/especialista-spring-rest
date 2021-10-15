@@ -1759,6 +1759,16 @@
 				{
 					"name": "Pedido - buscar por codigo UUID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjo2LCJ1c2VyX25hbWUiOiJpc3Qua2FtaWxhLnNlcnBhK3Rlc3RlMUBnbWFpbC5jb20iLCJzY29wZSI6WyJXUklURSIsIlJFQUQiXSwiZXhwIjoxNjM0MjQwMTUyLCJqdGkiOiI1YWE2MDMyOC0yM2NhLTQyOTQtYTQ0ZS0xMDE0OTc0NTlkNTAiLCJub21lX2NvbXBsZXRvIjoiRMOpYm9yYSBNZW5kb27Dp2EiLCJjbGllbnRfaWQiOiJmb29kLXdlYiJ9.CgN7NpDeBZtG2WH6zG4_2pjl1E6o7ufVJTlc_sTmRe_ViokqK1IaHxXyPo9FdpgSPPZWwvhrRFsBLYaD5e-6fihIh-nNwrXxUzT5UYa2tbE7USvpjh_-RgPMZqy2qDhprwH3PWBEB-lKYAgnf5nUE1IF5X7hYp07TqDaQN75hyORCUWFY3S3pJsY7atM3UOB445GPSESXvv7iUrmboJ2o8geS4NG1fTeilr59t74fPaQH0s_0OUdt_jonS8YdTeJN7sW9nLcg8SUjhMMRG1wdzhyIKcco2HjEiPfxGLl969rxE23AD7UV7R75kWfd9tAoLi06t9dYW7nvNsRZjEHuw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -3738,6 +3748,61 @@
 								{
 									"key": "username",
 									"value": "maria.vnd@kfood.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/oauth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Flow - Solicitar token CLIENTE COMUM",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "web123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "food-web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "ist.kamila.serpa+teste1@gmail.com",
 									"type": "text"
 								},
 								{
