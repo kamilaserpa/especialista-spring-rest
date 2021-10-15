@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -21,14 +20,12 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer // Configura a aplicação como Authorization Server
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -39,43 +36,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private JwtKeyStoreProperties jwtKeyStoreProperties;
 
+    @Autowired
+    private DataSource dataSource;
+
     // Configura os clients que vão acessar o Resource Server
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // Client é a aplicação que utiliza os recursos do Resource Server utilizando um Access Token
-        clients.inMemory()
-                .withClient("food-web") // Identificação do client (aplicação web ou mobile)
-                .secret(passwordEncoder.encode("web123")) // Senha
-                .authorizedGrantTypes("password", "refresh_token") // Fluxos
-                .scopes("WRITE", "READ")
-                .accessTokenValiditySeconds(6 * 60 * 60) // 6 horas
-                .refreshTokenValiditySeconds(60 * 24 * 60 * 60) // 60 dias
-
-                // Com PKCE, se cliente passar Code Challenge
-                .and()
-                .withClient("foodanalytics") // Identifica aplicação back-end que consulta a API
-                .secret(passwordEncoder.encode("")) // Senha, removida para implementação do PKCE q não exige autenticação do usuário
-                .authorizedGrantTypes("authorization_code") // Fluxos
-                .scopes("WRITE", "READ")
-                .redirectUris("http://aplicacao-cliente",
-                        "http://localhost:3000", "http://localhost:3000/pkce") // Projeto Node "client-foodanalytics"
-
-                .and()
-                .withClient("webadmin") // Identifica aplicação back-end que consulta a API
-                .authorizedGrantTypes("implicit") // Fluxo, "refresh_token" não funciona aqui
-                .scopes("WRITE", "READ")
-                .redirectUris("http://aplicacao-cliente",
-                        "http://localhost:3000") // Projeto Node "client-foodanalytics"
-
-                .and()
-                .withClient("faturamento") // Identifica aplicação back-end que consulta a API
-                .secret(passwordEncoder.encode("faturamento123")) // Senha
-                .authorizedGrantTypes("client_credentials") // Fluxos
-                .scopes("WRITE", "READ")
-
-                .and()
-                .withClient("checktoken") // Identificação do Resource Server (Food API)
-                .secret(passwordEncoder.encode("check123"));
+        clients.jdbc(dataSource);
     }
 
     // Configura acesso ao endpoint de chacagem do token
