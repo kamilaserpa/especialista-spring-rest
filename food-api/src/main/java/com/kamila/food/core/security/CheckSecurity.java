@@ -71,7 +71,7 @@ public @interface CheckSecurity {
          */
         @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
         @PostAuthorize("hasAuthority('CONSULTAR_PEDIDOS') or " +
-                "@foodSecurity.getUsuarioId() == returnObject.cliente.id or " + // Usuario é o q realizou o pedido permitido
+                "@foodSecurity.usuarioAutenticadoIgual(returnObject.cliente.id) or " + // Usuario é o q realizou o pedido permitido
                 "@foodSecurity.gerenciaRestaurante(returnObject.restaurante.id)")
         // Proprietário do Restaurante a qual o pedido pertence
         @Retention(RUNTIME)
@@ -84,14 +84,15 @@ public @interface CheckSecurity {
          */
         @PreAuthorize("hasAuthority('SCOPE_READ') and " +
                 "(hasAuthority('CONSULTAR_PEDIDOS') or " +
-                "@foodSecurity.getUsuarioId() == #filtro.clienteId or " +
+                "@foodSecurity.usuarioAutenticadoIgual(#filtro.clienteId) or " +
                 "@foodSecurity.gerenciaRestaurante(#filtro.restauranteId))")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodePesquisar {
             // Possui condição 'CONSULTAR_PEDIDOS'
             // Pedidos que ele emitiu
-            // Pedidos de um restaurante que ele é responsável
+            // Pedidos de um restaurante que ele é responsável.
+            // No fluxo Client Credentials o usuário Id não está presente nas claims (cliente se atenticou mas não um usuario final)
         }
 
         @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
@@ -153,7 +154,7 @@ public @interface CheckSecurity {
     public @interface UsuariosGruposPermissoes {
 
         @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
-                "@foodSecurity.getUsuarioId() == #usuarioId")
+                "@foodSecurity.usuarioAutenticadoIgual(#usuarioId)")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeAlterarPropriaSenha {
@@ -161,7 +162,7 @@ public @interface CheckSecurity {
 
         @PreAuthorize("hasAuthority('SCOPE_WRITE') and (" +
                 "hasAuthority('EDITAR_USUARIOS_GRUPOS_PERMISSOES') or " +
-                "@foodSecurity.getUsuarioId() == #usuarioId)")
+                "@foodSecurity.usuarioAutenticadoIgual(#usuarioId))")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeAlterarUsuario {

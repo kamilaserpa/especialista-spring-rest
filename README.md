@@ -1194,6 +1194,14 @@ Tipo de cliente:
 
 *Obs.*: Cliente sem usuários finais seria uma aplicação back-end se comportando como cliente de uma API.
 
+
+| Client  | Password  | Grant Type  | 
+|---|---|---|
+| faturamento  | faturamento123  | client_credentials  |
+| food-web  | web123  | password  |
+| foodanalytics  | food123  | authorization_code  |
+
+
 ## Capítulo 23 - OAuth2 avançado com JWT e controle de acesso
 
 No fluxo anterior o Access Token e o Refresh Token estão armazenados na memória do Authorization Server. Desse modo, caso as aplicações estejam implantadas em várias instâncias na nuvem, os tokens são específicos e armazenados em cada instância, caso o balanceador de carga redirecione a requisição de usuário autorizado na instancia 1 para uma instância 2 em que ele não está autorizado, o acesso não será possível.
@@ -1281,7 +1289,9 @@ Para autenticação dos usuários em banco de dados é necessário enviar o pass
 <b>Segurança em métodos com anotações:</b>
  - `@PreAuthorize` - realiza a verificação antes do método anotado ser executado
   `@PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")`
- - `@PostAuthorize` - realiza a verificação após o método anotado ser executado, deve ser utilizado se a execução do método não gerar efeito colateral. No seu valor é possível acessar a variável `returnObject` que é uma variável implícita com valor do objeto de retorno do método anotado. Veja lista de expressões para Controle de acesso baseado em Expressões: [Expression-Based Access Control](https://docs.spring.io/spring-security/site/docs/4.1.x/reference/html/el-access.html#el-access). Também é possível [estender as expressões disponíveis](https://docs.spring.io/spring-security/site/docs/4.1.x/reference/html/el-access.html#el-access-web-beans), podendo facilmente referir-se a qualquer Spring Bean que expor, como `@beanName.functionName()`
+ - `@PostAuthorize` - realiza a verificação após o método anotado ser executado, deve ser utilizado se a execução do método não gerar efeito colateral. No seu valor é possível acessar a variável `returnObject` que é uma variável implícita com valor do objeto de retorno do método anotado. Veja lista de expressões para Controle de acesso baseado em Expressões: [Expression-Based Access Control](https://docs.spring.io/spring-security/site/docs/4.1.x/reference/html/el-access.html#el-access). Também é possível [estender as expressões disponíveis](https://docs.spring.io/spring-security/site/docs/4.1.x/reference/html/el-access.html#el-access-web-beans), podendo facilmente referir-se a qualquer Spring Bean que expor, como `@beanName.functionName()`.
+  
+Observação: No fluxo Client Credentials o cliente se autentica, porém o usuário final não, assim o token jwt não possui usuario_id, informação importante para verificações de segurança.
 
 ---
 
