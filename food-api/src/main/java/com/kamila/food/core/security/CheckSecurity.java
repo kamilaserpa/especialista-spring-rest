@@ -13,7 +13,7 @@ public @interface CheckSecurity {
 
     public @interface Cozinhas {
 
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_COZINHAS')")
+        @PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_COZINHAS')") // Spring Expression Language
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeEditar {
@@ -95,9 +95,7 @@ public @interface CheckSecurity {
             // No fluxo Client Credentials o usuário Id não está presente nas claims (cliente se atenticou mas não um usuario final)
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
-                "(hasAuthority('GERENCIAR_PEDIDOS') or " +
-                "@foodSecurity.gerenciaRestauranteDoPedido(#codigoPedido))")
+        @PreAuthorize("@foodSecurity.podeGerenciarPedidos(#codigoPedido)")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeGerenciarPedidos {

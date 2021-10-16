@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.PedidoController;
 import com.kamila.food.api.v1.model.PedidoModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Pedido;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pe
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     public PedidoModelAssembler() {
         super(PedidoController.class, PedidoModel.class);
     }
@@ -36,14 +40,18 @@ public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pe
 
         pedidoModel.add(foodLinks.linkToPedidos("pedidos"));
 
-        if (pedido.podeSerConfirmado()) {
-            pedidoModel.add(foodLinks.linkToConfirmarPedido(pedido.getCodigo(), "confirmar"));
-        }
-        if (pedido.podeSerEntregue()) {
-            pedidoModel.add(foodLinks.linkToEntregarPedido(pedido.getCodigo(), "entregar"));
-        }
-        if (pedido.podeSerCancelado()) {
-            pedidoModel.add(foodLinks.linkToCancelarPedido(pedido.getCodigo(), "cancelar"));
+        // Verifica permissão do usuário de gerenciar pedidos. Para não enviar links que o usuário não pode acessar
+        if (foodSecurity.podeGerenciarPedidos(pedido.getCodigo())) {
+            // Por estado do pedido
+            if (pedido.podeSerConfirmado()) {
+                pedidoModel.add(foodLinks.linkToConfirmarPedido(pedido.getCodigo(), "confirmar"));
+            }
+            if (pedido.podeSerEntregue()) {
+                pedidoModel.add(foodLinks.linkToEntregarPedido(pedido.getCodigo(), "entregar"));
+            }
+            if (pedido.podeSerCancelado()) {
+                pedidoModel.add(foodLinks.linkToCancelarPedido(pedido.getCodigo(), "cancelar"));
+            }
         }
 
         pedidoModel.getRestaurante().add(
