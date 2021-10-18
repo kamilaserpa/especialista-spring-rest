@@ -2,6 +2,7 @@ package com.kamila.food.core.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,7 +28,15 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .formLogin()
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/oauth/**").authenticated() // Usuário deve estar autenticado para acessar esse path
+
+                .and()
                 .csrf().disable()
+
                 // Spring Security permite Request PreFlight, pois ela não contém os headers de autenticação e são necessárias
                 // Liberando requisições `OPTIONS`
                 .cors()
@@ -69,6 +78,13 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
+    }
+
+    // Authorization Server Config
+    @Bean
+    @Override
+    protected AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 
 }

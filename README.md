@@ -8,7 +8,16 @@ Pastas:
  - food-java-client: Consumidor Java da API principal (food-api)
  - client-foodanalytics: Consumidor JavaScript NodeJs da API principal implementando fluxo de autenticação Authorization Code.
  - food-api/EspecialistaSpringRest.postman_collection.json: requisições CURL da API principal.
-  
+
+## Introdução
+`Spring`, além de um framework, é um ecossistema de projetos, que auxiliam na resolução de vários problemas do dia-a-dia de um programador java. Objetivando foco no desenvolvimento das regras de negócio e não no código de infraestrutura da aplicação. <br>
+Pontos positivos da utilização do Spring são a simplicidade que fornece ao desenvolvimento, maturidade (várias empresas utilizam a algum tempo), modularidade (não é necessário baixar algo gigantesco para sua utilização), evolução constante, open source, possui comunidade grande e forte, popularidade alta na utilização pelas empresas, alta empregabilidade.
+
+`Spring Framework` é apenas um dentre os projetos que o Spring possui. É o projeto que serve de base para os demais projetos Spring. Dentre suas principais funcionalidades estão Spring MVC, Core Technologies (que engloba a implementação de injeção de dependências).
+
+`Spring Data` é outro projeto Spring que engloba vários outros projetos relacionados a acesso a dados, dentre estes está o `Spring Data JPA` ou Jakarta Persistence (especificação de persistência de dados para Java).
+
+`Spring Boot` ajuda a criar projetos que se altoconfiguram seguindo convenções com uma visão opinativa, opinião que seus desenvolvedores acreditam serem as melhores. Reduzindo código boilerplate, trechos de código repetidos em diversos lugares com pouca ou nenhuma alteração.
 
 ## Capítulo 2 - Spring e Injeção de Dependências
 
@@ -1135,7 +1144,7 @@ https://CLIENT/?code=ZQwg6B&state=abc
 (POST) http://localhost:8081/oauth/token?code=ZQwg6B&grant_type=authorization_code // Troca o código pelo access token, podendo ser retornado
 ```
 
-Link para [configuração de CORS no Authorization Server com CorsFilter](https://gist.github.com/thiagofa/764260dfd8ba21f30f2f79806d734563), na qual adiciona um filtro de servlet queretorna os cabeçalhos para as requisições `OPTIONS`.
+Link para [configuração de CORS no Authorization Server com CorsFilter](https://gist.github.com/thiagofa/764260dfd8ba21f30f2f79806d734563), na qual adiciona um filtro de servlet que retorna os cabeçalhos para as requisições `OPTIONS`.
 
 ##### Authorization Code com PKCE
 `Prove Key for Code Exchange`, é uma técnica para reduzir o risco de ataque de interceptação de código de autorização, gerada pelo fluxo Authorization Code.<br>
