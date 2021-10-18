@@ -5,6 +5,7 @@ import com.kamila.food.api.v1.assembler.PermissaoModelAssembler;
 import com.kamila.food.api.v1.model.PermissaoModel;
 import com.kamila.food.api.v1.openapi.controller.GrupoPermissaoControllerOpenApi;
 import com.kamila.food.core.security.CheckSecurity;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Grupo;
 import com.kamila.food.domain.service.CadastroGrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     @CheckSecurity.UsuariosGruposPermissoes.PodeConsultar
     @Override
     @GetMapping
@@ -35,13 +39,16 @@ public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi
         Grupo grupo = cadastroGrupo.buscarOuFalhar(idGrupo);
         CollectionModel<PermissaoModel> permissoesModel = permissaoModelAssembler.toCollectionModel(grupo.getPermissoes())
                 .removeLinks()
-                .add(foodLinks.linkToGrupoPermissoes(idGrupo))
-                .add(foodLinks.linkToGrupoPermissaoAssociacao(idGrupo, "associar"));
+                .add(foodLinks.linkToGrupoPermissoes(idGrupo));
 
-        permissoesModel.getContent().forEach(permissaoModel -> {
-            permissaoModel.add(foodLinks.linkToGrupoPermissaoDesassociacao(
-                    idGrupo, permissaoModel.getId(), "desassociar"));
-        });
+        if (foodSecurity.podeEditarUsuariosGruposPermissoes()) {
+            permissoesModel.add(foodLinks.linkToGrupoPermissaoAssociacao(idGrupo, "associar"));
+
+            permissoesModel.getContent().forEach(permissaoModel -> {
+                permissaoModel.add(foodLinks.linkToGrupoPermissaoDesassociacao(
+                        idGrupo, permissaoModel.getId(), "desassociar"));
+            });
+        }
 
         return permissoesModel;
     }

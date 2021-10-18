@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.RestauranteController;
 import com.kamila.food.api.v1.model.RestauranteBasicoModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Restaurante;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class RestauranteBasicoModelAssembler
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     public RestauranteBasicoModelAssembler() {
         super(RestauranteController.class, RestauranteBasicoModel.class);
     }
@@ -31,17 +35,27 @@ public class RestauranteBasicoModelAssembler
 
         modelMapper.map(restaurante, restauranteModel);
 
-        restauranteModel.add(foodLinks.linkToRestaurantes("restaurantes"));
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            restauranteModel.add(foodLinks.linkToRestaurantes("restaurantes"));
+        }
 
-        restauranteModel.getCozinha().add(
-                foodLinks.linkToCozinha(restaurante.getCozinha().getId()));
+        if (foodSecurity.podeConsultarCozinhas()) {
+            restauranteModel.getCozinha().add(
+                    foodLinks.linkToCozinha(restaurante.getCozinha().getId()));
+        }
 
         return restauranteModel;
     }
 
     @Override
     public CollectionModel<RestauranteBasicoModel> toCollectionModel(Iterable<? extends Restaurante> entities) {
-        return super.toCollectionModel(entities)
-                .add(foodLinks.linkToRestaurantes());
+        CollectionModel<RestauranteBasicoModel> collectionModel = super.toCollectionModel(entities);
+
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            collectionModel.add(foodLinks.linkToRestaurantes());
+        }
+
+        return collectionModel;
     }
+
 }

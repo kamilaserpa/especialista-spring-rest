@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.RestauranteProdutoController;
 import com.kamila.food.api.v1.model.ProdutoModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Produto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ProdutoModelAssembler
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     public ProdutoModelAssembler() {
         super(RestauranteProdutoController.class, ProdutoModel.class);
     }
@@ -30,10 +34,11 @@ public class ProdutoModelAssembler
 
         modelMapper.map(produto, produtoModel);
 
-        produtoModel.add(foodLinks.linkToProdutos(produto.getRestaurante().getId(), "produtos"));
-        produtoModel.add(foodLinks.linkToFotoProduto(produto.getRestaurante().getId(),
-                produto.getId(), "foto"));
-
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            produtoModel.add(foodLinks.linkToProdutos(produto.getRestaurante().getId(), "produtos"));
+            produtoModel.add(foodLinks.linkToFotoProduto(produto.getRestaurante().getId(),
+                    produto.getId(), "foto"));
+        }
         return produtoModel;
     }
 

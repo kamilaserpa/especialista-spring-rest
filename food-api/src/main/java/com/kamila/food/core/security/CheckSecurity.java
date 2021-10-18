@@ -19,7 +19,7 @@ public @interface CheckSecurity {
         public @interface PodeEditar {
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PreAuthorize("@foodSecurity.podeConsultarCozinhas()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
@@ -29,7 +29,7 @@ public @interface CheckSecurity {
     public @interface Restaurantes {
 
         // Usuário responsável não pode editar dados diretamente, tem de solicitar a um funcionário da KamilaFood
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') and hasAuthority('EDITAR_RESTAURANTES')")
+        @PreAuthorize("@foodSecurity.podeGerenciarCadastroRestaurantes()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeGerenciarCadastro {
@@ -38,16 +38,14 @@ public @interface CheckSecurity {
         /**
          * Dá permissão de abrir/fechar restaurante para usuários responsáveis
          */
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') " +
-                "and (hasAuthority('EDITAR_RESTAURANTES') " + // KamilaFood funcionário
-                "or @foodSecurity.gerenciaRestaurante(#idRestaurante))")
+        @PreAuthorize("@foodSecurity.podeGerenciarFuncionamentoRestaurantes(#restauranteId)")
         // RestauranteUsuarioResponsavel. @ dá acesso a um Bean do SPring
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeGerenciarFuncionamento {
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PreAuthorize("@foodSecurity.podeConsultarRestaurantes()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
@@ -82,10 +80,7 @@ public @interface CheckSecurity {
         /**
          * Pode pesquisar em todos os pedidos do projeto
          */
-        @PreAuthorize("hasAuthority('SCOPE_READ') and " +
-                "(hasAuthority('CONSULTAR_PEDIDOS') or " +
-                "@foodSecurity.usuarioAutenticadoIgual(#filtro.clienteId) or " +
-                "@foodSecurity.gerenciaRestaurante(#filtro.restauranteId))")
+        @PreAuthorize("@foodSecurity.podePesquisarPedidos(#filtro.clienteId, #filtro.restauranteId)")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodePesquisar {
@@ -104,7 +99,7 @@ public @interface CheckSecurity {
 
     public @interface FormaPagamento {
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PreAuthorize("@foodSecurity.podeConsultarFormasPagamento()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
@@ -120,7 +115,7 @@ public @interface CheckSecurity {
 
     public @interface Cidades {
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PreAuthorize("@foodSecurity.podeConsultarCidades()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
@@ -135,7 +130,7 @@ public @interface CheckSecurity {
 
     public @interface Estados {
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and isAuthenticated()")
+        @PreAuthorize("@foodSecurity.podeConsultarEstados()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
@@ -166,15 +161,13 @@ public @interface CheckSecurity {
         public @interface PodeAlterarUsuario {
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_WRITE') and " +
-                "hasAuthority('EDITAR_USUARIOS_GRUPOS_PERMISSOES')")
+        @PreAuthorize("@afoodSecurity.podeEditarUsuariosGruposPermissoes()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeEditar {
         }
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and " +
-                "hasAuthority('CONSULTAR_USUARIOS_GRUPOS_PERMISSOES')")
+        @PreAuthorize("@foodSecurity.podeConsultarUsuariosGruposPermissoes()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
@@ -183,13 +176,11 @@ public @interface CheckSecurity {
 
     public @interface Estatisticas {
 
-        @PreAuthorize("hasAuthority('SCOPE_READ') and " +
-                "hasAuthority('GERAR_RELATORIOS')")
+        @PreAuthorize("@foodSecurity.podeConsultarEstatisticas()")
         @Retention(RUNTIME)
         @Target(ElementType.METHOD)
         public @interface PodeConsultar {
         }
     }
-
 
 }

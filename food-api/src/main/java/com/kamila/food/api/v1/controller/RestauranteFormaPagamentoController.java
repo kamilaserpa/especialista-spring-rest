@@ -5,6 +5,7 @@ import com.kamila.food.api.v1.assembler.FormaPagamentoModelAssembler;
 import com.kamila.food.api.v1.model.FormaPagamentoModel;
 import com.kamila.food.api.v1.openapi.controller.RestauranteFormaPagamentoControllerOpenApi;
 import com.kamila.food.core.security.CheckSecurity;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping
@@ -35,15 +39,18 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
         Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(idRestaurante);
         CollectionModel<FormaPagamentoModel> formaPagamentoModels = formaPagamentoModelAssembler.toCollectionModel(restaurante.getFormasPagamento())
                 .removeLinks()
-                .add(foodLinks.linkToRestauranteFormasPagamento(idRestaurante))
-                .add(foodLinks.linkToRestauranteFormaPagamentoAssociacao(idRestaurante, "associar"));
+                .add(foodLinks.linkToRestauranteFormasPagamento(idRestaurante));
 
-        formaPagamentoModels.getContent().forEach(formaPagamentoModel -> {
-            formaPagamentoModel.add(foodLinks.linkToRestauranteFormaPagamentoDesassociacao(
-                    idRestaurante, formaPagamentoModel.getId(),
-                    "desassociar"
-            ));
-        });
+        if (foodSecurity.podeGerenciarFuncionamentoRestaurantes(idRestaurante)) {
+            formaPagamentoModels.add(foodLinks.linkToRestauranteFormaPagamentoAssociacao(idRestaurante, "associar"));
+
+            formaPagamentoModels.getContent().forEach(formaPagamentoModel -> {
+                formaPagamentoModel.add(foodLinks.linkToRestauranteFormaPagamentoDesassociacao(
+                        idRestaurante, formaPagamentoModel.getId(),
+                        "desassociar"
+                ));
+            });
+        }
 
         return formaPagamentoModels;
     }

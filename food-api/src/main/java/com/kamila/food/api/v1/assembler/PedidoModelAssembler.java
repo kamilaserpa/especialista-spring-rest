@@ -38,7 +38,11 @@ public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pe
         PedidoModel pedidoModel = createModelWithId(pedido.getCodigo(), pedido);
         modelMapper.map(pedido, pedidoModel);
 
-        pedidoModel.add(foodLinks.linkToPedidos("pedidos"));
+        // Não utilizado foodSecurity.podePesquisarPedidos(clienteId, restauranteId) aqui,
+        // porque na geração do link, não temos o id do cliente e do restaurante
+        if (foodSecurity.podePesquisarPedidos()) {
+            pedidoModel.add(foodLinks.linkToPedidos("pedidos"));
+        }
 
         // Verifica permissão do usuário de gerenciar pedidos. Para não enviar links que o usuário não pode acessar
         if (foodSecurity.podeGerenciarPedidos(pedido.getCodigo())) {
@@ -54,22 +58,33 @@ public class PedidoModelAssembler extends RepresentationModelAssemblerSupport<Pe
             }
         }
 
-        pedidoModel.getRestaurante().add(
-                foodLinks.linkToRestaurante(pedido.getRestaurante().getId()));
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            pedidoModel.getRestaurante().add(
+                    foodLinks.linkToRestaurante(pedido.getRestaurante().getId()));
+        }
 
-        pedidoModel.getCliente().add(
-                foodLinks.linkToUsuario(pedido.getCliente().getId()));
+        if (foodSecurity.podeConsultarUsuariosGruposPermissoes()) {
+            pedidoModel.getCliente().add(
+                    foodLinks.linkToUsuario(pedido.getCliente().getId()));
+        }
 
-        pedidoModel.getFormaPagamento().add(
-                foodLinks.linkToFormaPagamento(pedido.getFormaPagamento().getId()));
+        if (foodSecurity.podeConsultarFormasPagamento()) {
+            pedidoModel.getFormaPagamento().add(
+                    foodLinks.linkToFormaPagamento(pedido.getFormaPagamento().getId()));
+        }
 
-        pedidoModel.getEnderecoEntrega().getCidade().add(
-                foodLinks.linkToCidade(pedido.getEnderecoEntrega().getCidade().getId()));
+        if (foodSecurity.podeConsultarCidades()) {
+            pedidoModel.getEnderecoEntrega().getCidade().add(
+                    foodLinks.linkToCidade(pedido.getEnderecoEntrega().getCidade().getId()));
+        }
 
-        pedidoModel.getItens().forEach(item -> {
-            item.add(foodLinks.linkToProduto(
-                    pedidoModel.getRestaurante().getId(), item.getProdutoId(), "produto"));
-        });
+        // Quem pode consultar restaurantes, também pode consultar os produtos dos restaurantes
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            pedidoModel.getItens().forEach(item -> {
+                item.add(foodLinks.linkToProduto(
+                        pedidoModel.getRestaurante().getId(), item.getProdutoId(), "produto"));
+            });
+        }
 
         return pedidoModel;
     }

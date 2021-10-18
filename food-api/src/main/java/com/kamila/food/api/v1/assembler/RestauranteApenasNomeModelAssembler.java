@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.RestauranteController;
 import com.kamila.food.api.v1.model.RestauranteApenasNomeModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Restaurante;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class RestauranteApenasNomeModelAssembler
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     public RestauranteApenasNomeModelAssembler() {
         super(RestauranteController.class, RestauranteApenasNomeModel.class);
     }
@@ -31,14 +35,20 @@ public class RestauranteApenasNomeModelAssembler
 
         modelMapper.map(restaurante, restauranteModel);
 
-        restauranteModel.add(foodLinks.linkToRestaurantes("restaurantes"));
-
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            restauranteModel.add(foodLinks.linkToRestaurantes("restaurantes"));
+        }
         return restauranteModel;
     }
 
     @Override
     public CollectionModel<RestauranteApenasNomeModel> toCollectionModel(Iterable<? extends Restaurante> entities) {
-        return super.toCollectionModel(entities)
-                .add(foodLinks.linkToRestaurantes());
+        CollectionModel<RestauranteApenasNomeModel> collectionModel = super.toCollectionModel(entities);
+
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            collectionModel.add(foodLinks.linkToRestaurantes());
+        }
+        return collectionModel;
     }
+
 }

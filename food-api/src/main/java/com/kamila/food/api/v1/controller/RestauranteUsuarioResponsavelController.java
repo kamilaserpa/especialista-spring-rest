@@ -5,6 +5,7 @@ import com.kamila.food.api.v1.assembler.UsuarioModelAssembler;
 import com.kamila.food.api.v1.model.UsuarioModel;
 import com.kamila.food.api.v1.openapi.controller.RestauranteUsuarioResponsavelControllerOpenApi;
 import com.kamila.food.core.security.CheckSecurity;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.service.CadastroRestauranteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class RestauranteUsuarioResponsavelController implements
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     @CheckSecurity.Restaurantes.PodeConsultar
     @Override
     @GetMapping
@@ -37,14 +41,18 @@ public class RestauranteUsuarioResponsavelController implements
 
         CollectionModel<UsuarioModel> usuarioModels = usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis())
                 .removeLinks()
-                .add(foodLinks.linkToRestauranteResponsaveis(idRestaurante))
-                .add(foodLinks.linkToRestauranteUsuarioResponsavelAssociacao(idRestaurante, "associar"));
+                .add(foodLinks.linkToRestauranteResponsaveis(idRestaurante));
 
-        usuarioModels.getContent().forEach(usuarioModel -> {
-            usuarioModel.add(foodLinks.linkToRestauranteUsuarioResponsavelDesassociacao(
-                    idRestaurante, usuarioModel.getId(),
-                    "desassociar"));
-        });
+        if (foodSecurity.podeGerenciarCadastroRestaurantes()) {
+            usuarioModels.add(foodLinks.linkToRestauranteUsuarioResponsavelAssociacao(idRestaurante, "associar"));
+
+            usuarioModels.getContent().forEach(usuarioModel -> {
+                usuarioModel.add(foodLinks.linkToRestauranteUsuarioResponsavelDesassociacao(
+                        idRestaurante, usuarioModel.getId(),
+                        "desassociar"));
+            });
+        }
+
         return usuarioModels;
     }
 

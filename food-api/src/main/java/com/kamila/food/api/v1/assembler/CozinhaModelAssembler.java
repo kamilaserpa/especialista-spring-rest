@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.CozinhaController;
 import com.kamila.food.api.v1.model.CozinhaModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Cozinha;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class CozinhaModelAssembler extends RepresentationModelAssemblerSupport<C
 	@Autowired
 	private FoodLinks foodLinks;
 
+	@Autowired
+	private FoodSecurity foodSecurity;
+
 	public CozinhaModelAssembler() {
 		super(CozinhaController.class, CozinhaModel.class);
 	}
@@ -27,7 +31,9 @@ public class CozinhaModelAssembler extends RepresentationModelAssemblerSupport<C
 		CozinhaModel cozinhaModel = createModelWithId(cozinha.getId(), cozinha);
 		modelMapper.map(cozinha, cozinhaModel);
 
-		cozinhaModel.add(foodLinks.linkToCozinhas("cozinhas"));
+		if (foodSecurity.podeConsultarCozinhas()) {
+			cozinhaModel.add(foodLinks.linkToCozinhas("cozinhas"));
+		}
 
 		return cozinhaModel;
 	}

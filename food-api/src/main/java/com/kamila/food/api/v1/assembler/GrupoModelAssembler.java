@@ -2,6 +2,7 @@ package com.kamila.food.api.v1.assembler;
 
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.GrupoController;
+import com.kamila.food.core.security.FoodSecurity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -20,6 +21,9 @@ public class GrupoModelAssembler extends RepresentationModelAssemblerSupport<Gru
 	@Autowired
 	private FoodLinks foodLinks;
 
+	@Autowired
+	private FoodSecurity foodSecurity;
+
 	public GrupoModelAssembler() {
 		super(GrupoController.class, GrupoModel.class);
 	}
@@ -28,16 +32,22 @@ public class GrupoModelAssembler extends RepresentationModelAssemblerSupport<Gru
 		GrupoModel grupoModel = createModelWithId(grupo.getId(), grupo);
 		modelMapper.map(grupo, grupoModel);
 
-		grupoModel.add(foodLinks.linkToGrupos("grupos"));
-		grupoModel.add(foodLinks.linkToGrupoPermissoes(grupo.getId(), "permissoes"));
-
+		if (foodSecurity.podeConsultarUsuariosGruposPermissoes()) {
+			grupoModel.add(foodLinks.linkToGrupos("grupos"));
+			grupoModel.add(foodLinks.linkToGrupoPermissoes(grupo.getId(), "permissoes"));
+		}
 		return grupoModel;
 	}
 
 	@Override
 	public CollectionModel<GrupoModel> toCollectionModel(Iterable<? extends Grupo> entities) {
-		return super.toCollectionModel(entities)
-				.add(foodLinks.linkToGrupos());
+		CollectionModel<GrupoModel> collectionModel = super.toCollectionModel(entities);
+
+		if (foodSecurity.podeConsultarUsuariosGruposPermissoes()) {
+			collectionModel.add(foodLinks.linkToGrupos());
+		}
+
+		return collectionModel;
 	}
 
 }

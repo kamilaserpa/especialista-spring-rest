@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.RestauranteProdutoFotoController;
 import com.kamila.food.api.v1.model.FotoProdutoModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.FotoProduto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class FotoProdutoModelAssembler extends RepresentationModelAssemblerSuppo
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     public FotoProdutoModelAssembler() {
         super(RestauranteProdutoFotoController.class, FotoProdutoModel.class);
     }
@@ -25,11 +29,14 @@ public class FotoProdutoModelAssembler extends RepresentationModelAssemblerSuppo
     public FotoProdutoModel toModel(FotoProduto fotoProduto) {
         FotoProdutoModel fotoProdutoModel = modelMapper.map(fotoProduto, FotoProdutoModel.class);
 
-        fotoProdutoModel.add(foodLinks.linkToFotoProduto(fotoProduto.getRestauranteId(),
-                fotoProduto.getProduto().getId()));
+        // Quem pode consultar restaurantes, também pode consultar os produtos e fotos
+        if (foodSecurity.podeConsultarRestaurantes()) {
+            fotoProdutoModel.add(foodLinks.linkToFotoProduto(fotoProduto.getRestauranteId(),
+                    fotoProduto.getProduto().getId()));
 
-        fotoProdutoModel.add(foodLinks.linkToProduto(fotoProduto.getRestauranteId(),
-                fotoProduto.getProduto().getId(), "produto"));
+            fotoProdutoModel.add(foodLinks.linkToProduto(fotoProduto.getRestauranteId(),
+                    fotoProduto.getProduto().getId(), "produto"));
+        }
 
         return fotoProdutoModel;
     }

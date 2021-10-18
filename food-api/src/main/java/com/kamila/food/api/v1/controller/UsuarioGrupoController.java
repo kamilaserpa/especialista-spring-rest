@@ -4,6 +4,7 @@ import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.assembler.GrupoModelAssembler;
 import com.kamila.food.api.v1.model.GrupoModel;
 import com.kamila.food.api.v1.openapi.controller.UsuarioGrupoControllerOpenApi;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Usuario;
 import com.kamila.food.domain.service.CadastroUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +28,25 @@ public class UsuarioGrupoController implements UsuarioGrupoControllerOpenApi {
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     @Override
     @GetMapping
     public CollectionModel<GrupoModel> listar(@PathVariable Long idUsuario) {
         Usuario usuario = cadastroUsuarioService.buscarOuFalhar(idUsuario);
 
         CollectionModel<GrupoModel> grupoModels = grupoModelAssembler.toCollectionModel(usuario.getGrupos())
-                .removeLinks()
-                .add(foodLinks.linkToUsuarioGrupoAssociacao(idUsuario, "associar"));
+                .removeLinks();
 
-        grupoModels.getContent().forEach(grupoModel -> {
-            grupoModel.add(foodLinks.linkToUsuarioGrupoDesassociacao(idUsuario,
-                    grupoModel.getId(), "desassociar"));
-        });
+        if (foodSecurity.podeEditarUsuariosGruposPermissoes()) {
+            grupoModels.add(foodLinks.linkToUsuarioGrupoAssociacao(idUsuario, "associar"));
+
+            grupoModels.getContent().forEach(grupoModel -> {
+                grupoModel.add(foodLinks.linkToUsuarioGrupoDesassociacao(idUsuario,
+                        grupoModel.getId(), "desassociar"));
+            });
+        }
 
         return grupoModels;
     }

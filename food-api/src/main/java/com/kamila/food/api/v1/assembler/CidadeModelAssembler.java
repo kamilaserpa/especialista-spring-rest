@@ -3,6 +3,7 @@ package com.kamila.food.api.v1.assembler;
 import com.kamila.food.api.v1.FoodLinks;
 import com.kamila.food.api.v1.controller.CidadeController;
 import com.kamila.food.api.v1.model.CidadeModel;
+import com.kamila.food.core.security.FoodSecurity;
 import com.kamila.food.domain.model.Cidade;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class CidadeModelAssembler extends
     @Autowired
     private FoodLinks foodLinks;
 
+    @Autowired
+    private FoodSecurity foodSecurity;
+
     public CidadeModelAssembler() {
         // Controlador que gerencia a classe e a classe de representação do modelo
         super(CidadeController.class, CidadeModel.class);
@@ -31,17 +35,26 @@ public class CidadeModelAssembler extends
         CidadeModel cidadeModel = createModelWithId(cidade.getId(), cidade);
         modelMapper.map(cidade, cidadeModel);
 
-        cidadeModel.add(foodLinks.linkToCidades("cidades"));
+        if (foodSecurity.podeConsultarCidades()) {
+            cidadeModel.add(foodLinks.linkToCidades("cidades"));
+        }
 
-        cidadeModel.getEstado().add(foodLinks.linkToEstado(cidadeModel.getEstado().getId()));
+        if (foodSecurity.podeConsultarEstados()) {
+            cidadeModel.getEstado().add(foodLinks.linkToEstado(cidadeModel.getEstado().getId()));
+        }
 
         return cidadeModel;
     }
 
     @Override
     public CollectionModel<CidadeModel> toCollectionModel(Iterable<? extends Cidade> entities) {
-        return super.toCollectionModel(entities)
-                .add(foodLinks.linkToCidades());
+        CollectionModel<CidadeModel> collectionModel = super.toCollectionModel(entities);
+
+        if (foodSecurity.podeConsultarCidades()) {
+            collectionModel.add(foodLinks.linkToCidades());
+        }
+
+        return collectionModel;
     }
 
 }
