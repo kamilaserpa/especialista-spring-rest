@@ -22,17 +22,12 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.builders.*;
 import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.ModelRef;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.ResponseMessage;
-import springfox.documentation.service.Tag;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -108,6 +103,10 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                         typeResolver.resolve(CollectionModel.class, UsuarioModel.class),
                         UsuarioModelOpenApi.class))
 
+                // Documentação sobre autenticação e segurança
+                .securitySchemes(Arrays.asList(securityScheme()))
+                .securityContexts(Arrays.asList(securityContext()))
+
                 .apiInfo(apiInfoV1())
                 .ignoredParameterTypes(
                         ServletWebRequest.class, // Parâmetro injetado pelo Spring, não inserido pelo usuário, desnecessário na doc
@@ -155,6 +154,40 @@ public class SpringFoxConfig implements WebMvcConfigurer {
                 .apiInfo(apiInfoV2())
                 .tags(new Tag("Cidades", "Gerencia as cidades"),
                         new Tag("Cozinhas", "Gerencia as Cozinhas"));
+    }
+
+    // Descreve técnicas de segurança utilizadas para proteger API. OAuth é um Security Scheme.
+    public SecurityScheme securityScheme() {
+        return new OAuthBuilder()
+                .name("KamilaFood")
+                .grantTypes(grantTypes())
+                .scopes(scopes())
+                .build();
+    }
+
+    // Descreve os caminhos da API que estão protegidos
+    private SecurityContext securityContext() {
+        var securityReference = SecurityReference.builder()
+                .reference("KamilaFood") // Referencia o Scheme de segurança utilizado (mesmo nome do securityScheme acima)
+                .scopes(scopes().toArray(new AuthorizationScope[0]))
+                .build();
+
+        return SecurityContext.builder()
+                .securityReferences(Arrays.asList(securityReference))
+                .forPaths(PathSelectors.any()) // Para quais paths o SecurityScheme será utilizado (todos)
+                .build();
+    }
+
+    // GrantTypes disponibilizados para utilização pela documentação
+    private List<GrantType> grantTypes() {
+        return Arrays.asList(new ResourceOwnerPasswordCredentialsGrant("/oauth/token"));
+    }
+
+    // Lista de Scopes disponíveis para utilização pela página de documentação
+    private List<AuthorizationScope> scopes() {
+        return Arrays.asList(
+                new AuthorizationScope("READ", "Acesso de leitura"),
+                new AuthorizationScope("WRITE", "Acesso de escrita"));
     }
 
     // Lista de Códigos de status de erro Globais que serão exibidos na Documentação (Problem.class)

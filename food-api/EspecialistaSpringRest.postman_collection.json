@@ -3455,6 +3455,16 @@
 				{
 					"name": "Usuario - Listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxLCJ1c2VyX25hbWUiOiJqb2FvLmdlckBrZm9vZC5jb20iLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiZXhwIjoxNjM0NjIyNjAxLCJhdXRob3JpdGllcyI6WyJHRVJBUl9SRUxBVE9SSU9TIiwiRURJVEFSX0NPWklOSEFTIiwiQ09OU1VMVEFSX1VTVUFSSU9TX0dSVVBPU19QRVJNSVNTT0VTIiwiRURJVEFSX0NJREFERVMiLCJFRElUQVJfRk9STUFTX1BBR0FNRU5UTyIsIkVESVRBUl9SRVNUQVVSQU5URVMiLCJHRVJFTkNJQVJfUEVESURPUyIsIkVESVRBUl9VU1VBUklPU19HUlVQT1NfUEVSTUlTU09FUyIsIkNPTlNVTFRBUl9QRURJRE9TIiwiRURJVEFSX0VTVEFET1MiXSwianRpIjoiYmI2YWNmYTktNDZhMC00NWM3LTk5MWEtYzE0NzBkZDI5YTQzIiwibm9tZV9jb21wbGV0byI6Ikpvw6NvIGRhIFNpbHZhIiwiY2xpZW50X2lkIjoiZm9vZGFuYWx5dGljcyJ9.KmRprNVXMVKpMysNaBnfvS-3LAlc1aiWksL5v6UvQG1kfVel1Xl8GnAcdwkeTU42Kx7x_j7LVvckZY-ZSXtb5Ngd_ewOOfg79_uINi5mX5-SnZ_eRWI-Ki0afBFgQICMndw1sK_zEyC2CQdcftaI4ADisSL6-qTMdf5WQpSgIURRI5LPXMb3CGXxKzcaEO2r7szFdDNjiZwzSoesCoOC1wYrsXE-2kTiZBfvAohcOrqX3t6lVPHusArneNSa8URLHpH80VAxvQKa-SdRGvJlut0mZ2rTAsMFatLI2yFAgONnAVKzyd5BshOfB18Hocpd8ltLX3InOjRH_G7gc7s7wA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -3782,12 +3792,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/token",
+							"raw": "http://localhost:8080/oauth/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"token"
@@ -3837,12 +3847,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/token",
+							"raw": "http://localhost:8080/oauth/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"token"
@@ -4011,12 +4021,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/token",
+							"raw": "http://localhost:8080/oauth/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"token"
@@ -4044,7 +4054,7 @@
 							"urlencoded": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzM0NTc5NjYsInVzZXJfbmFtZSI6ImthbWlsYSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwianRpIjoiZWI0MGVmN2EtNjFmZi00MDM2LTlkOGQtNzQ3NzNjNTRkMDJjIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIiLCJzY29wZSI6WyJ3cml0ZSIsInJlYWQiXX0.QVGmBzEnZX6g6DidI3RKCyXGb3oPoS39MXYl3N6dGK7FwLsk5dyWnt2FDhnngsb9zotEZN77c-bPIiagMP6TdWIzCWNFcA-HpPkyyy_uJ8-EtPusjU59CXrBVhx15PhhW2wXiS27czbXwHPlLqU4F3afkBoBXgu-w4kcHOn_Ah1iNf29oeo4y1E_BUwK736lJeUurQXbCrY5VSZlR4THTvECDo7aR1s71GcAtWvyJZUqAdLbgrMM8nJ6Uywnd_hZKjtuk5KiE1CBToIPtmOmoH9aKzYUekFcUBo9S20Lm9ucnK3WJCm1v1jfvH6kDxh0jXSxPUYW44tH0EwPNDDM8g",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjo2LCJ1c2VyX25hbWUiOiJpc3Qua2FtaWxhLnNlcnBhK3Rlc3RlMUBnbWFpbC5jb20iLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiZXhwIjoxNjM0NTk3MjI5LCJqdGkiOiI0ZjFkMjA1Yy03YWZmLTQwOGYtYmFjNy05MTE3Y2QyYmNkMTYiLCJub21lX2NvbXBsZXRvIjoiRMOpYm9yYSBNZW5kb27Dp2EiLCJjbGllbnRfaWQiOiJmb29kLXdlYiJ9.OsvpkAxxaZxwso9DtmSkvoMegzaknKrsJxIKtiLpZHYbBuqRbkbQZqZwvKySWyazmSfAh7nzB1TsM_k82fnjxBcIZIqBKw-4MZcTUDLbQPUaL781OI0s8OyPfogvfuMg-wvoDGTPHp3reJcv1vXJ_7zFmeTiEAtAGU_L9WTqcRrylewx8Ukl2x5o4T4TuJorA8mU2Z0d38l4gjajBTLN_pe9b-2gBBSottHXCwKnpfTIf_vFBYt97A5YySQ3RUHWP6mMD9NMNIFwpUjwvnB4xcTg7Py-rg6r4DzSI7zduN96WknJZTtY0Kw3n5hEjwwdFT_8sFSOAZ4-M3Y8Jp5mAg",
 									"type": "text"
 								},
 								{
@@ -4062,12 +4072,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/check_token",
+							"raw": "http://localhost:8080/oauth/check_token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"check_token"
@@ -4111,12 +4121,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/oauth/authorize?response_type=token&client_id=webadmin&state=abc&redirect_uri=http://aplicacao-cliente",
+							"raw": "http://localhost:8080/oauth/authorize?response_type=token&client_id=webadmin&state=abc&redirect_uri=http://aplicacao-cliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"authorize"
@@ -4194,12 +4204,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://localhost:3000",
+							"raw": "http://localhost:8080/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://localhost:3000",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"authorize"
@@ -4239,7 +4249,7 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "8xxFCj",
+									"value": "LxepJb",
 									"type": "text"
 								},
 								{
@@ -4255,18 +4265,17 @@
 								{
 									"key": "client_id",
 									"value": "foodanalytics",
-									"type": "text",
-									"disabled": true
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/token",
+							"raw": "http://localhost:8080/oauth/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8081",
+							"port": "8080",
 							"path": [
 								"oauth",
 								"token"
@@ -4507,6 +4516,16 @@
 		{
 			"name": "Root Entry Point",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxLCJ1c2VyX25hbWUiOiJqb2FvLmdlckBrZm9vZC5jb20iLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiZXhwIjoxNjM0NTk3MTc1LCJhdXRob3JpdGllcyI6WyJHRVJBUl9SRUxBVE9SSU9TIiwiRURJVEFSX0NPWklOSEFTIiwiQ09OU1VMVEFSX1VTVUFSSU9TX0dSVVBPU19QRVJNSVNTT0VTIiwiRURJVEFSX0NJREFERVMiLCJFRElUQVJfRk9STUFTX1BBR0FNRU5UTyIsIkVESVRBUl9SRVNUQVVSQU5URVMiLCJHRVJFTkNJQVJfUEVESURPUyIsIkVESVRBUl9VU1VBUklPU19HUlVQT1NfUEVSTUlTU09FUyIsIkNPTlNVTFRBUl9QRURJRE9TIiwiRURJVEFSX0VTVEFET1MiXSwianRpIjoiNjQwOGEzZGMtZjA5OC00MmUzLTk1ZDctNDNlYjFhMmE2OWMwIiwibm9tZV9jb21wbGV0byI6Ikpvw6NvIGRhIFNpbHZhIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIifQ.BVStYhp0BYXjm_rpoy5Q-aXEg_HENYlzkbPMjIjVWE8PWicdi_1o2n9tPIy-M8e9u2LQMCyOPOBOR3HtsM2DJpdIVQcZxKd9ipBrPuFh9Bh5r0yyVeyFGx0rHrOaSiX_6bhyCkk_qIGFoX4j4lGmuLuH6PLyESp4qH29rlGA-2HRynoEHyWQzPIMVPd7sWZARMV0rkIm48c4VWQsIqcCMsQfDJRtg6MxmZwcfNfiHiG2YgeXY-pXVTYRkQplG50omckgB2gdCsAGsSU4p1dGebCIUmcS89cSTQZGSPCX70274VlJ4afdWM3jD_mAHKMWFhrSYoRNu18yXJRp6GchPA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {

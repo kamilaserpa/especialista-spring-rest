@@ -1302,6 +1302,16 @@ Para autenticação dos usuários em banco de dados é necessário enviar o pass
   
 Observação: No fluxo Client Credentials o cliente se autentica, porém o usuário final não, assim o token jwt não possui usuario_id, informação importante para verificações de segurança.
 
+### Inserindo suporte na Documentação para OAuth2
+Na classe de configuração da documentação [SpringFoxConfig](food-api/src/main/java/com/kamila/food/core/springfox/SpringFoxConfig.java) foram adicionadas as configurações no docket:
+
+```java
+ .securitySchemes(Arrays.asList(securityScheme()))
+ .securityContexts(Arrays.asList(securityContext()))
+```
+
+Para autenticação na documentação veja imagem do [formulário de autenticação](/food-api/images/security-formulario-autorizacao-documentacao-swagger.png).
+
 ---
 
 #### Eclipse
