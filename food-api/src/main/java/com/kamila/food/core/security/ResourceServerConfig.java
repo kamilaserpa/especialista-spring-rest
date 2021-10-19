@@ -29,6 +29,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
+                .loginPage("/login") // path de login customizável
 
                 .and()
                 .authorizeRequests()

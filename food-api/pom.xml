@@ -207,11 +207,11 @@
 			<artifactId>spring-security-jwt</artifactId>
 			<version>${spring-security-jwt.version}</version>
 		</dependency>
+		<!-- fim security -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 	</dependencies>

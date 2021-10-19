@@ -1312,6 +1312,9 @@ Na classe de configuração da documentação [SpringFoxConfig](food-api/src/mai
 
 Para autenticação na documentação veja imagem do [formulário de autenticação](/food-api/images/security-formulario-autorizacao-documentacao-swagger.png).
 
+### Customizando página de login
+Adicionar dependência Thymeleaf, esta é uma template engine para Java, biblioteca que auxilia na criação de templates de páginas web dinâmicas.
+
 ---
 
 #### Eclipse
