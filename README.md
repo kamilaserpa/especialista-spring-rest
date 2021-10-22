@@ -1315,6 +1315,9 @@ Para autenticação na documentação veja imagem do [formulário de autenticaç
 ### Customizando página de login
 Adicionar dependência Thymeleaf, esta é uma template engine para Java, biblioteca que auxilia na criação de templates de páginas web dinâmicas.
 
+### Customizando página OAuth2 Approval
+Sobrescrever implementação em `org.springframework.security.oauth2.provider.endpoint.WhitelabelApprovalEndpoint` do endpoint `@GetMapping("/oauth/confirm_access")`.
+
 ---
 
 #### Eclipse

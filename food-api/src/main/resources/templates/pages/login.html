@@ -59,6 +59,9 @@
 
 <body class="text-center">
     <form class="form-signin" th:action="@{/login}" method="post">
+
+        <img class="mb-4" src="https://cdn-icons-png.flaticon.com/512/776/776443.png" alt="Logotipo" width="72" height="72">
+
         <h1 class="h3 mb-3 font-weight-normal">Acesso à Food API</h1>
 
         <p class="alert alert-danger" th:if="${#bools.isTrue(param.error)}">
