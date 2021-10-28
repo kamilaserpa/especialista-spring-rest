@@ -1322,9 +1322,19 @@ Sobrescrever implementação em `org.springframework.security.oauth2.provider.en
 
 ### JWKS
 JWKS é um conjunto de chaves contendo as chaves públicas usadas para verificar o JWT emitido pelo AS, assinado usando o algoritmo SHA256. Especificado na RFC7517. 
-Utilizado para que o arquivo `.pem` (da chave pública) não esteja presente no projeto, evitando risco de ser acessado por n desenvolvedores ou acessível por repositório. Outra possibilidade é a realizar a troca de utilização de par de chaves, um para cada ambiente por exemplo.<br>
-Endpoint chamado para verificar token JWT, expõe a chave pública, inicialmente extraindo do arquivo _food.jks_. Deve possuir a nomenclatura path padrão:
+
+##### .pem
+Utilizado para que o arquivo `.pem` (da chave pública) não esteja presente no projeto, evitando risco de ser acessado por n desenvolvedores ou acessível por repositório. Outra possibilidade é  realizar a troca de utilização de par de chaves, um para cada ambiente por exemplo, configurando a propriedade `spring.security.oauth2.resourceserver.jwt.jwk-set-uri` no arquivo _application.properties_.<br>
+Endpoint chamado para verificar token JWT, expõe a chave pública, inicialmente extraindo do arquivo _food.jks_ na função `keyPair()`. Posteriormente extraido do arquivo em bytes criado a partir de codigo base64. Deve possuir a nomenclatura path padrão:
 `http://localhost:8080/.well-known/jwks.json`
+
+##### .jks
+Comando no local da pasta "resource/keys" é possível obter o arquivo food.jks codificado por Base64:
+ > cat food.jks | base64 // unit
+ > type food.jks | openssl base64` // windows
+
+Outra meneira é acessar o site [https://www.base64encode.org/](https://www.base64encode.org/), carregar o arquivo e encodar.<br>
+Desse modo a keystore fica armazenada dentro do arquivo em bytes resultante da leitura do código base64 gerado. O código fica em `application.properties` é decodificado para geração do arquivo através da classe `Base64ProtocolResolver`.
 
 ---
 
