@@ -1321,7 +1321,7 @@ Adicionar dependência Thymeleaf, esta é uma template engine para Java, bibliot
 Sobrescrever implementação em `org.springframework.security.oauth2.provider.endpoint.WhitelabelApprovalEndpoint` do endpoint `@GetMapping("/oauth/confirm_access")`.
 
 ### JWKS
-JWKS é um conjunto de chaves contendo as chaves públicas usadas para verificar o JWT emitido pelo AS, assinado usando o algoritmo SHA256. Especificado na RFC7517. 
+JWKS é um conjunto de chaves contendo as chaves públicas usadas para verificar o JWT emitido pelo AS, assinado usando o algoritmo SHA256. Especificado na RFC7517.  Possibilita a remoção dos arquivos de chaves públicas e privadas do código.
 
 ##### .pem
 Utilizado para que o arquivo `.pem` (da chave pública) não esteja presente no projeto, evitando risco de ser acessado por n desenvolvedores ou acessível por repositório. Outra possibilidade é  realizar a troca de utilização de par de chaves, um para cada ambiente por exemplo, configurando a propriedade `spring.security.oauth2.resourceserver.jwt.jwk-set-uri` no arquivo _application.properties_.<br>
