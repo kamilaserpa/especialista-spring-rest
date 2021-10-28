@@ -1,5 +1,9 @@
 package com.kamila.food.core.security.authorizationserver;
 
+import com.nimbusds.jose.JWSAlgorithm;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.KeyUse;
+import com.nimbusds.jose.jwk.RSAKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +24,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
+import java.security.KeyPair;
+import java.security.interfaces.RSAPublicKey;
 import java.util.Arrays;
 
 @Configuration
@@ -87,6 +93,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return approvalStore;
     }
 
+    @Bean
+    public JWKSet jwkSet() {
+        RSAKey.Builder builder = new RSAKey.Builder((RSAPublicKey) keyPair().getPublic())
+                .keyUse(KeyUse.SIGNATURE) // chave de assinatura
+                .algorithm(JWSAlgorithm.RS256)
+                .keyID("food-key-id"); // identificação do JWK com um ID.
+
+        return new JWKSet(builder.build()); // JWKS contendo 1 JWK
+    }
 
     /*
      * Converte as informações de um usuário logado para JWT e vice-versa.
@@ -100,16 +115,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         // Algoritmo RSA SHA-256, chave Assimétrica
 
+        jwtAccessTokenConverter.setKeyPair(keyPair());
+
+        return jwtAccessTokenConverter;
+    }
+
+    private KeyPair keyPair() {
         var keyStorepass = jwtKeyStoreProperties.getPassword(); // Senha para abrir arquivo jks
         var keyPairAlias = jwtKeyStoreProperties.getKeypairAlias(); // Apelido de identificação do par de chaves, pois dentro do arquivo pode haver mais de um par
 
         var keyStoreKeyFactory = new KeyStoreKeyFactory(
-                jwtKeyStoreProperties.getJksLocation(), keyStorepass.toCharArray());
-        var keyPair = keyStoreKeyFactory.getKeyPair(keyPairAlias);
+                jwtKeyStoreProperties.getJksLocation(), // classpath: local do par de chaves
+                keyStorepass.toCharArray());
 
-        jwtAccessTokenConverter.setKeyPair(keyPair);
-
-        return jwtAccessTokenConverter;
+       return keyStoreKeyFactory.getKeyPair(keyPairAlias);
     }
 
     private TokenGranter tokenGranter(AuthorizationServerEndpointsConfigurer endpoints) {

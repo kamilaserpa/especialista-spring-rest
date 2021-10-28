@@ -218,6 +218,8 @@ Para melhorar a performance e evitar consultas desnecessárias, é possível uti
 	List<Restaurante> findAll();
 ```
 
+<b>Aula 6.14</b> - No cenário há _many_ Restaurantes para uma Cozinha. Ao realizar a busca de uma lista de restaurantes com a implemetação padrão do método `findAll()` pelo Spring Data JPA, cada restaurante gera uma busca pela Cozinha associada a ele. Um select é disparado para a tabela restaurantes e, havendo `n` restaurantes, dispara _n_ selects para a tabela cozinhas. Ocorrendo várias consultas `SELECTS` encadeadas.<br>
+Nesse caso a consulta `SELECT * from Restaurante r join fetch r.cozinha` realiza apenas uma consulta _SELECT_, buscando as cozinhas associadas através de `inner join`. Atenção para possíveis registros duplicados devido aos relacionamentos.
 
 #### Lazy Loading
 Carregamento preguiçoso. Todas as associações terminados em _"ToMany"_ utilizam a estratégia `Lazy Loading`. Não realiza consultas de entidade associadas sem que algum método dessa entidade seja explicitamente chamado.
@@ -1317,6 +1319,12 @@ Adicionar dependência Thymeleaf, esta é uma template engine para Java, bibliot
 
 ### Customizando página OAuth2 Approval
 Sobrescrever implementação em `org.springframework.security.oauth2.provider.endpoint.WhitelabelApprovalEndpoint` do endpoint `@GetMapping("/oauth/confirm_access")`.
+
+### JWKS
+JWKS é um conjunto de chaves contendo as chaves públicas usadas para verificar o JWT emitido pelo AS, assinado usando o algoritmo SHA256. Especificado na RFC7517. 
+Utilizado para que o arquivo `.pem` (da chave pública) não esteja presente no projeto, evitando risco de ser acessado por n desenvolvedores ou acessível por repositório. Outra possibilidade é a realizar a troca de utilização de par de chaves, um para cada ambiente por exemplo.<br>
+Endpoint chamado para verificar token JWT, expõe a chave pública, inicialmente extraindo do arquivo _food.jks_. Deve possuir a nomenclatura path padrão:
+`http://localhost:8080/.well-known/jwks.json`
 
 ---
 

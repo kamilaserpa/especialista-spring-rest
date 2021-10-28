@@ -4152,6 +4152,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get public key - endpoint livre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/.well-known/jwks.json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								".well-known",
+								"jwks.json"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
