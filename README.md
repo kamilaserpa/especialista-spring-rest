@@ -1336,6 +1336,21 @@ Comando no local da pasta "resource/keys" é possível obter o arquivo food.jks 
 Outra meneira é acessar o site [https://www.base64encode.org/](https://www.base64encode.org/), carregar o arquivo e encodar.<br>
 Desse modo a keystore fica armazenada dentro do arquivo em bytes resultante da leitura do código base64 gerado. O código fica em `application.properties` é decodificado para geração do arquivo através da classe `Base64ProtocolResolver`.
 
+## Capítulo 24 - Dockerizando a aplicação
+Resolver o problema conhecido como "Matrix from Hell", a configuração da pilha de desenvolvimento necessária para construir um aplicativo ponta a ponta. Conforme seu projeto cresce, as complexidades aumentam e todo o sistema leva meses para concluir uma versão, fazendo com que cada desenvolvedor possua ambiente diferente do outro, e dedique tempo para tarefas não relacionadas ao desenvolvimento.
+
+**Container** - é um pacote que executa dentro dele softwares, bibliotecas e dependências com alto nível de portabilidade de forma repetível e confiável. Compartiha o mesmo kernel do S.O. A imagem de um container se torna a unidade para distribuição da aplicação. "Matrix of Containers".
+Um container docker não é uma máquina virtual, não levanta um sistema operacional. Em VMs há o Hypervisor, sistema que gerencia máquinas virtuais.
+
+![Containers x Máquina Virtual](/food-api/images/maquina-virtualxcontainer.png)
+
+**Por que usar Docker?**
+ - Alto nível de portabilidade
+ - Compatibilidade de sistemas operacionais
+ - Evita problemas em diferentes ambientes
+ - Aumenta a velocidade para desenvolver, construir, testar e atualizar aplicação.
+
+
 ---
 
 #### Eclipse
