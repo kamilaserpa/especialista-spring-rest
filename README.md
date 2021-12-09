@@ -1353,6 +1353,11 @@ Um container docker não é uma máquina virtual, não levanta um sistema operac
 <b>Instalação do Docker:</b> https://docs.docker.com/engine/install/
 <b>WSL 2</b> - subsistema do Windows para Linux, permitindo executar ambiente Linux diretamente dentro do Windows.
 
+#### Executando um container
+`docker container run nginx`, verifica se a imagem existe localmente, caso não exista realiza o download da imagem do docker hub.
+`Ctrl+C` interrompe o terminal.
+`docker container run -p 8080:80 nginx`, ao acessar a porta 8080 localmente em "http://localhost:8080" o docker direciona para a porta http padrão 80 dentro do container nginx.
+
 ---
 
 #### Eclipse
