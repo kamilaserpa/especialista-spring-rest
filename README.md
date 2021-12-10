@@ -1393,6 +1393,13 @@ As tags no Docker Hub (https://hub.docker.com/) podem ser utilizadas logo após 
 
 ![Arquitetura do Docker](/food-api/images/arquitetura-docker.png)
 
+#### Construindo a imagem da aplicação com Dockerfile
+Gerar `.jar` na pasta target da aplicação, executando na pasta food-api o comando: `mvn clean package`.
+Criar arquivo Dockerfile com instruções de criação da imagem.
+Para criar imagem, na pasta do projeto food-api, executar: `docker image build -t food-api .`
+ - "-t" - parâmetro para indicar nome:tag da imagem criada
+ - " ." - diretório em que está o arquivo Dockerfile, como está na mesma pasta apenas o `.` é necessário
+
 ---
 
 #### Eclipse
