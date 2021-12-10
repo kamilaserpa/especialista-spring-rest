@@ -1375,13 +1375,15 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker container stop <ID>` - para execução de um container
  - `docker container rm <ID> -- force` - para o container e remove sua imagem
  - `docker container prune` - remove todos os containers parados
- - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido
+ - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido publicando porta local 80 na porta 80 do container
  - `docker container run -p 80:80 -d --rm --name blogfood wordpress`- parâmetro <b>--rm</b> indica que será removido automaticamente quando o container é parado
  - `docker container run --rm -it ubuntu bash` - parâmetro <b>-it</b> abre terminal interativo acessando linha de comando dentro do container. <b>bash</b> indica qual interpretador de linha de comando irá utilizar. <b>Ctrl+D</b> para sair.
  - `docker image ls` - lista todas as imagens prsentes no ambiente.
  - `docker image pull openjdk:8-jre-slim` - baixa imagem sem executar um container.
  - `docker container run --rm -it openjdk:8-jre-slim bash` - inicia um container com a imagem anteriormente baixada.
  - `docker image rm openjdk:8-jre-slim` - remove imagem
+ - `docker container run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes --name food-mysql mysql:8.0` - inicializa container MySql, parâmetro <b>-e<b> habilita passar variável de ambiente *MYSQL_ALLOW_EMPTY_PASSWORD* com valor yes, permitindo que usário root tenha senha vazia.
+ - `docker container run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root --name food-mysql mysql` - instancia container na ultima versão do MySql, com password `root` acessado localmente na porta 3307
 
 #### Arquitetura do Docker
 Docker usa uma arquitetura cliente/servidor, onde o **Client** é o terminal, a forma nativa de geranciar containers através de comandos.
