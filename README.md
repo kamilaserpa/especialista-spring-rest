@@ -1354,9 +1354,27 @@ Um container docker não é uma máquina virtual, não levanta um sistema operac
 <b>WSL 2</b> - subsistema do Windows para Linux, permitindo executar ambiente Linux diretamente dentro do Windows.
 
 #### Executando um container
-`docker container run nginx`, verifica se a imagem existe localmente, caso não exista realiza o download da imagem do docker hub.
+Executando container Nginx `docker container run nginx`, verifica se a imagem existe localmente, caso não exista realiza o download da imagem do docker hub.
 `Ctrl+C` interrompe o terminal.
 `docker container run -p 8080:80 nginx`, ao acessar a porta 8080 localmente em "http://localhost:8080" o docker direciona para a porta http padrão 80 dentro do container nginx.
+Executando container Wordpress `docker container run -p 80:80 wordpress`.
+
+#### Command Line
+Comandos de ajuda  `docker help`, `docker container help` e 
+[documentação sobre commandline](https://docs.docker.com/engine/reference/commandline/docker/).
+
+ - `docker container ls` - lista os containers em execução
+ - `docker container ls --all` - lista todos os containers
+ - `docker run -p 80:80 -d wordpress`- argumento <b>-d</b> de *detached*, desanexado, executa o container sem bloquear do terminal
+ - `docker container logs <ID>` - visualiza logs exitentes até o momento
+ - `docker container logs -f <ID>` - visualiza logs exitentes seguindo (-f follow), monitorando o que está acontecendo
+ - `docker container start <ID>` - inicializa o container com imagem local
+ - `docker container rm <ID|NAME>` - remove imagem de um container por id ou nome
+ - `docker container stop <ID>` - para execução de um container
+ - `docker container rm <ID> -- force` - para o container e remove sua imagem
+ - `docker container prune` - remove todos os containers parados
+ - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido
+ - `docker container run -p 80:80 -d --rm --name blogfood wordpress`- parâmetro <b>--rm</b> indica que será removido automaticamente quando o container é parado
 
 ---
 
