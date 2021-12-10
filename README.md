@@ -1339,8 +1339,10 @@ Desse modo a keystore fica armazenada dentro do arquivo em bytes resultante da l
 ## Capítulo 24 - Dockerizando a aplicação
 Resolver o problema conhecido como "Matrix from Hell", a configuração da pilha de desenvolvimento necessária para construir um aplicativo ponta a ponta. Conforme seu projeto cresce, as complexidades aumentam e todo o sistema leva meses para concluir uma versão, fazendo com que cada desenvolvedor possua ambiente diferente do outro, e dedique tempo para tarefas não relacionadas ao desenvolvimento.
 
-**Container** - é um pacote que executa dentro dele softwares, bibliotecas e dependências com alto nível de portabilidade de forma repetível e confiável. Compartiha o mesmo kernel do S.O. A imagem de um container se torna a unidade para distribuição da aplicação. "Matrix of Containers".
+**Container** - é um pacote que executa dentro dele softwares, bibliotecas e dependências com alto nível de portabilidade de forma repetível e confiável. Compartiha o mesmo kernel do S.O. A imagem de um container se torna a unidade para distribuição da aplicação. "Matrix of Containers". Instância executável de uma imagem.
 Um container docker não é uma máquina virtual, não levanta um sistema operacional. Em VMs há o Hypervisor, sistema que gerencia máquinas virtuais.
+
+**Imagem** - Template em camadas somente leitura que contém bibliotecas e configurações podendo ser utilizada por um ou mais containers.
 
 ![Containers x Máquina Virtual](/food-api/images/maquina-virtualxcontainer.png)
 
@@ -1375,6 +1377,13 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker container prune` - remove todos os containers parados
  - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido
  - `docker container run -p 80:80 -d --rm --name blogfood wordpress`- parâmetro <b>--rm</b> indica que será removido automaticamente quando o container é parado
+
+#### Arquitetura do Docker
+Docker usa uma arquitetura cliente/servidor, onde o **Client** é o terminal, a forma nativa de geranciar containers através de comandos.
+**Docker Host** é a máquina onde está instalado o Docker, na qual será executada o Docker. **Docker Daemon* é um software em background que gerencia os objetos do docker, como imagens, containers. Ele possui uma reset API para permitir gerenciamento. Client e DOcker Host podem estar em máquinas diferentes.
+**Docker Registry** local para armazenamento de imagens. Caso a imagem não exista localmente o docker local irá baixá-la do Docker Hub. Docker Hub é o registry padrão.
+
+![Arquitetura do Docker](/food-api/images/arquitetura-docker.png)
 
 ---
 
