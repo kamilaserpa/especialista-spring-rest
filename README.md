@@ -1377,11 +1377,13 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker container prune` - remove todos os containers parados
  - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido
  - `docker container run -p 80:80 -d --rm --name blogfood wordpress`- parâmetro <b>--rm</b> indica que será removido automaticamente quando o container é parado
+ - `docker container run --rm -it ubuntu bash` - parâmetro <b>-it</b> abre terminal interativo acessando linha de comando dentro do container. <b>bash</b> indica qual interpretador de linha de comando irá utilizar. <b>Ctrl+D</b> para sair.
 
 #### Arquitetura do Docker
 Docker usa uma arquitetura cliente/servidor, onde o **Client** é o terminal, a forma nativa de geranciar containers através de comandos.
 **Docker Host** é a máquina onde está instalado o Docker, na qual será executada o Docker. **Docker Daemon* é um software em background que gerencia os objetos do docker, como imagens, containers. Ele possui uma reset API para permitir gerenciamento. Client e DOcker Host podem estar em máquinas diferentes.
-**Docker Registry** local para armazenamento de imagens. Caso a imagem não exista localmente o docker local irá baixá-la do Docker Hub. Docker Hub é o registry padrão.
+**Docker Registry** local para armazenamento de imagens. Caso a imagem não exista localmente o docker local irá baixá-la do Docker Hub. Docker Hub é o registry padrão, repositório em nuvem para compartilhar imagens de containers de forma pública ou privada. 
+As tags no DOcker Hub (https://hub.docker.com/) podem ser utilizadas logo após o nome da imagem, por exemplo `docker container run ubuntu:22.04`.
 
 ![Arquitetura do Docker](/food-api/images/arquitetura-docker.png)
 
