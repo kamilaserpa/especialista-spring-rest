@@ -1374,6 +1374,7 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker container rm <ID|NAME>` - remove imagem de um container por id ou nome
  - `docker container stop <ID>` - para execução de um container
  - `docker container rm <ID> -- force` - para o container e remove sua imagem
+ - `docker container rm <NAME_CONTAINER> --force --volumes` - para container, remove a imagem e o volume
  - `docker container prune` - remove todos os containers parados
  - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido publicando porta local 80 na porta 80 do container
  - `docker container run -p 80:80 -d --rm --name blogfood wordpress`- parâmetro <b>--rm</b> indica que será removido automaticamente quando o container é parado
@@ -1382,8 +1383,13 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker image pull openjdk:8-jre-slim` - baixa imagem sem executar um container.
  - `docker container run --rm -it openjdk:8-jre-slim bash` - inicia um container com a imagem anteriormente baixada.
  - `docker image rm openjdk:8-jre-slim` - remove imagem
+ - `docker image prune`- Ao criar uma imagem com o mesmo nome de outra já existente, a imagem antiga permanece existente sem a associação de nome. Esse comando exclui estas imagens antigas ("penduradas"). Com *--all* exclui todas que não estão sendo usadas.
  - `docker container run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes --name food-mysql mysql:8.0` - inicializa container MySql, parâmetro <b>-e<b> habilita passar variável de ambiente *MYSQL_ALLOW_EMPTY_PASSWORD* com valor yes, permitindo que usário root tenha senha vazia.
  - `docker container run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root --name food-mysql mysql` - instancia container na ultima versão do MySql, com password `root` acessado localmente na porta 3307
+ - `docker image tag <NAME> <NEW-NAME>` - cria outra imagem apontando para mesmo espaço em memória, com novo nome
+ - `docker network ls` -  lista redes existentes, já vem com algumas por padrão
+ - `docker network create --driver bridge <NOME_DA_REDE>` - cria rede com driver *bridge*, driver de rede padrão
+ - `docker volume ls` - lista volumes, um local para container armazenar arquivos.
 
 #### Arquitetura do Docker
 Docker usa uma arquitetura cliente/servidor, onde o **Client** é o terminal, a forma nativa de geranciar containers através de comandos.
@@ -1396,9 +1402,23 @@ As tags no Docker Hub (https://hub.docker.com/) podem ser utilizadas logo após 
 #### Construindo a imagem da aplicação com Dockerfile
 Gerar `.jar` na pasta target da aplicação, executando na pasta food-api o comando: `mvn clean package`.
 Criar arquivo Dockerfile com instruções de criação da imagem.
-Para criar imagem, na pasta do projeto food-api, executar: `docker image build -t food-api .`
+Para criar imagem, na pasta do projeto food-api, executar: `docker image build -t food-api .` Onde:
  - "-t" - parâmetro para indicar nome:tag da imagem criada
  - " ." - diretório em que está o arquivo Dockerfile, como está na mesma pasta apenas o `.` é necessário
+
+#### Criando uma Rede e conectando containers
+Para possibilitar comunicação entre containers da API e do banco de dados criamos uma network através do comando:
+`docker network create --driver bridge food-network`.
+
+1. Container MySQL
+Instancia um container utilizando a última versão do MySql, com password `root` para usuário `root`, acessado localmente através da porta 3307: `docker container run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root --name food-mysql mysql`.
+Para utilizar porta padrão 3306 é necessário parar o processo MySql local em execução nesta porta, para que ela fique disponível.
+Comando para conectar container MySQL na rede food-network:
+`docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root --network food-network --name food-mysql mysql`.
+
+2. Container API
+Executando container da API com variável de ambiente *DB_HOST* correspondente ao container MySQL, conectada à rede *food-network*:
+`docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network food-api`
 
 ---
 

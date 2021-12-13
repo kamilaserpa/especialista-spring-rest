@@ -295,12 +295,28 @@
 				{
 					"name": "Cidade - Listar V1 (por MediaType)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-gerente}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
 								"type": "text",
 								"value": "application/vnd.food.v1+json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -688,7 +704,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{gerente-token}}",
+									"value": "{{token-gerente}}",
 									"type": "string"
 								}
 							]
@@ -977,6 +993,16 @@
 				{
 					"name": "Formas Pagamento - Listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-gerente}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -1511,7 +1537,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxLCJ1c2VyX25hbWUiOiJqb2FvLmdlckBrZm9vZC5jb20iLCJzY29wZSI6WyJXUklURSIsIlJFQUQiXSwiZXhwIjoxNjM0MzMxNjAzLCJhdXRob3JpdGllcyI6WyJHRVJBUl9SRUxBVE9SSU9TIiwiRURJVEFSX0NPWklOSEFTIiwiRURJVEFSX0NJREFERVMiLCJFRElUQVJfRk9STUFTX1BBR0FNRU5UTyIsIkVESVRBUl9SRVNUQVVSQU5URVMiLCJHRVJFTkNJQVJfUEVESURPUyIsIkNPTlNVTFRBUl9VU1VBUklPUyIsIkVESVRBUl9VU1VBUklPUyIsIkNPTlNVTFRBUl9QRURJRE9TIiwiRURJVEFSX0VTVEFET1MiXSwianRpIjoiZjQzMjBlMzgtODU2Yi00MmZiLWI3N2UtMTM3YTliYzQyZjRiIiwibm9tZV9jb21wbGV0byI6Ikpvw6NvIGRhIFNpbHZhIiwiY2xpZW50X2lkIjoiZm9vZC13ZWIifQ.IDBhMCD41K6Azi3v722829COeYIFmZsQJxAelFiXe_g7HKFPUc3I_zofM-o3UT7YECPEMnw_Ttp_egoxVSwwH95PAWqH9oTMlm70idQ1QwMXc_VckXFCkBIO1d8iojAhTLFatYwt1LMZpRJLnHg2Cng4MMs9UI9_qMFdWnfjOFJN6M3u6pTIhqBHrae8E7mtnDSio9g1DZx_YoiPAPu-Y1Tmr1Q_7hu4SWyq3MMkGwxl0tnERyqIqDJIQhN279ryv94kDlmuD-OAyhjFJ3UHoFlYIB4NuRbYV6QgFih5K4RU2z9jkkSEuvZ0wn-vpQTePYmyzmCbvu7tPfAcXiKV_w",
+									"value": "{{token-gerente}}",
 									"type": "string"
 								}
 							]
@@ -1914,6 +1940,16 @@
 				{
 					"name": "Produto/Restaurante - Listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-gerente}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -3739,9 +3775,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.collectionVariables.unset(\"gerente-token\");\r",
+									"pm.collectionVariables.unset(\"token-gerente\");\r",
 									"\r",
-									"pm.collectionVariables.set(\"gerente-token\",\r",
+									"pm.collectionVariables.set(\"token-gerente\",\r",
 									"pm.response.json().access_token);\r",
 									""
 								],
@@ -4577,6 +4613,10 @@
 	"variable": [
 		{
 			"key": "gerente-token",
+			"value": ""
+		},
+		{
+			"key": "token-gerente",
 			"value": ""
 		}
 	]
