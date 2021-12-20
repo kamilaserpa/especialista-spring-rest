@@ -1435,6 +1435,15 @@ Executando container da API com variável de ambiente *DB_HOST* correspondente a
 
 Realiza build do .jar e constrói imagem com `mvn package -Pdocker`, onde "-P" faz referência ao profile do *pom.xml*.
 
+#### Disponibilizando a imagem da aplicação no Docker Hub
+No Docker Hub (https://hub.docker.com/) selecionar Criar Repositório.
+Localmente:
+ - Alterando a tag da imagem local para adicionar o DockerID, para que o Docker Hub identifique o user - `docker image tag food-api:latest <dockerID>/food-api:latest`.
+ - Login - `docker login`
+ - Envia a aimagem para DockerHub - `docker push kamilaserpa/food-api:latest`
+ - Baixando e executando imagem do Docker Hub - `docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network kamilaserpa/food-api`
+
+
 ---
 
 #### Eclipse
