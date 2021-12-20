@@ -1384,7 +1384,7 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker container run --rm -it openjdk:8-jre-slim bash` - inicia um container com a imagem anteriormente baixada.
  - `docker image rm openjdk:8-jre-slim` - remove imagem
  - `docker image prune`- Ao criar uma imagem com o mesmo nome de outra já existente, a imagem antiga permanece existente sem a associação de nome. Esse comando exclui estas imagens antigas ("penduradas"). Com *--all* exclui todas que não estão sendo usadas.
- - `docker container run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes --name food-mysql mysql:8.0` - inicializa container MySql, parâmetro <b>-e<b> habilita passar variável de ambiente *MYSQL_ALLOW_EMPTY_PASSWORD* com valor yes, permitindo que usário root tenha senha vazia.
+ - `docker container run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes --name food-mysql mysql:8.0` - inicializa container MySql, parâmetro <b>-e</b> habilita passar variável de ambiente *MYSQL_ALLOW_EMPTY_PASSWORD* com valor yes, permitindo que usário root tenha senha vazia.
  - `docker container run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root --name food-mysql mysql` - instancia container na ultima versão do MySql, com password `root` acessado localmente na porta 3307
  - `docker image tag <NAME> <NEW-NAME>` - cria outra imagem apontando para mesmo espaço em memória, com novo nome
  - `docker network ls` -  lista redes existentes, já vem com algumas por padrão
@@ -1419,6 +1419,21 @@ Comando para conectar container MySQL na rede food-network:
 2. Container API
 Executando container da API com variável de ambiente *DB_HOST* correspondente ao container MySQL, conectada à rede *food-network*:
 `docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network food-api`
+
+#### Construindo imagem Docker pelo Maven
+[Plugin](https://github.com/spotify/dockerfile-maven) utilizado. Para evitar de sempre que fizermos build do nosso projeto também seja construída uma imagem, criamos um novo `profile` no pom.xml. Onde:
+
+```xml
+<configuration>
+	<repository>food-api</repository> <!-- Nome da Imagem -->
+	<tag>${project.version}</tag> <!-- Nome da tag, sem essa configuração utiliza o padrão 'latest' -->
+	<buildArgs> <!-- Argumentos de tempo de compilação -->
+		<JAR_FILE>${project.build.finalName}.jar</JAR_FILE> <!-- Nome do arquivo .jar criado pela aplicação na pasta target -->
+	</buildArgs>
+</configuration>
+```
+
+Realiza build do .jar e constrói imagem com `mvn package -Pdocker`, onde "-P" faz referência ao profile do *pom.xml*.
 
 ---
 
