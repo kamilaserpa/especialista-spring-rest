@@ -1,0 +1,26 @@
+version: "3.9"
+
+networks:
+  food-network:
+    driver: bridge
+
+services:
+  food-mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+    networks:
+      - food-network
+
+  food-api:
+    image: food-api
+    environment:
+      DB_HOST: food-mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - food-network
+    depends_on:
+      - food-mysql

@@ -1418,7 +1418,10 @@ Comando para conectar container MySQL na rede food-network:
 
 2. Container API
 Executando container da API com variável de ambiente *DB_HOST* correspondente ao container MySQL, conectada à rede *food-network*:
-`docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network food-api`
+`docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network food-api`.
+
+Na IDE Intellij a variável de ambiente foi adicionada inserindo a porta: DB_HOST=localhost:3306
+Em application.properties pode ser inserido um valor default utilizando "${}": `spring.datasource.url=jdbc:mysql://${DB_HOST:localhost}....`
 
 #### Construindo imagem Docker pelo Maven
 [Plugin](https://github.com/spotify/dockerfile-maven) utilizado. Para evitar de sempre que fizermos build do nosso projeto também seja construída uma imagem, criamos um novo `profile` no pom.xml. Onde:
@@ -1443,6 +1446,10 @@ Localmente:
  - Envia a aimagem para DockerHub - `docker push kamilaserpa/food-api:latest`
  - Baixando e executando imagem do Docker Hub - `docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network kamilaserpa/food-api`
 
+#### Docker Compose
+O controle de imagens e containers através da linha de comando pode ter comandos muito longos, passando parâmetros como *n* variáveis, por exemplo. O Docker Compose centraliza configurações possibilitando gerenciamento de vários containers através de arquivo *.yml* ([documentação](https://docs.docker.com/compose/compose-file)). 
+ - `docker compose up`
+ - `docker compose down --volumes` - para todos os containers e remove volumes criados
 
 ---
 
