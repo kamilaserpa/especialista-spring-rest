@@ -1373,7 +1373,7 @@ Comandos de ajuda  `docker help`, `docker container help` e
  - `docker container start <ID>` - inicializa o container com imagem local
  - `docker container rm <ID|NAME>` - remove imagem de um container por id ou nome
  - `docker container stop <ID>` - para execução de um container
- - `docker container rm <ID> -- force` - para o container e remove sua imagem
+ - `docker container rm <ID> --force` - para o container e remove sua imagem
  - `docker container rm <NAME_CONTAINER> --force --volumes` - para container, remove a imagem e o volume
  - `docker container prune` - remove todos os containers parados
  - `docker container run -p 80:80 -d --name blogfood wordpress` - cria container com nome definido publicando porta local 80 na porta 80 do container
@@ -1410,13 +1410,13 @@ Para criar imagem, na pasta do projeto food-api, executar: `docker image build -
 Para possibilitar comunicação entre containers da API e do banco de dados criamos uma network através do comando:
 `docker network create --driver bridge food-network`.
 
-1. Container MySQL
+<b>1. Container MySQL</b>
 Instancia um container utilizando a última versão do MySql, com password `root` para usuário `root`, acessado localmente através da porta 3307: `docker container run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root --name food-mysql mysql`.
 Para utilizar porta padrão 3306 é necessário parar o processo MySql local em execução nesta porta, para que ela fique disponível.
 Comando para conectar container MySQL na rede food-network:
 `docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root --network food-network --name food-mysql mysql`.
 
-2. Container API
+<b>2. Container API</b>
 Executando container da API com variável de ambiente *DB_HOST* correspondente ao container MySQL, conectada à rede *food-network*:
 `docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network food-api`.
 
@@ -1450,6 +1450,14 @@ Localmente:
 O controle de imagens e containers através da linha de comando pode ter comandos muito longos, passando parâmetros como *n* variáveis, por exemplo. O Docker Compose centraliza configurações possibilitando gerenciamento de vários containers através de arquivo *.yml* ([documentação](https://docs.docker.com/compose/compose-file)). 
  - `docker compose up`
  - `docker compose down --volumes` - para todos os containers e remove volumes criados
+
+#### Controlando ordem de inicialização
+Vale ressaltar que `depends on` controla a ordem em que um container inicia ou para em relação a outro, porém o Compoese não espera até um container esteja completamente em execução para iniciar outro, sendo possível que este segundo complete sua inicialização antes do primeir, ainda que sendo iniciado posteriormente.
+Na [documentação](https://docs.docker.com/compose/startup-order/) o DOcker indica a utilizaçao da ferramenta `wait-for-it`.
+A seguinte linha no docker-compose substitui o `CMD` no Dockerfile:
+
+`command: ["/wait-for-it.sh", "food-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]`
+
 
 ---
 
