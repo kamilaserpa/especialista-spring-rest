@@ -23,3 +23,13 @@ services:
       - food-network
     depends_on:
       - food-mysql
+
+  food-proxy:
+    build: ./nginx
+    image: food-proxy
+    ports:
+      - "80:80"
+    networks:
+      - food-network
+    depends_on:
+      - food-api

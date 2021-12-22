@@ -1479,10 +1479,15 @@ O servidor DNS que tem o Docker Engine implementa o balanceamento de carga com <
 Para verificar isso podemos instanciar um container com distribuição Linux Alpine na mesma rede, para que possamos acessá-lo pelo seu terminal, a fim de acessar os containers do food-api, onde `food-api_food-network` é a rede criada pelo docker Compose:
 `docker container run --rm -it --network food-api_food-network alpine sh`. 
 
-No terminal iterativo, consultar o servidor DNS por nome: `nslookup food-api`
-Instalar o curl: `apk add curl`
-Acessar endpoint e verificar IPs diferentes sendo acessados: `curl http://food-api:8080/hostcheck`.
+ - No terminal iterativo, consultar o servidor DNS por nome: `nslookup food-api`
+ - Instalar o curl: `apk add curl`
+ - Acessar endpoint e verificar IPs diferentes sendo acessados: `curl http://food-api:8080/hostcheck`.
 
+#### Proxy reverso com Nginx
+Um proxy reverso fica na comunicação entre um cliente e um grupo de servidores, onde estes ficam atrás de um mesmo nome:porta, aparecendo como se fossem uma única unidade.
+Pode usar uma técnica chamada DNS de revezamento para direcionar solicitações por meio de uma lista rotativa de servidores internos. O <b>Nginx</b> é um servidor Http que realiza proxy reverso.
+
+Para utilizá-lo, configuramos o Dockerfile principal para instanciar um container com a imagem Nginx, utilizando as configurações contidas nos arquivos na pasta [./nginx](food-api\nginx). Dessa maneira a API fica acessível na porta 80.
 
 ---
 
