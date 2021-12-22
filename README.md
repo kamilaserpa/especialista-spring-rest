@@ -1472,6 +1472,16 @@ Load Balancer é um software que realiza o balanceamento de carga, distribuindo 
 		replicas: 2
 ```
 Ou startar o compose com o comando: `docker compose up --scale food-api=2`
+A publicação da porta foi removida do docker-compose pois ocorreria erro de concorrência de porta, com dois containers tentando publicar na mesma porta.
+
+O servidor DNS que tem o Docker Engine implementa o balanceamento de carga com <b>Poor Man's Load Balancer (DNS Round Robin)</b>.
+
+Para verificar isso podemos instanciar um container com distribuição Linux Alpine na mesma rede, para que possamos acessá-lo pelo seu terminal, a fim de acessar os containers do food-api, onde `food-api_food-network` é a rede criada pelo docker Compose:
+`docker container run --rm -it --network food-api_food-network alpine sh`. 
+
+No terminal iterativo, consultar o servidor DNS por nome: `nslookup food-api`
+Instalar o curl: `apk add curl`
+Acessar endpoint e verificar IPs diferentes sendo acessados: `curl http://food-api:8080/hostcheck`.
 
 
 ---

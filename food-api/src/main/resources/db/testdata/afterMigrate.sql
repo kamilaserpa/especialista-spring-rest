@@ -2,11 +2,11 @@
 set foreign_key_checks = 0;
 
 -- Travando acesso a tabelas em um container, para que outro container não entre em concorrência provocando inconsistência
-lock tables cidade write, cozinha write, estado write, forma_pagamento write,
-	grupo write, grupo_permissao write, permissao write,
-	produto write, restaurante write, restaurante_forma_pagamento write,
-	restaurante_usuario_responsavel write, usuario write, usuario_grupo write,
-	pedido write, item_pedido write, foto_produto write, oauth_client_details write;
+lock tables tb_cidade write, tb_cozinha write, tb_estado write, tb_forma_pagamento write,
+tb_grupo write, tb_grupo_permissao write, tb_permissao write,
+tb_produto write, tb_restaurante write, tb_restaurante_forma_pagamento write,
+tb_restaurante_usuario_responsavel write, tb_usuario write, tb_usuario_grupo write,
+tb_pedido write, tb_item_pedido write, tb_foto_produto write, oauth_client_details write;
 
 -- Deleta dados do banco para manter o estado inicial do banco
 delete from tb_cidade;
