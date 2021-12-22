@@ -1542,11 +1542,13 @@ Será utilizado o Redis para compartilhar os objetos que estão na sessão entre
 Iniciando container cliente do Redis para acessá-lo: `docker container run --rm -it --network food-api_food-network redis:6.2.1-alpine sh`. Em seguida, o comando `redis-cli -h food-redis` dá acesso ao prompt redis-cli, senod possível visualizar suas chaves armazenadas.
 
 #### Spring Session
-[Spring Session](https://spring.io/projects/spring-session) Data Redis, provê suporte para comunicação da API com container Redis.
+[Spring Session](https://spring.io/projects/spring-session) fornece implementações para gerenciar as informações de sessão de um usuário. Spring Session Data Redis, provê suporte para comunicação da API com container Redis.
 No docker-compose as seguintes variáveis de ambiente substituem `spring.session.store-type=none` e `spring.redis.host=food-redis` localizadas em *application.properties*.
 >   SPRING_SESSION_STORE_TYPE: redis
 >   SPRING_REDIS_HOST: food-redis
 
+
+**Obs.:** Ainda assim o *code* do fluxo Authorization Code Grant Type fica armazenado em memória em um container específico, pois utiliza a implementaçaõ padrão que é *InMemoryAuthorizationCodeServices*. Por isso alteramos a classe AuthorizationServerConfig para implementar <b>JdbcAuthorizationCodeServices</b> persistindo o code em banco de dados na tabela `oauth_code`, podendo ser acessado por quaisquer containers.
 
 ---
 
