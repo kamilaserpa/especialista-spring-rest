@@ -1436,7 +1436,7 @@ Em application.properties pode ser inserido um valor default utilizando "${}": `
 </configuration>
 ```
 
-Realiza build do .jar e constrói imagem com `mvn package -Pdocker`, onde "-P" faz referência ao profile do *pom.xml*.
+Realiza build do .jar e constrói imagem com `mvn package -Pdocker`, onde "-P" faz referência ao profile do *pom.xml*. Para que uma alteração no projeto seja refletida na imagem docker é necessário realizar o empacotamento Maven.
 
 #### Disponibilizando a imagem da aplicação no Docker Hub
 No Docker Hub (https://hub.docker.com/) selecionar Criar Repositório.
@@ -1455,8 +1455,23 @@ O controle de imagens e containers através da linha de comando pode ter comando
 Vale ressaltar que `depends on` controla a ordem em que um container inicia ou para em relação a outro, porém o Compoese não espera até um container esteja completamente em execução para iniciar outro, sendo possível que este segundo complete sua inicialização antes do primeir, ainda que sendo iniciado posteriormente.
 Na [documentação](https://docs.docker.com/compose/startup-order/) o DOcker indica a utilizaçao da ferramenta `wait-for-it`.
 A seguinte linha no docker-compose substitui o `CMD` no Dockerfile:
+ > command: ["/wait-for-it.sh", "food-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
 
-`command: ["/wait-for-it.sh", "food-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]`
+#### Escalando um serviço com Docker Compose | Balanceamento de carga
+Load Balancer é um software que realiza o balanceamento de carga, distribuindo requisições entre containers. Adiciona segurança caso ocorra problema em um container, outros permanecem em execução. Possibilita *Zero Downtime*, tempo em que um sistema fica inoperacional, quando necessário realizar alguma atualização, um container permanece em execução enquanto outro é atualizado.
+
+![Load Balancer](food-api/images/load-balance.png)
+
+ - Inicializando duas instâncias de um container:
+```yml
+    # docker-compose.yml
+	food-api:
+		image: food-api
+		...
+		deploy:
+		replicas: 2
+```
+Ou startar o compose com o comando: `docker compose up --scale food-api=2`
 
 
 ---

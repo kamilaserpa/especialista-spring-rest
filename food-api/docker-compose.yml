@@ -19,8 +19,6 @@ services:
     command: ["/wait-for-it.sh", "food-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
     environment:
       DB_HOST: food-mysql
-    ports:
-      - "8080:8080"
     networks:
       - food-network
     depends_on:

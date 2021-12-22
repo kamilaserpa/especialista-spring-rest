@@ -1,6 +1,13 @@
 -- Desabilita checagem de foreign keys para permitir a deleção dos dados de todas as tabelas a seguir
 set foreign_key_checks = 0;
 
+-- Travando acesso a tabelas em um container, para que outro container não entre em concorrência provocando inconsistência
+lock tables cidade write, cozinha write, estado write, forma_pagamento write,
+	grupo write, grupo_permissao write, permissao write,
+	produto write, restaurante write, restaurante_forma_pagamento write,
+	restaurante_usuario_responsavel write, usuario write, usuario_grupo write,
+	pedido write, item_pedido write, foto_produto write, oauth_client_details write;
+
 -- Deleta dados do banco para manter o estado inicial do banco
 delete from tb_cidade;
 delete from tb_cozinha;
@@ -207,3 +214,5 @@ values (
   'READ,WRITE', 'client_credentials', null, 'CONSULTAR_PEDIDOS,GERAR_RELATORIOS',
   null, null, null
 );
+
+unlock tables;
