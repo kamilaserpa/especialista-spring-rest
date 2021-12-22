@@ -2424,46 +2424,11 @@
 					"name": "Restaurantes - Listar",
 					"request": {
 						"auth": {
-							"type": "oauth2",
-							"oauth2": [
+							"type": "bearer",
+							"bearer": [
 								{
-									"key": "clientSecret",
-									"value": "faturamento123",
-									"type": "string"
-								},
-								{
-									"key": "clientId",
-									"value": "faturamento",
-									"type": "string"
-								},
-								{
-									"key": "grant_type",
-									"value": "client_credentials",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "123",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "kamila",
-									"type": "string"
-								},
-								{
-									"key": "accessTokenUrl",
-									"value": "http://localhost:8081/oauth/token",
-									"type": "string"
-								},
-								{
-									"key": "tokenName",
-									"value": "Token Food API",
-									"type": "string"
-								},
-								{
-									"key": "addTokenTo",
-									"value": "header",
+									"key": "token",
+									"value": "{{token-gerente}}",
 									"type": "string"
 								}
 							]
@@ -3824,12 +3789,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/oauth/token",
+							"raw": "http://localhost:80/oauth/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"oauth",
 								"token"
@@ -4316,7 +4281,7 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "LxepJb",
+									"value": "cdfEw2",
 									"type": "text"
 								},
 								{
@@ -4337,12 +4302,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/oauth/token",
+							"raw": "http://localhost:80/oauth/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "80",
 							"path": [
 								"oauth",
 								"token"
@@ -4604,6 +4569,35 @@
 					"port": "8080",
 					"path": [
 						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Host Check",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token-gerente}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:80/hostcheck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"hostcheck"
 					]
 				}
 			},

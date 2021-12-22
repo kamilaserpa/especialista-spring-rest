@@ -1187,6 +1187,9 @@ https://CLIENT/?code=ZQwg6B&state=abc
 (POST) http://localhost:8081/oauth/token?code=ZQwg6B&grant_type=authorization_code // Troca o código pelo access token, podendo ser retornado
 ```
 
+Exemplo de login joao.ger@kfood.com, senha: 123. Link de acesso no navegador para [login](http://localhost:8080/oauth/authorize?response_type=code&client_id=foodanalytics&state=abc&redirect_uri=http://localhost:3000) do usuário.
+
+
 Link para [configuração de CORS no Authorization Server com CorsFilter](https://gist.github.com/thiagofa/764260dfd8ba21f30f2f79806d734563), na qual adiciona um filtro de servlet que retorna os cabeçalhos para as requisições `OPTIONS`.
 
 ##### Authorization Code com PKCE
@@ -1537,6 +1540,13 @@ Porém fluxo Authorization Code Grant Type não funciona com esta configuração
 Será utilizado o Redis para compartilhar os objetos que estão na sessão entre todos os containers, armazenando estrutura de dados em memória.
 
 Iniciando container cliente do Redis para acessá-lo: `docker container run --rm -it --network food-api_food-network redis:6.2.1-alpine sh`. Em seguida, o comando `redis-cli -h food-redis` dá acesso ao prompt redis-cli, senod possível visualizar suas chaves armazenadas.
+
+#### Spring Session
+[Spring Session](https://spring.io/projects/spring-session) Data Redis, provê suporte para comunicação da API com container Redis.
+No docker-compose as seguintes variáveis de ambiente substituem `spring.session.store-type=none` e `spring.redis.host=food-redis` localizadas em *application.properties*.
+>   SPRING_SESSION_STORE_TYPE: redis
+>   SPRING_REDIS_HOST: food-redis
+
 
 ---
 

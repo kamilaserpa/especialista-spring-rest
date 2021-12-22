@@ -115,6 +115,7 @@ select 3, id_permissao from tb_permissao where nm_permissao like 'CONSULTAR_%';
 insert into tb_grupo_permissao (id_grupo, id_permissao)
 select 4, id_permissao from tb_permissao where nm_permissao like '%_RESTAURANTES';
 
+-- Senhas = "123"
 insert into tb_usuario (id_usuario, nm_usuario, email, senha, data_cadastro) values
 (1, 'João da Silva', 'joao.ger@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),
 (2, 'Maria Joaquina', 'maria.vnd@kfood.com', '$2a$12$iDLsh5J.zz2RskgJc4RH9uWORIGaSUczp6LWK6n3NrBCCPJgCvOOK', utc_timestamp),

@@ -5,7 +5,7 @@ networks:
     driver: bridge
 
 services:
-  
+
   food-mysql:
     image: mysql
     environment:
@@ -25,6 +25,8 @@ services:
     command: ["/wait-for-it.sh", "food-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
     environment:
       DB_HOST: food-mysql
+      SPRING_SESSION_STORE_TYPE: redis
+      SPRING_REDIS_HOST: food-redis
     networks:
       - food-network
     depends_on:
