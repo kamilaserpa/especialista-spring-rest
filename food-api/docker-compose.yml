@@ -5,12 +5,18 @@ networks:
     driver: bridge
 
 services:
+  
   food-mysql:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: "root"
     ports:
       - "3306:3306"
+    networks:
+      - food-network
+
+  food-redis:
+    image: redis:6.2.1-alpine
     networks:
       - food-network
 

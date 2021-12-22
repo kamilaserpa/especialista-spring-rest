@@ -1512,7 +1512,9 @@ Load Balancer é um software que realiza o balanceamento de carga, distribuindo 
 		deploy:
 		replicas: 2
 ```
-Ou startar o compose com o comando: `docker compose up --scale food-api=2`
+Ou startar o compose com o comando abaixo, com o numero de containers:
+>  docker compose up --scale food-api=2
+
 A publicação da porta foi removida do docker-compose pois ocorreria erro de concorrência de porta, com dois containers tentando publicar na mesma porta.
 
 O servidor DNS que tem o Docker Engine implementa o balanceamento de carga com <b>Poor Man's Load Balancer (DNS Round Robin)</b>.
@@ -1529,6 +1531,12 @@ Um proxy reverso fica na comunicação entre um cliente e um grupo de servidores
 Pode usar uma técnica chamada DNS de revezamento para direcionar solicitações por meio de uma lista rotativa de servidores internos. O <b>Nginx</b> é um servidor Http que realiza proxy reverso.
 
 Para utilizá-lo, configuramos o Dockerfile principal para instanciar um container com a imagem Nginx, utilizando as configurações contidas nos arquivos na pasta [./nginx](/food-api/nginx). Dessa maneira a API fica acessível na porta 80.
+
+#### Container Redis
+Porém fluxo Authorization Code Grant Type não funciona com esta configuração, pois o Authorization Server utiliza o Http Session na memória do servidor para funcionar, ou seja, fica isolada em um container específico.
+Será utilizado o Redis para compartilhar os objetos que estão na sessão entre todos os containers, armazenando estrutura de dados em memória.
+
+Iniciando container cliente do Redis para acessá-lo: `docker container run --rm -it --network food-api_food-network redis:6.2.1-alpine sh`. Em seguida, o comando `redis-cli -h food-redis` dá acesso ao prompt redis-cli, senod possível visualizar suas chaves armazenadas.
 
 ---
 
