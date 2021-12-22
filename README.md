@@ -9,6 +9,47 @@ Pastas:
  - client-foodanalytics: Consumidor JavaScript NodeJs da API principal implementando fluxo de autenticação Authorization Code.
  - food-api/EspecialistaSpringRest.postman_collection.json: requisições CURL da API principal.
 
+## Tecnologias / Frameworks
+ - SpringBoot
+ - SpringData JPA
+ - Maven
+ - MySQL
+ - Flyway
+ - Java 11
+ - OAuth2
+ - Docker
+ - Redis
+ - OpenAPI/Swagger
+ - Squiggly
+
+## Índice
+- [Especialista Spring Rest](#especialista-spring-rest)
+	- [Introdução](#introdução)
+	- [Capítulo 2 - Spring e Injeção de Dependências](#capítulo-2---spring-e-injeção-de-dependências)
+	- [Capítulo 3 - Introdução ao JPA e Hibernate](#capítulo-3---introdução-ao-jpa-e-hibernate)
+	- [Capítulo 4 - REST com Spring](#capítulo-4---rest-com-spring)
+	- [Capítulo 5 - Spring Data JPA](#capítulo-5---spring-data-jpa)
+	- [Capítulo 6 - JPA e Hibernate](#capítulo-6---jpa-e-hibernate)
+	- [Capítulo 7 - Pool de conexões e Flyway](#capítulo-7---pool-de-conexões-e-flyway)
+	- [Capítulo 8 - Tratamento e modelagem de erros da API](#capítulo-8---tratamento-e-modelagem-de-erros-da-api)
+	- [Capítulo 9 - Validações com Bean Validation](#capítulo-9---validações-com-bean-validation)
+	- [Capítulo 10 - Testes](#capítulo-10---testes)
+	- [Capítulo 11 - Boas práticas e técnicas para APIs](#capítulo-11---boas-práticas-e-técnicas-para-apis)
+	- [Capítulo 12 - Modelagem avançada e implementação da API](#capítulo-12---modelagem-avançada-e-implementação-da-api)
+	- [Capítulo 13 - Modelagem de projeções, pesquisas e relatórios](#capítulo-13---modelagem-de-projeções-pesquisas-e-relatórios)
+	- [Capítulo 14 - Upload e Download de arquivos](#capítulo-14---upload-e-download-de-arquivos)
+	- [Capítulo 15 - E-mails transacionais e Domain Events](#capítulo-15---e-mails-transacionais-e-domain-events)
+	- [Capítulo 16 - CORS e consumo da API com JavaScript e Java](#capítulo-16---cors-e-consumo-da-api-com-javascript-e-java)
+	- [Capítulo 17 - Cache de HTTP](#capítulo-17---cache-de-http)
+	- [Capítulo 18 - Documentação da API com OpenAPI, Swagger UI e SpringFox](#capítulo-18---documentação-da-api-com-openapi-swagger-ui-e-springfox)
+	- [Capítulo 19 - Discoverability e HATEOAS: A Glória do REST](#capítulo-19---discoverability-e-hateoas-a-glória-do-rest)
+	- [Capítulo 20 - Evoluindo e versionando a API](#capítulo-20---evoluindo-e-versionando-a-api)
+	- [Capítulo 21 - Logging](#capítulo-21---logging)
+	- [Capítulo 22 - Segurança com Spring Security e OAuth2](#capítulo-22---segurança-com-spring-security-e-oauth2)
+	- [Capítulo 23 - OAuth2 avançado com JWT e controle de acesso](#capítulo-23---oauth2-avançado-com-jwt-e-controle-de-acesso)
+	- [Capítulo 24 - Dockerizando a aplicação](#capítulo-24---dockerizando-a-aplicação)
+	- [Developer](#developer)
+
 ## Introdução
 `Spring`, além de um framework, é um ecossistema de projetos, que auxiliam na resolução de vários problemas do dia-a-dia de um programador java. Objetivando foco no desenvolvimento das regras de negócio e não no código de infraestrutura da aplicação. <br>
 Pontos positivos da utilização do Spring são a simplicidade que fornece ao desenvolvimento, maturidade (várias empresas utilizam a algum tempo), modularidade (não é necessário baixar algo gigantesco para sua utilização), evolução constante, open source, possui comunidade grande e forte, popularidade alta na utilização pelas empresas, alta empregabilidade.
@@ -1399,7 +1440,7 @@ As tags no Docker Hub (https://hub.docker.com/) podem ser utilizadas logo após 
 
 ![Arquitetura do Docker](/food-api/images/arquitetura-docker.png)
 
-#### Construindo a imagem da aplicação com Dockerfile
+### Construindo a imagem da aplicação com Dockerfile
 Gerar `.jar` na pasta target da aplicação, executando na pasta food-api o comando: `mvn clean package`.
 Criar arquivo Dockerfile com instruções de criação da imagem.
 Para criar imagem, na pasta do projeto food-api, executar: `docker image build -t food-api .` Onde:
@@ -1423,7 +1464,7 @@ Executando container da API com variável de ambiente *DB_HOST* correspondente a
 Na IDE Intellij a variável de ambiente foi adicionada inserindo a porta: DB_HOST=localhost:3306
 Em application.properties pode ser inserido um valor default utilizando "${}": `spring.datasource.url=jdbc:mysql://${DB_HOST:localhost}....`
 
-#### Construindo imagem Docker pelo Maven
+### Construindo imagem Docker pelo Maven
 [Plugin](https://github.com/spotify/dockerfile-maven) utilizado. Para evitar de sempre que fizermos build do nosso projeto também seja construída uma imagem, criamos um novo `profile` no pom.xml. Onde:
 
 ```xml
@@ -1446,7 +1487,7 @@ Localmente:
  - Envia a aimagem para DockerHub - `docker push kamilaserpa/food-api:latest`
  - Baixando e executando imagem do Docker Hub - `docker container run --rm -p 8080:8080 -e DB_HOST=food-mysql --network food-network kamilaserpa/food-api`
 
-#### Docker Compose
+### Docker Compose
 O controle de imagens e containers através da linha de comando pode ter comandos muito longos, passando parâmetros como *n* variáveis, por exemplo. O Docker Compose centraliza configurações possibilitando gerenciamento de vários containers através de arquivo *.yml* ([documentação](https://docs.docker.com/compose/compose-file)). 
  - `docker compose up`
  - `docker compose down --volumes` - para todos os containers e remove volumes criados
@@ -1457,7 +1498,7 @@ Na [documentação](https://docs.docker.com/compose/startup-order/) o DOcker ind
 A seguinte linha no docker-compose substitui o `CMD` no Dockerfile:
  > command: ["/wait-for-it.sh", "food-mysql:3306", "-t", "30", "--", "java", "-jar", "api.jar"]
 
-#### Escalando um serviço com Docker Compose | Balanceamento de carga
+### Escalando um serviço com Docker Compose | Balanceamento de carga
 Load Balancer é um software que realiza o balanceamento de carga, distribuindo requisições entre containers. Adiciona segurança caso ocorra problema em um container, outros permanecem em execução. Possibilita *Zero Downtime*, tempo em que um sistema fica inoperacional, quando necessário realizar alguma atualização, um container permanece em execução enquanto outro é atualizado.
 
 ![Load Balancer](food-api/images/load-balance.png)
@@ -1487,7 +1528,7 @@ Para verificar isso podemos instanciar um container com distribuição Linux Alp
 Um proxy reverso fica na comunicação entre um cliente e um grupo de servidores, onde estes ficam atrás de um mesmo nome:porta, aparecendo como se fossem uma única unidade.
 Pode usar uma técnica chamada DNS de revezamento para direcionar solicitações por meio de uma lista rotativa de servidores internos. O <b>Nginx</b> é um servidor Http que realiza proxy reverso.
 
-Para utilizá-lo, configuramos o Dockerfile principal para instanciar um container com a imagem Nginx, utilizando as configurações contidas nos arquivos na pasta [./nginx](food-api\nginx). Dessa maneira a API fica acessível na porta 80.
+Para utilizá-lo, configuramos o Dockerfile principal para instanciar um container com a imagem Nginx, utilizando as configurações contidas nos arquivos na pasta [./nginx](/food-api/nginx). Dessa maneira a API fica acessível na porta 80.
 
 ---
 
