@@ -11,7 +11,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "root"
     ports:
-      - "3306:3306"
+      - "13306:3306"
     networks:
       - food-network
 
@@ -27,6 +27,7 @@ services:
       DB_HOST: food-mysql
       SPRING_SESSION_STORE_TYPE: redis
       SPRING_REDIS_HOST: food-redis
+      SPRING_PROFILES_ACTIVE: development
     networks:
       - food-network
     depends_on:

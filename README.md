@@ -48,6 +48,8 @@ Pastas:
 	- [Capítulo 22 - Segurança com Spring Security e OAuth2](#capítulo-22---segurança-com-spring-security-e-oauth2)
 	- [Capítulo 23 - OAuth2 avançado com JWT e controle de acesso](#capítulo-23---oauth2-avançado-com-jwt-e-controle-de-acesso)
 	- [Capítulo 24 - Dockerizando a aplicação](#capítulo-24---dockerizando-a-aplicação)
+	- [Capítulo 25 - Deploy em containers Docker na Amazon](#capítulo-25---deploy-em-containers-docker-na-amazon)
+	- [Notas](#notas)
 	- [Developer](#developer)
 
 ## Introdução
@@ -789,7 +791,7 @@ Práticas recomendadas para html de e-mails requerem adaptações de Html para W
 Segue [artigo com Boas práticas de HTML para e-mails](https://ajuda.locaweb.com.br/wiki/boas-praticas-de-html-para-email-marketing-ajuda-locaweb/).
 
 * Na implementação Sandbox (caixa de areia) enviamos um e-mail real para um endereço específico.
-  Na implementação Fake apenas visdualizamos o corpo do email no log da aplicação.
+  Na implementação Fake apenas visualizamos o corpo do email no log da aplicação.
   Para evitar enviar e-mails para contatos de email reais do backup de banco de dados.
 
 ### Events
@@ -1533,13 +1535,13 @@ Para verificar isso podemos instanciar um container com distribuição Linux Alp
 Um proxy reverso fica na comunicação entre um cliente e um grupo de servidores, onde estes ficam atrás de um mesmo nome:porta, aparecendo como se fossem uma única unidade.
 Pode usar uma técnica chamada DNS de revezamento para direcionar solicitações por meio de uma lista rotativa de servidores internos. O <b>Nginx</b> é um servidor Http que realiza proxy reverso.
 
-Para utilizá-lo, configuramos o Dockerfile principal para instanciar um container com a imagem Nginx, utilizando as configurações contidas nos arquivos na pasta [./nginx](/food-api/nginx). Dessa maneira a API fica acessível na porta 80.
+Para utilizá-lo, configuramos o Dockerfile principal para instanciar um container com a imagem Nginx, utilizando as configurações contidas nos arquivos na pasta [./nginx](/food-api/nginx). Dessa maneira a API fica acessível na **porta 80**.
 
 #### Container Redis
 Porém fluxo Authorization Code Grant Type não funciona com esta configuração, pois o Authorization Server utiliza o Http Session na memória do servidor para funcionar, ou seja, fica isolada em um container específico.
 Será utilizado o Redis para compartilhar os objetos que estão na sessão entre todos os containers, armazenando estrutura de dados em memória.
 
-Iniciando container cliente do Redis para acessá-lo: `docker container run --rm -it --network food-api_food-network redis:6.2.1-alpine sh`. Em seguida, o comando `redis-cli -h food-redis` dá acesso ao prompt redis-cli, senod possível visualizar suas chaves armazenadas.
+Iniciando container cliente do Redis para acessá-lo: `docker container run --rm -it --network food-api_food-network redis:6.2.1-alpine sh`. Em seguida, o comando `redis-cli -h food-redis` dá acesso ao prompt redis-cli, sendo possível visualizar suas chaves armazenadas.
 
 #### Spring Session
 [Spring Session](https://spring.io/projects/spring-session) fornece implementações para gerenciar as informações de sessão de um usuário. Spring Session Data Redis, provê suporte para comunicação da API com container Redis.
@@ -1550,9 +1552,23 @@ No docker-compose as seguintes variáveis de ambiente substituem `spring.session
 
 **Obs.:** Ainda assim o *code* do fluxo Authorization Code Grant Type fica armazenado em memória em um container específico, pois utiliza a implementaçaõ padrão que é *InMemoryAuthorizationCodeServices*. Por isso alteramos a classe AuthorizationServerConfig para implementar <b>JdbcAuthorizationCodeServices</b> persistindo o code em banco de dados na tabela `oauth_code`, podendo ser acessado por quaisquer containers.
 
+## Capítulo 25 - Deploy em containers Docker na Amazon
+Adicionar mais organização das propriedades com Spring Profies e remover chaves e senhas que não devem ser versionados por motivos de segurança.
+
+#### Propriedade Condicional
+Na classe *StorageConfig* inserimos uma condição, apenas se `food.storage.tipo=s3` são carregadas as demais (food.storage.s3.id-chave-acesso e food.storage.s3.chave-acesso-secreta), assim é possível que em desenvolvimento estas propriedades estejam ausentes.
+
+```java
+  @Bean
+  @ConditionalOnProperty(name = "food.storage.tipo", havingValue = "s3")
+    public AmazonS3 amazonS3() {
+```
+
 ---
 
-#### Eclipse
+### Notas
+
+##### Eclipse
 
 ###### UTF-8 (9.18)
 Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
@@ -1560,7 +1576,10 @@ Acessar Window > Preferences > Content Types. Para arquivos `.properties` seleci
 Sobrescrevendo propriedades (application.properties), clique com lado direito sobre o projeto no console (Boot Dashboard), Open Config, adicione a propriedade e o valor no bloco "Override properties".
 
 ##### Intellij
-Inserindo profile: Editar as configurações de build, Modify Options, Add VM options, inserir "-Dspring.profiles.active=production".
+Inserindo profile: Clicar na seta ao lado do nome do executável, Editar as configurações de build (Edit Configurations), Modify Options, Add VM options, inserir "-Dspring.profiles.active=production".
+Outra forma seria, na mesma janela de configuração, adicionar a variável de ambiente `spring.profiles.active=production`.
+
+![Intellij Profiles](food-api/images/intellij-profiles.png)
 
 ##### MySql
 [Download](https://dev.mysql.com/downloads/mysql/).

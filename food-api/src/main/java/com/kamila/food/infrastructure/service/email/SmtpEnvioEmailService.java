@@ -3,11 +3,9 @@ package com.kamila.food.infrastructure.service.email;
 import com.kamila.food.core.email.EmailProperties;
 import com.kamila.food.domain.service.EnvioEmailService;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -23,6 +21,9 @@ public class SmtpEnvioEmailService implements EnvioEmailService {
     @Autowired
     private Configuration freemarkerConfig;
 
+    @Autowired
+    ProcessadorEmailTemplate processadorEmailTemplate;
+
     @Override
     public void enviar(Mensagem mensagem) {
         try {
@@ -36,7 +37,7 @@ public class SmtpEnvioEmailService implements EnvioEmailService {
     }
 
     protected MimeMessage criarMimeMessage(Mensagem mensagem) throws MessagingException {
-        String corpoHtml = processarTemplate(mensagem);
+        String corpoHtml = processadorEmailTemplate.processarTemplate(mensagem);
 
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
@@ -47,17 +48,6 @@ public class SmtpEnvioEmailService implements EnvioEmailService {
         helper.setText(corpoHtml, true);
 
         return mimeMessage;
-    }
-
-    protected String processarTemplate(Mensagem mensagem) {
-        try {
-            Template template = freemarkerConfig.getTemplate(mensagem.getCorpo());
-
-            return FreeMarkerTemplateUtils.processTemplateIntoString(
-                    template, mensagem.getVariaveis());
-        } catch (Exception e) {
-            throw new EmailException("Não foi possível configurar o template do e-mail", e);
-        }
     }
 
 }

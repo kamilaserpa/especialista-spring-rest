@@ -7,6 +7,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * Envio de e-mail real para um endereço específico
+ */
 public class SandboxEnvioEmailService extends SmtpEnvioEmailService {
 
     @Autowired

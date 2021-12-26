@@ -8,6 +8,7 @@ import com.kamila.food.domain.service.FotoStorageService;
 import com.kamila.food.infrastructure.service.storage.LocalFotoStorageService;
 import com.kamila.food.infrastructure.service.storage.S3FotoStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.kamila.food.core.storage.StorageProperties.TipoStorage;
@@ -19,6 +20,7 @@ public class StorageConfig {
     private StorageProperties storageProperties;
 
     @Bean
+    @ConditionalOnProperty(name = "food.storage.tipo", havingValue = "s3")
     public AmazonS3 amazonS3() {
         // Criando Bean e retornando instancia de AmazonS3
         var credentials = new BasicAWSCredentials(

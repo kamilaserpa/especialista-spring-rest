@@ -224,6 +224,12 @@
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.8.0-RC1</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
