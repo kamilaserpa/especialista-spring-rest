@@ -1564,6 +1564,10 @@ Na classe *StorageConfig* inserimos uma condição, apenas se `food.storage.tipo
     public AmazonS3 amazonS3() {
 ```
 
+#### Amazon Web Services
+[Amazon Web Services (AWS)](https://aws.amazon.com/pt/) é um provedor de nuvem líder do mercado com infraestrutura global. Utilizaremos [nível gratuito](https://aws.amazon.com/pt/free/).
+
+
 ---
 
 ### Notas
