@@ -1575,6 +1575,8 @@ Depois de criar uma VPC, você pode adicionar uma ou mais [sub-redes ou subnets]
 
 ![AWS conceitos](food-api/images/aws-conceitos.png)
 
+No AWS Console é possível gerenciar os gastos clicando no nome de usuário, "Biling Dashboard". No menu lateral esquerdo em "Preferências de Faturamento" é possível habilitar as opções para receber alertas de gastos. Em "Budgets" podemos configurar um orçamento para receber um alerta quando os custos estiverem próximos ao limite estabelecido.
+
 ---
 
 ### Notas
