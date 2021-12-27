@@ -1565,8 +1565,15 @@ Na classe *StorageConfig* inserimos uma condição, apenas se `food.storage.tipo
 ```
 
 #### Amazon Web Services
-[Amazon Web Services (AWS)](https://aws.amazon.com/pt/) é um provedor de nuvem líder do mercado com infraestrutura global. Utilizaremos [nível gratuito](https://aws.amazon.com/pt/free/).
+[Amazon Web Services (AWS)](https://aws.amazon.com/pt/) é um provedor de nuvem líder do mercado com infraestrutura global. Utilizaremos [nível gratuito](https://aws.amazon.com/pt/free/). Recomendado escolher *região* próxima ao cliente, consultando se os serviços desejados estão disponíveis na região.
 
+Uma [zona de disponibilidade (AZ)](https://aws.amazon.com/pt/about-aws/global-infrastructure/regions_az/) é um ou mais datacenters distintos com energia, rede e conectividade redundantes em uma *região* da AWS. Proporcionam alta disponibilidade.
+
+[Virtual Private Cloud (VPC)](https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/what-is-amazon-vpc.html) rede virtual privada isolada logicamente dentro da nuvem da Amazon, em uma região ela abrange todas as zonas de disponibilidade.
+
+Depois de criar uma VPC, você pode adicionar uma ou mais [sub-redes ou subnets](https://docs.aws.amazon.com/pt_br/vpc/latest/userguide/VPC_Subnets.html#vpc-subnet-basics) em cada zona de disponibilidade. Uma sub-rede é uma gama de endereços IP na VPC.
+
+![AWS conceitos](food-api/images/aws-conceitos.png)
 
 ---
 
