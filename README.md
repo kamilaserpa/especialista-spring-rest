@@ -1593,6 +1593,10 @@ Selecionar o serviço VPC, Security, Security Groups é possível verificar o fo
 
 Acessando o banco de dados via Dbeaver, criamos o schema "food", e o usuário "food-api" com todos os provilégios para o banco *food-api*.
 
+#### Memória Redis
+Servidor Redis utilizado é o [Redislabs](https://redislabs.com/). Outra possibilidade é o [Amazon ElastiCache](https://aws.amazon.com/pt/elasticache/), porém ele dificulta o acesso de fora da VPC.
+
+
 ---
 
 ### Notas
