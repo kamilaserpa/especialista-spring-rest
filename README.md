@@ -733,9 +733,9 @@ Isso porque outros formatos de imagem também são aceitos na aplicação, como 
 
 #### Amazon S3
 Criar conta (gratuita).
-Acessar console (https://s3.console.aws.amazon.com/), serviços, S3 e criar Bucket ("food-kami").
-Acessar serviço "IAM" e adicionar usuário ("food-test-s3"). Habilitar "Acesso programático".
-No passo "Definir permissões", criar nova política. 
+Acessar console (https://s3.console.aws.amazon.com/), serviços, S3 e criar <b>Bucket</b> ("food-kami").
+Acessar serviço "IAM" e adicionar <b>usuário</b> ("food-test-s3"). Habilitar "Acesso programático".
+No passo "Definir permissões", criar nova <b>política</b>. 
 
 Na nova política inserir serviço "S3" e habilitar:
  - Gravação: PutObject (gravar arquivo), DeleteObject (excluir)
@@ -1576,6 +1576,8 @@ Depois de criar uma VPC, você pode adicionar uma ou mais [sub-redes ou subnets]
 ![AWS conceitos](food-api/images/aws-conceitos.png)
 
 No AWS Console é possível gerenciar os gastos clicando no nome de usuário, "Biling Dashboard". No menu lateral esquerdo em "Preferências de Faturamento" é possível habilitar as opções para receber alertas de gastos. Em "Budgets" podemos configurar um orçamento para receber um alerta quando os custos estiverem próximos ao limite estabelecido.
+
+Adicionar Bucket e Usuário como descrito no capítulo 14 [Amazon S3](####-amazon-S3).
 
 ---
 
