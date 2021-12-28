@@ -1579,6 +1579,14 @@ No AWS Console é possível gerenciar os gastos clicando no nome de usuário, "B
 
 Adicionar Bucket e Usuário como descrito no capítulo 14 [Amazon S3](####-amazon-S3).
 
+Foi utilizado o [Relational Databse Service (Amazon RDS)](https://aws.amazon.com/pt/rds/) para configuração, a operação e o dimensionamento de um banco de dados relacional na nuvem. Single-AZ única zona de disponibilidade, Multi-AZ réplica do banco em outra zona de disponibilidade, no caso de acontecimento de uma catástrofe o banco de dados continuar disponível, para fornecer redundância de dados, eliminar congelamentos de E/S e minimizar os picos de latência durante os backups do sistema, manutenção mais cara.
+
+Ao selecionar o serviço RDS, acessar no menu lateral "Banco de Dados" e "Criar banco de dados". Na opção Modeloes escolher "Free tier" ou "Nível gratuito".
+
+"Public Access", ao selecionar *SIM* as instâncias e os dispositivos do Amazon EC2 fora da VPC podem se conectar ao banco de dados por meio de um IP externo,sendo acessível por Dbeaver ou Workbench por exemplo.
+
+"Grupo de segurança" funciona como um firewall virtual, controlando entrada e saída, por exemplo podemos configurar IPs que podem acessar o DB.
+
 ---
 
 ### Notas
