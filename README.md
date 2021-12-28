@@ -1596,6 +1596,9 @@ Acessando o banco de dados via Dbeaver, criamos o schema "food", e o usuário "f
 #### Memória Redis
 Servidor Redis utilizado é o [Redislabs](https://redislabs.com/). Outra possibilidade é o [Amazon ElastiCache](https://aws.amazon.com/pt/elasticache/), porém ele dificulta o acesso de fora da VPC.
 
+Acessando banco de dados criado através de um cliente Redis instanciado em um container local: `docker container run --rm -it redis:6.0.10-alpine redis-cli -h <public endpoint> -p 12609`
+
+Dentro do container cliente redis: `auth <password>`, para autenticação.
 
 ---
 
