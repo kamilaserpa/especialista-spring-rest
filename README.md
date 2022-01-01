@@ -1603,6 +1603,9 @@ Dentro do container cliente redis: `auth <password>`, para autenticação.
 #### Amazon Elastic Container Service
 É um serviço gerenciado de orquestração de coitainers. Necessário um cluster (conjunto de resursos computacionais, servidores) para executar os containers. Com o EC2 a cobrança é realizada pelas máquinas virtuais, e pelo Fargate o valor é por tempo de execução e recursos do container. O item selecionado no curso foi o Fargate, porém não está incluso no nível gratuito.
 
+Acessar serviço *ECS*, selecionar Task Definition, que descreve configurações de um ou mais containers, como a imagem utilizada, mapeamento de portas, variáveis de ambiente, etc. Task memory, selecionar menor memória necessária pois é cobrada. Para parar um container click Update, e insira "Number of task" valor zero (0), pois se o usuário parar a task e o valor desejado (number of task) for 1, por exemplo, o próprio ECS irá levantar nvoamente para ficar com uma instância sendo executada.
+
+
 ---
 
 ### Notas
