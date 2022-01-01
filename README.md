@@ -1600,6 +1600,9 @@ Acessando banco de dados criado através de um cliente Redis instanciado em um c
 
 Dentro do container cliente redis: `auth <password>`, para autenticação.
 
+#### Amazon Elastic Container Service
+É um serviço gerenciado de orquestração de coitainers. Necessário um cluster (conjunto de resursos computacionais, servidores) para executar os containers. Com o EC2 a cobrança é realizada pelas máquinas virtuais, e pelo Fargate o valor é por tempo de execução e recursos do container. O item selecionado no curso foi o Fargate, porém não está incluso no nível gratuito.
+
 ---
 
 ### Notas
