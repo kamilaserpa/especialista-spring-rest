@@ -1617,6 +1617,20 @@ Ao visualizar um cluster em execução vemos a tag "Services" o item "Desired ta
 #### Amazon Elastic Container Registry
 Para utilizar uma imagem é necessário tê-la em algum Registry. Para isso será utilizado o [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/pt/ecr/). É possível utilizar o Docker Hub, porém espera-se que a integração com serviços da Amazon e gerenciamento sejam mais simples com o ECR.
 
+Criar novo repositório. Para inserir imagem selecione o repositório criado e "View push commands", serão exibidos comandos para inserir imagens no Registry. Necessário instalar <b>AWS Command Line Interface</b>. 
+
+Com Aws Cli instalado digitamos `aws configure`, e nos é solicitado *access key id*. Para isso acessamos o serviço "IAM" no Aws Console, adicionamso outro usuário apenas para a finalizade de utilização do Aws Cli. Habilitamos "Chave de acesso: acesso programático". Em "Anexar políticas existentes de forma direta", busque e adicione "AmazonEC2ContainerRegistryPowerUser", assim damos permissão para este usuário gerenciar os serviços EC2. Assim obtemos o Secret Access Key e Access Key Id. Inserimos no prompt e teclamos Enter nas demais opções (region name, output format). Após isso visualizamos novamente "View push commands".
+
+> aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ************
+
+Criamos a imagem docker do projeto com `mvn package -Pdocker` para realizar upload dela no ECR. Vamos tagea-lá segundo comando disponível no ECR:
+ > docker tag food-api:latest ************.dkr.ecr.us-east-2.amazonaws.com/food-api:latest
+
+ E, seguida realizamos o push da imagem para Amazon ECR:
+ > docker push ********.dkr.ecr.us-east-2.amazonaws.com/food-api:latest
+
+Ao clicar no nome do repositório poderemos ver a imagem disponível.
+
 ---
 
 ### Notas
@@ -1624,7 +1638,7 @@ Para utilizar uma imagem é necessário tê-la em algum Registry. Para isso ser�
 ##### Eclipse
 
 ###### UTF-8 (9.18)
-Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `mensagens.properties`.
+Acessar Window > Preferences > Content Types. Para arquivos `.properties` selecione Text > Java Properties File / Spring Properties File. Em Default encoding inserir "UTF-8", para evitar caracteres especiais não reconhecidos nas mensagens em `messages.properties`.
 
 Sobrescrevendo propriedades (application.properties), clique com lado direito sobre o projeto no console (Boot Dashboard), Open Config, adicione a propriedade e o valor no bloco "Override properties".
 
