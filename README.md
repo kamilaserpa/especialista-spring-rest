@@ -1564,6 +1564,7 @@ Na classe *StorageConfig* inserimos uma condição, apenas se `food.storage.tipo
     public AmazonS3 amazonS3() {
 ```
 
+https://aws.amazon.com/pt/free/
 #### Amazon Web Services
 [Amazon Web Services (AWS)](https://aws.amazon.com/pt/) é um provedor de nuvem líder do mercado com infraestrutura global. Utilizaremos [nível gratuito](https://aws.amazon.com/pt/free/). Recomendado escolher *região* próxima ao cliente, consultando se os serviços desejados estão disponíveis na região.
 
@@ -1601,10 +1602,20 @@ Acessando banco de dados criado através de um cliente Redis instanciado em um c
 Dentro do container cliente redis: `auth <password>`, para autenticação.
 
 #### Amazon Elastic Container Service
-É um serviço gerenciado de orquestração de coitainers. Necessário um cluster (conjunto de resursos computacionais, servidores) para executar os containers. Com o EC2 a cobrança é realizada pelas máquinas virtuais, e pelo Fargate o valor é por tempo de execução e recursos do container. O item selecionado no curso foi o Fargate, porém não está incluso no nível gratuito.
+É um serviço gerenciado de orquestração de coitainers. Necessário configurar um cluster (conjunto de resursos computacionais, servidores) para executar os containers, há dois tipos de clusters, clusters de instância do EC2 e clusters do Fargate. Com o EC2 a cobrança é realizada pelas máquinas virtuais, necessário realizar o gerenciamento dos servidores. Já pelo Fargate o valor é por tempo de execução e recursos do container, mecanismo de execução dos containers sem servidores, gerenciado pela Amazon. O item selecionado no curso foi o Fargate, porém não está incluso no nível gratuito.
 
-Acessar serviço *ECS*, selecionar Task Definition, que descreve configurações de um ou mais containers, como a imagem utilizada, mapeamento de portas, variáveis de ambiente, etc. Task memory, selecionar menor memória necessária pois é cobrada. Para parar um container click Update, e insira "Number of task" valor zero (0), pois se o usuário parar a task e o valor desejado (number of task) for 1, por exemplo, o próprio ECS irá levantar nvoamente para ficar com uma instância sendo executada.
+![ECS Diagrama](food-api/images/aws-ecs-diagram.png)
 
+Acessar serviço *ECS*, selecionar `Task Definition`, que descreve configurações de um ou mais containers, como a imagem utilizada, mapeamento de portas, variáveis de ambiente, etc. Em *Task memory*, selecionar menor memória necessária pois é cobrada. Uma task definition pode ter um ou mais containers. Adicionamos um container, com o nome `nginx-container`, com imagem *nginx:1.19.8-alpine*. Em *Port Mapping* inserimos a porta que desejamos expor: 80. Selecionamos criar container e criar Task Definition. Nesse momento o container ainda não está em execução, uma *task* é uma instância em execução de uma *task definition*, instância de um container em execução, para executá-la é necessário um cluster.
+
+Acessar no menu lateral `Amazon ECS > Cluster`, create cluster, Network Only. EM cluster name inserimos *food-cluster*, não é necessário criar a VPC, selecionar *create*. `Services` no contexto do AWS EC2, é um serviço que mantém uma task continuamente em execução, caso ocorra um problema no container e ele caia, o service o reinicia. Ao visualizar o cluster selecionar a tab Service e criar um service. Selecione editar  `Security Group` e alteramso o nome para "nginx-sg". "Auto-assign public IP" enabled pois desejamos acessar o container de forma externa através da Internet.
+
+Ao visualizar um cluster em execução vemos a tag "Services" o item "Desired tasks" onde consta o número desejado de task, ou seja, de containers em eexecução. <b>Para parar um container</b> selecione o service, clique em `Update`, e insira "Number of task" valor zero (0), pois se o usuário parar a task e o valor desejado (number of task) for 1, por exemplo, o próprio ECS irá levantar novamente para ficar com uma instância sendo executada.
+
+![AWS Service](food-api/images/aws-cluster-service.png)
+
+#### Amazon Elastic Container Registry
+Para utilizar uma imagem é necessário tê-la em algum Registry. Para isso será utilizado o [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/pt/ecr/). É possível utilizar o Docker Hub, porém espera-se que a integração com serviços da Amazon e gerenciamento sejam mais simples com o ECR.
 
 ---
 
