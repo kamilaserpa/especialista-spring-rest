@@ -1608,11 +1608,15 @@ Dentro do container cliente redis: `auth <password>`, para autenticação.
 
 Acessar serviço *ECS*, selecionar `Task Definition`, que descreve configurações de um ou mais containers, como a imagem utilizada, mapeamento de portas, variáveis de ambiente, etc. Em *Task memory*, selecionar menor memória necessária pois é cobrada. Uma task definition pode ter um ou mais containers. Adicionamos um container, com o nome `nginx-container`, com imagem *nginx:1.19.8-alpine*. Em *Port Mapping* inserimos a porta que desejamos expor: 80. Selecionamos criar container e criar Task Definition. Nesse momento o container ainda não está em execução, uma *task* é uma instância em execução de uma *task definition*, instância de um container em execução, para executá-la é necessário um cluster.
 
-Acessar no menu lateral `Amazon ECS > Cluster`, create cluster, Network Only. EM cluster name inserimos *food-cluster*, não é necessário criar a VPC, selecionar *create*. `Services` no contexto do AWS EC2, é um serviço que mantém uma task continuamente em execução, caso ocorra um problema no container e ele caia, o service o reinicia. Ao visualizar o cluster selecionar a tab Service e criar um service. Selecione editar  `Security Group` e alteramso o nome para "nginx-sg". "Auto-assign public IP" enabled pois desejamos acessar o container de forma externa através da Internet.
+Acessar no menu lateral `Amazon ECS > Cluster`, create cluster, Network Only. EM cluster name inserimos *food-cluster*, não é necessário criar a VPC, selecionar *create*. `Services` no contexto do AWS EC2, é um serviço que mantém uma task continuamente em execução, caso ocorra um problema no container e ele caia, o service o reinicia. Ao visualizar o cluster selecionar a tab Service e criar um service. Selecione o cluster VPC que aparece nas opções e editar  `Security Group`, alteramos o nome para "nginx-sg". "Auto-assign public IP" enabled pois desejamos acessar o container de forma externa através da Internet.
 
 Ao visualizar um cluster em execução vemos a tag "Services" o item "Desired tasks" onde consta o número desejado de task, ou seja, de containers em eexecução. <b>Para parar um container</b> selecione o service, clique em `Update`, e insira "Number of task" valor zero (0), pois se o usuário parar a task e o valor desejado (number of task) for 1, por exemplo, o próprio ECS irá levantar novamente para ficar com uma instância sendo executada.
 
 ![AWS Service](food-api/images/aws-cluster-service.png)
+
+Caso a porta esteja padrão TCP 80, altere para Custom TCP e insira a porta desejada, 8080, por exemplo.
+
+![Configurando porta no Security Group](food-api/images/aws-security-group-food-api.png)
 
 #### Amazon Elastic Container Registry
 Para utilizar uma imagem é necessário tê-la em algum Registry. Para isso será utilizado o [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/pt/ecr/). É possível utilizar o Docker Hub, porém espera-se que a integração com serviços da Amazon e gerenciamento sejam mais simples com o ECR.
@@ -1636,7 +1640,13 @@ Criamos um arquivo jks para produção (123456@prod)
 #### Systems Manager - Gerenciamento de senhas e configurações
 Podemos inserir os valores das variáveis de ambiente ao criar uma task, n oformato chave valor. Para qualqer alteração deveríamos alterar a task, e para qualquer usuário com acesso ficariam visíveis valores mensíveis. Para gerenciar configurações e senhas a Amazon fornece a ferramenta Systems Manager > Parameter Store, ou "Armazenamento de parâmetros".
 
-AO criar uma parâmetro vamos editar a Task Definition, inserir a key da variável de ambiente, e no value inserimos o path do parâmetro criado anteriormente. No campo selection do meio selecionamos `ValueFrom`.
+Ao criar um parâmetro vamos editar a `ECS/Task Definition`, inserir a key da variável de ambiente, e no value inserimos o path do parâmetro criado anteriormente. No campo selection do meio selecionamos `ValueFrom`.
+
+Criamos uma Task Definition para o container de Food API. Adicionamos a imagem `695220093988.dkr.ecr.us-east-2.amazonaws.com/food-api`. Em *Port mappings* inserimos 8080. Deve ser inserida também a variável `SPRING_PROFILES_ACTIVE = production`.
+
+![Variáveis de ambiente no ECS](food-api/images/ecs-environment-variables.png)
+
+Acessando clusters, criamos um novo service para englobar a Task Definition do Food API. `AccessDeniedException` foi recebido pois o cluster ECS não tinha permissão para acessar o recurso Parameters Store.
 
 
 ---
