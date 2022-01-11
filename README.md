@@ -1377,9 +1377,9 @@ Endpoint chamado para verificar token JWT, expõe a chave pública, inicialmente
 ##### .jks
 Comando no local da pasta "resource/keys" é possível obter o arquivo food.jks codificado por Base64:
  > cat food.jks | base64 // unit
- > type food.jks | openssl base64` // windows
+ > type food.jks | openssl base64 // windows
 
-Outra meneira é acessar o site [https://www.base64encode.org/](https://www.base64encode.org/), carregar o arquivo e encodar.<br>
+Outra maneira é acessar o site [https://www.base64encode.org/](https://www.base64encode.org/), carregar o arquivo e encodar.<br>
 Desse modo a keystore fica armazenada dentro do arquivo em bytes resultante da leitura do código base64 gerado. O código fica em `application.properties` é decodificado para geração do arquivo através da classe `Base64ProtocolResolver`.
 
 ## Capítulo 24 - Dockerizando a aplicação
@@ -1630,6 +1630,8 @@ Criamos a imagem docker do projeto com `mvn package -Pdocker` para realizar uplo
  > docker push ********.dkr.ecr.us-east-2.amazonaws.com/food-api:latest
 
 Ao clicar no nome do repositório poderemos ver a imagem disponível.
+
+Criamos um arquivo jks para produção (123456@prod)
 
 ---
 
