@@ -1581,18 +1581,19 @@ No AWS Console é possível gerenciar os gastos clicando no nome de usuário, "B
 Adicionar Bucket e Usuário como descrito no capítulo 14 [Amazon S3](####-amazon-S3).
 
 #### Amazon RSD
-Foi utilizado o [Relational Databse Service (Amazon RDS)](https://aws.amazon.com/pt/rds/) para configuração, a operação e o dimensionamento de um banco de dados relacional na nuvem. Single-AZ única zona de disponibilidade, Multi-AZ réplica do banco em outra zona de disponibilidade, no caso de acontecimento de uma catástrofe o banco de dados continuar disponível, para fornecer redundância de dados, eliminar congelamentos de E/S e minimizar os picos de latência durante os backups do sistema, manutenção mais cara.
+Foi utilizado o [Relational Databse Service (Amazon RDS)](https://aws.amazon.com/pt/rds/) para configuração, a operação e o dimensionamento de um **banco de dados relacional na nuvem**. Single-AZ única zona de disponibilidade, Multi-AZ réplica do banco em outra zona de disponibilidade, no caso de acontecimento de uma catástrofe o banco de dados continuar disponível, para fornecer redundância de dados, eliminar congelamentos de E/S e minimizar os picos de latência durante os backups do sistema, manutenção mais cara.
 
-Ao selecionar o serviço RDS, acessar no menu lateral "Banco de Dados" e "Criar banco de dados". Na opção Modeloes escolher "Free tier" ou "Nível gratuito".
+Ao selecionar o serviço `RDS`, acessar no menu lateral "Banco de Dados" e "Criar banco de dados". Na opção Modelos escolher "Free tier" ou "Nível gratuito". Em "Identificador da instância de banco de dados" insira o nome do banco de dados: food-mysql.
 
-"Public Access", ao selecionar *SIM* as instâncias e os dispositivos do Amazon EC2 fora da VPC podem se conectar ao banco de dados por meio de um IP externo,sendo acessível por Dbeaver ou Workbench por exemplo.
+"Public Access", ao selecionar *SIM* as instâncias e os dispositivos do Amazon EC2 fora da VPC podem se conectar ao banco de dados por meio de um IP externo, sendo acessível por Dbeaver ou Workbench por exemplo.
 
-"Grupo de segurança" funciona como um firewall virtual, controlando entrada e saída, por exemplo podemos configurar IPs que podem acessar o DB.
+"Grupo de segurança" funciona como um firewall virtual, controlando entrada e saída, por exemplo podemos configurar IPs que podem acessar o DB. Selecione Criar novo e identifique com "food-mysql-sg".
 
 #### VPC
-Selecionar o serviço VPC, Security, Security Groups é possível verificar o food-mysql-sg, e que o Ip de entrada permitido é o IP do meu usuário ao criar o banco de dados. É possível alterar essa configuração em "Edit Inbound rules".
+Selecionar o serviço VPC, Security, Security Groups é possível verificar o `food-mysql-sg`, e que o Ip de entrada permitido é o IP do meu usuário ao criar o banco de dados. É possível alterar essa configuração em "Edit Inbound rules" ou "Editar regras de entrada".
 
-Acessando o banco de dados via Dbeaver, criamos o schema "food", e o usuário "food-api" com todos os provilégios para o banco *food-api*.
+Acessando o banco de dados via Dbeaver, criamos o schema "food", e o usuário "food-api" com todos os provilégios para o banco *food-api*. O host e porta ficam visíveis ao acessar o serviço RDS > Banco de Dados, clicar sobre o nome do banco é possível visualizar Endpoint e porta.
+
 
 #### Memória Redis
 Servidor Redis utilizado é o [Redislabs](https://redislabs.com/). Outra possibilidade é o [Amazon ElastiCache](https://aws.amazon.com/pt/elasticache/), porém ele dificulta o acesso de fora da VPC.
@@ -1638,7 +1639,7 @@ Ao clicar no nome do repositório poderemos ver a imagem disponível.
 Criamos um arquivo jks para produção (123456@prod)
 
 #### Systems Manager - Gerenciamento de senhas e configurações
-Podemos inserir os valores das variáveis de ambiente ao criar uma task, n oformato chave valor. Para qualqer alteração deveríamos alterar a task, e para qualquer usuário com acesso ficariam visíveis valores mensíveis. Para gerenciar configurações e senhas a Amazon fornece a ferramenta Systems Manager > Parameter Store, ou "Armazenamento de parâmetros".
+Podemos inserir os valores das variáveis de ambiente ao criar uma task, no formato chave valor. Para qualquer alteração deveríamos alterar a task, e para qualquer usuário com acesso ficariam visíveis valores mensíveis. Para gerenciar configurações e senhas a Amazon fornece a ferramenta **Systems Manager > Parameter Store**, ou "Armazenamento de parâmetros".
 
 Ao criar um parâmetro vamos editar a `ECS/Task Definition`, inserir a key da variável de ambiente, e no value inserimos o path do parâmetro criado anteriormente. No campo selection do meio selecionamos `ValueFrom`.
 
@@ -1652,8 +1653,10 @@ Para dar essa permissão acessamos o serviço <b>IAM</b>, Roles (Funções), e b
 
 Para ver os Logs acesse *ECS > CLusters*, clique no id da *Task*, na aba *Containers*, clique na seta e expanda o container, será exibido link `View logs in CloudWatch`, clique e acesse os logs.
 
-#### CommunicationsException MySQL
-Possibilidades, erro de host, porta, password, ou bloqueio de permissão de acesso ao banco de dados.
+#### Permitindo o acesso ao MySQL pelo Security Group do serviço do Amazon ECS
+`CommunicationsException` indica que a aplicação não está conseguindo se conectar com o banco MySQL. Algumas possibilidades são: erro de variável host, porta, password; ou bloqueio de permissão de acesso ao banco de dados.
+
+Para dar permissão de acesso ao banco selecione o serviço da AWS "VPC", aba no menu lateral "Security Groups", Editar regras de entrada, adicionar nova regra. No campo "Origem" buscamos e selecionamos "food-api-sg", desse modo damos permissão para o grupo `food-api-sg` de acesso ao banco de dados.
 
 ---
 
