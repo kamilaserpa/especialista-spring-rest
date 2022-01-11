@@ -1658,6 +1658,8 @@ Para ver os Logs acesse *ECS > CLusters*, clique no id da *Task*, na aba *Contai
 
 Para dar permissão de acesso ao banco selecione o serviço da AWS "VPC", aba no menu lateral "Security Groups", Editar regras de entrada, adicionar nova regra. No campo "Origem" buscamos e selecionamos "food-api-sg", desse modo damos permissão para o grupo `food-api-sg` de acesso ao banco de dados.
 
+Para testar nossa API clicamos no ID da task, e visualizamos o **Public IP**. Através do acesso remoto do banco de dados inserimos dados no banco de produção e acessamos os endpoints através do IP publico de produção.
+
 ---
 
 ### Notas
