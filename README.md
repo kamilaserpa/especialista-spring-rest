@@ -1633,6 +1633,12 @@ Ao clicar no nome do repositório poderemos ver a imagem disponível.
 
 Criamos um arquivo jks para produção (123456@prod)
 
+#### Systems Manager - Gerenciamento de senhas e configurações
+Podemos inserir os valores das variáveis de ambiente ao criar uma task, n oformato chave valor. Para qualqer alteração deveríamos alterar a task, e para qualquer usuário com acesso ficariam visíveis valores mensíveis. Para gerenciar configurações e senhas a Amazon fornece a ferramenta Systems Manager > Parameter Store, ou "Armazenamento de parâmetros".
+
+AO criar uma parâmetro vamos editar a Task Definition, inserir a key da variável de ambiente, e no value inserimos o path do parâmetro criado anteriormente. No campo selection do meio selecionamos `ValueFrom`.
+
+
 ---
 
 ### Notas
