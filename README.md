@@ -1646,8 +1646,14 @@ Criamos uma Task Definition para o container de Food API. Adicionamos a imagem `
 
 ![Variáveis de ambiente no ECS](food-api/images/ecs-environment-variables.png)
 
-Acessando clusters, criamos um novo service para englobar a Task Definition do Food API. `AccessDeniedException` foi recebido pois o cluster ECS não tinha permissão para acessar o recurso Parameters Store.
+##### Habilitando acesso aos parâmetros
+Acessando clusters, criamos um novo service para englobar a Task Definition do Food API. `AccessDeniedException` foi recebido pois o service ECS não tinha permissão para acessar o recurso `Parameters Store`.
+Para dar essa permissão acessamos o serviço <b>IAM</b>, Roles (Funções), e buscamos a role *"ecsTaskExecutionRole"*. Essa é a role que o service utiliza para acessar outros recursos na Amazon. Clicando na role podemos ver mais detalhes, selecionamos "Add inline policy". Na aba "Serviço" selecionamos "Systems Manager", e em Ações> Níveis de acesso> Leitura, habilitamos: GetParameter, GetParameters, GetParametersByPath. Em "Recursos" adicionaos "ARN" e na opção "Parameter name without leading slash" inserimos o valor `prod/*`, para permitir acesso apenas aos parâmetros inseridos nesse path.
 
+Para ver os Logs acesse *ECS > CLusters*, clique no id da *Task*, na aba *Containers*, clique na seta e expanda o container, será exibido link `View logs in CloudWatch`, clique e acesse os logs.
+
+#### CommunicationsException MySQL
+Possibilidades, erro de host, porta, password, ou bloqueio de permissão de acesso ao banco de dados.
 
 ---
 
