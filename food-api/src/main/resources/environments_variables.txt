@@ -1,6 +1,6 @@
-/prod/food-api-service/DB_HOST = food-mysql.cykugbq107xe.us-east-2.rds.amazonaws.com
-/prod/food-api-service/SPRING_DATASOURCE_USERNAME = food-api
-/prod/food-api-service/SPRING_DATASOURCE_PASSWORD = food-api
+/prod/food-api-service/DB_HOST = food-mysql.chxwgmzi10am.sa-east-1.rds.amazonaws.com
+/prod/food-api-service/SPRING_DATASOURCE_USERNAME = food_api
+/prod/food-api-service/SPRING_DATASOURCE_PASSWORD = food_api
 
 /prod/food-api-service/SPRING_REDIS_HOST = redis-12609.c241.us-east-1-4.ec2.cloud.redislabs.com
 /prod/food-api-service/SPRING_REDIS_PORT = 12609
