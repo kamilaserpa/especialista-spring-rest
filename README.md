@@ -1022,6 +1022,8 @@ Duas maneiras de inserir o mesmo link:
 #### Root Entry Point
 O consumidor deve poder acessar a API pelo ponto de entrada raiz. Assim, caso algum endpoint tenha alteração na sua URL, os consumidores não sofrerão impacto já que estariam seguindo os links retornados e acessados pela API e pelo `Root Entry Point`.
 
+Caso não seja enviado token de autenticação é retornado objeto vazio, com resposta 200 OK. Caso o usuário esteja autenticado serão retornados os endpoints soa quais ele possui permissão de visualização.
+
 #### Comprimindo respostas HTTP com GZIP
 Com um payload maior contendo os links para implantação do HATEOAS pode ser interessante comprimir as respostas da API com GZIP.
 Habilita-se a compressão adicionando `spring.compression.enabled=true` em `application.properties`. Vale ressaltar que o servidor utilizará processamento para comprimir.
@@ -1667,6 +1669,13 @@ O balanceamento de carga é importante porque precisamos distribuir o processame
 
 ![ELB](food-api/images/aws-elastic-load-balancing.png)
 
+##### Configurando Load Balancer na Amazon
+EC2 > Load Balancers > Criar novo. Como nossas requisições utilizam o HTTP selecionamos "Application Load Balancer". Como nome inserimos "food-lb". *Scheme* selecionamos *Internet-facing* pois desejamos que os load balancer esteja exposto na internet para os clientes da API. Em "Listeners and routing" deixamos HTTP 80 como padrão. Selecionamos pelo menos duas zonas de disponibilidade em "Network mapping" para habilitar o Multi-AZ.
+
+Criamos novo <b>Target Group</b> (Grupo de Destino) chamado "food-api-service-tg", para agrupar as instâncias em execução dentro do serviço food-service. Em "target type" selecionamos IP, pois a forma com que o ECS s eintegra com o Load Balancer é através do IP, caso fossem instâncias do EC2 deveria ser selecionado "Instance". Selecionamos Http, 80.
+Em "Health Check" inserimos um path em que ele vai acessar e obter resposta de sucesso, sem autenticação, inserimos "/v1". Habilitamos "Trafic port", "Healthy threshold" selecionamos 2, pois é o número de checagens com sucesso com que o Target será considerado saudável. Em "Unhealthy threshold" deixamos 2 também, caso com duas requests com falha o target é considerado não saudável. Em Timeout selecionamos 10 segundos para ser considerado erro. "Interval" selecionamos o intervalo de tempo de frequência de testes. Em next seremos encaminhados para "Register Targets", porém as instâncias serão adicionadas pelo próprio Amazon ECS, por isso não iremos adicionar nenhum target nesse momento. Em "Listeners and routing" selecionamso o target group criado.
+
+"Create new security group" e criamos "food-lb-sg", com regra de entrada TCP, porta 80, de qualquer lugar. Create! Podemos acessar através do nome do DNS, porém recebemos 503 pois ainda não há targets no grupo.
 
 ---
 
