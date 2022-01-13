@@ -1660,6 +1660,14 @@ Para dar permissão de acesso ao banco selecione o serviço da AWS "VPC", aba no
 
 Para testar nossa API clicamos no ID da task, e visualizamos o **Public IP**. Através do acesso remoto do banco de dados inserimos dados no banco de produção e acessamos os endpoints através do IP publico de produção.
 
+#### Amazon Elastic Load Balancing - Balanceamento de carga
+O balanceamento de carga é importante porque precisamos distribuir o processamento das requisições em diversos containers. Pois o ideal é ter no mínimo dois containers em zonas de disponibilidade diferentes, distribuindo a carga para que nenhum dos containers fique sobrecarregado, possibilizando proteção de falhas, escalabilidade, Zero Downtime Deployment ("Deploy sem interrupção").
+
+[Amazon Elastic Load Balancing](https://aws.amazon.com/pt/elasticloadbalancing/) é uma funcionalidade do produto <b>EC2</b>. ELB é um único ponto de contato com os clientes e distribui as requisições para os vários containers através de um algoritmo. <b>Listeners</b> são processos que aguardam as requisições de determinado protocolo e porta, neles estão Rules, regras que definem o <b>Target Group</b> para qual será roteada a requisição. O Target Group envia para um container saudável, apto a responder, essa verificação é feita através da configuração *Health Check*, podemos configurar um endpoint para essa verificação.
+
+![ELB](food-api/images/aws-elastic-load-balancing.png)
+
+
 ---
 
 ### Notas
