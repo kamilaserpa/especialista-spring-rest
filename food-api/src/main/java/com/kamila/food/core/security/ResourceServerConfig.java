@@ -43,6 +43,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .cors()
 
                 .and()
+                .addFilter(new PermissionFilter(authenticationManager()))
+
                 .oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());

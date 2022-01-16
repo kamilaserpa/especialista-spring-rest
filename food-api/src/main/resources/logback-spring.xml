@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
 
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <property name="LOG_FILE" value="${BUILD_FOLDER:-build}/${springAppName}"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="[FOOD-API] %d{yyyy-MM-dd HH:mm:ss.SSS} App=${springAppName} [%thread] [traceId=%X{X-B3-TraceId:-}] [spanId=%X{X-B3-SpanId:-}] [correlation=%X{x.correlation.id}] - %m%n"/>
+
+
+    <springProfile name="development">
+        <!-- Sleuth with MDC -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                <charset>utf8</charset>
+            </encoder>
+        </appender>
+
+        <logger name="feign" level="DEBUG"/>
+        <logger name="org.springframework.cloud.sleuth" level="TRACE"/>
+        <logger name="org.springframework.boot.autoconfigure.logging" level="INFO"/>
+        <logger name="org.springframework.cloud.sleuth.log" level="DEBUG"/>
+        <logger name="org.springframework.cloud.sleuth.trace" level="DEBUG"/>
+        <logger name="org.springframework.cloud.sleuth.instrument.rxjava" level="DEBUG"/>
+        <logger name="org.springframework.cloud.sleuth.instrument.reactor" level="TRACE"/>
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- Same others (Microservices) -->
+    <springProfile name="test">
+        <appender name="json" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                    <prettyPrint>false</prettyPrint>
+                </jsonFormatter>
+                <appendLineSeparator>true</appendLineSeparator>
+                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+            </layout>
+        </appender>
+
+        <logger name="com.kamila.food" level="DEBUG">
+            <appender-ref ref="json"/>
+        </logger>
+        <logger name="org.springframework" level="INFO">
+            <appender-ref ref="json"/>
+        </logger>
+    </springProfile>
+
+    <!--    Production Log Configs   -->
     <springProfile name="production">
         <springProperty name="logglyToken" source="logging.loggly.token"/>
 
