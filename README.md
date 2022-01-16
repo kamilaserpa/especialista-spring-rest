@@ -1677,6 +1677,21 @@ Em "Health Check" inserimos um path em que ele vai acessar e obter resposta de s
 
 "Create new security group" e criamos "food-lb-sg", com regra de entrada TCP, porta 80, de qualquer lugar. Create! Podemos acessar através do nome do DNS, porém recebemos 503 pois ainda não há targets no grupo.
 
+##### Configurando o balanceamento de carga no Service do Amazon ECS
+Para adicionar um Load Balancer no Service, devemos fazer isso na criação do Service. Excluímod o "food-aservice" e criamos o `food-api-service`, com duas tasks para utilizar o balanceamento. Selecionando pelo menos duas subnets (zonas de disponibilidade). Editamos o Security group e selecionamos o previamente criado `food-api-service-sg`.
+
+"Em Load Balancer type" selecionamos "Application Load Balancer", e em "Health check grace period" inserimos um tempo de intervalo de verificação de saúde da task, deve ter um tempo suficiente pra aplicação levantar e estar pronta para responder. Inserimos 150s. 
+
+Na aba referente ao container selecionamos "Add to load balancer" para adicionar o container ao balanceamento de carga.
+Em `Production listener port`selecionamos *80:HTTP*, e selecionamos o Target group "food-api-service-tg". Next > create service.
+Acessando `EC2 > Load Balancer`acessamos o balancer e capturamos o endereço DNS para acesso via http, que já pode ser acessado na Web.
+
+Para <b>parar uma task</b> podemos acessar o ECS, cluster, visualizar e clicar no Id do target, clicar em `Stop`no canto direito superior. O service indica a quantidade desejada e starta automaticamente um target caso esteja configurado para isso.
+
+<b>Removendo acesso direto ao Container</b>
+Para que a comunicação fique limitada ao acesso via Load balancer vamos remover a possibilidade de acessar diretamente os containers. Acessamos `VPC > Security Groups > food-api-service` > Regras de entrada, e excluímos a regra de entrada anterior e adicionamos a regra de entrada apenas para o Balancer `TCP:8080, food-lb-sg`.
+
+
 ---
 
 ### Notas
