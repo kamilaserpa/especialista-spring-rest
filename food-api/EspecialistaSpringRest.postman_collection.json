@@ -2439,6 +2439,11 @@
 								"key": "Accept",
 								"type": "text",
 								"value": "application/json"
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "e2ff4c45-61c6-4657-98c0-785f859752de",
+								"type": "default"
 							}
 						],
 						"url": {
@@ -3473,6 +3478,16 @@
 				{
 					"name": "Usuario - Buscar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-gerente}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -4546,6 +4561,30 @@
 			]
 		},
 		{
+			"name": "AWS",
+			"item": [
+				{
+					"name": "AWS Load Balancer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com",
+							"protocol": "http",
+							"host": [
+								"food-lb-921348884",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Root Entry Point",
 			"request": {
 				"auth": {
@@ -4578,24 +4617,19 @@
 			"name": "Host Check",
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{token-gerente}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:80/hostcheck",
-					"protocol": "http",
+					"raw": "food-lb-921348884.sa-east-1.elb.amazonaws.com/hostcheck",
 					"host": [
-						"localhost"
+						"food-lb-921348884",
+						"sa-east-1",
+						"elb",
+						"amazonaws",
+						"com"
 					],
-					"port": "80",
 					"path": [
 						"hostcheck"
 					]
@@ -4611,6 +4645,10 @@
 		},
 		{
 			"key": "token-gerente",
+			"value": ""
+		},
+		{
+			"key": "vendedor-token",
 			"value": ""
 		}
 	]
