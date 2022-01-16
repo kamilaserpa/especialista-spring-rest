@@ -1,7 +1,0 @@
-tree 19a51b39222914c2d107d4c222c81858939516e0
-parent b01ed91bd81fdb42067c1d537fac03aa928463b5
-author Kamila Serpa <kamila.serpa@dellead.com> 1615121310 -0300
-committer Kamila Serpa <kamila.serpa@dellead.com> 1615121310 -0300
-
-11.4. Desafio: usando @JsonIgnoreProperties e Jackson Mixin
-
