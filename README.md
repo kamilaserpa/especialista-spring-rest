@@ -1681,6 +1681,10 @@ Em "Health Check" inserimos um path em que ele vai acessar e obter resposta de s
 
 ### Notas
 
+##### Spring Cloud Sleuth
+O Spring Cloud Sleuth fornece configuração automática do Spring Boot para rastreamento distribuído, enriquecendo os logs da aplicação.
+Tabela de compatibilidade de versões do Spring Cloud com o Spring Boot em https://spring.io/projects/spring-cloud#overview.
+
 ##### Eclipse
 
 ###### UTF-8 (9.18)

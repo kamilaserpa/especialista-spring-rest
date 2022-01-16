@@ -27,6 +27,7 @@
 		<spring-security-oauth2.version>2.3.8.RELEASE</spring-security-oauth2.version>
 		<spring-security-jwt.version>1.0.11.RELEASE</spring-security-jwt.version>
 		<dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+		<spring-cloud-sleuth.version>2.2.8.RELEASE</spring-cloud-sleuth.version>
 	</properties>
 
 	<dependencies>
@@ -231,7 +232,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+			<version>${spring-cloud-sleuth.version}</version>
+		</dependency>
+
 	</dependencies>
+
 
 	<build>
 		<plugins>

@@ -17,6 +17,7 @@ import com.kamila.food.domain.exception.RestauranteNaoEncontradoException;
 import com.kamila.food.domain.model.Restaurante;
 import com.kamila.food.domain.repository.RestauranteRepository;
 import com.kamila.food.domain.service.CadastroRestauranteService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/v1/restaurantes", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestauranteController implements RestauranteControllerOpenApi {
@@ -75,7 +77,9 @@ public class RestauranteController implements RestauranteControllerOpenApi {
     @Override
     @GetMapping
     public CollectionModel<RestauranteBasicoModel> listar() {
+        log.info("Log before query");
         List<Restaurante> restaurantes = restauranteRepository.findAll();
+
         return restauranteBasicoModelAssembler.toCollectionModel(restaurantes);
     }
 
