@@ -1670,7 +1670,7 @@ O balanceamento de carga é importante porque precisamos distribuir o processame
 ![ELB](food-api/images/aws-elastic-load-balancing.png)
 
 ##### Configurando Load Balancer na Amazon
-EC2 > Load Balancers > Criar novo. Como nossas requisições utilizam o HTTP selecionamos "Application Load Balancer". Como nome inserimos "food-lb". *Scheme* selecionamos *Internet-facing* pois desejamos que os load balancer esteja exposto na internet para os clientes da API. Em "Listeners and routing" deixamos HTTP 80 como padrão. Selecionamos pelo menos duas zonas de disponibilidade em "Network mapping" para habilitar o Multi-AZ.
+<b>EC2 > Load Balancers > Criar novo</b>. Como nossas requisições utilizam o HTTP selecionamos "Application Load Balancer". Como nome inserimos "food-lb". *Scheme* selecionamos *Internet-facing* pois desejamos que os load balancer esteja exposto na internet para os clientes da API. Em "Listeners and routing" deixamos HTTP 80 como padrão. Selecionamos pelo menos duas zonas de disponibilidade em "Network mapping" para habilitar o Multi-AZ.
 
 Criamos novo <b>Target Group</b> (Grupo de Destino) chamado "food-api-service-tg", para agrupar as instâncias em execução dentro do serviço food-service. Em "target type" selecionamos IP, pois a forma com que o ECS s eintegra com o Load Balancer é através do IP, caso fossem instâncias do EC2 deveria ser selecionado "Instance". Selecionamos Http, 80.
 Em "Health Check" inserimos um path em que ele vai acessar e obter resposta de sucesso, sem autenticação, inserimos "/v1". Habilitamos "Trafic port", "Healthy threshold" selecionamos 2, pois é o número de checagens com sucesso com que o Target será considerado saudável. Em "Unhealthy threshold" deixamos 2 também, caso com duas requests com falha o target é considerado não saudável. Em Timeout selecionamos 10 segundos para ser considerado erro. "Interval" selecionamos o intervalo de tempo de frequência de testes. Em next seremos encaminhados para "Register Targets", porém as instâncias serão adicionadas pelo próprio Amazon ECS, por isso não iremos adicionar nenhum target nesse momento. Em "Listeners and routing" selecionamso o target group criado.
@@ -1690,6 +1690,9 @@ Para <b>parar uma task</b> podemos acessar o ECS, cluster, visualizar e clicar n
 
 <b>Removendo acesso direto ao Container</b>
 Para que a comunicação fique limitada ao acesso via Load balancer vamos remover a possibilidade de acessar diretamente os containers. Acessamos `VPC > Security Groups > food-api-service` > Regras de entrada, e excluímos a regra de entrada anterior e adicionamos a regra de entrada apenas para o Balancer `TCP:8080, food-lb-sg`.
+
+##### Registrando um domínio de internet no Registro.br
+A instituição de reserva de nomes de Domínios (DNSs) selecionada foi `Registro.br` (https://registro.br/). É uma aquisição financeira e o valor de disponibilização de 1 ano nesta data é de R$ 40,00.
 
 
 ---
