@@ -1707,6 +1707,23 @@ Na página de configuração do domínio no registro.br, selecionamos "Editar zo
 
 *Obs.: Não removemos o acesso via DNS do Load Balancer pois não adquirimos um DNS privado.*
 
+### TLS (HTTPS) com AWS Certificate Manager
+Para configurar o protocolo HTTPS, e deixar a aplicação mais protegida contra ataques, precisamos emitir um certificado certificado TLS (HTTPS), utilizaremos o `AWS Certificate Manager`. Solicitar um certificado público (o privado é pago).
+
+No nome de domínio inserimos: *.kamilafood.com.br.
+Selecionar método de validação: Validação de email
+Após isso será enviado um e-mail com link para aprovação do certificado.
+
+<b>Adicionando Certificado no Load Balancer</b>
+Em EC2 > LoadBalancer > Listeners, vamos adicionar listener. Protocolo HTTPS, Return fixed response, Default SSL certificate, selecione o certificado criado anteriormente nas opções de busca.
+Clicamos no listener a adicionamos nova Regra (new rule). Host header: kamilafood.com.br, target group:food-api-service-tg.
+Após isso temos dois listeners, na porta 80 e outro na 443, caso não usado o na porta 80 pode sre excluído.
+
+Editar o security group de food-lb-sg, editamos a regra de entrada para permitir acesso ao protocolo HTTPS, TCP, 443 de qualquer lugar.
+
+Um problema provocado foram os links do hypermedia sendo recebidos sem https, por isso não funcionam.
+
+
 ---
 
 ### Notas
