@@ -1692,8 +1692,20 @@ Para <b>parar uma task</b> podemos acessar o ECS, cluster, visualizar e clicar n
 Para que a comunicação fique limitada ao acesso via Load balancer vamos remover a possibilidade de acessar diretamente os containers. Acessamos `VPC > Security Groups > food-api-service` > Regras de entrada, e excluímos a regra de entrada anterior e adicionamos a regra de entrada apenas para o Balancer `TCP:8080, food-lb-sg`.
 
 ##### Registrando um domínio de internet no Registro.br
-A instituição de reserva de nomes de Domínios (DNSs) selecionada foi `Registro.br` (https://registro.br/). É uma aquisição financeira e o valor de disponibilização de 1 ano nesta data é de R$ 40,00.
+A instituição de reserva de nomes de Domínios (DNSs) selecionada foi `Registro.br` (https://registro.br/). É uma aquisição financeira e o valor de disponibilização de 1 ano nesta data é de R$ 40,00. Outras opções são o Cloudflare, e Aws Route 53.
 
+##### Configurando o domínio para o Application Load Balancer
+Após o domínio registrado é necessário um serviço DNS, é o responsável por converter nomes de sites em IPs numéricos. Um desses produtos é o `AWS Route 53`, o Registro.br tbm possui esta funcionalidade.
+Na página de configuração do domínio no registro.br, selecionamos "Editar zona" > "Nova entrada", e adicionamos o Ip do Load Balancer da AWS. Na configuração inicial deve ser mais rápida a criação, para alteração pode demorar dias:
+
+![Configuração do DNS no RegistroBr para Load Balancer DNS](food-api/images/dns-registro-br.png)
+ Já podemos acessar as requests via Postman através do DNS.
+ Vamos retirar o acesso pelo ip do Load Balancer. Para isso acessamos EC2 > LoadBalancer > Listeners > Visualizar/editar regras > Adicionar nova regra. EM *"Host header"* inserimos o dns (p.e "kamilafood.com.br"), *"Forward to"* target group do load Balancer "food-api-service-tg".
+ E a regra anterior alteramos para retornar 503, removendo o acesso que não utilize o DNS.
+
+![Acesso via DNS no Load Balancer](food-api/images/load-balancer-acesso-via-dns.png)
+
+*Obs.: Não removemos o acesso via DNS do Load Balancer pois não adquirimos um DNS privado.*
 
 ---
 
