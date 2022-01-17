@@ -1624,9 +1624,9 @@ Caso a porta esteja padrão TCP 80, altere para Custom TCP e insira a porta dese
 #### Amazon Elastic Container Registry
 Para utilizar uma imagem é necessário tê-la em algum Registry. Para isso será utilizado o [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/pt/ecr/). É possível utilizar o Docker Hub, porém espera-se que a integração com serviços da Amazon e gerenciamento sejam mais simples com o ECR.
 
-Criar novo repositório. Para inserir imagem selecione o repositório criado e "View push commands", serão exibidos comandos para inserir imagens no Registry. Necessário instalar <b>AWS Command Line Interface</b>. 
+Criar novo repositório, privado, nomeamos como `food-api`, Create repository. Para inserir imagem selecione o repositório criado e "View push commands", serão exibidos comandos para inserir imagens no Registry. Necessário instalar <b>AWS Command Line Interface</b>. 
 
-Com Aws Cli instalado digitamos `aws configure`, e nos é solicitado *access key id*. Para isso acessamos o serviço "IAM" no Aws Console, adicionamso outro usuário apenas para a finalizade de utilização do Aws Cli. Habilitamos "Chave de acesso: acesso programático". Em "Anexar políticas existentes de forma direta", busque e adicione "AmazonEC2ContainerRegistryPowerUser", assim damos permissão para este usuário gerenciar os serviços EC2. Assim obtemos o Secret Access Key e Access Key Id. Inserimos no prompt e teclamos Enter nas demais opções (region name, output format). Após isso visualizamos novamente "View push commands".
+Com Aws Cli instalado digitamos `aws configure`, e nos é solicitado *access key id*. Para isso acessamos o serviço "IAM" no Aws Console, <b>adicionamso outro usuário</b> apenas para a finalidade de utilização do Aws Cli. Habilitamos "Chave de acesso: acesso programático". Em "Anexar políticas existentes de forma direta", busque e adicione "AmazonEC2ContainerRegistryPowerUser", assim damos permissão para este usuário gerenciar os serviços EC2. Assim obtemos o Secret Access Key e Access Key Id. Inserimos no prompt e teclamos Enter nas demais opções (region name, output format). Após isso visualizamos novamente "View push commands".
 
 > aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ************
 
@@ -1721,7 +1721,20 @@ Após isso temos dois listeners, na porta 80 e outro na 443, caso não usado o n
 
 Editar o security group de food-lb-sg, editamos a regra de entrada para permitir acesso ao protocolo HTTPS, TCP, 443 de qualquer lugar.
 
-Um problema provocado foram os links do hypermedia sendo recebidos sem https, por isso não funcionam.
+<b>Ajuste no HATEOAS</b>
+
+![Fluxo básico de comunicação](food-api/images/header-protocolo-load-balancer.png)
+
+Um problema provocado foram os links do HATEOAS sendo recebidos pelo consumidor sem https, por isso não funcionam. Apesar de o Load Balancer encaminhar ao container, através do header `X-Forwarded-Proto`, o protocolo HTTPS recebido pelo cliente, a aplicação não está configurada para retornar o protocolo recebido do cabeçalho nos links do HATEOAS. Então retorna o protocolo utilizado na comunicação entre Load Balancer e Container, que é HTTP.
+
+Adicionamos a propriedade abaixo para utilizar o suporte do Spring pra tratar os cabeçalhos forwarded, permitindo que ele identifique os *headers*  `X-Forwarded-Host` e `X-Forwarded-Proto`. Desse modo a aplicação passa a utilizar estes atributos para montar os links do HATEOAS.
+
+Sem essa propriedade era recebido sempre http nos links, p.e. `http://localhost:8080`.
+
+> server.forward-headers-strategy=framework
+
+Após isso devemos empacotar novamente a aplicação com `mvn package -Pdocker`, acessar o <b>AWS Elastic Container Registry</b>, em Repositories, e capturar o comandos push, executar localmente para fazer upload da imagem. Em seguida acessamos os clusters em ECS no menu lateral, selecionamos o service `food-service`, habilitamos Force new deployment, para que seja atualizado para a nova imagem do container.
+
 
 
 ---
