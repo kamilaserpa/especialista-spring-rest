@@ -2013,6 +2013,16 @@
 				{
 					"name": "Produto/Restaurante - Salvar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxLCJ1c2VyX25hbWUiOiJqb2FvLmdlckBrZm9vZC5jb20iLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiZXhwIjoxNjQyNDkzMjMxLCJhdXRob3JpdGllcyI6WyJHRVJBUl9SRUxBVE9SSU9TIiwiRURJVEFSX0NPWklOSEFTIiwiQ09OU1VMVEFSX1VTVUFSSU9TX0dSVVBPU19QRVJNSVNTT0VTIiwiRURJVEFSX0NJREFERVMiLCJFRElUQVJfRk9STUFTX1BBR0FNRU5UTyIsIkVESVRBUl9SRVNUQVVSQU5URVMiLCJHRVJFTkNJQVJfUEVESURPUyIsIkVESVRBUl9VU1VBUklPU19HUlVQT1NfUEVSTUlTU09FUyIsIkNPTlNVTFRBUl9QRURJRE9TIiwiRURJVEFSX0VTVEFET1MiXSwianRpIjoiMDlkZTkxZjItYzBhNS00YzgxLWI1N2ItNDBmMjIwMTIxNmE1Iiwibm9tZV9jb21wbGV0byI6Ikpvw6NvIGRhIFNpbHZhIiwiY2xpZW50X2lkIjoiZm9vZGFuYWx5dGljcyJ9.PeBgPl-zs5BiZzgkW0y_V3hfT5df4LmeO2_l_wXsuuGDC--uAvd9pJGxX0gc5Ye794lT4b8nwwJoCRSUZ-eMk1lL9hpQ6XD3H3MAdZYgHhgHvCIufqWiScLMhWiVgcAb93EiBnh8l-5_39e10FlGSiS6IDBkSV_tIYOVte4_q0MmTy3nVT881f-Q25uFO7v045DhmzJCycqjibzKI3q2JbJqI_7mSKBhhgLM0g9WTET-6UQH5Nix85ySJ5ukpNdHIe3e6q67IBNC_1Jum_dwhCLhrhhRB1Ulq2pZD3iRbNejyw3QRy4rndrTiGg6SUbunv-aJKYDqkfFlIbB4x6kwQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -2028,19 +2038,22 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Camarão Internacional\",\r\n    \"descricao\": \"Camarões cozidos com arroz cremoso, ervilha, milho, com queijo gratinado\",\r\n    \"preco\": 61.00,\r\n    \"ativo\": true\r\n}"
+							"raw": "{\r\n    \"nome\": \"Açaí com banana\",\r\n    \"descricao\": \"Açaí puro batido com banana\",\r\n    \"preco\": 15.00,\r\n    \"ativo\": true\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/v1/restaurantes/3/produtos",
+							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com/v1/restaurantes/1/produtos",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"food-lb-921348884",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"v1",
 								"restaurantes",
-								"3",
+								"1",
 								"produtos"
 							]
 						}
@@ -2144,6 +2157,16 @@
 				{
 					"name": "Produto/Foto - Salvar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxLCJ1c2VyX25hbWUiOiJqb2FvLmdlckBrZm9vZC5jb20iLCJzY29wZSI6WyJSRUFEIiwiV1JJVEUiXSwiZXhwIjoxNjQyNDkzMjMxLCJhdXRob3JpdGllcyI6WyJHRVJBUl9SRUxBVE9SSU9TIiwiRURJVEFSX0NPWklOSEFTIiwiQ09OU1VMVEFSX1VTVUFSSU9TX0dSVVBPU19QRVJNSVNTT0VTIiwiRURJVEFSX0NJREFERVMiLCJFRElUQVJfRk9STUFTX1BBR0FNRU5UTyIsIkVESVRBUl9SRVNUQVVSQU5URVMiLCJHRVJFTkNJQVJfUEVESURPUyIsIkVESVRBUl9VU1VBUklPU19HUlVQT1NfUEVSTUlTU09FUyIsIkNPTlNVTFRBUl9QRURJRE9TIiwiRURJVEFSX0VTVEFET1MiXSwianRpIjoiMDlkZTkxZjItYzBhNS00YzgxLWI1N2ItNDBmMjIwMTIxNmE1Iiwibm9tZV9jb21wbGV0byI6Ikpvw6NvIGRhIFNpbHZhIiwiY2xpZW50X2lkIjoiZm9vZGFuYWx5dGljcyJ9.PeBgPl-zs5BiZzgkW0y_V3hfT5df4LmeO2_l_wXsuuGDC--uAvd9pJGxX0gc5Ye794lT4b8nwwJoCRSUZ-eMk1lL9hpQ6XD3H3MAdZYgHhgHvCIufqWiScLMhWiVgcAb93EiBnh8l-5_39e10FlGSiS6IDBkSV_tIYOVte4_q0MmTy3nVT881f-Q25uFO7v045DhmzJCycqjibzKI3q2JbJqI_7mSKBhhgLM0g9WTET-6UQH5Nix85ySJ5ukpNdHIe3e6q67IBNC_1Jum_dwhCLhrhhRB1Ulq2pZD3iRbNejyw3QRy4rndrTiGg6SUbunv-aJKYDqkfFlIbB4x6kwQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
@@ -2168,29 +2191,32 @@
 							"formdata": [
 								{
 									"key": "descricao",
-									"value": "Corte macio osso em T",
+									"value": "Açaí delicioso com banana",
 									"type": "text"
 								},
 								{
 									"key": "arquivo",
 									"type": "file",
-									"src": "/C:/Users/ACT/Downloads/bife.jpg"
+									"src": "/C:/Users/ACT/Pictures/acai-banana.jpg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/v1/restaurantes/4/produtos/7/foto",
+							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com/v1/restaurantes/1/produtos/11/foto",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"food-lb-921348884",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
 							],
-							"port": "8080",
 							"path": [
 								"v1",
 								"restaurantes",
-								"4",
+								"1",
 								"produtos",
-								"7",
+								"11",
 								"foto"
 							]
 						}
@@ -4501,7 +4527,7 @@
 							"urlencoded": [
 								{
 									"key": "code",
-									"value": "92skTc",
+									"value": "IwFz2Q",
 									"type": "text"
 								},
 								{
@@ -4527,12 +4553,15 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/oauth/token",
+							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com/oauth/token",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"food-lb-921348884",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
 							],
-							"port": "8081",
 							"path": [
 								"oauth",
 								"token"
@@ -4593,12 +4622,38 @@
 			"name": "AWS",
 			"item": [
 				{
-					"name": "AWS Load Balancer",
+					"name": "AWS Load Balancer - Root Entry Point",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token-gerente}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "X-Forwarded-Proto",
+								"value": "https",
+								"type": "default"
+							},
+							{
+								"key": "X-Forwarded-Host",
+								"value": "kamila.food",
+								"type": "default"
+							},
+							{
+								"key": "Host",
+								"value": "api.food",
+								"type": "default"
+							}
+						],
 						"url": {
-							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com",
+							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com/v1",
 							"protocol": "http",
 							"host": [
 								"food-lb-921348884",
@@ -4606,6 +4661,9 @@
 								"elb",
 								"amazonaws",
 								"com"
+							],
+							"path": [
+								"v1"
 							]
 						}
 					},
@@ -4630,6 +4688,79 @@
 							],
 							"path": [
 								"hostcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Flow - Solicitar token GERENTE AWS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.unset(\"token-gerente\");\r",
+									"\r",
+									"pm.collectionVariables.set(\"token-gerente\",\r",
+									"pm.response.json().access_token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "web123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "food-web",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "joao.ger@kfood.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://food-lb-921348884.sa-east-1.elb.amazonaws.com/oauth/token",
+							"protocol": "http",
+							"host": [
+								"food-lb-921348884",
+								"sa-east-1",
+								"elb",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
 							]
 						}
 					},
